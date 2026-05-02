@@ -1,0 +1,421 @@
+/* ============================================
+   HEADER
+   ============================================ */
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.header.scrolled {
+  background: rgba(0, 12, 36, 0.95);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(254, 201, 15, 0.1);
+}
+
+.header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Brand com animação do traçado */
+.brand {
+  text-decoration: none;
+  flex-shrink: 0;
+  transition: opacity 0.2s;
+  position: relative;
+  display: inline-block;
+}
+
+.brand:hover {
+  opacity: 0.8;
+}
+
+.brand-logo {
+  height: 46px;
+  width: auto;
+  display: block;
+}
+
+/* Traçado animado embaixo da logo */
+.brand-underline {
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: #fec90f;
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+.brand:hover .brand-underline {
+  width: 100%;
+}
+
+/* Animação contínua de encher e esvaziar */
+@keyframes underlinePulse {
+  0% {
+    width: 0%;
+    left: 0;
+  }
+  50% {
+    width: 100%;
+    left: 0;
+  }
+  100% {
+    width: 0%;
+    left: 100%;
+  }
+}
+
+.brand-underline {
+  animation: underlinePulse 3s ease-in-out infinite;
+}
+
+/* Para quando passar o mouse, para a animação e mostra o traçado completo */
+.brand:hover .brand-underline {
+  animation: none;
+  width: 100%;
+  left: 0;
+}
+
+/* Nav */
+.nav {
+  display: flex;
+  gap: 40px;
+}
+
+.nav-link {
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 6px 12px;
+  border-radius: 8px;
+  transition: all 0.2s;
+}
+
+.nav-link:hover {
+  color: #000c24;
+  background: #fec90f;
+}
+
+/* Actions Desktop */
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.lang {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 4px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 20px;
+}
+
+.lang-btn {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 16px;
+  transition: all 0.2s;
+}
+
+.lang-btn.active {
+  background: #fec90f;
+  color: #000c24;
+}
+
+.lang-btn:hover:not(.active) {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.cta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 20px;
+  background: #fec90f;
+  border-radius: 100px;
+  color: #000c24;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.cta:hover {
+  background: #000c24;
+  color: #fec90f;
+  box-shadow: inset 0 0 0 2px #fec90f;
+}
+
+/* SELETOR DE IDIOMA MOBILE - DENTRO DO HEADER, FORA DO MENU */
+.mobile-lang-header {
+  display: none;
+  align-items: center;
+  gap: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 4px 8px;
+  border-radius: 30px;
+  margin-right: 12px;
+}
+
+.mobile-lang-header-btn {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.7rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 4px 10px;
+  border-radius: 30px;
+  transition: all 0.2s;
+}
+
+.mobile-lang-header-btn.active {
+  background: #fec90f;
+  color: #000c24;
+}
+
+.mobile-lang-header-btn:hover:not(.active) {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* ============================================
+   MOBILE MENU
+   ============================================ */
+
+.mobile-btn {
+  display: none;
+  background: none;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 72px;
+  left: 0;
+  right: 0;
+  background: #000c24;
+  max-height: calc(100vh - 72px);
+  overflow-y: auto;
+}
+
+.mobile-menu.open {
+  display: block;
+}
+
+.mobile-menu-inner {
+  padding: 24px;
+}
+
+.mobile-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 32px;
+}
+
+.mobile-nav a {
+  padding: 14px 0;
+  color: #ffffff;
+  font-size: 1.125rem;
+  font-weight: 500;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  transition: color 0.2s;
+}
+
+.mobile-nav a:hover {
+  color: #fec90f;
+}
+
+.mobile-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px;
+  background: #fec90f;
+  border-radius: 12px;
+  color: #000c24;
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.mobile-cta:hover {
+  background: #ffd43b;
+}
+
+/* Link ativo */
+.nav-link.active {
+  color: #fec90f !important;
+  background: transparent !important;
+}
+
+.mobile-nav a.active {
+  color: #fec90f !important;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+/* Tablet e mobile - esconde nav e actions, mostra botões mobile */
+@media (max-width: 900px) {
+  .nav,
+  .actions {
+    display: none;
+  }
+
+  .mobile-btn {
+    display: block;
+  }
+
+  .mobile-lang-header {
+    display: flex;
+  }
+}
+
+/* Mobile médio */
+@media (max-width: 640px) {
+  .header-inner {
+    padding: 0 24px;
+    height: 64px;
+  }
+
+  .brand-logo {
+    height: 30px;
+  }
+
+  .mobile-menu {
+    top: 64px;
+    max-height: calc(100vh - 64px);
+  }
+
+  .mobile-lang-header {
+    padding: 3px 6px;
+    margin-right: 8px;
+  }
+
+  .mobile-lang-header-btn {
+    padding: 3px 8px;
+    font-size: 0.65rem;
+  }
+}
+
+/* Mobile pequeno */
+@media (max-width: 480px) {
+  .header-inner {
+    padding: 0 20px;
+    height: 60px;
+  }
+
+  .brand-logo {
+    height: 36px;
+  }
+
+  .mobile-menu {
+    top: 60px;
+    max-height: calc(100vh - 60px);
+  }
+
+  .mobile-lang-header {
+    padding: 3px 5px;
+    margin-right: 6px;
+  }
+
+  .mobile-lang-header-btn {
+    padding: 2px 6px;
+    font-size: 0.6rem;
+  }
+}
+
+/* Desktop pequeno */
+@media (max-width: 1024px) and (min-width: 901px) {
+  .nav {
+    gap: 20px;
+  }
+  
+  .nav-link {
+    font-size: 0.75rem;
+    padding: 4px 8px;
+  }
+  
+  .cta {
+    padding: 7px 16px;
+    font-size: 0.75rem;
+  }
+}
+
+/* ============================================
+   iPhone PWA / Safari Add to Home Screen - CORREÇÃO TOTAL
+   ============================================ */
+
+/* Ajuste para PWA no iPhone - header e hero não colam mais */
+@supports (padding-top: env(safe-area-inset-top)) {
+  @media (max-width: 900px) {
+    .header {
+      padding-top: env(safe-area-inset-top);
+    }
+    
+    .header-inner {
+      height: calc(72px + env(safe-area-inset-top));
+    }
+    
+    .mobile-menu {
+      top: calc(72px + env(safe-area-inset-top));
+      max-height: calc(100vh - 72px - env(safe-area-inset-top));
+    }
+  }
+  
+  @media (max-width: 640px) {
+    .header-inner {
+      height: calc(64px + env(safe-area-inset-top));
+    }
+    
+    .mobile-menu {
+      top: calc(64px + env(safe-area-inset-top));
+      max-height: calc(100vh - 64px - env(safe-area-inset-top));
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .header-inner {
+      height: calc(60px + env(safe-area-inset-top));
+    }
+    
+    .mobile-menu {
+      top: calc(60px + env(safe-area-inset-top));
+      max-height: calc(100vh - 60px - env(safe-area-inset-top));
+    }
+  }
+}

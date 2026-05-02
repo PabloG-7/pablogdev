@@ -1,0 +1,143 @@
+.process-banner {
+  background: #000c24;
+  padding: 60px 0;
+  position: relative;
+}
+
+.carousel-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.carousel-slide {
+  flex: 1;
+  position: relative;
+}
+
+.process-image {
+  display: block;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  border-radius: 28px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+}
+
+/* Botões - discretos */
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 12, 36, 0.6);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(254, 201, 15, 0.3);
+  color: #fec90f;
+  font-size: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  opacity: 0.5;
+}
+
+.carousel-btn:hover {
+  opacity: 1;
+  background: rgba(254, 201, 15, 0.2);
+  border-color: #fec90f;
+  transform: translateY(-50%) scale(1.05);
+}
+
+.carousel-btn--prev {
+  left: -20px;
+}
+
+.carousel-btn--next {
+  right: -20px;
+}
+
+/* Dots */
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 32px;
+}
+
+.dot {
+  width: 40px;
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(254, 201, 15, 0.3);
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 0;
+}
+
+.dot--active {
+  background: #fec90f;
+  width: 60px;
+}
+
+/* Animações */
+.carousel-slide {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Mobile - apenas ajustes de tamanho */
+@media (max-width: 768px) {
+  .process-banner {
+    padding: 40px 0;
+  }
+
+  .process-image {
+    max-width: 90%;
+  }
+
+  .carousel-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 16px;
+    opacity: 0.4;
+  }
+
+  .carousel-btn--prev {
+    left: -10px;
+  }
+
+  .carousel-btn--next {
+    right: -10px;
+  }
+
+  .carousel-dots {
+    margin-top: 20px;
+  }
+
+  .dot {
+    width: 30px;
+  }
+
+  .dot--active {
+    width: 45px;
+  }
+}

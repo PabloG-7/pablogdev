@@ -1,0 +1,221 @@
+/* ============================================
+   INDEX - RESET & BASE STYLES
+   ============================================ */
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Base */
+html {
+  scroll-behavior: smooth;
+}
+
+html, 
+body, 
+#root {
+  height: 100%;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: #000c24;
+  color: #ffffff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.5;
+}
+
+/* Tipografia */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+/* Links */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Imagens */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Botões */
+button {
+  font-family: inherit;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+/* Listas */
+ul, ol {
+  list-style: none;
+}
+
+/* Container */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+/* ============================================
+   SCROLLBAR CUSTOMIZADA - Funciona em todos os navegadores/dispositivos
+   ============================================ */
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(254, 201, 15, 0.4) rgba(255, 255, 255, 0.05);
+}
+
+/* Chrome, Edge, Safari (Desktop) */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(254, 201, 15, 0.4);
+  border-radius: 10px;
+  transition: background 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(254, 201, 15, 0.6);
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: rgba(254, 201, 15, 0.8);
+}
+
+/* iPhone, iPad e dispositivos iOS (Safari) */
+@supports (scrollbar-color: auto) {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(254, 201, 15, 0.5) rgba(255, 255, 255, 0.08);
+  }
+}
+
+/* Suporte específico para WebKit em iOS */
+@supports (-webkit-touch-callout: none) {
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: rgba(254, 201, 15, 0.5);
+    border-radius: 10px;
+  }
+}
+
+/* Android e outros dispositivos mobile */
+@media (max-width: 768px) {
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: rgba(254, 201, 15, 0.4);
+    border-radius: 10px;
+  }
+}
+
+/* Samsung Internet e navegadores baseados em Chromium no Android */
+@supports (scrollbar-width: auto) and (not (-webkit-touch-callout: none)) {
+  @media (max-width: 768px) {
+    ::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: rgba(254, 201, 15, 0.45);
+    }
+  }
+}
+
+/* ============================================
+   SELEÇÃO DE TEXTO
+   ============================================ */
+
+::selection {
+  background: rgba(254, 201, 15, 0.25);
+  color: #ffffff;
+}
+
+::-moz-selection {
+  background: rgba(254, 201, 15, 0.25);
+  color: #ffffff;
+}
+
+/* ============================================
+   SCROLL SUAVE E PERFORMANCE
+   ============================================ */
+
+/* Remove o scroll padrão feio em alguns navegadores */
+:root {
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+
+/* Melhora a performance do scroll */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* ============================================
+   RESPONSIVO
+   ============================================ */
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 20px;
+  }
+}
+
+/* Ocultar scrollbar em tablets/mobile quando não estiver rolando (opcional) */
+@media (max-width: 768px) {
+  ::-webkit-scrollbar-thumb {
+    background: rgba(254, 201, 15, 0.3);
+  }
+  
+  /* Mostrar mais visível quando estiver rolando */
+  body::-webkit-scrollbar-thumb {
+    background: rgba(254, 201, 15, 0.5);
+  }
+}
