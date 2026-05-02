@@ -104,40 +104,52 @@
   }
 }
 
-/* Mobile - apenas ajustes de tamanho */
+/* Mobile - SEM SETAS e imagem enorme */
 @media (max-width: 768px) {
   .process-banner {
     padding: 40px 0;
   }
 
-  .process-image {
-    max-width: 90%;
-  }
-
+  /* Remove as setas no mobile */
   .carousel-btn {
-    width: 32px;
-    height: 32px;
-    font-size: 16px;
-    opacity: 0.4;
+    display: none;
   }
 
-  .carousel-btn--prev {
-    left: -10px;
+  .carousel-container {
+    max-width: 100%;
+    padding: 0;
   }
 
-  .carousel-btn--next {
-    right: -10px;
+  .process-image {
+    max-width: 100%;
+    width: 100%;
+    border-radius: 0;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   }
 
   .carousel-dots {
     margin-top: 20px;
+    gap: 15px;
   }
 
   .dot {
-    width: 30px;
+    width: 40px;
+    height: 5px;
   }
 
   .dot--active {
-    width: 45px;
+    width: 60px;
+    background: #fec90f;
+  }
+}
+
+/* Para telas muito pequenas */
+@media (max-width: 480px) {
+  .dot {
+    width: 35px;
+  }
+  
+  .dot--active {
+    width: 50px;
   }
 }
