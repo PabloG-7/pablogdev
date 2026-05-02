@@ -7,22 +7,22 @@ function ProcessBanner() {
   const ads = [
     {
       id: 1,
-      image: 'public/banner-1.png',
+      image: '/banner-1.png',
       alt: 'Planejamento'
     },
     {
       id: 2,
-      image: 'public/banner-2.png',
+      image: '/banner-2.png',
       alt: 'Desenvolvimento'
     },
     {
       id: 3,
-      image: 'public/banner-3.png',
+      image: '/banner-3.png',
       alt: 'Integrações'
     },
     {
       id: 4,
-      image: 'public/banner-4.png',
+      image: '/banner-4.png',
       alt: 'Experiência tipo app'
     }
   ]
