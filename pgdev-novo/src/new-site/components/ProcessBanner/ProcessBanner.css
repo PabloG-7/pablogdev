@@ -104,6 +104,43 @@
   }
 }
 
+/* Notebooks (telas médias) - REDUZIDO */
+@media (min-width: 769px) and (max-width: 1366px) {
+  .process-banner {
+    padding: 40px 0;
+  }
+
+  .process-image {
+    max-width: 80%;
+    border-radius: 20px;
+  }
+
+  .carousel-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 18px;
+  }
+
+  .carousel-btn--prev {
+    left: -10px;
+  }
+
+  .carousel-btn--next {
+    right: -10px;
+  }
+
+  .carousel-dots {
+    margin-top: 24px;
+  }
+}
+
+/* Desktop grande mantém o tamanho original */
+@media (min-width: 1367px) {
+  .process-image {
+    max-width: 1000px;
+  }
+}
+
 /* Mobile - SEM SETAS e imagem enorme */
 @media (max-width: 768px) {
   .process-banner {
