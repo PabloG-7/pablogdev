@@ -17,6 +17,13 @@ export default function Header({ language, onChangeLanguage }: HeaderProps) {
   const [activeSection, setActiveSection] = useState('inicio')
   const content = language === 'pt' ? pt : es
 
+  // Função para rastrear o clique do WhatsApp no Meta Pixel
+  const handleWhatsAppClick = () => {
+    if (window.fbq) {
+      window.fbq('track', 'Contact')
+    }
+  }
+
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50)
@@ -71,7 +78,13 @@ export default function Header({ language, onChangeLanguage }: HeaderProps) {
             <button className={`lang-btn ${language === 'es' ? 'active' : ''}`} onClick={() => onChangeLanguage('es')}>ES</button>
           </div>
 
-          <a href="https://wa.me/5511961111894" target="_blank" rel="noopener noreferrer" className="cta">
+          <a
+            href="https://wa.me/5511961111894"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="cta"
+            onClick={handleWhatsAppClick}
+          >
             <MessageCircle size={16} />
             <span>{content.header.cta}</span>
           </a>
@@ -98,7 +111,16 @@ export default function Header({ language, onChangeLanguage }: HeaderProps) {
             <a href="#contato" className={activeSection === 'contato' ? 'active' : ''} onClick={closeMenu}>{content.header.contact}</a>
           </nav>
 
-          <a href="https://wa.me/5511961111894" target="_blank" rel="noopener noreferrer" className="mobile-cta" onClick={closeMenu}>
+          <a
+            href="https://wa.me/5511961111894"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mobile-cta"
+            onClick={() => {
+              handleWhatsAppClick()
+              closeMenu()
+            }}
+          >
             <MessageCircle size={16} />
             <span>{content.header.cta}</span>
           </a>
