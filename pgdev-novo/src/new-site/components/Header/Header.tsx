@@ -56,6 +56,8 @@ export default function Header({ language, onChangeLanguage }: HeaderProps) {
     return () => window.removeEventListener('resize', handleResize)
   }, [isMenuOpen])
 
+  const whatsappLink = "https://wa.me/5511961111894?text=Ol%C3%A1%2C%20vim%20pelo%20site%20PabloG.Dev%20e%20gostaria%20de%20saber%20mais%20sobre%20sites%20e%20sistemas."
+
   return (
     <header className={`header ${scrolled ? 'scrolled' : ''}`}>
       <div className="header-inner">
@@ -79,7 +81,7 @@ export default function Header({ language, onChangeLanguage }: HeaderProps) {
           </div>
 
           <a
-            href="https://wa.me/5511961111894"
+            href={whatsappLink}
             target="_blank"
             rel="noopener noreferrer"
             className="cta"
@@ -112,7 +114,7 @@ export default function Header({ language, onChangeLanguage }: HeaderProps) {
           </nav>
 
           <a
-            href="https://wa.me/5511961111894"
+            href={whatsappLink}
             target="_blank"
             rel="noopener noreferrer"
             className="mobile-cta"
