@@ -3,7 +3,6 @@ import { useEffect, useMemo, useState } from 'react'
 import {
   ArrowRight,
   CheckCircle2,
-  Clock3,
   Globe,
   HelpCircle,
   MessageSquareMore,
