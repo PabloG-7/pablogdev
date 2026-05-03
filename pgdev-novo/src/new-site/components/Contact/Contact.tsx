@@ -15,46 +15,49 @@ export default function Contact({ language }: ContactProps) {
   return (
     <section className="contact" id="contato">
       <div className="contact-container">
-        <div className="contact-content">
-          <h2 className="contact-title">{content.contact.title}</h2>
-          <p className="contact-text">{content.contact.text}</p>
+        <span className="contact-label">{content.contact.badge || 'CONTATO'}</span>
+        <h2 className="contact-title">
+          {content.contact.title}{' '}
+          <span>{content.contact.highlight || 'disponível'}</span>
+        </h2>
 
-          <div className="contact-info">
-            <a
-              href="https://wa.me/5511961111894"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="contact-info-item"
-            >
-              <MessageCircle size={18} />
-              <span>+55 11 96111-1894</span>
-            </a>
+        <p className="contact-text">{content.contact.text}</p>
 
-            <a href="mailto:pgdevsoftware@gmail.com" className="contact-info-item">
-              <Mail size={18} />
-              <span>pgdevsoftware@gmail.com</span>
-            </a>
+        <div className="contact-info">
+          <a
+            href="https://wa.me/5511961111894"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="contact-item"
+          >
+            <MessageCircle size={18} />
+            <span>+55 11 96111-1894</span>
+          </a>
 
-            <a
-              href="https://www.instagram.com/pablog.dev/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="contact-info-item"
-            >
-              <FaInstagram size={18} />
-              <span>@pablog.dev</span>
-            </a>
+          <a href="mailto:pgdevsoftware@gmail.com" className="contact-item">
+            <Mail size={18} />
+            <span>pgdevsoftware@gmail.com</span>
+          </a>
 
-            <a
-              href="https://www.facebook.com/profile.php?id=61579501306846"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="contact-info-item"
-            >
-              <FaFacebook size={18} />
-              <span>Facebook Page</span>
-            </a>
-          </div>
+          <a
+            href="https://www.instagram.com/pablog.dev/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="contact-item"
+          >
+            <FaInstagram size={18} />
+            <span>@pablog.dev</span>
+          </a>
+
+          <a
+            href="https://www.facebook.com/profile.php?id=61579501306846"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="contact-item"
+          >
+            <FaFacebook size={18} />
+            <span>Facebook</span>
+          </a>
         </div>
 
         <a
