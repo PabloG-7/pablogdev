@@ -255,12 +255,12 @@ export default function BookingDemo({ type }: Props) {
                   <strong>{selectedService.price}</strong>
                 </div>
                 
-                {/* Stats Desktop */}
-                <div className="booking-summary-stats">
-                  {data.stats.map((stat) => (
-                    <div className="booking-summary-stat" key={stat.label}>
-                      <strong>{stat.value}</strong>
-                      <span>{stat.label}</span>
+                {/* Info Desktop */}
+                <div className="booking-summary-info">
+                  {data.info && data.info.map((item) => (
+                    <div className="booking-summary-info-item" key={item.label}>
+                      <span>{item.label}</span>
+                      <span>{item.value}</span>
                     </div>
                   ))}
                 </div>
@@ -289,12 +289,12 @@ export default function BookingDemo({ type }: Props) {
                 </div>
               </div>
               
-              {/* Stats Mobile */}
-              <div className="booking-summary-mobile-stats">
-                {data.stats.map((stat) => (
-                  <div className="booking-summary-mobile-stat" key={stat.label}>
-                    <strong>{stat.value}</strong>
-                    <span>{stat.label}</span>
+              {/* Info Mobile */}
+              <div className="booking-summary-mobile-info">
+                {data.info && data.info.map((item) => (
+                  <div className="booking-summary-mobile-info-item" key={item.label}>
+                    <span>{item.label}</span>
+                    <span>{item.value}</span>
                   </div>
                 ))}
               </div>

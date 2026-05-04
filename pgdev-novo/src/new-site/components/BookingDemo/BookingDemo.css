@@ -887,3 +887,56 @@
     justify-content: space-between;
   }
 }
+/* Info Section no Summary Card */
+.booking-summary-info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(0, 12, 36, 0.08);
+}
+
+.booking-summary-info-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.7rem;
+}
+
+.booking-summary-info-item span:first-child {
+  color: var(--booking-accent);
+  font-weight: 500;
+  min-width: 100px;
+}
+
+.booking-summary-info-item span:last-child {
+  color: rgba(0, 12, 36, 0.6);
+}
+
+/* Info Mobile */
+.booking-summary-mobile-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 14px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(0, 12, 36, 0.08);
+}
+
+.booking-summary-mobile-info-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.65rem;
+}
+
+.booking-summary-mobile-info-item span:first-child {
+  color: var(--booking-accent);
+  font-weight: 500;
+  min-width: 85px;
+}
+
+.booking-summary-mobile-info-item span:last-child {
+  color: rgba(0, 12, 36, 0.6);
+}

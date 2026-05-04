@@ -16,10 +16,10 @@ export const bookingData = {
     ],
     professionals: ['Carlos Silva', 'Rafael Souza', 'André Lima'],
     times: ['09:00', '10:00', '11:00', '14:00', '15:00', '16:00'],
-    stats: [
-      { label: 'Agendamentos hoje', value: '12' },
-      { label: 'Confirmados', value: '9' },
-      { label: 'Tempo economizado', value: '3h' },
+    info: [
+      { label: '⚠️ Lembrete', value: 'Confirmar 1h antes' },
+      { label: '⏱️ Duração média', value: '45 min' },
+      { label: '🔄 Reagendamento', value: 'Até 2h antes' },
     ],
     features: [
       'Escolha de serviço',
@@ -45,10 +45,10 @@ export const bookingData = {
     ],
     professionals: ['Dra. Ana Martins', 'Dr. Carlos Oliveira', 'Dra. Juliana Silva'],
     times: ['08:00', '09:00', '10:00', '13:00', '14:00', '15:00'],
-    stats: [
-      { label: 'Consultas hoje', value: '18' },
-      { label: 'Pacientes confirmados', value: '14' },
-      { label: 'Retornos agendados', value: '6' },
+    info: [
+      { label: '📋 Documentos', value: 'Levar carteirinha' },
+      { label: '⏱️ Duração média', value: '40 min' },
+      { label: '🔄 Cancelamento', value: 'Até 4h antes' },
     ],
     features: [
       'Agendamento de consultas',
@@ -74,10 +74,10 @@ export const bookingData = {
     ],
     professionals: ['Equipe Pet', 'Dr. Carlos Vet', 'Juliana Groomer'],
     times: ['09:00', '10:30', '12:00', '14:30', '16:00'],
-    stats: [
-      { label: 'Pets atendidos hoje', value: '10' },
-      { label: 'Agendamentos confirmados', value: '7' },
-      { label: 'Clientes fiéis', value: '85' },
+    info: [
+      { label: '🐾 Vacinas', value: 'Obrigatórias em dia' },
+      { label: '⏱️ Duração média', value: '1 hora' },
+      { label: '📝 Observação', value: 'Levar guia e coleira' },
     ],
     features: [
       'Cadastro do pet',
