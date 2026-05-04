@@ -13,13 +13,13 @@ export default function PabloGomesPage({ language }: Props) {
     <main className="pablo-page">
       <section className="pablo-hero">
         <a href="/" className="pablo-back">
-          Voltar para PabloG.Dev
+          {isPt ? 'Acessar site oficial PabloG.Dev' : 'Acceder al sitio oficial PabloG.Dev'}
         </a>
 
         <div className="pablo-content">
           <div>
             <span className="pablo-label">
-              {isPt ? 'Desenvolvedor Front-End' : 'Desarrollador Front-End'}
+              {isPt ? 'Criador da PabloG.Dev' : 'Creador de PabloG.Dev'}
             </span>
 
             <h1>
@@ -28,13 +28,13 @@ export default function PabloGomesPage({ language }: Props) {
 
             <p>
               {isPt
-                ? 'Pablo Gomes é desenvolvedor front-end especializado em React e TypeScript, criador da PabloG.Dev. Atua no desenvolvimento de sites profissionais, sistemas web, agendamentos online e automações para empresas no Brasil e na América do Sul.'
-                : 'Pablo Gomes es desarrollador front-end especializado en React y TypeScript, creador de PabloG.Dev. Trabaja en el desarrollo de sitios web, sistemas, agendamientos online y automatizaciones para empresas en Brasil y América del Sur.'}
+                ? 'Pablo Gomes é o profissional por trás da PabloG.Dev, marca focada na criação de sites profissionais, sistemas web, agendamentos online e automações para empresas no Brasil e na América do Sul.'
+                : 'Pablo Gomes es el profesional detrás de PabloG.Dev, marca enfocada en la creación de sitios web profesionales, sistemas, agendamientos online y automatizaciones para empresas en Brasil y América del Sur.'}
             </p>
 
             <div className="pablo-actions">
-              <a href="https://wa.me/5511961111894" target="_blank" rel="noopener noreferrer">
-                {isPt ? 'Falar no WhatsApp' : 'Hablar por WhatsApp'}
+              <a href="/">
+                {isPt ? 'Ver trabalhos e soluções' : 'Ver trabajos y soluciones'}
               </a>
 
               <a href="https://github.com/pablog-7" target="_blank" rel="noopener noreferrer">
@@ -48,36 +48,40 @@ export default function PabloGomesPage({ language }: Props) {
             <h2>PabloG.Dev</h2>
             <p>
               {isPt
-                ? 'Sites, sistemas e soluções digitais para negócios que querem crescer com mais presença e organização.'
-                : 'Sitios, sistemas y soluciones digitales para negocios que quieren crecer con más presencia y organización.'}
+                ? 'Site oficial com projetos, demonstrações e soluções digitais criadas para empresas que querem crescer com mais presença e organização.'
+                : 'Sitio oficial con proyectos, demostraciones y soluciones digitales creadas para empresas que quieren crecer con más presencia y organización.'}
             </p>
+
+            <a href="/" className="pablo-main-link">
+              {isPt ? 'Ir para o site principal' : 'Ir al sitio principal'}
+            </a>
           </div>
         </div>
       </section>
 
       <section className="pablo-info">
-        <h2>{isPt ? 'Sobre Pablo Gomes' : 'Sobre Pablo Gomes'}</h2>
+        <h2>{isPt ? 'Identidade profissional' : 'Identidad profesional'}</h2>
 
         <p>
           {isPt
-            ? 'Com foco em tecnologia, design e resultado, Pablo Gomes desenvolve projetos digitais que unem visual profissional, boa experiência de uso e estrutura pensada para conversão.'
-            : 'Con enfoque en tecnología, diseño y resultados, Pablo Gomes desarrolla proyectos digitales que combinan visual profesional, buena experiencia de uso y estructura pensada para conversión.'}
+            ? 'Esta página conecta Pablo Gomes à PabloG.Dev e ao trabalho desenvolvido em sites, sistemas, agendamentos online e automações. Para conhecer os projetos e solicitar uma solução, acesse o site principal.'
+            : 'Esta página conecta Pablo Gomes con PabloG.Dev y con el trabajo desarrollado en sitios, sistemas, agendamientos online y automatizaciones. Para conocer los proyectos y solicitar una solución, accede al sitio principal.'}
         </p>
 
         <div className="pablo-grid">
           <div>
-            <h3>React & TypeScript</h3>
-            <p>{isPt ? 'Desenvolvimento moderno para sites e sistemas.' : 'Desarrollo moderno para sitios y sistemas.'}</p>
+            <h3>PabloG.Dev</h3>
+            <p>{isPt ? 'Marca profissional de Pablo Gomes para desenvolvimento de soluções digitais.' : 'Marca profesional de Pablo Gomes para desarrollo de soluciones digitales.'}</p>
           </div>
 
           <div>
-            <h3>{isPt ? 'Sistemas Web' : 'Sistemas Web'}</h3>
-            <p>{isPt ? 'Soluções sob medida para organizar processos.' : 'Soluciones a medida para organizar procesos.'}</p>
+            <h3>{isPt ? 'Projetos e demos' : 'Proyectos y demos'}</h3>
+            <p>{isPt ? 'Sites, sistemas e demonstrações para negócios como clínicas, petshops e barbearias.' : 'Sitios, sistemas y demos para negocios como clínicas, petshops y barberías.'}</p>
           </div>
 
           <div>
-            <h3>{isPt ? 'Agendamentos Online' : 'Agendamientos Online'}</h3>
-            <p>{isPt ? 'Demonstrações e sistemas para clínicas, petshops e barbearias.' : 'Demos y sistemas para clínicas, petshops y barberías.'}</p>
+            <h3>{isPt ? 'Site oficial' : 'Sitio oficial'}</h3>
+            <p>{isPt ? 'A página principal apresenta serviços, projetos e contato comercial.' : 'La página principal presenta servicios, proyectos y contacto comercial.'}</p>
           </div>
         </div>
       </section>
