@@ -140,10 +140,10 @@ export const es = {
     badge: 'Sobre mí',
     title: 'Más que desarrollar,',
     highlight: 'pienso en la forma correcta de presentar tu negocio',
-    text1:
-      'Mi enfoque es crear sitios y sistemas que tengan sentido para la realidad del cliente. La idea no es solo entregar algo bonito, sino una solución que transmita profesionalismo, facilite procesos y ayude al negocio a evolucionar con más estructura.',
+   text1:
+  'Pablo Gomes es desarrollador front-end especializado en React y TypeScript, creador de PabloG.Dev. Trabaja en el desarrollo de sitios web, sistemas y automatizaciones para empresas en Brasil y América del Sur.',
     text2:
-      'Cada proyecto se desarrolla con atención a la identidad visual, claridad en la comunicación y una experiencia que valore la imagen de la empresa frente a los clientes.',
+       'Su enfoque es crear soluciones que transmitan profesionalismo, organicen procesos y ayuden a las empresas a crecer con más presencia digital. Cada proyecto se desarrolla con estrategia, claridad y enfoque en resultados.',
     cards: [
       {
         title: 'Visión de negocio',
