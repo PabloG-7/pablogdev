@@ -71,6 +71,14 @@
   color: var(--booking-accent);
 }
 
+.booking-v3-subtitle {
+  font-size: 0.9rem;
+  color: rgba(0, 12, 36, 0.6);
+  max-width: 550px;
+  margin: 12px auto 0;
+  line-height: 1.5;
+}
+
 /* Stepper */
 .booking-steps {
   display: flex;
@@ -367,7 +375,35 @@
   margin: 12px 0;
 }
 
-/* Summary Card Mobile - aparece embaixo do formulário */
+/* Stats Desktop */
+.booking-summary-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(0, 12, 36, 0.08);
+}
+
+.booking-summary-stat {
+  text-align: center;
+}
+
+.booking-summary-stat strong {
+  display: block;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--booking-accent);
+}
+
+.booking-summary-stat span {
+  font-size: 0.6rem;
+  color: rgba(0, 12, 36, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Summary Card Mobile */
 .booking-summary-card-mobile {
   display: none;
   background: white;
@@ -433,6 +469,34 @@
 .booking-summary-mobile-item.total strong {
   font-size: 0.9rem;
   color: var(--booking-accent);
+}
+
+/* Stats Mobile */
+.booking-summary-mobile-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(0, 12, 36, 0.08);
+}
+
+.booking-summary-mobile-stat {
+  text-align: center;
+}
+
+.booking-summary-mobile-stat strong {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--booking-accent);
+}
+
+.booking-summary-mobile-stat span {
+  font-size: 0.55rem;
+  color: rgba(0, 12, 36, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 /* Form Phase */
@@ -639,6 +703,7 @@
 
 .booking-v3-feature svg {
   color: var(--booking-accent);
+  flex-shrink: 0;
 }
 
 .booking-v3-feature div strong {

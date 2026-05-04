@@ -6,8 +6,6 @@ import {
   ArrowLeft,
   MessageCircle,
   ChevronRight,
-  Shield,
-  BarChart3,
   Check,
   CalendarDays,
   Crown,
@@ -87,7 +85,7 @@ export default function BookingDemo({ type }: Props) {
                 >
                   <div className="booking-v3-service-card-header">
                     <strong>{service.name}</strong>
-                    <small>30 min</small>
+                    <small>{service.duration || '30 min'}</small>
                     {selectedService.name === service.name && <Check size={16} />}
                   </div>
                   <span className="booking-v3-price">
@@ -191,7 +189,7 @@ export default function BookingDemo({ type }: Props) {
           </a>
           <div className="booking-v3-logo">
             <img src={logo} alt="PabloG.Dev" className="booking-v3-logo-img" />
-           
+            <span>Pablo<span className="booking-v3-logo-accent">G</span>.Dev</span>
           </div>
         </nav>
 
@@ -203,6 +201,7 @@ export default function BookingDemo({ type }: Props) {
             {type === 'petshop' && 'PetShop'}
             <span> Agendamento</span>
           </h1>
+          <p className="booking-v3-subtitle">{data.subtitle}</p>
         </div>
 
         {/* Stepper */}
@@ -255,6 +254,16 @@ export default function BookingDemo({ type }: Props) {
                   <span>Total</span>
                   <strong>{selectedService.price}</strong>
                 </div>
+                
+                {/* Stats Desktop */}
+                <div className="booking-summary-stats">
+                  {data.stats.map((stat) => (
+                    <div className="booking-summary-stat" key={stat.label}>
+                      <strong>{stat.value}</strong>
+                      <span>{stat.label}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
 
@@ -278,6 +287,16 @@ export default function BookingDemo({ type }: Props) {
                   <span>Total</span>
                   <strong>{selectedService.price}</strong>
                 </div>
+              </div>
+              
+              {/* Stats Mobile */}
+              <div className="booking-summary-mobile-stats">
+                {data.stats.map((stat) => (
+                  <div className="booking-summary-mobile-stat" key={stat.label}>
+                    <strong>{stat.value}</strong>
+                    <span>{stat.label}</span>
+                  </div>
+                ))}
               </div>
             </div>
           </>
@@ -318,27 +337,15 @@ export default function BookingDemo({ type }: Props) {
 
         {/* Features Grid */}
         <div className="booking-v3-features">
-          <div className="booking-v3-feature">
-            <Shield size={20} />
-            <div>
-              <strong>Segurança</strong>
-              <span>Dados protegidos</span>
+          {data.features.map((feature) => (
+            <div className="booking-v3-feature" key={feature}>
+              <Check size={20} />
+              <div>
+                <strong>{feature}</strong>
+                <span>{data.segment}</span>
+              </div>
             </div>
-          </div>
-          <div className="booking-v3-feature">
-            <MessageCircle size={20} />
-            <div>
-              <strong>Notificações</strong>
-              <span>Lembretes automáticos</span>
-            </div>
-          </div>
-          <div className="booking-v3-feature">
-            <BarChart3 size={20} />
-            <div>
-              <strong>Relatórios</strong>
-              <span>Análise completa</span>
-            </div>
-          </div>
+          ))}
         </div>
 
         {/* CTA Footer */}

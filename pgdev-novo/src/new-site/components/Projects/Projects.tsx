@@ -18,6 +18,16 @@ import exemplo6 from '../../assets/exemplo6.png'
 
 const projectImages = [exemplo1, exemplo2, exemplo3, exemplo4, exemplo5, exemplo6]
 
+// Links dos projetos
+const projectLinks = [
+  'https://drbrunoribeiro.com.br',
+  '#',
+  '#',
+  '/demo-barbearia',
+  '/demo-petshop',
+  '/demo-clinica',
+]
+
 export default function Projects({ language }: ProjectsProps) {
   const content = language === 'pt' ? pt : es
   const [showAll, setShowAll] = useState(false)
@@ -51,13 +61,21 @@ export default function Projects({ language }: ProjectsProps) {
           {visibleProjects.map((project, index) => (
             <div key={project.title} className="project-card">
               <img 
-                src={projectImages[index] || projectImages[projectImages.length - 1]} 
+                src={projectImages[index]} 
                 alt={project.title} 
               />
               <div className="project-overlay">
                 <span>{project.category}</span>
                 <h3>{project.title}</h3>
                 <p>{project.description}</p>
+                <a
+                  href={projectLinks[index]}
+                  className="project-link"
+                  target={projectLinks[index].startsWith('http') ? '_blank' : '_self'}
+                  rel="noopener noreferrer"
+                >
+                  {index >= 3 ? 'Ver demonstração' : 'Ver projeto'}
+                </a>
               </div>
             </div>
           ))}
