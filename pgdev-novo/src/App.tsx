@@ -13,6 +13,8 @@ import Contact from './new-site/components/Contact/Contact'
 import Footer from './new-site/components/Footer/Footer'
 import ProjectGuide from './new-site/components/ProjectGuide/ProjectGuide'
 
+import BookingDemo from './new-site/components/BookingDemo/BookingDemo'
+
 import type { Language } from './new-site/types'
 
 function getInitialLanguage(): Language {
@@ -32,6 +34,20 @@ function App() {
     localStorage.setItem('pgdev-language', language)
     document.documentElement.lang = language === 'pt' ? 'pt-BR' : 'es'
   }, [language])
+
+  const path = window.location.pathname
+
+  if (path === '/demo-barbearia') {
+    return <BookingDemo type="barbearia" />
+  }
+
+  if (path === '/demo-clinica') {
+    return <BookingDemo type="clinica" />
+  }
+
+  if (path === '/demo-petshop') {
+    return <BookingDemo type="petshop" />
+  }
 
   return (
     <>
