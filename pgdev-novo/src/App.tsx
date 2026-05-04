@@ -14,6 +14,7 @@ import Footer from './new-site/components/Footer/Footer'
 import ProjectGuide from './new-site/components/ProjectGuide/ProjectGuide'
 
 import BookingDemo from './new-site/components/BookingDemo/BookingDemo'
+import PabloGomesPage from './new-site/components/PabloGomesPage/PabloGomesPage'
 
 import type { Language } from './new-site/types'
 
@@ -47,6 +48,10 @@ function App() {
 
   if (path === '/demo-petshop') {
     return <BookingDemo type="petshop" />
+  }
+
+  if (path === '/pablo-gomes') {
+    return <PabloGomesPage language={language} />
   }
 
   return (
