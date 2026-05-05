@@ -174,6 +174,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 12px;
   padding: 14px 16px;
   background: #f8f9fa;
   border: 1px solid rgba(0, 12, 36, 0.08);
@@ -199,12 +200,14 @@
   align-items: center;
   gap: 8px;
   flex-wrap: wrap;
+  min-width: 0;
 }
 
 .booking-v3-service-card-header strong {
   font-size: 0.85rem;
   font-weight: 500;
   color: #000c24;
+  word-break: break-word;
 }
 
 .booking-v3-service-card-header small {
@@ -222,6 +225,7 @@
   font-size: 0.75rem;
   font-weight: 600;
   color: var(--booking-accent);
+  flex-shrink: 0;
 }
 
 /* Professional Grid */
@@ -499,6 +503,60 @@
   letter-spacing: 0.5px;
 }
 
+/* Info Section no Summary Card */
+.booking-summary-info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(0, 12, 36, 0.08);
+}
+
+.booking-summary-info-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.7rem;
+}
+
+.booking-summary-info-item span:first-child {
+  color: var(--booking-accent);
+  font-weight: 500;
+  min-width: 100px;
+}
+
+.booking-summary-info-item span:last-child {
+  color: rgba(0, 12, 36, 0.6);
+}
+
+/* Info Mobile */
+.booking-summary-mobile-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 14px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(0, 12, 36, 0.08);
+}
+
+.booking-summary-mobile-info-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.65rem;
+}
+
+.booking-summary-mobile-info-item span:first-child {
+  color: var(--booking-accent);
+  font-weight: 500;
+  min-width: 85px;
+}
+
+.booking-summary-mobile-info-item span:last-child {
+  color: rgba(0, 12, 36, 0.6);
+}
+
 /* Form Phase */
 .booking-v3-form-header {
   margin-bottom: 24px;
@@ -768,7 +826,7 @@
 }
 
 /* ============================================ */
-/* RESPONSIVO */
+/* RESPONSIVO - CORREÇÕES SOLICITADAS */
 /* ============================================ */
 
 @media (max-width: 968px) {
@@ -843,6 +901,16 @@
     padding: 20px 12px;
   }
 
+  /* Esconder texto do logo no mobile */
+  .booking-v3-logo span {
+    display: none;
+  }
+
+  /* Ajustar tamanho do botão voltar */
+  .booking-v3-back {
+    font-size: 0.8rem;
+  }
+
   .booking-v3-hero h1 {
     font-size: 1.4rem;
   }
@@ -886,57 +954,35 @@
     flex-direction: row;
     justify-content: space-between;
   }
-}
-/* Info Section no Summary Card */
-.booking-summary-info {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-top: 16px;
-  padding-top: 12px;
-  border-top: 1px solid rgba(0, 12, 36, 0.08);
+
+  /* Melhorar resumo no mobile - info items em coluna */
+  .booking-summary-mobile-info-item {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .booking-summary-mobile-info-item span:first-child {
+    min-width: 0;
+  }
 }
 
-.booking-summary-info-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.7rem;
-}
+/* Small screens extra */
+@media (max-width: 380px) {
+  .booking-v3-hero h1 {
+    font-size: 1.2rem;
+  }
 
-.booking-summary-info-item span:first-child {
-  color: var(--booking-accent);
-  font-weight: 500;
-  min-width: 100px;
-}
+  .booking-v3-logo-img {
+    width: 28px;
+    height: 28px;
+  }
 
-.booking-summary-info-item span:last-child {
-  color: rgba(0, 12, 36, 0.6);
-}
+  .booking-v3-card {
+    padding: 16px;
+  }
 
-/* Info Mobile */
-.booking-summary-mobile-info {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin-top: 14px;
-  padding-top: 10px;
-  border-top: 1px solid rgba(0, 12, 36, 0.08);
-}
-
-.booking-summary-mobile-info-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.65rem;
-}
-
-.booking-summary-mobile-info-item span:first-child {
-  color: var(--booking-accent);
-  font-weight: 500;
-  min-width: 85px;
-}
-
-.booking-summary-mobile-info-item span:last-child {
-  color: rgba(0, 12, 36, 0.6);
+  .booking-v3-service-card {
+    padding: 10px 12px;
+  }
 }
