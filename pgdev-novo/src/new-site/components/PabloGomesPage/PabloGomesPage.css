@@ -1,46 +1,101 @@
+/* Pablo Gomes Page - Azul Escuro combinando com o site */
 .pablo-page {
   min-height: 100vh;
   background: #000c24;
-  color: #ffffff;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Círculos decorativos */
+.pablo-page::before {
+  content: '';
+  position: absolute;
+  top: -150px;
+  right: -100px;
+  width: 400px;
+  height: 400px;
+  border: 2px solid rgba(254, 201, 15, 0.05);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.pablo-page::after {
+  content: '';
+  position: absolute;
+  bottom: -150px;
+  left: -100px;
+  width: 350px;
+  height: 350px;
+  border: 2px solid rgba(254, 201, 15, 0.05);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Logo de fundo gigante - MAIOR */
+.pablo-bg-logo {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 900px;
+  height: auto;
+  opacity: 0.05;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.pablo-bg-logo img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
 }
 
 .pablo-hero {
   min-height: 100vh;
-  padding: 40px 7%;
+  padding: 60px 7%;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  position: relative;
+  z-index: 1;
 }
 
 .pablo-back {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  color: #fec90f;
+  color: rgba(255, 255, 255, 0.6);
   text-decoration: none;
-  font-weight: 600;
-  margin-bottom: 48px;
+  font-weight: 500;
+  margin-bottom: 60px;
   transition: all 0.2s ease;
   width: fit-content;
+  font-size: 0.875rem;
 }
 
 .pablo-back:hover {
+  color: #fec90f;
   gap: 12px;
-  opacity: 0.8;
 }
 
 .pablo-content {
-  display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
-  gap: 56px;
-  align-items: center;
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.pablo-text-center {
+  margin-bottom: 48px;
 }
 
 .pablo-label {
   display: inline-block;
   color: #fec90f;
-  font-weight: 700;
-  margin-bottom: 18px;
+  font-weight: 600;
+  margin-bottom: 20px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   font-size: 0.7rem;
@@ -50,20 +105,23 @@
 }
 
 .pablo-content h1 {
-  font-size: clamp(2.5rem, 7vw, 5rem);
-  line-height: 1;
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  line-height: 1.2;
   margin: 0 0 20px;
-  letter-spacing: -0.03em;
+  color: #ffffff;
+  font-weight: 700;
 }
 
 .pablo-content h1 span {
   color: #fec90f;
   display: block;
-  margin-top: 8px;
+  margin-top: 4px;
+  font-weight: 500;
 }
 
 .pablo-content p {
-  max-width: 600px;
+  max-width: 540px;
+  margin: 0 auto 24px;
   color: rgba(255, 255, 255, 0.7);
   font-size: 1rem;
   line-height: 1.6;
@@ -71,163 +129,90 @@
 
 .pablo-actions {
   display: flex;
-  flex-wrap: wrap;
-  gap: 14px;
-  margin-top: 28px;
+  justify-content: center;
+  margin-bottom: 32px;
 }
 
-.pablo-actions a {
+.pablo-btn-primary {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 12px 24px;
+  padding: 12px 28px;
   border-radius: 40px;
   text-decoration: none;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 0.875rem;
   transition: all 0.2s ease;
-}
-
-.pablo-actions a:first-child {
   background: #fec90f;
   color: #000c24;
 }
 
-.pablo-actions a:first-child:hover {
+.pablo-btn-primary:hover {
   transform: translateY(-2px);
   filter: brightness(0.95);
-}
-
-.pablo-actions a:last-child {
-  border: 1px solid rgba(254, 201, 15, 0.4);
-  color: #fec90f;
-  background: transparent;
-}
-
-.pablo-actions a:last-child:hover {
-  background: rgba(254, 201, 15, 0.1);
-  transform: translateY(-2px);
-}
-
-/* Stats */
-.pablo-stats {
-  display: flex;
-  gap: 32px;
-  margin-top: 40px;
-  padding-top: 20px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.pablo-stat {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.pablo-stat svg {
-  color: #fec90f;
-}
-
-.pablo-stat div strong {
-  display: block;
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: white;
-}
-
-.pablo-stat div span {
-  font-size: 0.7rem;
-  color: rgba(255, 255, 255, 0.5);
-}
-
-/* Card */
-.pablo-card {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(254, 201, 15, 0.15);
-  border-radius: 28px;
-  padding: 36px;
-  text-align: center;
-  transition: all 0.3s ease;
-}
-
-.pablo-card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(254, 201, 15, 0.3);
-}
-
-.pablo-card img {
-  width: 120px;
-  margin-bottom: 20px;
-}
-
-.pablo-card h2 {
-  color: #fec90f;
-  margin: 0 0 12px;
-  font-size: 1.3rem;
-}
-
-.pablo-card p {
-  font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.6);
-  line-height: 1.5;
-  margin-bottom: 20px;
-}
-
-.pablo-card-features {
-  display: flex;
-  justify-content: center;
-  gap: 16px;
-  margin-bottom: 24px;
-  flex-wrap: wrap;
-}
-
-.pablo-card-feature {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.7rem;
-  color: rgba(255, 255, 255, 0.5);
-  background: rgba(255, 255, 255, 0.05);
-  padding: 5px 12px;
-  border-radius: 20px;
-}
-
-.pablo-card-feature svg {
-  color: #fec90f;
-}
-
-.pablo-main-link {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  width: 100%;
-  padding: 12px 18px;
-  border-radius: 40px;
-  background: #fec90f;
-  color: #000c24;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 0.875rem;
-  transition: all 0.2s ease;
-}
-
-.pablo-main-link:hover {
   gap: 12px;
+}
+
+/* Social Links com palavras coloridas */
+.pablo-social-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.pablo-social-text a {
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.pablo-social-text a:hover {
   transform: translateY(-2px);
-  filter: brightness(0.95);
+}
+
+.social-github {
+  color: #ffffff;
+}
+
+.social-github:hover {
+  color: #fec90f;
+}
+
+.social-instagram {
+  color: #ffffff;
+}
+
+.social-instagram:hover {
+  color: #e4405f;
+}
+
+.social-email {
+  color: #ffffff;
+}
+
+.social-email:hover {
+  color: #fec90f;
+}
+
+.social-separator {
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 0.7rem;
 }
 
 /* Info Section */
 .pablo-info {
   padding: 80px 7%;
   background: #ffffff;
-  color: #000c24;
+  position: relative;
+  z-index: 1;
 }
 
 .pablo-info-header {
   text-align: center;
-  max-width: 700px;
+  max-width: 650px;
   margin: 0 auto 48px;
 }
 
@@ -237,7 +222,7 @@
 }
 
 .pablo-info h2 {
-  font-size: 2.2rem;
+  font-size: 2rem;
   font-weight: 700;
   margin: 0 0 16px;
   color: #000c24;
@@ -253,37 +238,39 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 28px;
-  margin-top: 40px;
+  max-width: 1000px;
+  margin: 40px auto;
 }
 
 .pablo-grid-card {
-  padding: 28px;
+  padding: 32px 28px;
   border: 1px solid rgba(0, 12, 36, 0.08);
   border-radius: 24px;
-  background: #f8f9fa;
+  background: #ffffff;
   transition: all 0.3s ease;
+  text-align: center;
 }
 
 .pablo-grid-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-6px);
   border-color: #fec90f;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.04);
 }
 
 .pablo-grid-icon {
-  width: 48px;
-  height: 48px;
+  width: 60px;
+  height: 60px;
   background: rgba(254, 201, 15, 0.1);
-  border-radius: 16px;
+  border-radius: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 20px;
+  margin: 0 auto 20px;
   color: #fec90f;
 }
 
 .pablo-grid-card h3 {
-  margin: 0 0 10px;
+  margin: 0 0 12px;
   font-size: 1.1rem;
   font-weight: 600;
   color: #000c24;
@@ -296,6 +283,65 @@
   margin: 0;
 }
 
+/* Diferenciais */
+.pablo-diff {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  flex-wrap: wrap;
+  margin: 48px auto;
+  padding: 32px 0;
+  border-top: 1px solid rgba(0, 12, 36, 0.08);
+  border-bottom: 1px solid rgba(0, 12, 36, 0.08);
+  max-width: 800px;
+}
+
+.pablo-diff-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.pablo-diff-item svg {
+  color: #fec90f;
+}
+
+.pablo-diff-item div strong {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #000c24;
+}
+
+.pablo-diff-item div span {
+  font-size: 0.7rem;
+  color: rgba(0, 12, 36, 0.5);
+}
+
+.pablo-note {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 48px;
+  padding: 16px;
+  background: rgba(254, 201, 15, 0.05);
+  border-radius: 40px;
+  max-width: 450px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.pablo-note svg {
+  color: #fec90f;
+}
+
+.pablo-note p {
+  font-size: 0.75rem;
+  color: rgba(0, 12, 36, 0.5);
+  margin: 0;
+}
+
 .pablo-cta {
   text-align: center;
   margin-top: 56px;
@@ -304,13 +350,14 @@
 .pablo-cta-button {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
-  padding: 12px 28px;
+  padding: 14px 32px;
   background: #000c24;
   color: white;
   text-decoration: none;
   border-radius: 40px;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 0.875rem;
   transition: all 0.2s ease;
 }
@@ -324,23 +371,19 @@
 
 /* Responsive */
 @media (max-width: 968px) {
-  .pablo-content {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
-
   .pablo-hero {
-    padding: 32px 5%;
+    padding: 48px 5%;
     min-height: auto;
-  }
-
-  .pablo-stats {
-    justify-content: center;
   }
 
   .pablo-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
+  }
+
+  .pablo-diff {
+    gap: 24px;
+    padding: 24px 16px;
   }
 }
 
@@ -350,51 +393,76 @@
   }
 
   .pablo-info h2 {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
   }
 
   .pablo-grid {
     grid-template-columns: 1fr;
+    max-width: 400px;
   }
 
-  .pablo-stats {
-    flex-wrap: wrap;
-    justify-content: center;
+  .pablo-back {
+    margin-bottom: 40px;
+  }
+
+  .pablo-diff {
+    flex-direction: column;
+    align-items: center;
     gap: 20px;
   }
 
-  .pablo-actions {
+  .pablo-diff-item {
+    width: 100%;
     justify-content: center;
   }
 
+  .pablo-social-text {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 600px) {
+  .pablo-hero {
+    padding: 32px 20px;
+  }
+
   .pablo-content h1 {
-    text-align: center;
+    font-size: 1.8rem;
   }
 
   .pablo-content p {
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .pablo-label {
-    display: table;
-    margin-left: auto;
-    margin-right: auto;
+    font-size: 0.9rem;
   }
 }
 
 @media (max-width: 480px) {
-  .pablo-card {
-    padding: 24px;
+  .pablo-grid-card {
+    padding: 24px 20px;
   }
 
-  .pablo-card-features {
-    gap: 10px;
+  .pablo-btn-primary {
+    width: 100%;
+    justify-content: center;
   }
 
-  .pablo-card-feature {
-    font-size: 0.65rem;
-    padding: 4px 10px;
+  .pablo-cta-button {
+    width: 100%;
+  }
+
+  .pablo-note {
+    padding: 12px 20px;
+  }
+
+  .pablo-note p {
+    font-size: 0.7rem;
+  }
+
+  .pablo-social-text {
+    gap: 6px;
+  }
+
+  .pablo-social-text a {
+    font-size: 0.7rem;
   }
 }
