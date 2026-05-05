@@ -67,19 +67,27 @@ export default function PabloGomesPage({ language }: Props) {
             </div>
 
             {/* Social Links com palavras coloridas */}
-            <div className="pablo-social-text">
-              <a href="https://github.com/pablog-7" target="_blank" rel="noopener noreferrer" className="social-github">
-                GitHub
-              </a>
-              <span className="social-separator">•</span>
-              <a href="https://www.instagram.com/pablog.dev/" target="_blank" rel="noopener noreferrer" className="social-instagram">
-                Instagram
-              </a>
-              <span className="social-separator">•</span>
-              <a href="mailto:pgdevsoftware@gmail.com" className="social-email">
-                E-mail
-              </a>
-            </div>
+<div className="pablo-social-text">
+  <a href="https://github.com/pablog-7" target="_blank" rel="noopener noreferrer" className="social-github">
+    GitHub
+  </a>
+  <span className="social-separator">•</span>
+  <a href="https://www.linkedin.com/in/pablogomesdev/" target="_blank" rel="noopener noreferrer" className="social-linkedin">
+    LinkedIn
+  </a>
+  <span className="social-separator">•</span>
+  <a href="https://www.instagram.com/pablog.dev/" target="_blank" rel="noopener noreferrer" className="social-instagram">
+    Instagram
+  </a>
+  <span className="social-separator">•</span>
+  <a href="https://www.facebook.com/profile.php?id=61579501306846" target="_blank" rel="noopener noreferrer" className="social-facebook">
+    Facebook
+  </a>
+  <span className="social-separator">•</span>
+  <a href="mailto:pgdevsoftware@gmail.com" className="social-email">
+    E-mail
+  </a>
+</div>
           </div>
         </div>
       </section>
