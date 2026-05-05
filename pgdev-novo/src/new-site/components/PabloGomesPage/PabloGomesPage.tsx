@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import './PabloGomesPage.css'
 import logo from '../../assets/apenas-logo.png'
 import type { Language } from '../../types'
@@ -10,6 +11,23 @@ type Props = {
 export default function PabloGomesPage({ language }: Props) {
   const isPt = language === 'pt'
 
+  // SEO: Atualizar title e description da página
+  useEffect(() => {
+    document.title = isPt
+      ? 'Pablo Gomes | Criador da PabloG.Dev'
+      : 'Pablo Gomes | Creador de PabloG.Dev'
+
+    const description = document.querySelector('meta[name="description"]')
+    if (description) {
+      description.setAttribute(
+        'content',
+        isPt
+          ? 'Pablo Gomes é o profissional por trás da PabloG.Dev, focada em sites profissionais, sistemas web e agendamentos online para empresas.'
+          : 'Pablo Gomes es el profesional detrás de PabloG.Dev, enfocada en sitios web profesionales, sistemas web y reservas online para empresas.'
+      )
+    }
+  }, [isPt])
+
   return (
     <main className="pablo-page">
       {/* Logo de fundo gigante */}
@@ -20,7 +38,7 @@ export default function PabloGomesPage({ language }: Props) {
       <section className="pablo-hero">
         <a href="/" className="pablo-back">
           <ArrowLeft size={16} />
-          {isPt ? 'Voltar para PabloG.Dev' : 'Volver a PabloG.Dev'}
+          {isPt ? 'Acessar site principal' : 'Acceder al sitio principal'}
         </a>
 
         <div className="pablo-content">
@@ -36,14 +54,14 @@ export default function PabloGomesPage({ language }: Props) {
 
             <p>
               {isPt
-                ? 'Desenvolvedor focado em criar soluções digitais sob medida para negócios. Especializado em sites, sistemas e automações que resolvem problemas reais.'
-                : 'Desarrollador enfocado en crear soluciones digitales a medida para negocios. Especializado en sitios, sistemas y automatizaciones que resuelven problemas reales.'}
+                ? 'Desenvolvedor focado em criar soluções digitais sob medida para negócios. Especializado em sites profissionais, sistemas web e agendamentos online que resolvem problemas reais.'
+                : 'Desarrollador enfocado en crear soluciones digitales a medida para negocios. Especializado en sitios web profesionales, sistemas web y reservas online que resuelven problemas reales.'}
             </p>
 
             <div className="pablo-actions">
-              <a href="/" className="pablo-btn-primary">
+              <a href="/#projetos" className="pablo-btn-primary">
                 <Briefcase size={16} />
-                {isPt ? 'Ver projetos' : 'Ver proyectos'}
+                {isPt ? 'Ver trabalhos e projetos' : 'Ver trabajos y proyectos'}
                 <ChevronRight size={14} />
               </a>
             </div>

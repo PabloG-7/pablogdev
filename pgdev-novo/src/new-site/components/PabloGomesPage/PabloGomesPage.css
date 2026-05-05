@@ -420,6 +420,12 @@
     flex-wrap: wrap;
     gap: 8px;
   }
+
+  /* Ajuste da logo de fundo no mobile para evitar peso visual */
+  .pablo-bg-logo {
+    opacity: 0.025;
+    width: 120%;
+  }
 }
 
 @media (max-width: 600px) {

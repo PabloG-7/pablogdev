@@ -18,13 +18,24 @@ import PabloGomesPage from './new-site/components/PabloGomesPage/PabloGomesPage'
 
 import type { Language } from './new-site/types'
 
+// Função melhorada para detectar idioma baseado no navegador
 function getInitialLanguage(): Language {
+  // 1. Verifica se já existe idioma salvo no localStorage
   const savedLanguage = localStorage.getItem('pgdev-language')
-
+  
   if (savedLanguage === 'pt' || savedLanguage === 'es') {
     return savedLanguage
   }
 
+  // 2. Detecta idioma do navegador
+  const browserLang = navigator.language.toLowerCase()
+  
+  // 3. Se for espanhol (de qualquer país: es, es-ES, es-MX, es-AR, etc.)
+  if (browserLang.startsWith('es')) {
+    return 'es'
+  }
+
+  // 4. Padrão: português (Brasil e Portugal)
   return 'pt'
 }
 
