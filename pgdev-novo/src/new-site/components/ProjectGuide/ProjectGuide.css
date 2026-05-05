@@ -89,62 +89,53 @@
 }
 
 /* ============================================
-   MODAL
+   MODAL - VERSÃO CORRIGIDA
    ============================================ */
 
 .project-guide {
   position: fixed;
   inset: 0;
   z-index: 1000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  padding-left: max(20px, env(safe-area-inset-left));
-  padding-right: max(20px, env(safe-area-inset-right));
-  padding-top: max(20px, env(safe-area-inset-top));
-  padding-bottom: max(20px, env(safe-area-inset-bottom));
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  overflow: hidden;
 }
 
 .project-guide__overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 12, 36, 0.88);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: rgba(0, 12, 36, 0.85);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   border: none;
   cursor: pointer;
-  animation: fadeIn 0.2s ease;
 }
 
 .project-guide__modal {
   position: relative;
+  z-index: 1;
   width: min(100%, 480px);
-  max-height: min(90dvh, 720px);
+  max-height: calc(100vh - 32px);
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   padding: 28px 24px;
-  border-radius: 24px;
+  border-radius: 20px;
   background: #000c24;
-  border: 1px solid rgba(254, 201, 15, 0.15);
+  border: 1px solid rgba(254, 201, 15, 0.1);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-  animation: modalSlideIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: fadeIn 0.2s ease;
+}
+
+@supports (height: 100dvh) {
+  .project-guide__modal {
+    max-height: calc(100dvh - 32px);
+  }
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes modalSlideIn {
-  from { 
-    opacity: 0; 
-    transform: scale(0.96) translateY(10px);
-  }
-  to { 
-    opacity: 1; 
-    transform: scale(1) translateY(0);
-  }
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
 }
 
 .project-guide__close {
@@ -333,25 +324,24 @@
 }
 
 /* ============================================
-   RESPONSIVE
+   RESPONSIVE - VERSÃO CORRIGIDA
    ============================================ */
 
 @media (max-width: 640px) {
   .project-guide {
-    align-items: flex-end;
     padding: 12px;
-    padding-left: max(12px, env(safe-area-inset-left));
-    padding-right: max(12px, env(safe-area-inset-right));
-    padding-top: max(12px, env(safe-area-inset-top));
-    padding-bottom: max(12px, env(safe-area-inset-bottom));
   }
 
   .project-guide__modal {
-    width: 100%;
-    max-width: 100%;
-    max-height: calc(100dvh - 24px);
-    padding: 24px 18px;
-    border-radius: 22px 22px 18px 18px;
+    max-height: calc(100vh - 24px);
+    padding: 24px 20px;
+    border-radius: 18px;
+  }
+
+  @supports (height: 100dvh) {
+    .project-guide__modal {
+      max-height: calc(100dvh - 24px);
+    }
   }
 
   .project-guide-float {
@@ -469,7 +459,7 @@
 /* Suporte para telas muito altas */
 @media (min-height: 800px) {
   .project-guide__modal {
-    max-height: min(85dvh, 700px);
+    max-height: min(85vh, 700px);
   }
 }
 

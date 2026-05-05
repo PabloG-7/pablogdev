@@ -120,11 +120,19 @@ function ProjectGuide({ language }: ProjectGuideProps) {
   const selectedMoment = momentOptions.find((item) => item.key === moment)
   const canFinish = Boolean(need && moment && goals.length > 0)
 
+  // useEffect melhorado para bloquear scroll do body E do html
   useEffect(() => {
-    document.body.style.overflow = open ? 'hidden' : ''
+    if (open) {
+      document.body.style.overflow = 'hidden'
+      document.documentElement.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+      document.documentElement.style.overflow = ''
+    }
 
     return () => {
       document.body.style.overflow = ''
+      document.documentElement.style.overflow = ''
     }
   }, [open])
 
