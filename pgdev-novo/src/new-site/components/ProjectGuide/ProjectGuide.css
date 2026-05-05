@@ -4,17 +4,17 @@
 
 .project-guide-float {
   position: fixed;
-  right: 24px;
-  bottom: 24px;
+  right: max(24px, env(safe-area-inset-right));
+  bottom: max(24px, env(safe-area-inset-bottom));
   z-index: 90;
   width: 56px;
   height: 56px;
-  border-radius: 26px;
+  border-radius: 28px;
   background: #fec90f;
   color: #000c24;
   border: none;
   cursor: pointer;
-  box-shadow: 0 4px 20px rgba(254, 201, 15, 0.15);
+  box-shadow: 0 4px 20px rgba(254, 201, 15, 0.2);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   align-items: center;
@@ -23,7 +23,7 @@
 
 .project-guide-float:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 30px rgba(254, 201, 15, 0.25);
+  box-shadow: 0 8px 30px rgba(254, 201, 15, 0.3);
 }
 
 /* Tooltip texto */
@@ -35,16 +35,17 @@
   transform: translateY(-50%);
   background: #fec90f;
   color: #000c24;
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   font-weight: 700;
-  padding: 8px 14px;
-  border-radius: 10px;
+  padding: 8px 16px;
+  border-radius: 12px;
   white-space: nowrap;
-  box-shadow: 0 4px 16px rgba(254, 201, 15, 0.2);
+  box-shadow: 0 4px 16px rgba(254, 201, 15, 0.25);
   opacity: 0;
   pointer-events: none;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 1;
+  letter-spacing: 0.3px;
 }
 
 /* Seta do tooltip */
@@ -67,12 +68,24 @@
 
 .project-guide-float:hover::before {
   opacity: 1;
-  right: 70px;
+  right: 72px;
 }
 
 .project-guide-float:hover::after {
   opacity: 1;
-  right: 64px;
+  right: 66px;
+}
+
+/* Remove tooltip em dispositivos touch */
+@media (hover: none) and (pointer: coarse) {
+  .project-guide-float::before,
+  .project-guide-float::after {
+    display: none;
+  }
+
+  .project-guide-float:hover {
+    transform: none;
+  }
 }
 
 /* ============================================
@@ -87,123 +100,145 @@
   align-items: center;
   justify-content: center;
   padding: 20px;
+  padding-left: max(20px, env(safe-area-inset-left));
+  padding-right: max(20px, env(safe-area-inset-right));
+  padding-top: max(20px, env(safe-area-inset-top));
+  padding-bottom: max(20px, env(safe-area-inset-bottom));
 }
 
 .project-guide__overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 12, 36, 0.85);
-  backdrop-filter: blur(6px);
+  background: rgba(0, 12, 36, 0.88);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border: none;
   cursor: pointer;
+  animation: fadeIn 0.2s ease;
 }
 
 .project-guide__modal {
   position: relative;
-  width: 100%;
-  max-width: 480px;
-  max-height: 90vh;
+  width: min(100%, 480px);
+  max-height: min(90dvh, 720px);
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   padding: 28px 24px;
-  border-radius: 20px;
+  border-radius: 24px;
   background: #000c24;
-  border: 1px solid rgba(254, 201, 15, 0.1);
+  border: 1px solid rgba(254, 201, 15, 0.15);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-  animation: fadeIn 0.2s ease;
+  animation: modalSlideIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: scale(0.96); }
-  to { opacity: 1; transform: scale(1); }
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes modalSlideIn {
+  from { 
+    opacity: 0; 
+    transform: scale(0.96) translateY(10px);
+  }
+  to { 
+    opacity: 1; 
+    transform: scale(1) translateY(0);
+  }
 }
 
 .project-guide__close {
   position: absolute;
-  right: 14px;
-  top: 14px;
-  width: 30px;
-  height: 30px;
+  right: 16px;
+  top: 16px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.04);
-  border: none;
+  border: 1px solid rgba(255, 255, 255, 0.06);
   color: rgba(255, 255, 255, 0.5);
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.2s;
+  transition: all 0.2s ease;
 }
 
 .project-guide__close:hover {
   background: rgba(255, 255, 255, 0.08);
   color: #fff;
+  transform: scale(1.05);
 }
 
 .project-guide__badge {
   display: inline-flex;
-  padding: 4px 10px;
-  border-radius: 8px;
-  background: rgba(254, 201, 15, 0.06);
+  padding: 4px 12px;
+  border-radius: 10px;
+  background: rgba(254, 201, 15, 0.08);
   color: #fec90f;
-  font-size: 0.65rem;
-  font-weight: 600;
+  font-size: 0.7rem;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
-  margin-bottom: 16px;
+  letter-spacing: 0.08em;
+  margin-bottom: 18px;
 }
 
 .project-guide__title {
-  margin: 0 0 10px;
-  font-size: 1.05rem;
-  font-weight: 600;
+  margin: 0 0 12px;
+  font-size: 1.1rem;
+  font-weight: 700;
   color: #ffffff;
+  line-height: 1.4;
 }
 
 .project-guide__options {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  margin-bottom: 8px;
+  gap: 10px;
+  margin-bottom: 12px;
 }
 
 .project-guide__option {
   width: 100%;
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 14px 16px;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  background: rgba(255, 255, 255, 0.015);
-  color: rgba(255, 255, 255, 0.65);
+  gap: 14px;
+  padding: 14px 18px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.02);
+  color: rgba(255, 255, 255, 0.7);
   font-size: 0.875rem;
   text-align: left;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.2s ease;
 }
 
 .project-guide__option:hover {
-  border-color: rgba(254, 201, 15, 0.2);
+  border-color: rgba(254, 201, 15, 0.25);
+  background: rgba(254, 201, 15, 0.02);
   color: rgba(255, 255, 255, 0.85);
+  transform: translateX(2px);
 }
 
 .project-guide__option.is-selected {
   border-color: #fec90f;
-  background: rgba(254, 201, 15, 0.04);
+  background: rgba(254, 201, 15, 0.06);
   color: #ffffff;
 }
 
 .project-guide__option svg {
   color: #fec90f;
   flex-shrink: 0;
-  opacity: 0.8;
+  opacity: 0.9;
 }
 
 .project-guide__option strong {
   display: block;
-  font-size: 0.875rem;
-  font-weight: 600;
+  font-size: 0.9rem;
+  font-weight: 700;
   margin-bottom: 2px;
+  color: inherit;
 }
 
 .project-guide__option small {
@@ -214,79 +249,86 @@
 }
 
 .project-guide__helper {
-  margin: -2px 0 12px;
-  color: rgba(255, 255, 255, 0.4);
+  margin: 4px 0 14px;
+  color: rgba(255, 255, 255, 0.45);
   font-size: 0.75rem;
+  line-height: 1.4;
 }
 
 .project-guide__chips {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 10px;
 }
 
 .project-guide__chips button {
-  padding: 8px 16px;
-  border-radius: 10px;
+  padding: 8px 18px;
+  border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, 0.06);
-  background: rgba(255, 255, 255, 0.015);
-  color: rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.02);
+  color: rgba(255, 255, 255, 0.6);
   font-size: 0.8125rem;
+  font-weight: 500;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.2s ease;
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
 }
 
 .project-guide__chips button:hover {
-  border-color: rgba(254, 201, 15, 0.2);
-  color: rgba(255, 255, 255, 0.8);
+  border-color: rgba(254, 201, 15, 0.25);
+  background: rgba(254, 201, 15, 0.03);
+  color: rgba(255, 255, 255, 0.85);
+  transform: translateY(-1px);
 }
 
 .project-guide__chips button.is-selected {
   background: #fec90f;
   border-color: #fec90f;
   color: #000c24;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .project-guide__chips--single {
   display: flex;
   flex-direction: column;
+  gap: 8px;
 }
 
 .project-guide__chips--single button {
   width: 100%;
   justify-content: flex-start;
-  border-radius: 10px;
+  border-radius: 12px;
 }
 
 .project-guide__submit {
   width: 100%;
-  margin-top: 24px;
-  padding: 14px;
-  border-radius: 12px;
+  margin-top: 28px;
+  padding: 14px 20px;
+  border-radius: 14px;
   background: #fec90f;
   border: none;
   color: #000c24;
-  font-weight: 600;
-  font-size: 0.875rem;
+  font-weight: 700;
+  font-size: 0.9rem;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  transition: all 0.2s;
+  gap: 10px;
+  transition: all 0.2s ease;
 }
 
 .project-guide__submit:not(:disabled):hover {
   background: #ffd43b;
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  gap: 12px;
+  box-shadow: 0 6px 20px rgba(254, 201, 15, 0.2);
 }
 
 .project-guide__submit:disabled {
-  opacity: 0.3;
+  opacity: 0.35;
   cursor: not-allowed;
 }
 
@@ -295,15 +337,34 @@
    ============================================ */
 
 @media (max-width: 640px) {
+  .project-guide {
+    align-items: flex-end;
+    padding: 12px;
+    padding-left: max(12px, env(safe-area-inset-left));
+    padding-right: max(12px, env(safe-area-inset-right));
+    padding-top: max(12px, env(safe-area-inset-top));
+    padding-bottom: max(12px, env(safe-area-inset-bottom));
+  }
+
+  .project-guide__modal {
+    width: 100%;
+    max-width: 100%;
+    max-height: calc(100dvh - 24px);
+    padding: 24px 18px;
+    border-radius: 22px 22px 18px 18px;
+  }
+
   .project-guide-float {
-    right: 16px;
-    bottom: 16px;
+    right: max(16px, env(safe-area-inset-right));
+    bottom: max(16px, env(safe-area-inset-bottom));
     width: 50px;
     height: 50px;
   }
 
   .project-guide-float::before {
     right: 62px;
+    font-size: 0.7rem;
+    padding: 6px 14px;
   }
 
   .project-guide-float::after {
@@ -318,24 +379,106 @@
     right: 60px;
   }
 
+  .project-guide__option {
+    padding: 13px 14px;
+    gap: 12px;
+  }
+
+  .project-guide__chips button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .project-guide__chips--single button {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
   .project-guide__modal {
-    padding: 24px 20px;
-    border-radius: 18px;
-    max-width: 100%;
+    padding: 22px 16px;
+  }
+
+  .project-guide__title {
+    font-size: 1rem;
+  }
+
+  .project-guide__badge {
+    font-size: 0.65rem;
+    margin-bottom: 14px;
   }
 
   .project-guide__option {
     padding: 12px 14px;
   }
-}
 
-@media (max-width: 480px) {
+  .project-guide__option strong {
+    font-size: 0.85rem;
+  }
+
+  .project-guide__option small {
+    font-size: 0.7rem;
+    line-height: 1.35;
+  }
+
+  .project-guide__submit {
+    padding: 13px;
+    font-size: 0.85rem;
+  }
+
   .project-guide-float {
     width: 46px;
     height: 46px;
   }
 
-  .project-guide__option small {
-    font-size: 0.7rem;
+  .project-guide-float::before {
+    display: none; /* Esconde tooltip em telas muito pequenas */
   }
+  
+  .project-guide-float::after {
+    display: none;
+  }
+
+  .project-guide__chips button {
+    font-size: 0.75rem;
+    padding: 8px 14px;
+  }
+}
+
+@media (max-width: 360px) {
+  .project-guide__modal {
+    padding: 20px 14px;
+  }
+
+  .project-guide__option {
+    padding: 10px 12px;
+    gap: 10px;
+  }
+
+  .project-guide__chips button {
+    font-size: 0.7rem;
+    padding: 7px 12px;
+  }
+
+  .project-guide__submit {
+    padding: 12px;
+    font-size: 0.8rem;
+  }
+}
+
+/* Suporte para telas muito altas */
+@media (min-height: 800px) {
+  .project-guide__modal {
+    max-height: min(85dvh, 700px);
+  }
+}
+
+/* Acessibilidade - foco */
+.project-guide__close:focus-visible,
+.project-guide__option:focus-visible,
+.project-guide__chips button:focus-visible,
+.project-guide__submit:focus-visible,
+.project-guide-float:focus-visible {
+  outline: 2px solid #fec90f;
+  outline-offset: 2px;
 }
