@@ -49,9 +49,17 @@ function App() {
     document.documentElement.lang = currentLanguage === 'pt' ? 'pt-BR' : 'es'
   }, [currentLanguage])
 
-  if (path === '/demo-barbearia') return <BookingDemo type="barbearia" />
-  if (path === '/demo-clinica') return <BookingDemo type="clinica" />
-  if (path === '/demo-petshop') return <BookingDemo type="petshop" />
+  if (path === '/demo-barbearia') {
+  return <BookingDemo type="barbearia" language={language} />
+}
+
+if (path === '/demo-clinica') {
+  return <BookingDemo type="clinica" language={language} />
+}
+
+if (path === '/demo-petshop') {
+  return <BookingDemo type="petshop" language={language} />
+}
 
   if (path === '/pablo-gomes') return <PabloGomesPage language="pt" />
   if (path === '/es/pablo-gomes') return <PabloGomesPage language="es" />
