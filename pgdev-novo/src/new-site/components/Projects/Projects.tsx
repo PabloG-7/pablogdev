@@ -18,14 +18,14 @@ import exemplo6 from '../../assets/exemplo6.png'
 
 const projectImages = [exemplo1, exemplo2, exemplo3, exemplo4, exemplo5, exemplo6]
 
-// Links dos projetos
+// Links dos projetos atualizados
 const projectLinks = [
-  'https://drbrunoribeiro.com.br',
-  '#',
-  '#',
-  '/demo-barbearia',
-  '/demo-petshop',
-  '/demo-clinica',
+  'https://pablog-7.github.io/projeto-drbruno/',     // Dr. Bruno
+  'https://pablog-7.github.io/ecommerce-kushi/',    // Kushi E-commerce
+  'https://maxsorvetesibertioga.com.br/',            // Max Sorvetes
+  '/demo-barbearia',                                 // Barbearia (demo)
+  '/demo-petshop',                                   // Petshop (demo)
+  '/demo-clinica',                                   // Clínica (demo)
 ]
 
 export default function Projects({ language }: ProjectsProps) {
@@ -52,33 +52,45 @@ export default function Projects({ language }: ProjectsProps) {
     ? content.projects.items 
     : content.projects.items.slice(0, Math.min(3, projectImages.length))
 
+  // Função para determinar se o link é externo
+  const isExternalLink = (link: string) => {
+    return link.startsWith('http') || link.startsWith('https')
+  }
+
   return (
     <section className="projects" id="projetos">
       <div className="projects-container">
         <h2 className="projects-title">{content.projects.title}</h2>
 
         <div className="projects-grid">
-          {visibleProjects.map((project, index) => (
-            <div key={project.title} className="project-card">
-              <img 
-                src={projectImages[index]} 
-                alt={project.title} 
-              />
-              <div className="project-overlay">
-                <span>{project.category}</span>
-                <h3>{project.title}</h3>
-                <p>{project.description}</p>
-                <a
-                  href={projectLinks[index]}
-                  className="project-link"
-                  target={projectLinks[index].startsWith('http') ? '_blank' : '_self'}
-                  rel="noopener noreferrer"
-                >
-                  {index >= 3 ? 'Ver demonstração' : 'Ver projeto'}
-                </a>
+          {visibleProjects.map((project, index) => {
+            const originalIndex = content.projects.items.findIndex(item => item.title === project.title)
+            const linkIndex = originalIndex !== -1 ? originalIndex : index
+            const link = projectLinks[linkIndex]
+            const isExternal = isExternalLink(link)
+            
+            return (
+              <div key={project.title} className="project-card">
+                <img 
+                  src={projectImages[linkIndex]} 
+                  alt={project.title} 
+                />
+                <div className="project-overlay">
+                  <span>{project.category}</span>
+                  <h3>{project.title}</h3>
+                  <p>{project.description}</p>
+                  <a
+                    href={link}
+                    className="project-link"
+                    target={isExternal ? "_blank" : "_self"}
+                    rel={isExternal ? "noopener noreferrer" : ""}
+                  >
+                    {linkIndex >= 3 ? 'Ver demonstração' : 'Ver projeto'}
+                  </a>
+                </div>
               </div>
-            </div>
-          ))}
+            )
+          })}
         </div>
 
         {content.projects.items.length > 3 && (
