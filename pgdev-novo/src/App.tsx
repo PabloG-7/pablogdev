@@ -50,16 +50,16 @@ function App() {
   }, [currentLanguage])
 
   if (path === '/demo-barbearia') {
-  return <BookingDemo type="barbearia" language={language} />
-}
+    return <BookingDemo type="barbearia" language={language} />
+  }
 
-if (path === '/demo-clinica') {
-  return <BookingDemo type="clinica" language={language} />
-}
+  if (path === '/demo-clinica') {
+    return <BookingDemo type="clinica" language={language} />
+  }
 
-if (path === '/demo-petshop') {
-  return <BookingDemo type="petshop" language={language} />
-}
+  if (path === '/demo-petshop') {
+    return <BookingDemo type="petshop" language={language} />
+  }
 
   if (path === '/pablo-gomes') return <PabloGomesPage language="pt" />
   if (path === '/es/pablo-gomes') return <PabloGomesPage language="es" />
@@ -69,7 +69,7 @@ if (path === '/demo-petshop') {
       <Header language={currentLanguage} onChangeLanguage={setLanguage} />
       <main>
         <Hero language={currentLanguage} />
-        <ProcessBanner />
+        <ProcessBanner language={currentLanguage} />
         <Services language={currentLanguage} />
         <Projects language={currentLanguage} />
         <About language={currentLanguage} />
