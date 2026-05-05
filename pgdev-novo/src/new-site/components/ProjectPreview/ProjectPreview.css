@@ -1,5 +1,5 @@
 /* ============================================
-   PROJECT PREVIEW - CSS v7 (FIX SCROLL + SAFE-AREA)
+   PROJECT PREVIEW - CSS v8 (FINAL - SCROLL FIX)
    ============================================ */
 
 .preview-button {
@@ -58,7 +58,7 @@
 }
 
 /* ============================================
-   MODAL - CORREÇÃO SCROLL + SAFE-AREA
+   MODAL - SCROLL SOMENTE NO .preview__content
    ============================================ */
 
 .preview {
@@ -72,8 +72,8 @@
            max(16px, env(safe-area-inset-right))
            max(16px, env(safe-area-inset-bottom))
            max(16px, env(safe-area-inset-left));
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
+  overflow: hidden;
+  touch-action: none;
 }
 
 .preview__overlay {
@@ -101,6 +101,7 @@
   box-shadow: 0 32px 72px rgba(0, 0, 0, 0.58);
   animation: previewModalIn 0.24s ease;
   margin: auto;
+  touch-action: auto;
 }
 
 @supports (height: 100dvh) {
@@ -516,7 +517,7 @@
 }
 
 /* ============================================
-   RESPONSIVE - CORREÇÃO SCROLL MOBILE
+   RESPONSIVE - SCROLL SOMENTE NO .preview__content
    ============================================ */
 
 @media (max-width: 920px) {
@@ -537,20 +538,21 @@
 @media (max-width: 720px) {
   .preview {
     align-items: flex-start;
-    padding-top: max(76px, env(safe-area-inset-top));
+    overflow: hidden;
+    padding-top: max(90px, env(safe-area-inset-top));
     padding-right: max(8px, env(safe-area-inset-right));
     padding-bottom: max(20px, env(safe-area-inset-bottom));
     padding-left: max(8px, env(safe-area-inset-left));
   }
 
   .preview__modal {
-    max-height: calc(100vh - 104px);
+    max-height: calc(100vh - 110px);
     border-radius: 20px;
   }
 
   @supports (height: 100dvh) {
     .preview__modal {
-      max-height: calc(100dvh - 104px);
+      max-height: calc(100dvh - 110px);
     }
   }
 
@@ -685,23 +687,6 @@
   .preview-landing__trust-item,
   .preview-landing__feature {
     justify-content: center;
-  }
-}
-
-/* Ajuste para iPhone SE e telas muito pequenas */
-@media (max-width: 480px) {
-  .preview {
-    padding-top: max(90px, env(safe-area-inset-top));
-  }
-
-  .preview__modal {
-    max-height: calc(100vh - 80px);
-  }
-
-  @supports (height: 100dvh) {
-    .preview__modal {
-      max-height: calc(100dvh - 80px);
-    }
   }
 }
 
