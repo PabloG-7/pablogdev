@@ -18,66 +18,57 @@ import PabloGomesPage from './new-site/components/PabloGomesPage/PabloGomesPage'
 
 import type { Language } from './new-site/types'
 
-// Função melhorada para detectar idioma baseado no navegador
 function getInitialLanguage(): Language {
-  // 1. Verifica se já existe idioma salvo no localStorage
   const savedLanguage = localStorage.getItem('pgdev-language')
-  
+
   if (savedLanguage === 'pt' || savedLanguage === 'es') {
     return savedLanguage
   }
 
-  // 2. Detecta idioma do navegador
   const browserLang = navigator.language.toLowerCase()
-  
-  // 3. Se for espanhol (de qualquer país: es, es-ES, es-MX, es-AR, etc.)
+
   if (browserLang.startsWith('es')) {
     return 'es'
   }
 
-  // 4. Padrão: português (Brasil e Portugal)
   return 'pt'
 }
 
 function App() {
-  const [language, setLanguage] = useState<Language>(getInitialLanguage)
+  const path = window.location.pathname
+  const isSpanishRoute = path === '/es' || path.startsWith('/es/')
+
+  const [language, setLanguage] = useState<Language>(
+    isSpanishRoute ? 'es' : getInitialLanguage
+  )
+
+  const currentLanguage: Language = isSpanishRoute ? 'es' : language
 
   useEffect(() => {
-    localStorage.setItem('pgdev-language', language)
-    document.documentElement.lang = language === 'pt' ? 'pt-BR' : 'es'
-  }, [language])
+    localStorage.setItem('pgdev-language', currentLanguage)
+    document.documentElement.lang = currentLanguage === 'pt' ? 'pt-BR' : 'es'
+  }, [currentLanguage])
 
-  const path = window.location.pathname
+  if (path === '/demo-barbearia') return <BookingDemo type="barbearia" />
+  if (path === '/demo-clinica') return <BookingDemo type="clinica" />
+  if (path === '/demo-petshop') return <BookingDemo type="petshop" />
 
-  if (path === '/demo-barbearia') {
-    return <BookingDemo type="barbearia" />
-  }
-
-  if (path === '/demo-clinica') {
-    return <BookingDemo type="clinica" />
-  }
-
-  if (path === '/demo-petshop') {
-    return <BookingDemo type="petshop" />
-  }
-
-  if (path === '/pablo-gomes') {
-    return <PabloGomesPage language={language} />
-  }
+  if (path === '/pablo-gomes') return <PabloGomesPage language="pt" />
+  if (path === '/es/pablo-gomes') return <PabloGomesPage language="es" />
 
   return (
     <>
-      <Header language={language} onChangeLanguage={setLanguage} />
+      <Header language={currentLanguage} onChangeLanguage={setLanguage} />
       <main>
-        <Hero language={language} />
+        <Hero language={currentLanguage} />
         <ProcessBanner />
-        <Services language={language} />
-        <Projects language={language} />
-        <About language={language} />
-        <Contact language={language} />
+        <Services language={currentLanguage} />
+        <Projects language={currentLanguage} />
+        <About language={currentLanguage} />
+        <Contact language={currentLanguage} />
       </main>
-      <Footer language={language} />
-      <ProjectGuide language={language} />
+      <Footer language={currentLanguage} />
+      <ProjectGuide language={currentLanguage} />
     </>
   )
 }
