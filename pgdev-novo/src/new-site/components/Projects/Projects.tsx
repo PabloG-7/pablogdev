@@ -1,8 +1,8 @@
 import './Projects.css'
 import { pt } from '../../i18n/pt'
 import { es } from '../../i18n/es'
-import { ChevronDown } from 'lucide-react'
-import { useState } from 'react'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { useState, useEffect } from 'react'
 import type { Language } from '../../types'
 
 type ProjectsProps = {
@@ -30,42 +30,67 @@ const projectLinks = [
 
 export default function Projects({ language }: ProjectsProps) {
   const content = language === 'pt' ? pt : es
-  const [showAll, setShowAll] = useState(false)
+  const [currentPage, setCurrentPage] = useState(0)
+  
+  const totalProjects = content.projects.items.length
+  const projectsPerPage = 3
+  const totalPages = Math.ceil(totalProjects / projectsPerPage)
 
-  const handleShowMore = () => {
-    const currentScrollY = window.scrollY
-    setShowAll(true)
-    setTimeout(() => {
-      window.scrollTo(0, currentScrollY)
-    }, 0)
+  // Pré-carregar imagens
+  useEffect(() => {
+    projectImages.forEach((img) => {
+      const image = new Image()
+      image.src = img
+    })
+  }, [])
+
+  const nextPage = () => {
+    setCurrentPage((prev) => (prev + 1) % totalPages)
   }
 
-  const handleShowLess = () => {
-    const currentScrollY = window.scrollY
-    setShowAll(false)
-    setTimeout(() => {
-      window.scrollTo(0, currentScrollY)
-    }, 0)
+  const prevPage = () => {
+    setCurrentPage((prev) => (prev - 1 + totalPages) % totalPages)
   }
 
-  const visibleProjects = showAll 
-    ? content.projects.items 
-    : content.projects.items.slice(0, Math.min(3, projectImages.length))
+  const startIndex = currentPage * projectsPerPage
+  const visibleProjects = content.projects.items.slice(startIndex, startIndex + projectsPerPage)
 
-  // Função para determinar se o link é externo
   const isExternalLink = (link: string) => {
     return link.startsWith('http') || link.startsWith('https')
+  }
+
+  const getProjectIndex = (projectTitle: string) => {
+    return content.projects.items.findIndex(item => item.title === projectTitle)
   }
 
   return (
     <section className="projects" id="projetos">
       <div className="projects-container">
-        <h2 className="projects-title">{content.projects.title}</h2>
+        <div className="projects-header">
+          <h2 className="projects-title">{content.projects.title}</h2>
+          
+          <div className="carousel-controls">
+            <button 
+              className="carousel-arrow carousel-arrow--prev"
+              onClick={prevPage}
+              aria-label="Projetos anteriores"
+            >
+              <ChevronLeft size={24} />
+            </button>
+            <button 
+              className="carousel-arrow carousel-arrow--next"
+              onClick={nextPage}
+              aria-label="Próximos projetos"
+            >
+              <ChevronRight size={24} />
+            </button>
+          </div>
+        </div>
 
         <div className="projects-grid">
-          {visibleProjects.map((project, index) => {
-            const originalIndex = content.projects.items.findIndex(item => item.title === project.title)
-            const linkIndex = originalIndex !== -1 ? originalIndex : index
+          {visibleProjects.map((project) => {
+            const originalIndex = getProjectIndex(project.title)
+            const linkIndex = originalIndex !== -1 ? originalIndex : 0
             const link = projectLinks[linkIndex]
             const isExternal = isExternalLink(link)
             
@@ -93,21 +118,17 @@ export default function Projects({ language }: ProjectsProps) {
           })}
         </div>
 
-        {content.projects.items.length > 3 && (
-          <div className="projects-more">
-            {!showAll ? (
-              <button className="show-more-btn" onClick={handleShowMore}>
-                {language === 'pt' ? 'Ver mais projetos' : 'Ver más proyectos'}
-                <ChevronDown size={20} className="arrow" />
-              </button>
-            ) : (
-              <button className="show-more-btn" onClick={handleShowLess}>
-                {language === 'pt' ? 'Ver menos' : 'Ver menos'}
-                <ChevronDown size={20} className="arrow rotate" />
-              </button>
-            )}
-          </div>
-        )}
+        {/* Dots indicadores */}
+        <div className="carousel-dots">
+          {Array.from({ length: totalPages }).map((_, index) => (
+            <button
+              key={index}
+              className={`dot ${index === currentPage ? 'dot--active' : ''}`}
+              onClick={() => setCurrentPage(index)}
+              aria-label={`Ir para página ${index + 1}`}
+            />
+          ))}
+        </div>
       </div>
     </section>
   )

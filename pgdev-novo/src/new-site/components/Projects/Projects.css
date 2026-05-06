@@ -1,3 +1,7 @@
+/* ============================================
+   PROJECTS - SETAS NO TÍTULO + CARROSSEL POR PÁGINA
+   ============================================ */
+
 .projects {
   padding: 80px 0;
   background: #fec90f;
@@ -50,13 +54,50 @@
   pointer-events: none;
 }
 
+/* Header com título e setas lado a lado */
+.projects-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 48px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
 .projects-title {
   font-size: 2.5rem;
   font-weight: 700;
   color: #000c24;
-  margin-bottom: 48px;
+  margin: 0;
 }
 
+/* Controles das setas */
+.carousel-controls {
+  display: flex;
+  gap: 12px;
+}
+
+.carousel-arrow {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(0, 12, 36, 0.1);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  color: #000c24;
+}
+
+.carousel-arrow:hover {
+  background: #000c24;
+  color: #fec90f;
+  transform: scale(1.05);
+}
+
+/* Grid - TAMANHO ORIGINAL */
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -168,15 +209,43 @@
   transform: translateY(-2px);
 }
 
+/* Dots indicadores */
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 48px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(0, 12, 36, 0.3);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+.dot:hover {
+  background: rgba(0, 12, 36, 0.5);
+  transform: scale(1.2);
+}
+
+.dot--active {
+  width: 28px;
+  border-radius: 10px;
+  background: #000c24;
+}
+
+/* ============================================
+   RESPONSIVO - SETAS BOAS NO CELULAR
+   ============================================ */
+
 @media (max-width: 900px) {
   .projects-grid {
     grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 600px) {
-  .projects-grid {
-    grid-template-columns: 1fr;
   }
   
   .projects-title {
@@ -184,39 +253,131 @@
   }
 }
 
-/* Botão Ver mais - ultra clean */
-.projects-more {
-  display: flex;
-  justify-content: center;
-  margin-top: 56px;
+@media (max-width: 768px) {
+  .projects-header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .projects-title {
+    font-size: 1.8rem;
+  }
+  
+  .carousel-arrow {
+    width: 42px;
+    height: 42px;
+  }
+  
+  .carousel-arrow svg {
+    width: 20px;
+    height: 20px;
+  }
 }
 
-.show-more-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: transparent;
-  color: #000c24;
-  padding: 8px 0;
-  border: none;
-  border-bottom: 1.5px solid #000c24;
-  font-size: 1.2rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s ease;
+@media (max-width: 640px) {
+  .projects-container {
+    padding: 0 16px;
+  }
+  
+  .projects-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  
+  .projects-title {
+    font-size: 1.6rem;
+  }
+  
+  .carousel-controls {
+    align-self: flex-end;
+  }
+  
+  .carousel-arrow {
+    width: 38px;
+    height: 38px;
+  }
+  
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .carousel-dots {
+    margin-top: 32px;
+  }
 }
 
-.show-more-btn:hover {
-  gap: 12px;
-  border-bottom-color: #fec90f;
-  color: #000c24;
-  opacity: 0.7;
+@media (max-width: 480px) {
+  .projects {
+    padding: 50px 0;
+  }
+  
+  .projects-title {
+    font-size: 1.4rem;
+  }
+  
+  .carousel-controls {
+    gap: 8px;
+  }
+  
+  .carousel-arrow {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .carousel-arrow svg {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .project-overlay {
+    padding: 16px;
+  }
+  
+  .project-overlay h3 {
+    font-size: 1rem;
+  }
+  
+  .project-overlay p {
+    font-size: 0.7rem;
+  }
+  
+  .project-link {
+    padding: 6px 12px;
+    font-size: 0.7rem;
+  }
+  
+  .dot {
+    width: 8px;
+    height: 8px;
+  }
+  
+  .dot--active {
+    width: 24px;
+  }
 }
 
-.arrow {
-  transition: transform 0.3s ease;
-}
-
-.arrow.rotate {
-  transform: rotate(180deg);
+@media (max-width: 380px) {
+  .projects-header {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .projects-title {
+    font-size: 1.3rem;
+  }
+  
+  .carousel-controls {
+    align-self: auto;
+  }
+  
+  .carousel-arrow {
+    width: 32px;
+    height: 32px;
+  }
 }
