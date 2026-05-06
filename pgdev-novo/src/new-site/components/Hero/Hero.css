@@ -365,3 +365,37 @@
     }
   }
 }
+
+/* ============================================
+   OPÇÃO 10 - ONDAS MINIMALISTAS
+   ============================================ */
+
+.hero {
+  background: #000c24;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(254, 201, 15, 0.2), transparent);
+  animation: wave 8s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes wave {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}

@@ -64,7 +64,7 @@ export const pt = {
         points: ['Botões estratégicos', 'Contato direto', 'Mais conversão'],
       },
       {
-        title: 'Automação de processos',
+        title: 'Organização de processos',
         description:
           'Reduza tarefas repetitivas e ganhe mais agilidade no dia a dia com fluxos mais inteligentes.',
         points: ['Menos trabalho manual', 'Mais organização', 'Processos mais claros'],
