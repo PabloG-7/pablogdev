@@ -70,13 +70,13 @@ ul, ol {
 }
 
 /* ============================================
-   SCROLLBAR CUSTOMIZADA - Funciona em todos os navegadores/dispositivos
+   SCROLLBAR CUSTOMIZADA - CORES DO SITE
    ============================================ */
 
 /* Firefox */
 * {
   scrollbar-width: thin;
-  scrollbar-color: rgba(254, 201, 15, 0.4) rgba(255, 255, 255, 0.05);
+  scrollbar-color: #fec90f #000c24;
 }
 
 /* Chrome, Edge, Safari (Desktop) */
@@ -86,29 +86,34 @@ ul, ol {
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.05);
+  background: #000c24;
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(254, 201, 15, 0.4);
+  background: #fec90f;
   border-radius: 10px;
-  transition: background 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(254, 201, 15, 0.6);
+  background: #ffd43b;
 }
 
 ::-webkit-scrollbar-thumb:active {
-  background: rgba(254, 201, 15, 0.8);
+  background: #e5b40d;
+}
+
+/* Corner */
+::-webkit-scrollbar-corner {
+  background: #000c24;
 }
 
 /* iPhone, iPad e dispositivos iOS (Safari) */
 @supports (scrollbar-color: auto) {
   * {
     scrollbar-width: thin;
-    scrollbar-color: rgba(254, 201, 15, 0.5) rgba(255, 255, 255, 0.08);
+    scrollbar-color: #fec90f #000c24;
   }
 }
 
@@ -120,17 +125,21 @@ ul, ol {
   }
   
   ::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.08);
+    background: #000c24;
     border-radius: 10px;
   }
   
   ::-webkit-scrollbar-thumb {
-    background: rgba(254, 201, 15, 0.5);
+    background: #fec90f;
     border-radius: 10px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #ffd43b;
   }
 }
 
-/* Android e outros dispositivos mobile */
+/* Mobile */
 @media (max-width: 768px) {
   ::-webkit-scrollbar {
     width: 4px;
@@ -138,12 +147,16 @@ ul, ol {
   }
   
   ::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.05);
+    background: #000c24;
   }
   
   ::-webkit-scrollbar-thumb {
-    background: rgba(254, 201, 15, 0.4);
+    background: #fec90f;
     border-radius: 10px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #ffd43b;
   }
 }
 
@@ -155,8 +168,16 @@ ul, ol {
       height: 5px;
     }
     
+    ::-webkit-scrollbar-track {
+      background: #000c24;
+    }
+    
     ::-webkit-scrollbar-thumb {
-      background: rgba(254, 201, 15, 0.45);
+      background: #fec90f;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+      background: #ffd43b;
     }
   }
 }
