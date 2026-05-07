@@ -293,7 +293,7 @@ function ProjectPreview({ language }: Props) {
             aria-label={isPt ? 'Fechar simulador' : 'Cerrar simulador'}
           />
 
-          <div className="preview__modal">
+         <div className="preview__modal" onClick={(e) => e.stopPropagation()}>
             <div className="preview__logo-top">
               <img src={logoPng} alt="Logo" />
               <span>{isPt ? 'Simulador de Projetos' : 'Simulador de Proyectos'}</span>
