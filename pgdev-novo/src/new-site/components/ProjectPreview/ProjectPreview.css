@@ -695,6 +695,69 @@
 }
 
 /* ============================================
+   MODO APP - TELA INICIAL DO IPHONE
+   ============================================ */
+
+@media (max-width: 720px) {
+  .preview {
+    height: 100dvh;
+    height: 100svh;
+    align-items: stretch;
+    padding: 0;
+  }
+
+  .preview__modal {
+    width: 100%;
+    height: 100%;
+    max-height: none;
+    border-radius: 0;
+    margin: 0;
+    padding-top: env(safe-area-inset-top);
+  }
+
+  .preview__close {
+    top: max(14px, env(safe-area-inset-top));
+  }
+
+  .preview__content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px;
+    padding-bottom: 24px;
+  }
+
+  .preview__grid {
+    display: block;
+  }
+
+  .preview__panel {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .preview__stage {
+    display: flex;
+    margin-top: 16px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+  }
+
+  .preview__device {
+    min-height: 360px;
+  }
+
+  .preview__insights {
+    display: none;
+  }
+
+  .preview__footer {
+    position: static;
+    flex-shrink: 0;
+  }
+}
+
+/* ============================================
    ESTILOS ADICIONAIS
    ============================================ */
 
@@ -1408,57 +1471,4 @@
 
 body:has(.preview) .project-guide-float {
   display: none;
-}
-@media (max-width: 720px) {
-  .preview {
-    height: 100dvh;
-    height: 100svh;
-    align-items: stretch;
-    padding: 0;
-  }
-
-  .preview__modal {
-    width: 100%;
-    height: 100%;
-    max-height: none;
-    border-radius: 0;
-    margin: 0;
-  }
-
-  .preview__content {
-    flex: 1;
-    overflow-y: auto;
-    padding: 16px;
-    padding-bottom: 24px;
-  }
-
-  .preview__grid {
-    display: block;
-  }
-
-  .preview__panel {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .preview__stage {
-    display: flex;
-    margin-top: 16px;
-    padding: 0;
-    border: 0;
-    background: transparent;
-  }
-
-  .preview__device {
-    min-height: 360px;
-  }
-
-  .preview__insights {
-    display: none;
-  }
-
-  .preview__footer {
-    position: static;
-    flex-shrink: 0;
-  }
 }
