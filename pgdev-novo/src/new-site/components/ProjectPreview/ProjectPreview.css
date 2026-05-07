@@ -1,5 +1,5 @@
 /* ============================================
-   PROJECT PREVIEW - CSS v8 (FINAL - SCROLL FIX)
+   PROJECT PREVIEW - CSS v9 (FINAL - SCROLL FIX V2)
    ============================================ */
 
 .preview-button {
@@ -537,22 +537,22 @@
 
 @media (max-width: 720px) {
   .preview {
-    align-items: flex-start;
+    align-items: flex-end;
+    justify-content: center;
     overflow: hidden;
-    padding-top: max(90px, env(safe-area-inset-top));
-    padding-right: max(8px, env(safe-area-inset-right));
-    padding-bottom: max(20px, env(safe-area-inset-bottom));
-    padding-left: max(8px, env(safe-area-inset-left));
+    padding: 0;
   }
 
   .preview__modal {
-    max-height: calc(100vh - 110px);
-    border-radius: 20px;
+    width: 100%;
+    max-height: 92vh;
+    border-radius: 22px 22px 0 0;
+    margin: 0;
   }
 
   @supports (height: 100dvh) {
     .preview__modal {
-      max-height: calc(100dvh - 110px);
+      max-height: 92dvh;
     }
   }
 
@@ -560,6 +560,8 @@
     min-height: 0;
     overflow-y: auto;
     padding: 16px;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
   }
 
   .preview__panel {
@@ -602,6 +604,7 @@
     flex-direction: column;
     align-items: stretch;
     text-align: center;
+    padding-bottom: max(14px, env(safe-area-inset-bottom));
   }
 
   .preview__cta {

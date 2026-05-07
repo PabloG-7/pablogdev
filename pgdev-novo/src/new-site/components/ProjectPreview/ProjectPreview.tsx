@@ -184,6 +184,7 @@ function ProjectPreview({ language }: Props) {
     document.body.style.top = `-${scrollY}px`
     document.body.style.width = '100%'
     document.body.style.overflow = 'hidden'
+    document.documentElement.style.overflow = 'hidden'
 
     if (nav) (nav as HTMLElement).style.display = 'none'
     if (header) (header as HTMLElement).style.zIndex = '0'
@@ -193,6 +194,7 @@ function ProjectPreview({ language }: Props) {
       document.body.style.top = ''
       document.body.style.width = ''
       document.body.style.overflow = ''
+      document.documentElement.style.overflow = ''
 
       if (nav) (nav as HTMLElement).style.display = ''
       if (header) (header as HTMLElement).style.zIndex = ''
