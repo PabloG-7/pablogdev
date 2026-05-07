@@ -33,7 +33,7 @@ export default function Projects({ language }: ProjectsProps) {
   const [currentPage, setCurrentPage] = useState(0)
   
   const totalProjects = content.projects.items.length
-  const projectsPerPage = 3
+  const projectsPerPage = 2 // ALTERADO: 2 projetos por página
   const totalPages = Math.ceil(totalProjects / projectsPerPage)
 
   // Pré-carregar imagens
