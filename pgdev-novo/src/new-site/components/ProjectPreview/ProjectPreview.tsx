@@ -173,16 +173,15 @@ function ProjectPreview({ language }: Props) {
     return () => document.removeEventListener('keydown', handleKeyDown)
   }, [handleKeyDown])
 
+  // ============================================
+  // useEffect CORRIGIDO - remove o position fixed problemático
+  // ============================================
   useEffect(() => {
     const nav = document.querySelector('nav')
     const header = document.querySelector('header')
 
     if (!open) return undefined
 
-    const scrollY = window.scrollY
-    document.body.style.position = 'fixed'
-    document.body.style.top = `-${scrollY}px`
-    document.body.style.width = '100%'
     document.body.style.overflow = 'hidden'
     document.documentElement.style.overflow = 'hidden'
 
@@ -190,16 +189,11 @@ function ProjectPreview({ language }: Props) {
     if (header) (header as HTMLElement).style.zIndex = '0'
 
     return () => {
-      document.body.style.position = ''
-      document.body.style.top = ''
-      document.body.style.width = ''
       document.body.style.overflow = ''
       document.documentElement.style.overflow = ''
 
       if (nav) (nav as HTMLElement).style.display = ''
       if (header) (header as HTMLElement).style.zIndex = ''
-
-      window.scrollTo(0, scrollY)
     }
   }, [open])
 
