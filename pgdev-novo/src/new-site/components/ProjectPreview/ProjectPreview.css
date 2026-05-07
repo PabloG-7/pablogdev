@@ -1408,8 +1408,6 @@
 body:has(.preview) .project-guide-float {
   display: none;
 }
-
-
 @media (max-width: 720px) {
   .preview {
     height: 100dvh;
@@ -1443,6 +1441,18 @@ body:has(.preview) .project-guide-float {
   }
 
   .preview__stage {
+    display: flex;
+    margin-top: 16px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+  }
+
+  .preview__device {
+    min-height: 360px;
+  }
+
+  .preview__insights {
     display: none;
   }
 
