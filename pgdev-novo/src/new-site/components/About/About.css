@@ -45,7 +45,6 @@
   font-weight: 600;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  
   padding: 4px 12px;
   border-radius: 20px;
 }
@@ -125,7 +124,10 @@
   filter: brightness(1.05);
 }
 
-/* Melhorias no responsivo */
+/* ============================================
+   RESPONSIVO - ALINHADO À ESQUERDA
+   ============================================ */
+
 @media (max-width: 900px) {
   .about {
     padding: 60px 0;
@@ -147,18 +149,28 @@
   .about-title {
     font-size: 2rem;
     margin-bottom: 36px;
-    text-align: center;
+    text-align: left;
   }
 
   .about-label {
-    display: table;
-    margin-left: auto;
+    display: inline-block;
+    margin-left: 0;
     margin-right: auto;
   }
 
   .about-text p {
-    text-align: center;
+    text-align: left;
     font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-container {
+    padding: 0 20px;
+  }
+
+  .about-title {
+    font-size: 1.8rem;
   }
 }
 
@@ -168,7 +180,7 @@
   }
 
   .about-title {
-    font-size: 1.75rem;
+    font-size: 1.6rem;
     margin-bottom: 32px;
   }
 
@@ -195,5 +207,19 @@
     height: 200px;
     bottom: -50px;
     right: -50px;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-title {
+    font-size: 1.4rem;
+  }
+
+  .about-label {
+    font-size: 0.65rem;
+  }
+
+  .about-text p {
+    font-size: 0.85rem;
   }
 }
