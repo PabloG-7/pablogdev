@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import {
   Calendar,
   User,
@@ -32,6 +32,7 @@ export default function BookingDemo({ type, language }: Props) {
     fillInfo: isPt ? 'Preencha as informações abaixo' : 'Completa la información abajo',
     service: isPt ? 'Serviço' : 'Servicio',
     professional: isPt ? 'Profissional' : 'Profesional',
+    date: isPt ? 'Data' : 'Fecha',
     time: isPt ? 'Horário' : 'Horario',
     confirmation: isPt ? 'Confirmação' : 'Confirmación',
     yourData: isPt ? 'Seus dados' : 'Tus datos',
@@ -50,19 +51,30 @@ export default function BookingDemo({ type, language }: Props) {
     wantThisSystem: isPt ? 'Quero este sistema' : 'Quiero este sistema',
     step1: isPt ? 'Serviço' : 'Servicio',
     step2: isPt ? 'Profissional' : 'Profesional',
-    step3: isPt ? 'Horário' : 'Horario',
-    step4: isPt ? 'Confirmação' : 'Confirmación',
+    step3: isPt ? 'Data' : 'Fecha',
+    step4: isPt ? 'Horário' : 'Horario',
+    step5: isPt ? 'Dados' : 'Datos',
+    step6: isPt ? 'Confirmação' : 'Confirmación',
     total: isPt ? 'Total' : 'Total',
     appointmentSummary: isPt ? 'Resumo do agendamento' : 'Resumen del turno',
+    bookingCode: isPt ? 'Código' : 'Código',
   }
 
   const [activeStep, setActiveStep] = useState(1)
   const [selectedService, setSelectedService] = useState(data.services[0])
   const [selectedProfessional, setSelectedProfessional] = useState(data.professionals[0])
-  const [selectedTime, setSelectedTime] = useState(data.times[0])
+  const [selectedDate, setSelectedDate] = useState(data.dates[0])
+  const [selectedTimeSlot, setSelectedTimeSlot] = useState(
+    data.timeSlots.find((slot) => slot.available) || data.timeSlots[0]
+  )
   const [name, setName] = useState('')
   const [phone, setPhone] = useState('')
   const [confirmed, setConfirmed] = useState(false)
+
+  const confirmationCode = useMemo(() => {
+    if (!confirmed) return ''
+    return `AGD-${Math.floor(1000 + Math.random() * 9000)}`
+  }, [confirmed])
 
   useEffect(() => {
     document.body.classList.add('booking-demo-active')
@@ -77,7 +89,7 @@ export default function BookingDemo({ type, language }: Props) {
   }, [type])
 
   const handleNextStep = () => {
-    if (activeStep < 4) {
+    if (activeStep < 6) {
       setActiveStep(activeStep + 1)
     }
   }
@@ -137,12 +149,22 @@ export default function BookingDemo({ type, language }: Props) {
             <div className="booking-v3-professional-grid">
               {data.professionals.map((prof) => (
                 <button
-                  key={prof}
-                  className={`booking-v3-professional-card ${selectedProfessional === prof ? 'active' : ''}`}
+                  key={prof.name}
+                  className={`booking-v3-professional-card ${selectedProfessional.name === prof.name ? 'active' : ''}`}
                   onClick={() => setSelectedProfessional(prof)}
                 >
-                  <span>{prof}</span>
-                  {selectedProfessional === prof && <Check size={12} className="check-mark" />}
+                  <div className="booking-v3-professional-image">
+                    <img src={prof.image} alt={prof.name} />
+                  </div>
+                  <div className="booking-v3-professional-info">
+                    <strong>{prof.name}</strong>
+                    <span className="booking-v3-professional-role">{prof.role}</span>
+                    <div className="booking-v3-professional-rating">
+                      <span>⭐ {prof.rating}</span>
+                    </div>
+                    <p className="booking-v3-professional-bio">{prof.bio}</p>
+                  </div>
+                  {selectedProfessional.name === prof.name && <Check size={16} className="check-mark" />}
                 </button>
               ))}
             </div>
@@ -151,21 +173,45 @@ export default function BookingDemo({ type, language }: Props) {
       case 3:
         return (
           <div className="booking-v3-section">
-            <label>{text.time}</label>
-            <div className="booking-v3-time-grid">
-              {data.times.map((time) => (
+            <label>{text.date}</label>
+            <div className="booking-v3-date-grid">
+              {data.dates.map((date) => (
                 <button
-                  key={time}
-                  className={`booking-v3-time-card ${selectedTime === time ? 'active' : ''}`}
-                  onClick={() => setSelectedTime(time)}
+                  key={date.label}
+                  className={`booking-v3-date-card ${
+                    selectedDate.label === date.label ? 'active' : ''
+                  }`}
+                  onClick={() => setSelectedDate(date)}
                 >
-                  {time}
+                  <strong>{date.label}</strong>
+                  <span>{date.status}</span>
                 </button>
               ))}
             </div>
           </div>
         )
       case 4:
+        return (
+          <div className="booking-v3-section">
+            <label>{text.time}</label>
+            <div className="booking-v3-time-grid">
+              {data.timeSlots.map((slot) => (
+                <button
+                  key={slot.time}
+                  disabled={!slot.available}
+                  className={`booking-v3-time-card ${
+                    selectedTimeSlot.time === slot.time ? 'active' : ''
+                  } ${!slot.available ? 'disabled' : ''}`}
+                  onClick={() => slot.available && setSelectedTimeSlot(slot)}
+                >
+                  <strong>{slot.time}</strong>
+                  <span>{slot.status}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+        )
+      case 5:
         return (
           <form onSubmit={handleSubmit} className="booking-v3-form">
             <div className="booking-v3-form-header">
@@ -174,27 +220,69 @@ export default function BookingDemo({ type, language }: Props) {
               <p>{text.informData}</p>
             </div>
 
-            <div className="booking-v3-form-group">
-              <label>{text.fullName}</label>
-              <input
-                type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                placeholder={text.namePlaceholder}
-                required
-              />
-            </div>
-
-            <div className="booking-v3-form-group">
-              <label>{text.whatsapp}</label>
-              <input
-                type="tel"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                placeholder={text.phonePlaceholder}
-                required
-              />
-            </div>
+            {data.clientFields.map((field) => {
+              if (field === 'Nome') {
+                return (
+                  <div className="booking-v3-form-group" key={field}>
+                    <label>{text.fullName}</label>
+                    <input
+                      type="text"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      placeholder={text.namePlaceholder}
+                      required
+                    />
+                  </div>
+                )
+              }
+              if (field === 'WhatsApp') {
+                return (
+                  <div className="booking-v3-form-group" key={field}>
+                    <label>{text.whatsapp}</label>
+                    <input
+                      type="tel"
+                      value={phone}
+                      onChange={(e) => setPhone(e.target.value)}
+                      placeholder={text.phonePlaceholder}
+                      required
+                    />
+                  </div>
+                )
+              }
+              return (
+                <div className="booking-v3-form-group" key={field}>
+                  <label>{field}</label>
+                  {field === 'Observação' ? (
+                    <textarea
+                      rows={3}
+                      placeholder={`Digite ${field.toLowerCase()}`}
+                    />
+                  ) : field === 'Convênio' ? (
+                    <input
+                      type="text"
+                      placeholder="Ex: Unimed, Amil, etc."
+                    />
+                  ) : field === 'Nome do pet' ? (
+                    <input
+                      type="text"
+                      placeholder="Digite o nome do seu pet"
+                    />
+                  ) : field === 'Porte' ? (
+                    <select>
+                      <option value="">Selecione o porte</option>
+                      <option value="Pequeno">Pequeno</option>
+                      <option value="Médio">Médio</option>
+                      <option value="Grande">Grande</option>
+                    </select>
+                  ) : (
+                    <input
+                      type="text"
+                      placeholder={`Digite ${field.toLowerCase()}`}
+                    />
+                  )}
+                </div>
+              )
+            })}
 
             <div className="booking-v3-form-actions">
               <button type="button" className="booking-v3-back-btn" onClick={handlePrevStep}>
@@ -248,6 +336,8 @@ export default function BookingDemo({ type, language }: Props) {
           <div className={`step ${activeStep >= 2 ? 'active' : ''}`}>2 {text.step2}</div>
           <div className={`step ${activeStep >= 3 ? 'active' : ''}`}>3 {text.step3}</div>
           <div className={`step ${activeStep >= 4 ? 'active' : ''}`}>4 {text.step4}</div>
+          <div className={`step ${activeStep >= 5 ? 'active' : ''}`}>5 {text.step5}</div>
+          <div className={`step ${activeStep >= 6 ? 'active' : ''}`}>6 {text.step6}</div>
         </div>
 
         {/* Layout 2 colunas - desktop / 1 coluna - mobile */}
@@ -264,7 +354,7 @@ export default function BookingDemo({ type, language }: Props) {
                 </div>
                 {renderStepContent()}
                 
-                {activeStep < 4 && (
+                {activeStep < 6 && activeStep !== 5 && (
                   <button className="booking-v3-continue-btn" onClick={handleNextStep}>
                     {text.continue}
                     <ChevronRight size={16} />
@@ -281,11 +371,15 @@ export default function BookingDemo({ type, language }: Props) {
                 </div>
                 <div className="booking-summary-item">
                   <span>{text.professional}</span>
-                  <strong>{selectedProfessional}</strong>
+                  <strong>{selectedProfessional.name}</strong>
+                </div>
+                <div className="booking-summary-item">
+                  <span>{text.date}</span>
+                  <strong>{selectedDate.label}</strong>
                 </div>
                 <div className="booking-summary-item">
                   <span>{text.time}</span>
-                  <strong>{selectedTime}</strong>
+                  <strong>{selectedTimeSlot.time}</strong>
                 </div>
                 <div className="booking-summary-divider"></div>
                 <div className="booking-summary-item total">
@@ -302,6 +396,16 @@ export default function BookingDemo({ type, language }: Props) {
                     </div>
                   ))}
                 </div>
+
+                {/* Extras Desktop */}
+                <div className="booking-summary-extras">
+                  {data.extras && data.extras.map((extra) => (
+                    <div className="booking-summary-extra-item" key={extra}>
+                      <Check size={14} />
+                      <span>{extra}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
 
@@ -315,11 +419,15 @@ export default function BookingDemo({ type, language }: Props) {
                 </div>
                 <div className="booking-summary-mobile-item">
                   <span>{text.professional}</span>
-                  <strong>{selectedProfessional}</strong>
+                  <strong>{selectedProfessional.name}</strong>
+                </div>
+                <div className="booking-summary-mobile-item">
+                  <span>{text.date}</span>
+                  <strong>{selectedDate.label}</strong>
                 </div>
                 <div className="booking-summary-mobile-item">
                   <span>{text.time}</span>
-                  <strong>{selectedTime}</strong>
+                  <strong>{selectedTimeSlot.time}</strong>
                 </div>
                 <div className="booking-summary-mobile-item total">
                   <span>{text.total}</span>
@@ -336,10 +444,20 @@ export default function BookingDemo({ type, language }: Props) {
                   </div>
                 ))}
               </div>
+
+              {/* Extras Mobile */}
+              <div className="booking-summary-mobile-extras">
+                {data.extras && data.extras.map((extra) => (
+                  <div className="booking-summary-mobile-extra-item" key={extra}>
+                    <Check size={12} />
+                    <span>{extra}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           </>
         ) : (
-          /* Success Phase */
+          /* Success Phase - Com código de confirmação */
           <div className="booking-v3-success">
             <div className="booking-v3-success-icon">
               <Crown size={56} />
@@ -355,11 +473,19 @@ export default function BookingDemo({ type, language }: Props) {
               </div>
               <div className="booking-v3-success-row">
                 <span>{text.professional}</span>
-                <strong>{selectedProfessional}</strong>
+                <strong>{selectedProfessional.name}</strong>
+              </div>
+              <div className="booking-v3-success-row">
+                <span>{text.date}</span>
+                <strong>{selectedDate.label}</strong>
               </div>
               <div className="booking-v3-success-row">
                 <span>{text.time}</span>
-                <strong>{selectedTime}</strong>
+                <strong>{selectedTimeSlot.time}</strong>
+              </div>
+              <div className="booking-v3-success-row">
+                <span>{text.bookingCode}</span>
+                <strong className="booking-v3-success-code">{confirmationCode}</strong>
               </div>
               <div className="booking-v3-success-row">
                 <span>{text.value}</span>
