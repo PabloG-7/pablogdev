@@ -1,6 +1,7 @@
 import './Header.css'
 import logo from '../../assets/apenas-logo.png'
-import { MessageCircle, Menu, X } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
+import { FaWhatsapp } from 'react-icons/fa'
 import { useState, useEffect } from 'react'
 import { pt } from '../../i18n/pt'
 import { es } from '../../i18n/es'
@@ -87,7 +88,7 @@ export default function Header({ language, onChangeLanguage }: HeaderProps) {
             className="cta"
             onClick={handleWhatsAppClick}
           >
-            <MessageCircle size={16} />
+            <FaWhatsapp size={16} />
             <span>{content.header.cta}</span>
           </a>
         </div>
@@ -123,7 +124,7 @@ export default function Header({ language, onChangeLanguage }: HeaderProps) {
               closeMenu()
             }}
           >
-            <MessageCircle size={16} />
+            <FaWhatsapp size={16} />
             <span>{content.header.cta}</span>
           </a>
         </div>

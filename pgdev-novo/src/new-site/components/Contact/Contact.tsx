@@ -1,6 +1,6 @@
 import './Contact.css'
-import { MessageCircle, Mail, ArrowRight } from 'lucide-react'
-import { FaInstagram, FaFacebook } from 'react-icons/fa'
+import { Mail, ArrowRight } from 'lucide-react'
+import { FaWhatsapp, FaInstagram, FaFacebook } from 'react-icons/fa'
 import { pt } from '../../i18n/pt'
 import { es } from '../../i18n/es'
 import type { Language } from '../../types'
@@ -30,12 +30,12 @@ export default function Contact({ language }: ContactProps) {
             rel="noopener noreferrer"
             className="contact-item"
           >
-            <MessageCircle size={18} />
+            <FaWhatsapp size={18} color="#25D366" />
             <span>+55 11 96111-1894</span>
           </a>
 
           <a href="mailto:pgdevsoftware@gmail.com" className="contact-item">
-            <Mail size={18} />
+            <Mail size={18} color="#EA4335" />
             <span>pgdevsoftware@gmail.com</span>
           </a>
 
@@ -45,7 +45,7 @@ export default function Contact({ language }: ContactProps) {
             rel="noopener noreferrer"
             className="contact-item"
           >
-            <FaInstagram size={18} />
+            <FaInstagram size={18} color="#E4405F" />
             <span>@pablog.dev</span>
           </a>
 
@@ -55,7 +55,7 @@ export default function Contact({ language }: ContactProps) {
             rel="noopener noreferrer"
             className="contact-item"
           >
-            <FaFacebook size={18} />
+            <FaFacebook size={18} color="#1877F2" />
             <span>Facebook</span>
           </a>
         </div>
