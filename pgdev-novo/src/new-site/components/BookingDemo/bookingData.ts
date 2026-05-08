@@ -19,7 +19,7 @@ export const bookingData = {
         name: 'Carlos Silva',
         role: 'Barbeiro especialista',
         rating: '4.9',
-        image: '/demo/barbearia/carlos.jpg',
+        image: '/demo/barbearia/carlitoss.jpg',
         bio: 'Especialista em degradê, barba e acabamento.',
       },
       {
