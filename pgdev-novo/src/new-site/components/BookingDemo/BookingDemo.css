@@ -234,7 +234,7 @@
 
 .option-card.active {
   border-color: var(--accent);
-  background: rgba(254, 201, 15, 0.05);
+  background: rgba(254, 201, 15, 0.08);
 }
 
 .option-info {
@@ -284,22 +284,27 @@
 .professional-card:hover {
   border-color: var(--accent);
   background: white;
+  transform: translateX(4px);
 }
 
 .professional-card.active {
   border-color: var(--accent);
-  background: rgba(254, 201, 15, 0.05);
+  background: rgba(254, 201, 15, 0.08);
 }
 
 .professional-avatar {
-  width: 48px;
-  height: 48px;
-  background: #e5e7eb;
-  border-radius: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #6b7280;
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: #f3f4f6;
+}
+
+.professional-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .professional-info {
@@ -325,6 +330,14 @@
   gap: 4px;
   font-size: 0.7rem;
   color: #f5a623;
+  margin-bottom: 4px;
+}
+
+.professional-bio {
+  font-size: 0.7rem;
+  color: #6b7280;
+  margin-top: 4px;
+  line-height: 1.4;
 }
 
 /* Date Grid */
@@ -346,7 +359,7 @@
   color: #6b7280;
 }
 
-/* Time Grid */
+/* Time Grid - CORRIGIDO */
 .time-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -369,20 +382,43 @@
   transition: all 0.2s;
 }
 
+/* HOVER - quando passa o mouse */
 .time-card:hover:not(.disabled) {
+  background: var(--accent);
   border-color: var(--accent);
-  background: white;
+  color: white;
+  transform: translateY(-2px);
 }
 
+.time-card:hover:not(.disabled) svg {
+  color: white;
+}
+
+/* ACTIVE - horário selecionado */
 .time-card.active {
   background: var(--accent);
   border-color: var(--accent);
   color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
+.time-card.active svg {
+  color: white;
+}
+
+/* DISABLED - horário indisponível */
 .time-card.disabled {
   opacity: 0.4;
   cursor: not-allowed;
+  text-decoration: line-through;
+  background: #f9fafb;
+  color: #9ca3af;
+}
+
+.time-card.disabled:hover {
+  background: #f9fafb;
+  color: #9ca3af;
+  transform: none;
 }
 
 /* ============================================
@@ -499,7 +535,7 @@
 }
 
 /* ============================================
-   SUMMARY
+   SUMMARY - CORRIGIDO
    ============================================ */
 
 .booking-summary {
@@ -535,7 +571,8 @@
 
 .summary-item strong {
   color: #1a1a1a;
-  font-weight: 500;
+  font-weight: 600;
+  text-align: right;
 }
 
 .summary-divider {
@@ -546,15 +583,23 @@
 
 .summary-total {
   display: flex;
-  color: #000000;
   justify-content: space-between;
   align-items: center;
   font-size: 0.9rem;
+  font-weight: 700;
+  margin-top: 8px;
+  padding-top: 8px;
+}
+
+.summary-total span {
+  color: #1a1a1a;
   font-weight: 600;
 }
 
 .summary-total strong {
   color: var(--accent);
+  font-size: 1rem;
+  font-weight: 700;
 }
 
 .summary-extras {
@@ -590,6 +635,7 @@
 .booking-summary-mobile h3 {
   font-size: 0.85rem;
   font-weight: 600;
+  color: #1a1a1a;
   margin-bottom: 16px;
   padding-bottom: 10px;
   border-bottom: 2px solid var(--accent);
@@ -611,8 +657,14 @@
   font-weight: 600;
 }
 
+.summary-total-mobile span {
+  color: #1a1a1a;
+  font-weight: 600;
+}
+
 .summary-total-mobile strong {
   color: var(--accent);
+  font-size: 0.9rem;
 }
 
 /* ============================================
@@ -690,6 +742,10 @@
   border-radius: 12px;
 }
 
+.success-row.highlight strong {
+  color: var(--accent);
+}
+
 .new-btn {
   display: inline-flex;
   align-items: center;
@@ -738,6 +794,26 @@
   background: var(--accent);
   color: #1a1a1a;
   transform: translateY(-1px);
+}
+
+/* ============================================
+   CARDS ATIVOS COM MELHOR CONTRASTE
+   ============================================ */
+
+.option-card.active .option-name,
+.option-card.active .option-duration {
+  color: var(--accent);
+}
+
+.professional-card.active .professional-name,
+.professional-card.active .professional-role {
+  color: var(--accent);
+}
+
+.date-item.active .date-day,
+.date-item.active .date-status {
+  color: var(--accent);
+  font-weight: 600;
 }
 
 /* ============================================
@@ -819,26 +895,4 @@
   .success-card {
     padding: 16px;
   }
-}
-/* Professional Card com imagem */
-.professional-avatar {
-  width: 56px;
-  height: 56px;
-  border-radius: 16px;
-  overflow: hidden;
-  flex-shrink: 0;
-  background: #f3f4f6;
-}
-
-.professional-avatar img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.professional-bio {
-  font-size: 0.7rem;
-  color: #6b7280;
-  margin-top: 6px;
-  line-height: 1.4;
 }
