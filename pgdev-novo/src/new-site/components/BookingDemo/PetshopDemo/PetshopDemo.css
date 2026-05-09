@@ -1,0 +1,1127 @@
+/* PETSHOP DEMO - VISUAL DIVERTIDO E PROFISSIONAL */
+.petshop-demo-case {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #fdf4ff 0%, #fae8ff 100%);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* HERO SECTION COM IMAGEM DE PET */
+.petshop-demo-case .petshop-hero {
+  position: relative;
+  height: 85vh;
+  min-height: 550px;
+  background: url('https://images.unsplash.com/photo-1450778869180-41d0601e046e?w=1920&h=1080&fit=crop');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.petshop-demo-case .hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(107, 70, 193, 0.85) 0%, rgba(139, 92, 246, 0.75) 100%);
+}
+
+.petshop-demo-case .hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.petshop-demo-case .hero-logo svg {
+  color: #FFD700;
+  margin-bottom: 20px;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+}
+
+.petshop-demo-case .hero-logo h1 {
+  font-size: 3rem;
+  letter-spacing: 3px;
+  color: white;
+  margin-bottom: 10px;
+  font-weight: 800;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+
+.petshop-demo-case .hero-logo p {
+  color: rgba(255,255,255,0.9);
+  letter-spacing: 3px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.petshop-demo-case .hero-info-bar {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  margin-top: 50px;
+  padding: 15px 30px;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(10px);
+  border-radius: 50px;
+}
+
+.petshop-demo-case .hero-info-bar span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #FFD700;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.petshop-demo-case .hero-back-btn {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: white;
+  text-decoration: none;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: rgba(0,0,0,0.5);
+  padding: 8px 16px;
+  border-radius: 30px;
+  backdrop-filter: blur(5px);
+  transition: all 0.3s;
+}
+
+.petshop-demo-case .hero-back-btn:hover {
+  background: #8B5CF6;
+  color: white;
+}
+
+/* CONTAINER PRINCIPAL */
+.petshop-demo-case .petshop-container {
+  max-width: 1200px;
+  margin: -80px auto 0;
+  padding: 0 24px 48px;
+  position: relative;
+  z-index: 3;
+}
+
+/* CARD DO SISTEMA */
+.petshop-demo-case .booking-system-card-petshop {
+  background: white;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(0,0,0,0.2);
+}
+
+.petshop-demo-case .system-header-petshop {
+  background: linear-gradient(135deg, #8B5CF6 0%, #6D28D9 100%);
+  padding: 30px;
+  text-align: center;
+}
+
+.petshop-demo-case .system-header-petshop h2 {
+  color: white;
+  font-size: 1.5rem;
+  letter-spacing: 2px;
+  margin-bottom: 8px;
+}
+
+.petshop-demo-case .system-header-petshop p {
+  color: rgba(255,255,255,0.85);
+  font-size: 0.8rem;
+}
+
+/* STEP INDICATOR */
+.petshop-demo-case .petshop-steps {
+  display: flex;
+  justify-content: space-between;
+  padding: 30px 40px;
+  background: #faf5ff;
+  border-bottom: 1px solid #e9d5ff;
+}
+
+.petshop-demo-case .petshop-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  flex: 1;
+}
+
+.petshop-demo-case .petshop-step .step-number {
+  width: 40px;
+  height: 40px;
+  background: white;
+  border: 2px solid #d8b4fe;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #a855f7;
+  font-weight: 700;
+  margin-bottom: 10px;
+  transition: all 0.3s;
+}
+
+.petshop-demo-case .petshop-step.active .step-number {
+  background: #8B5CF6;
+  border-color: #8B5CF6;
+  color: white;
+}
+
+.petshop-demo-case .petshop-step span {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #a855f7;
+}
+
+.petshop-demo-case .petshop-step.active span {
+  color: #6D28D9;
+}
+
+.petshop-demo-case .step-line-custom {
+  position: absolute;
+  top: 20px;
+  left: 60%;
+  width: 80%;
+  height: 2px;
+  background: #e9d5ff;
+}
+
+.petshop-demo-case .petshop-step:last-child .step-line-custom {
+  display: none;
+}
+
+/* MAIN CONTENT */
+.petshop-demo-case .system-main-petshop {
+  display: flex;
+  gap: 0;
+  min-height: 500px;
+}
+
+.petshop-demo-case .system-content-petshop {
+  flex: 1;
+  padding: 40px;
+}
+
+/* SECTION TITLE */
+.petshop-demo-case .petshop-section-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 25px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #8B5CF6;
+}
+
+.petshop-demo-case .petshop-section-title svg {
+  color: #8B5CF6;
+}
+
+.petshop-demo-case .petshop-section-title h3 {
+  color: #4C1D95;
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  font-weight: 700;
+}
+
+/* SERVIÇOS */
+.petshop-demo-case .petshop-services {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.petshop-demo-case .petshop-service-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 20px;
+  background: #faf5ff;
+  border: 1px solid #e9d5ff;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s;
+  width: 100%;
+}
+
+.petshop-demo-case .petshop-service-item:hover {
+  border-color: #8B5CF6;
+  transform: translateX(5px);
+  box-shadow: 0 4px 12px rgba(139,92,246,0.15);
+}
+
+.petshop-demo-case .petshop-service-item.active {
+  background: linear-gradient(135deg, #f3e8ff 0%, #faf5ff 100%);
+  border-color: #8B5CF6;
+  border-left: 3px solid #8B5CF6;
+}
+
+.petshop-demo-case .service-left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.petshop-demo-case .service-icon-petshop {
+  width: 45px;
+  height: 45px;
+  background: white;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #8B5CF6;
+  border: 1px solid #e9d5ff;
+}
+
+.petshop-demo-case .service-info h4 {
+  color: #4C1D95;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.petshop-demo-case .service-info span {
+  font-size: 0.7rem;
+  color: #a855f7;
+}
+
+.petshop-demo-case .service-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.petshop-demo-case .service-right strong {
+  color: #8B5CF6;
+  font-size: 1rem;
+}
+
+.petshop-demo-case .service-right svg {
+  color: #10b981;
+}
+
+/* PROFISSIONAIS */
+.petshop-demo-case .petshop-professionals {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.petshop-demo-case .petshop-professional-card {
+  position: relative;
+  padding: 20px;
+  background: #faf5ff;
+  border: 1px solid #e9d5ff;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-align: center;
+}
+
+.petshop-demo-case .petshop-professional-card:hover {
+  transform: translateY(-5px);
+  border-color: #8B5CF6;
+  box-shadow: 0 8px 20px rgba(139,92,246,0.15);
+}
+
+.petshop-demo-case .petshop-professional-card.active {
+  background: linear-gradient(135deg, #f3e8ff 0%, #faf5ff 100%);
+  border-color: #8B5CF6;
+}
+
+.petshop-demo-case .petshop-professional-card img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto 12px;
+  border: 3px solid #e9d5ff;
+}
+
+.petshop-demo-case .petshop-professional-card.active img {
+  border-color: #8B5CF6;
+}
+
+.petshop-demo-case .professional-info h4 {
+  color: #4C1D95;
+  font-size: 0.9rem;
+  margin-bottom: 4px;
+}
+
+.petshop-demo-case .professional-info p {
+  font-size: 0.7rem;
+  color: #8B5CF6;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.petshop-demo-case .professional-rating-petshop {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.petshop-demo-case .professional-rating-petshop span {
+  font-size: 0.7rem;
+  color: #6B7280;
+}
+
+.petshop-demo-case .reviews {
+  font-size: 0.6rem;
+  color: #9ca3af;
+}
+
+.petshop-demo-case .professional-check {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #10b981;
+  border-radius: 50%;
+  padding: 4px;
+  color: white;
+}
+
+/* DATAS */
+.petshop-demo-case .petshop-dates {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 15px;
+}
+
+.petshop-demo-case .petshop-date-card {
+  padding: 15px;
+  background: #faf5ff;
+  border: 1px solid #e9d5ff;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-align: center;
+}
+
+.petshop-demo-case .petshop-date-card:hover {
+  border-color: #8B5CF6;
+  transform: translateY(-2px);
+}
+
+.petshop-demo-case .petshop-date-card.active {
+  background: #8B5CF6;
+  border-color: #8B5CF6;
+}
+
+.petshop-demo-case .petshop-date-card.active .date-day,
+.petshop-demo-case .petshop-date-card.active .date-full,
+.petshop-demo-case .petshop-date-card.active .date-availability {
+  color: white;
+}
+
+.petshop-demo-case .date-day {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #4C1D95;
+  display: block;
+}
+
+.petshop-demo-case .date-full {
+  font-size: 0.7rem;
+  color: #6B7280;
+  display: block;
+  margin: 5px 0;
+}
+
+.petshop-demo-case .date-availability {
+  font-size: 0.65rem;
+  color: #a855f7;
+}
+
+/* HORÁRIOS */
+.petshop-demo-case .petshop-times {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+  gap: 12px;
+  margin-bottom: 15px;
+}
+
+.petshop-demo-case .petshop-time-slot {
+  padding: 12px;
+  background: #faf5ff;
+  border: 1px solid #e9d5ff;
+  border-radius: 10px;
+  cursor: pointer;
+  color: #4C1D95;
+  font-size: 0.8rem;
+  font-weight: 500;
+  transition: all 0.3s;
+}
+
+.petshop-demo-case .petshop-time-slot:hover:not(.disabled) {
+  background: #8B5CF6;
+  color: white;
+  border-color: #8B5CF6;
+  transform: translateY(-2px);
+}
+
+.petshop-demo-case .petshop-time-slot.active {
+  background: #8B5CF6;
+  color: white;
+  border-color: #8B5CF6;
+}
+
+.petshop-demo-case .petshop-time-slot.disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  text-decoration: line-through;
+}
+
+.petshop-demo-case .time-note-petshop {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px;
+  background: #fef3c7;
+  border-radius: 8px;
+  font-size: 0.7rem;
+  color: #92400e;
+}
+
+/* FORMULÁRIO */
+.petshop-demo-case .petshop-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.petshop-demo-case .petshop-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.petshop-demo-case .petshop-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.petshop-demo-case .petshop-input-group label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #6B7280;
+  font-size: 0.7rem;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+.petshop-demo-case .petshop-input-group label svg {
+  color: #8B5CF6;
+}
+
+.petshop-demo-case .petshop-input-group input,
+.petshop-demo-case .petshop-input-group select,
+.petshop-demo-case .petshop-input-group textarea {
+  padding: 12px 14px;
+  background: #faf5ff;
+  border: 1px solid #e9d5ff;
+  border-radius: 10px;
+  color: #4C1D95;
+  font-size: 0.9rem;
+  transition: all 0.3s;
+  font-family: inherit;
+}
+
+.petshop-demo-case .petshop-input-group input:focus,
+.petshop-demo-case .petshop-input-group select:focus,
+.petshop-demo-case .petshop-input-group textarea:focus {
+  outline: none;
+  border-color: #8B5CF6;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(139,92,246,0.1);
+}
+
+.petshop-demo-case .petshop-input-group input::placeholder,
+.petshop-demo-case .petshop-input-group select::placeholder {
+  color: #c4b5fd;
+}
+
+/* BOTÕES */
+.petshop-demo-case .system-actions-petshop {
+  display: flex;
+  gap: 15px;
+  margin-top: 40px;
+  padding-top: 30px;
+  border-top: 1px solid #e9d5ff;
+}
+
+.petshop-demo-case .btn-back-petshop {
+  flex: 1;
+  padding: 12px;
+  background: transparent;
+  border: 1px solid #d8b4fe;
+  border-radius: 10px;
+  color: #a855f7;
+  font-weight: 600;
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.petshop-demo-case .btn-back-petshop:hover {
+  border-color: #8B5CF6;
+  color: #6D28D9;
+}
+
+.petshop-demo-case .btn-next-petshop,
+.petshop-demo-case .btn-confirm-petshop {
+  flex: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px;
+  background: #8B5CF6;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.petshop-demo-case .btn-next-petshop:hover,
+.petshop-demo-case .btn-confirm-petshop:hover {
+  background: #6D28D9;
+  transform: translateY(-2px);
+}
+
+.petshop-demo-case .btn-next-petshop:disabled,
+.petshop-demo-case .btn-confirm-petshop:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* RESUMO LATERAL */
+.petshop-demo-case .system-summary-petshop {
+  width: 300px;
+  background: #faf5ff;
+  border-left: 1px solid #e9d5ff;
+  padding: 30px;
+}
+
+.petshop-demo-case .summary-title-petshop {
+  color: #8B5CF6;
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  font-weight: 700;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #8B5CF6;
+  margin-bottom: 20px;
+}
+
+.petshop-demo-case .summary-service-petshop {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  font-size: 0.75rem;
+}
+
+.petshop-demo-case .summary-service-petshop span {
+  color: #6B7280;
+}
+
+.petshop-demo-case .summary-service-petshop strong {
+  color: #4C1D95;
+  text-align: right;
+}
+
+.petshop-demo-case .summary-total-petshop {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px solid #e9d5ff;
+  font-size: 0.85rem;
+}
+
+.petshop-demo-case .summary-total-petshop span {
+  color: #8B5CF6;
+  font-weight: 700;
+}
+
+.petshop-demo-case .summary-total-petshop strong {
+  color: #8B5CF6;
+  font-size: 1.1rem;
+}
+
+.petshop-demo-case .summary-payment-petshop {
+  margin-top: 15px;
+  padding: 10px;
+  background: #f3e8ff;
+  border-radius: 8px;
+  font-size: 0.65rem;
+  color: #6D28D9;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.petshop-demo-case .summary-note-petshop {
+  margin-top: 15px;
+  padding: 10px;
+  background: #fef3c7;
+  border-radius: 8px;
+  font-size: 0.65rem;
+  color: #92400e;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* SERVIÇOS DESTAQUES */
+.petshop-demo-case .petshop-services-highlight {
+  margin: 60px 0 40px;
+}
+
+.petshop-demo-case .petshop-services-highlight h3 {
+  text-align: center;
+  color: #4C1D95;
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+  margin-bottom: 30px;
+}
+
+.petshop-demo-case .services-highlight-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 25px;
+}
+
+.petshop-demo-case .service-highlight-card {
+  text-align: center;
+  padding: 30px;
+  background: white;
+  border-radius: 16px;
+  transition: all 0.3s;
+  border: 1px solid #e9d5ff;
+}
+
+.petshop-demo-case .service-highlight-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px -5px rgba(139,92,246,0.2);
+  border-color: #8B5CF6;
+}
+
+.petshop-demo-case .service-highlight-card svg {
+  color: #8B5CF6;
+  margin-bottom: 15px;
+}
+
+.petshop-demo-case .service-highlight-card h4 {
+  color: #4C1D95;
+  font-size: 1rem;
+  margin-bottom: 8px;
+}
+
+.petshop-demo-case .service-highlight-card p {
+  color: #6B7280;
+  font-size: 0.75rem;
+}
+
+/* SOBRE NÓS */
+.petshop-demo-case .petshop-about {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  margin: 60px 0;
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid #e9d5ff;
+}
+
+.petshop-demo-case .about-left img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.petshop-demo-case .about-right {
+  padding: 40px;
+}
+
+.petshop-demo-case .about-right h3 {
+  color: #8B5CF6;
+  font-size: 1.1rem;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+}
+
+.petshop-demo-case .about-right p {
+  color: #6B7280;
+  line-height: 1.6;
+  font-size: 0.85rem;
+  margin-bottom: 25px;
+}
+
+.petshop-demo-case .about-features-petshop {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.petshop-demo-case .about-features-petshop div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #4C1D95;
+  font-size: 0.8rem;
+}
+
+.petshop-demo-case .about-features-petshop svg {
+  color: #8B5CF6;
+}
+
+/* POR QUE ESCOLHER */
+.petshop-demo-case .petshop-why {
+  margin: 60px 0;
+}
+
+.petshop-demo-case .petshop-why h3 {
+  text-align: center;
+  color: #4C1D95;
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+  margin-bottom: 30px;
+}
+
+.petshop-demo-case .why-grid-petshop {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 25px;
+}
+
+.petshop-demo-case .why-card-petshop {
+  text-align: center;
+  padding: 30px;
+  background: white;
+  border-radius: 16px;
+  transition: all 0.3s;
+  border: 1px solid #e9d5ff;
+}
+
+.petshop-demo-case .why-card-petshop:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px -5px rgba(139,92,246,0.2);
+}
+
+.petshop-demo-case .why-card-petshop svg {
+  color: #8B5CF6;
+  margin-bottom: 15px;
+}
+
+.petshop-demo-case .why-card-petshop h4 {
+  color: #4C1D95;
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+}
+
+.petshop-demo-case .why-card-petshop p {
+  color: #6B7280;
+  font-size: 0.75rem;
+}
+
+/* TELA DE SUCESSO */
+.petshop-demo-case .success-screen-petshop {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 600px;
+}
+
+.petshop-demo-case .success-card-petshop {
+  background: white;
+  border-radius: 24px;
+  padding: 50px;
+  text-align: center;
+  max-width: 500px;
+  width: 100%;
+  border: 1px solid #8B5CF6;
+  animation: petshopFadeInScale 0.5s ease;
+}
+
+@keyframes petshopFadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.petshop-demo-case .success-icon-petshop {
+  width: 96px;
+  height: 96px;
+  background: linear-gradient(135deg, #8B5CF620 0%, #8B5CF610 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  color: #8B5CF6;
+}
+
+.petshop-demo-case .success-card-petshop h2 {
+  color: #8B5CF6;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.petshop-demo-case .success-card-petshop > p {
+  color: #6B7280;
+  font-size: 0.85rem;
+  margin-bottom: 30px;
+}
+
+.petshop-demo-case .success-details-petshop {
+  background: #faf5ff;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 25px;
+  text-align: left;
+}
+
+.petshop-demo-case .success-details-petshop div {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #e9d5ff;
+}
+
+.petshop-demo-case .success-details-petshop div:last-child {
+  border-bottom: none;
+}
+
+.petshop-demo-case .success-details-petshop span {
+  color: #6B7280;
+  font-size: 0.75rem;
+}
+
+.petshop-demo-case .success-details-petshop strong {
+  color: #4C1D95;
+  font-size: 0.8rem;
+}
+
+.petshop-demo-case .code-highlight-petshop {
+  background: #f3e8ff;
+  margin: 0 -20px -20px;
+  padding: 15px 20px;
+  border-radius: 0 0 16px 16px;
+}
+
+.petshop-demo-case .code-highlight-petshop strong {
+  color: #8B5CF6 !important;
+  font-size: 1rem !important;
+}
+
+.petshop-demo-case .whatsapp-alert-petshop {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px;
+  background: #075E54;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  color: white;
+  font-size: 0.75rem;
+}
+
+.petshop-demo-case .prepare-note-petshop {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px;
+  background: #fef3c7;
+  border-radius: 8px;
+  margin-bottom: 25px;
+  font-size: 0.7rem;
+  color: #92400e;
+}
+
+.petshop-demo-case .new-booking-petshop {
+  width: 100%;
+  padding: 14px;
+  background: transparent;
+  border: 1px solid #8B5CF6;
+  border-radius: 10px;
+  color: #8B5CF6;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.petshop-demo-case .new-booking-petshop:hover {
+  background: #8B5CF6;
+  color: white;
+}
+
+/* FOOTER */
+.petshop-demo-case .petshop-footer {
+  margin-top: 60px;
+  padding-top: 40px;
+  border-top: 1px solid #e9d5ff;
+  text-align: center;
+}
+
+.petshop-demo-case .footer-whatsapp-petshop {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 30px;
+  background: #8B5CF6;
+  color: white;
+  text-decoration: none;
+  border-radius: 40px;
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+  transition: all 0.3s;
+}
+
+.petshop-demo-case .footer-whatsapp-petshop:hover {
+  background: #6D28D9;
+  transform: translateY(-3px);
+}
+
+.petshop-demo-case .petshop-footer p {
+  color: #a855f7;
+  font-size: 0.7rem;
+  margin-top: 8px;
+}
+
+.petshop-demo-case .footer-info {
+  color: #c4b5fd;
+  font-size: 0.65rem;
+}
+
+/* RESPONSIVO */
+@media (max-width: 968px) {
+  .petshop-demo-case .system-main-petshop {
+    flex-direction: column;
+  }
+  
+  .petshop-demo-case .system-summary-petshop {
+    width: 100%;
+    border-left: none;
+    border-top: 1px solid #e9d5ff;
+  }
+  
+  .petshop-demo-case .hero-info-bar {
+    flex-direction: column;
+    gap: 10px;
+    border-radius: 20px;
+    margin: 30px 20px 0;
+  }
+  
+  .petshop-demo-case .hero-logo h1 {
+    font-size: 2rem;
+    letter-spacing: 2px;
+  }
+  
+  .petshop-demo-case .petshop-about {
+    grid-template-columns: 1fr;
+  }
+  
+  .petshop-demo-case .about-left {
+    height: 250px;
+  }
+  
+  .petshop-demo-case .petshop-steps {
+    padding: 20px;
+  }
+  
+  .petshop-demo-case .system-content-petshop {
+    padding: 25px;
+  }
+  
+  .petshop-demo-case .petshop-form-row {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  
+  .petshop-demo-case .services-highlight-grid,
+  .petshop-demo-case .why-grid-petshop {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .petshop-demo-case .petshop-container {
+    padding: 0 16px 32px;
+  }
+  
+  .petshop-demo-case .hero-back-btn {
+    top: 20px;
+    left: 20px;
+  }
+  
+  .petshop-demo-case .petshop-professionals {
+    grid-template-columns: 1fr;
+  }
+  
+  .petshop-demo-case .about-features-petshop {
+    grid-template-columns: 1fr;
+  }
+  
+  .petshop-demo-case .success-card-petshop {
+    padding: 30px 20px;
+  }
+  
+  .petshop-demo-case .petshop-dates {
+    grid-template-columns: 1fr;
+  }
+  
+  .petshop-demo-case .step-line-custom {
+    left: 70%;
+  }
+}
+
+@media (max-width: 480px) {
+  .petshop-demo-case .petshop-step span {
+    font-size: 0.55rem;
+  }
+  
+  .petshop-demo-case .petshop-step .step-number {
+    width: 32px;
+    height: 32px;
+    font-size: 0.75rem;
+  }
+  
+  .petshop-demo-case .petshop-service-item {
+    padding: 12px;
+  }
+  
+  .petshop-demo-case .service-icon-petshop {
+    width: 35px;
+    height: 35px;
+  }
+  
+  .petshop-demo-case .services-highlight-grid,
+  .petshop-demo-case .why-grid-petshop {
+    grid-template-columns: 1fr;
+  }
+}
