@@ -5,20 +5,21 @@ import { pt } from '../../i18n/pt'
 import { es } from '../../i18n/es'
 import type { Language } from '../../types'
 
-import exemplo1 from '../../assets/exemplo1.png'
-import exemplo2 from '../../assets/exemplo2.png'
-import exemplo3 from '../../assets/exemplo3.png'
-import exemplo4 from '../../assets/exemplo4.png'
-import exemplo5 from '../../assets/exemplo5.png'
-import exemplo6 from '../../assets/exemplo6.png'
+// Imagens desktop - AGORA EM .webp
+import exemplo1 from '../../assets/exemplo1.webp'
+import exemplo2 from '../../assets/exemplo2.webp'
+import exemplo3 from '../../assets/exemplo3.webp'
+import exemplo4 from '../../assets/exemplo4.webp'
+import exemplo5 from '../../assets/exemplo5.webp'
+import exemplo6 from '../../assets/exemplo6.webp'
 
-// Imagens para mobile
-import exemplo1Mobile from '../../assets/exemplo1-mobile.png'
-import exemplo2Mobile from '../../assets/exemplo2-mobile.png'
-import exemplo3Mobile from '../../assets/exemplo3-mobile.png'
-import exemplo4Mobile from '../../assets/exemplo4-mobile.png'
-import exemplo5Mobile from '../../assets/exemplo5-mobile.png'
-import exemplo6Mobile from '../../assets/exemplo6-mobile.png'
+// Imagens mobile - AGORA EM .webp
+import exemplo1Mobile from '../../assets/exemplo1-mobile.webp'
+import exemplo2Mobile from '../../assets/exemplo2-mobile.webp'
+import exemplo3Mobile from '../../assets/exemplo3-mobile.webp'
+import exemplo4Mobile from '../../assets/exemplo4-mobile.webp'
+import exemplo5Mobile from '../../assets/exemplo5-mobile.webp'
+import exemplo6Mobile from '../../assets/exemplo6-mobile.webp'
 
 type ProjectsProps = {
   language: Language
@@ -86,16 +87,20 @@ export default function Projects({ language }: ProjectsProps) {
 
   const projectNumber = useMemo(() => String(safeIndex + 1).padStart(2, '0'), [safeIndex])
 
+  // NOVO useEffect - pré-carrega APENAS a próxima imagem
   useEffect(() => {
-    projectImages.forEach((img) => {
-      const image = new Image()
-      image.src = img
-    })
-    projectImagesMobile.forEach((img) => {
-      const image = new Image()
-      image.src = img
-    })
-  }, [])
+    if (!totalProjects) return
+
+    const nextIndex = (safeIndex + 1) % totalProjects
+    const nextImage = isMobile
+      ? projectImagesMobile[nextIndex]
+      : projectImages[nextIndex]
+
+    if (!nextImage) return
+
+    const image = new Image()
+    image.src = nextImage
+  }, [safeIndex, isMobile, totalProjects])
 
   function nextProject() {
     setCurrentProject((prev) => (prev + 1) % totalProjects)
@@ -114,8 +119,6 @@ export default function Projects({ language }: ProjectsProps) {
           <h2 id="projects-title" className="projects__title">
             {copy.title}
           </h2>
-
-          
 
           <div className="projects__meta">
             <span>{projectNumber}</span>
@@ -144,7 +147,16 @@ export default function Projects({ language }: ProjectsProps) {
               className="projects__image-link"
               aria-label={`${safeIndex >= 3 ? copy.viewDemo : copy.viewProject}: ${activeProject.title}`}
             >
-              <img className="projects__image" src={activeImage} alt={activeProject.title} />
+              <img 
+                className="projects__image" 
+                src={activeImage} 
+                alt={activeProject.title}
+                width={900}
+                height={560}
+                loading={safeIndex === 0 ? 'eager' : 'lazy'}
+                decoding="async"
+                fetchPriority={safeIndex === 0 ? 'high' : 'low'}
+              />
             </a>
           </div>
         </div>
