@@ -1,38 +1,112 @@
 /* ============================================
-   PROJECTS - CLEAN MODERN (PADRÃO ABOUT/SERVICES)
+   PROJECTS - SEM CÍRCULOS, SEM FRESCURA
    ============================================ */
 
 .projects {
+  padding: 80px 0;
+  background: #000c24;
   position: relative;
   overflow: hidden;
-  padding: 80px 0;
-  background: linear-gradient(135deg, #fec90f 0%, #f5bf00 100%);
-  color: #000c24;
-  isolation: isolate;
 }
 
-/* Círculos decorativos */
+/* CÍRCULOS EM POSIÇÕES DIFERENTES */
 .projects::before {
   content: '';
   position: absolute;
-  top: -150px;
-  right: -100px;
-  width: 400px;
-  height: 400px;
-  border: 2px solid rgba(0, 12, 36, 0.06);
-  border-radius: 999px;
+  top: 20%;
+  right: -80px;
+  width: 300px;
+  height: 300px;
+  border: 2px solid rgba(254, 201, 15, 0.06);
+  border-radius: 50%;
   pointer-events: none;
+  z-index: 0;
 }
 
 .projects::after {
   content: '';
   position: absolute;
-  bottom: -150px;
-  left: -100px;
-  width: 400px;
-  height: 400px;
-  border: 2px solid rgba(0, 12, 36, 0.04);
-  border-radius: 999px;
+  bottom: 15%;
+  left: -60px;
+  width: 250px;
+  height: 250px;
+  border: 1px solid rgba(254, 201, 15, 0.04);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* CÍRCULO EXTRA NO CANTO SUPERIOR ESQUERDO */
+.projects__circle {
+  position: absolute;
+  top: 10%;
+  left: -40px;
+  width: 180px;
+  height: 180px;
+  border: 1px solid rgba(254, 201, 15, 0.05);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* GRID DE PONTOS SUTIS */
+.projects__grid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(to right, rgba(254, 201, 15, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(254, 201, 15, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* LISTRA VERTICAL NA LATERAL ESQUERDA */
+.projects__left-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 2px;
+  height: 30%;
+  background: linear-gradient(to bottom, #fec90f, transparent);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* LISTRA VERTICAL NA LATERAL DIREITA */
+.projects__right-line {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 2px;
+  height: 30%;
+  background: linear-gradient(to top, #fec90f, transparent);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* LINHA HORIZONTAL SUTIL NO TOPO */
+.projects__top-line {
+  position: absolute;
+  top: 80px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(254, 201, 15, 0.2), transparent);
+  pointer-events: none;
+}
+
+/* LINHA HORIZONTAL SUTIL NO RODAPÉ */
+.projects__bottom-line {
+  position: absolute;
+  bottom: 80px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(254, 201, 15, 0.2), transparent);
   pointer-events: none;
 }
 
@@ -43,21 +117,71 @@
   position: relative;
   z-index: 2;
   display: grid;
-  grid-template-columns: 1fr 1.2fr;
+  grid-template-columns: 1.3fr 0.9fr;
   gap: 60px;
   align-items: center;
 }
 
-/* COPY - ALINHADO À ESQUERDA (IGUAL ABOUT/SERVICES) */
+/* VISUAL (IMAGEM) */
+.projects__visual {
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.projects__image-link {
+  display: block;
+  width: 100%;
+  transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+  position: relative;
+}
+
+.projects__image-link:hover {
+  transform: translateY(-6px);
+}
+
+.projects__image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  filter: brightness(0.95);
+  transition: filter 0.3s ease;
+}
+
+.projects__image-link:hover .projects__image {
+  filter: brightness(1);
+}
+
+/* BORDA MODERNA NA IMAGEM */
+.projects__image-link::after {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  right: -8px;
+  bottom: -8px;
+  border: 1px solid rgba(254, 201, 15, 0.2);
+  border-radius: 12px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.projects__image-link:hover::after {
+  opacity: 1;
+}
+
 .projects__copy {
   text-align: left;
 }
 
 .projects__title {
   margin: 0 0 48px;
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: #000c24;
+  font-size: 2rem;
+  font-weight: 600;
+  color: #ffffff;
   line-height: 1.2;
 }
 
@@ -65,176 +189,134 @@
   content: '';
   display: block;
   width: 60px;
-  height: 3px;
-  margin-top: 16px;
-  border-radius: 99px;
-  background: #000c24;
+  height: 2px;
+  margin-top: 20px;
+  background: #fec90f;
+  transition: width 0.3s ease;
+}
+
+.projects__title:hover::after {
+  width: 100px;
 }
 
 .projects__meta {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-top: 0;
-  padding-top: 0;
-  border-top: none;
+  gap: 20px;
 }
 
 .projects__meta span {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   font-weight: 800;
-  color: #000c24;
-  opacity: 0.5;
+  color: #fec90f;
+  opacity: 0.8;
+  font-family: monospace;
 }
 
 .projects__meta div {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;
 }
 
 .projects__meta strong {
-  font-size: 0.9rem;
-  font-weight: 700;
-  color: #000c24;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: 0.5px;
 }
 
 .projects__meta small {
-  font-size: 0.7rem;
-  color: rgba(0, 12, 36, 0.6);
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.5);
 }
 
-/* STAGE */
-.projects__stage {
+/* CONTROLES */
+.projects__controls {
+  max-width: 1200px;
+  margin: 48px auto 0;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
   position: relative;
   z-index: 2;
 }
 
-.projects__controls {
-  position: absolute;
-  bottom: -40px;
-  right: 0;
-  z-index: 8;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
 .projects__controls button {
-  width: 52px;
-  height: 52px;
-  border: 0;
-  border-radius: 999px;
-  background: rgba(0, 12, 36, 0.06);
-  color: #000c24;
+  width: 48px;
+  height: 48px;
+  border: none;
+  background: rgba(255, 255, 255, 0.03);
+  color: #ffffff;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: all 0.25s ease;
+  position: relative;
+}
+
+.projects__controls button::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #fec90f;
+  transition: width 0.25s ease;
+}
+
+.projects__controls button:hover::before {
+  width: 100%;
 }
 
 .projects__controls button:hover {
-  background: rgba(0, 12, 36, 0.12);
-  transform: translateY(-2px);
+  background: rgba(254, 201, 15, 0.05);
+  color: #fec90f;
 }
 
 .projects__controls button svg {
-  width: 22px;
-  height: 22px;
+  width: 20px;
+  height: 20px;
 }
 
-.projects__visual {
-  position: relative;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-}
-
-/* IMAGEM GRANDE E LIMPA */
-.projects__image-link {
-  display: block;
-  width: 100%;
-  max-width: 750px;
-  transition: transform 0.3s ease;
-}
-
-.projects__image-link:hover {
-  transform: translateY(-4px);
-}
-
-/* IMAGEM AJUSTADA SEM ASPECT-RATIO FIXO */
-.projects__image {
-  display: block;
-  width: 100%;
-  height: auto;
-  object-fit: contain;
-  border-radius: 16px;
-  box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.2);
-}
-
-/* GLOW sutil */
-.projects__visual::before {
-  content: '';
-  position: absolute;
-  bottom: 10%;
-  right: 0;
-  width: 70%;
-  height: 50%;
-  background: radial-gradient(ellipse, rgba(0, 12, 36, 0.08), transparent 70%);
-  filter: blur(40px);
-  pointer-events: none;
-  z-index: 0;
-}
-
-/* DOTS */
+/* DOTS - ESTILO LINHA */
 .projects__dots {
+  max-width: 1200px;
+  margin: 32px auto 0;
+  padding: 0 24px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  gap: 8px;
-  margin-top: 48px;
+  gap: 4px;
+  position: relative;
+  z-index: 2;
 }
 
 .projects__dots button {
-  width: 8px;
-  height: 8px;
+  width: 30px;
+  height: 2px;
   padding: 0;
   border: 0;
-  border-radius: 999px;
-  background: rgba(0, 12, 36, 0.25);
+  background: rgba(255, 255, 255, 0.2);
   cursor: pointer;
   transition: all 0.25s ease;
 }
 
 .projects__dots button:hover {
-  background: rgba(0, 12, 36, 0.45);
-  transform: scale(1.15);
+  background: rgba(254, 201, 15, 0.5);
 }
 
 .projects__dots button.is-active {
-  width: 28px;
-  background: #000c24;
-}
-
-/* ANIMAÇÃO */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.projects__image-link {
-  animation: fadeInUp 0.5s ease-out;
+  width: 50px;
+  background: #fec90f;
 }
 
 /* ============================================
-   RESPONSIVO - TABLET (900px) - IGUAL ABOUT/SERVICES
+   RESPONSIVO - IMAGEM MANTIDA NO TAMANHO ORIGINAL
    ============================================ */
 
 @media (max-width: 900px) {
@@ -247,129 +329,55 @@
     gap: 48px;
   }
 
-  .projects__copy {
-    text-align: left;
-    max-width: 100%;
-  }
-
-  .projects__title {
-    font-size: 2rem;
-    margin-bottom: 36px;
-  }
-
-  .projects__title::after {
-    margin-left: 0;
-    margin-right: auto;
-  }
-
-  .projects__controls {
-    position: relative;
-    bottom: auto;
-    right: auto;
-    justify-content: flex-end;
-    margin-bottom: 20px;
-  }
-
   .projects__visual {
     justify-content: center;
   }
 
+  /* IMAGEM MANTIDA NO TAMANHO ORIGINAL - NÃO DIMINUIU */
   .projects__image-link {
-    max-width: 80%;
+    max-width: 100%;
   }
 
+  .projects__copy {
+    text-align: left;
+  }
+
+  .projects__title {
+    font-size: 1.8rem;
+    margin-bottom: 36px;
+  }
+
+  .projects__controls,
   .projects__dots {
     justify-content: center;
-    margin-top: 32px;
+  }
+  
+  .projects__top-line,
+  .projects__bottom-line {
+    display: none;
   }
 }
-
-/* ============================================
-   RESPONSIVO - TABLET (768px)
-   ============================================ */
 
 @media (max-width: 768px) {
   .projects {
     padding: 50px 0;
   }
 
-  .projects__container {
-    padding: 0 20px;
-  }
-
-  .projects__title {
-    font-size: 1.8rem;
-    margin-bottom: 32px;
-  }
-
-  .projects__title::after {
-    width: 50px;
-    height: 3px;
-  }
-
-  .projects__controls button {
-    width: 48px;
-    height: 48px;
-  }
-
-  .projects__controls button svg {
-    width: 22px;
-    height: 22px;
-  }
-
-  .projects__image-link {
-    max-width: 90%;
-  }
-
-  .projects__image {
-    border-radius: 12px;
-  }
-
-  /* Remove GLOW no mobile */
-  .projects__visual::before {
-    display: none;
-  }
-}
-
-/* ============================================
-   RESPONSIVO - MOBILE (640px) - IGUAL ABOUT/SERVICES
-   ============================================ */
-
-@media (max-width: 640px) {
-  .projects {
-    padding: 40px 0;
-  }
-
   .projects__shell {
     padding: 0 20px;
-    gap: 32px;
   }
 
   .projects__title {
     font-size: 1.6rem;
-    margin-bottom: 28px;
   }
 
-  .projects__title::after {
-    width: 45px;
-    margin-top: 12px;
+  /* IMAGEM MANTIDA NO TAMANHO ORIGINAL */
+  .projects__image-link {
+    max-width: 100%;
   }
 
   .projects__meta span {
-    font-size: 1rem;
-  }
-
-  .projects__meta strong {
-    font-size: 0.85rem;
-  }
-
-  .projects__meta small {
-    font-size: 0.65rem;
-  }
-
-  .projects__controls {
-    gap: 10px;
-    margin-bottom: 16px;
+    font-size: 1.3rem;
   }
 
   .projects__controls button {
@@ -378,76 +386,53 @@
   }
 
   .projects__controls button svg {
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
   }
-
-  .projects__image-link {
-    max-width: 100%;
-  }
-
-  .projects__image {
-    border-radius: 10px;
-  }
-
-  .projects__dots {
-    gap: 6px;
-    margin-top: 24px;
-  }
-
+  
   .projects__dots button {
-    width: 7px;
-    height: 7px;
+    width: 25px;
   }
-
+  
   .projects__dots button.is-active {
-    width: 22px;
+    width: 40px;
+  }
+  
+  .projects__left-line,
+  .projects__right-line {
+    height: 20%;
   }
 }
 
-/* ============================================
-   RESPONSIVO - MOBILE (480px) - IGUAL ABOUT/SERVICES
-   ============================================ */
-
-@media (max-width: 480px) {
+@media (max-width: 600px) {
   .projects {
-    padding: 30px 0;
+    padding: 50px 0;
   }
 
   .projects__shell {
-    padding: 0 16px;
-    gap: 28px;
+    padding: 0 20px;
+    gap: 40px;
   }
 
   .projects__title {
-    font-size: 1.4rem;
-    margin-bottom: 24px;
+    font-size: 1.5rem;
+    margin-bottom: 32px;
   }
 
   .projects__title::after {
-    width: 40px;
-    height: 2px;
-    margin-top: 10px;
-  }
-
-  .projects__meta {
-    gap: 8px;
+    width: 45px;
   }
 
   .projects__meta span {
-    font-size: 0.9rem;
+    font-size: 1.2rem;
   }
 
   .projects__meta strong {
-    font-size: 0.8rem;
-  }
-
-  .projects__meta small {
-    font-size: 0.6rem;
+    font-size: 0.85rem;
   }
 
   .projects__controls {
-    gap: 8px;
+    margin-top: 40px;
   }
 
   .projects__controls button {
@@ -455,26 +440,71 @@
     height: 40px;
   }
 
+  .projects__dots button {
+    width: 20px;
+  }
+  
+  .projects__dots button.is-active {
+    width: 35px;
+  }
+  
+  .projects__grid {
+    background-size: 30px 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .projects {
+    padding: 40px 0;
+  }
+
+  .projects__shell {
+    padding: 0 16px;
+    gap: 32px;
+  }
+
+  .projects__title {
+    font-size: 1.3rem;
+    margin-bottom: 28px;
+  }
+
+  .projects__title::after {
+    width: 40px;
+    margin-top: 15px;
+  }
+
+  .projects__meta {
+    gap: 12px;
+  }
+
+  .projects__meta span {
+    font-size: 1.1rem;
+  }
+
+  .projects__meta strong {
+    font-size: 0.8rem;
+  }
+
+  .projects__controls button {
+    width: 38px;
+    height: 38px;
+  }
+
   .projects__controls button svg {
-    width: 18px;
-    height: 18px;
-  }
-
-  .projects__image {
-    border-radius: 8px;
-  }
-
-  .projects__dots {
-    gap: 5px;
-    margin-top: 20px;
+    width: 16px;
+    height: 16px;
   }
 
   .projects__dots button {
-    width: 6px;
-    height: 6px;
+    width: 18px;
   }
-
+  
   .projects__dots button.is-active {
-    width: 20px;
+    width: 30px;
+  }
+  
+  .projects__left-line,
+  .projects__right-line {
+    display: none;
   }
 }

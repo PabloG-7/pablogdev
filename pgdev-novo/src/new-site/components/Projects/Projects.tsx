@@ -41,15 +41,15 @@ const projectLead = {
   pt: {
     title: 'Exemplos pensados para transmitir',
     viewProject: 'Ver projeto',
-    viewDemo: 'Ver demonstracao',
+    viewDemo: 'Ver demonstração',
     previous: 'Projeto anterior',
-    next: 'Proximo projeto',
+    next: 'Próximo projeto',
     page: 'Ir para projeto',
   },
   es: {
     title: 'Ejemplos pensados para transmitir',
     viewProject: 'Ver proyecto',
-    viewDemo: 'Ver demostracion',
+    viewDemo: 'Ver demostración',
     previous: 'Proyecto anterior',
     next: 'Siguiente proyecto',
     page: 'Ir al proyecto',
@@ -68,7 +68,7 @@ export default function Projects({ language }: ProjectsProps) {
 
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 760)
+      setIsMobile(window.innerWidth <= 900)
     }
     checkMobile()
     window.addEventListener('resize', checkMobile)
@@ -87,7 +87,7 @@ export default function Projects({ language }: ProjectsProps) {
 
   const projectNumber = useMemo(() => String(safeIndex + 1).padStart(2, '0'), [safeIndex])
 
-  // NOVO useEffect - pré-carrega APENAS a próxima imagem
+  // Pré-carrega a próxima imagem
   useEffect(() => {
     if (!totalProjects) return
 
@@ -115,6 +115,29 @@ export default function Projects({ language }: ProjectsProps) {
   return (
     <section className="projects" id="projetos" aria-labelledby="projects-title">
       <div className="projects__shell">
+        {/* LADO ESQUERDO - IMAGEM (agora vem primeiro) */}
+        <div className="projects__visual" aria-live="polite">
+          <a
+            href={activeLink}
+            target={isExternal ? '_blank' : '_self'}
+            rel={isExternal ? 'noopener noreferrer' : undefined}
+            className="projects__image-link"
+            aria-label={`${safeIndex >= 3 ? copy.viewDemo : copy.viewProject}: ${activeProject.title}`}
+          >
+            <img 
+              className="projects__image" 
+              src={activeImage} 
+              alt={activeProject.title}
+              width={900}
+              height={560}
+              loading={safeIndex === 0 ? 'eager' : 'lazy'}
+              decoding="async"
+              fetchPriority={safeIndex === 0 ? 'high' : 'low'}
+            />
+          </a>
+        </div>
+
+        {/* LADO DIREITO - CONTEÚDO */}
         <div className="projects__copy">
           <h2 id="projects-title" className="projects__title">
             {copy.title}
@@ -128,51 +151,29 @@ export default function Projects({ language }: ProjectsProps) {
             </div>
           </div>
         </div>
+      </div>
 
-        <div className="projects__stage">
-          <div className="projects__controls" aria-label="Controle do carrossel de projetos">
-            <button type="button" onClick={prevProject} aria-label={copy.previous}>
-              <ChevronLeft size={28} />
-            </button>
-            <button type="button" onClick={nextProject} aria-label={copy.next}>
-              <ChevronRight size={28} />
-            </button>
-          </div>
+      {/* CONTROLES E DOTS FORA DO SHELL */}
+      <div className="projects__controls" aria-label="Controle do carrossel de projetos">
+        <button type="button" onClick={prevProject} aria-label={copy.previous}>
+          <ChevronLeft size={28} />
+        </button>
+        <button type="button" onClick={nextProject} aria-label={copy.next}>
+          <ChevronRight size={28} />
+        </button>
+      </div>
 
-          <div className="projects__visual" aria-live="polite">
-            <a
-              href={activeLink}
-              target={isExternal ? '_blank' : '_self'}
-              rel={isExternal ? 'noopener noreferrer' : undefined}
-              className="projects__image-link"
-              aria-label={`${safeIndex >= 3 ? copy.viewDemo : copy.viewProject}: ${activeProject.title}`}
-            >
-              <img 
-                className="projects__image" 
-                src={activeImage} 
-                alt={activeProject.title}
-                width={900}
-                height={560}
-                loading={safeIndex === 0 ? 'eager' : 'lazy'}
-                decoding="async"
-                fetchPriority={safeIndex === 0 ? 'high' : 'low'}
-              />
-            </a>
-          </div>
-        </div>
-
-        <div className="projects__dots" aria-label="Projetos disponiveis">
-          {projects.map((project, index) => (
-            <button
-              type="button"
-              key={project.title}
-              className={index === currentProject ? 'is-active' : ''}
-              onClick={() => setCurrentProject(index)}
-              aria-label={`${copy.page} ${index + 1}`}
-              aria-current={index === currentProject}
-            />
-          ))}
-        </div>
+      <div className="projects__dots" aria-label="Projetos disponíveis">
+        {projects.map((project, index) => (
+          <button
+            type="button"
+            key={project.title}
+            className={index === currentProject ? 'is-active' : ''}
+            onClick={() => setCurrentProject(index)}
+            aria-label={`${copy.page} ${index + 1}`}
+            aria-current={index === currentProject}
+          />
+        ))}
       </div>
     </section>
   )
