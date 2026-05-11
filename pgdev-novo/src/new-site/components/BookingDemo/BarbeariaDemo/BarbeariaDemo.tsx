@@ -398,7 +398,7 @@ export default function BarbeariaDemo({ language }: Props) {
             {/* SEÇÃO SOBRE A BARBEARIA */}
             <div className="barbearia-about">
               <div className="about-left">
-                <img src="https://images.unsplash.com/photo-1585747860714-2ba892e5e8f0?w=600&h=400&fit=crop" alt="Barbearia" />
+                <img src="https://images.pexels.com/photos/1805600/pexels-photo-1805600.jpeg" alt="Barbearia" />
               </div>
               <div className="about-right">
                 <h3>{text.about} <span>CLASSIC BARBER</span></h3>
