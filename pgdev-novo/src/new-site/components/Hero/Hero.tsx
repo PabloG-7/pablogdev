@@ -1,5 +1,5 @@
 import './Hero.css'
-import logo from '../../assets/logo.png'
+import heroDevices from '../../assets/hero-devices.png'
 import { ArrowRight, CheckCircle, Lightbulb, Code, TrendingUp } from 'lucide-react'
 import { pt } from '../../i18n/pt'
 import { es } from '../../i18n/es'
@@ -22,7 +22,7 @@ export default function Hero({ language }: HeroProps) {
 
   return (
     <section className="hero" id="inicio">
-      <img src={logo} alt="" className="hero-bg-logo" aria-hidden="true" />
+      <img src={heroDevices} alt="" className="hero-bg-logo" aria-hidden="true" />
       
       <div className="hero-container">
         <div className="hero-content">
@@ -34,8 +34,8 @@ export default function Hero({ language }: HeroProps) {
 
           <p className="hero-text">
             {language === 'pt' 
-              ? 'Desenvolvimento de sites institucionais, landing pages, sistemas web e agendamentos. Tudo sob medida para sua empresa.'
-              : 'Desarrollo de sitios institucionales, landing pages, sistemas web y programación. Todo a medida para tu empresa.'}
+              ? 'Desenvolvimento de sites institucionais, landing pages, sistemas web e agendamentos.'
+              : 'Desarrollo de sitios institucionales, landing pages, sistemas web y programación.'}
           </p>
 
           <div className="hero-features">

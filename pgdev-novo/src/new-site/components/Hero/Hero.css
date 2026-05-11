@@ -15,13 +15,13 @@
 .hero-bg-logo {
   position: absolute;
   top: 50%;
-  right: -5%;
+  right: max(24px, calc((100vw - 1200px) / 2));
   transform: translateY(-50%);
-  width: 50%;
-  max-width: 650px;
-  opacity: 0.08;
+  width: min(48vw, 720px);
   pointer-events: none;
   z-index: 1;
+  opacity: 1;
+  transition: all 0.3s ease;
 }
 
 .hero-container {
@@ -34,6 +34,8 @@
 }
 
 .hero-content {
+  position: relative;
+  z-index: 2;
   max-width: 580px;
 }
 
@@ -174,36 +176,28 @@
 }
 
 /* ============================================
-   RESPONSIVE
+   RESPONSIVE - HERO BG LOGO
    ============================================ */
 
 @media (max-width: 1024px) {
   .hero-bg-logo {
-    width: 55%;
-    opacity: 0.08;
-  }
-}
-
-@media (max-width: 900px) {
-  .hero-container {
-    padding: 60px 32px;
-  }
-
-  .hero-content {
-    max-width: 500px;
-  }
-
-  .hero-bg-logo {
-    width: 60%;
-    right: -15%;
-    opacity: 0.08;
+    width: 57vw;
+    right: -4%;
+    top: 52%;
+    opacity: 0.9;
   }
 }
 
 @media (max-width: 768px) {
   .hero {
-    padding-top: 64px;
     min-height: auto;
+  }
+
+  .hero-bg-logo {
+    width: 78vw;
+    right: -5%;
+    top: 58%;
+    opacity: 0.28;
   }
 
   .hero-container {
@@ -235,17 +229,18 @@
   .stat {
     font-size: 0.8125rem;
   }
-
-  .hero-bg-logo {
-    width: 70%;
-    right: -20%;
-    opacity: 0.08;
-  }
 }
 
 @media (max-width: 640px) {
   .hero {
     padding-top: 60px;
+  }
+
+  .hero-bg-logo {
+    width: 78vw;
+    right: -7%;
+    top: 52%;
+    opacity: 0.5;
   }
 
   .hero-container {
@@ -284,15 +279,16 @@
   .stat {
     font-size: 0.8125rem;
   }
-
-  .hero-bg-logo {
-    width: 80%;
-    right: -13%;
-    top: 47%;
-  }
 }
 
 @media (max-width: 480px) {
+  .hero-bg-logo {
+    width: 78vw;
+    right: -7%;
+    top: 47%;
+    opacity: 0.5;
+  }
+
   .hero-container {
     padding: 40px 20px;
   }
@@ -345,7 +341,6 @@
    CORREÇÃO PWA - iPhone
    ============================================ */
 
-/* Ajuste hero para não ficar colado no header no PWA */
 @supports (padding-top: env(safe-area-inset-top)) {
   @media (max-width: 900px) {
     .hero {
@@ -367,7 +362,7 @@
 }
 
 /* ============================================
-   OPÇÃO 10 - ONDAS MINIMALISTAS
+   ONDAS MINIMALISTAS
    ============================================ */
 
 .hero {
