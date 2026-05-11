@@ -49,7 +49,7 @@ export default function Hero({ language }: HeroProps) {
             </div>
             <div className="feature">
               <CheckCircle size={18} />
-              <span>{language === 'pt' ? 'Automação de processos' : 'Automatización de procesos'}</span>
+              <span>{language === 'pt' ? 'Organização de processos' : 'Organización de procesos'}</span>
             </div>
             <div className="feature">
               <CheckCircle size={18} />
