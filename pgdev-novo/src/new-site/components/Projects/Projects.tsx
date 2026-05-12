@@ -1,12 +1,12 @@
 import './Projects.css'
-import { useEffect, useMemo, useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { useEffect, useMemo, useState, useRef } from 'react'
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { pt } from '../../i18n/pt'
 import { es } from '../../i18n/es'
 import type { Language } from '../../types'
 
-// Imagens desktop - APENAS ESTAS (sem mobile)
+// Imagens desktop
 import exemplo1 from '../../assets/exemplo1.webp'
 import exemplo2 from '../../assets/exemplo2.webp'
 import exemplo3 from '../../assets/exemplo3.webp'
@@ -56,6 +56,26 @@ export default function Projects({ language }: ProjectsProps) {
   const content = language === 'pt' ? pt : es
   const copy = language === 'pt' ? projectLead.pt : projectLead.es
   const [currentProject, setCurrentProject] = useState(0)
+  
+  const sectionRef = useRef<HTMLElement>(null)
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start end', 'end start']
+  })
+
+  // EFEITOS FORTES PRA CARALHO QUE DÁ PRA VER CLARAMENTE
+  const sectionY = useTransform(scrollYProgress, [0, 0.5, 1], [200, 0, -200])
+  const sectionOpacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0])
+  
+  const imageX = useTransform(scrollYProgress, [0, 0.5, 1], [-150, 0, 150])
+  const imageScale = useTransform(scrollYProgress, [0, 0.5, 1], [0.6, 1, 0.6])
+  
+  const titleY = useTransform(scrollYProgress, [0, 0.5, 1], [100, 0, -100])
+  const titleOpacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0])
+  
+  const controlsScale = useTransform(scrollYProgress, [0, 0.5, 1], [0.5, 1, 0.5])
+  const dotsScale = useTransform(scrollYProgress, [0, 0.5, 1], [0, 1, 0])
 
   const projects = content.projects.items
   const totalProjects = projects.length
@@ -69,12 +89,9 @@ export default function Projects({ language }: ProjectsProps) {
 
   useEffect(() => {
     if (!totalProjects) return
-
     const nextIndex = (safeIndex + 1) % totalProjects
     const nextImage = projectImages[nextIndex]
-
     if (!nextImage) return
-
     const image = new Image()
     image.src = nextImage
   }, [safeIndex, totalProjects])
@@ -90,13 +107,29 @@ export default function Projects({ language }: ProjectsProps) {
   if (!activeProject) return null
 
   return (
-    <section className="projects" id="projetos" aria-labelledby="projects-title">
+    <motion.section 
+      ref={sectionRef}
+      className="projects" 
+      id="projetos" 
+      aria-labelledby="projects-title"
+      style={{ 
+        y: sectionY,
+        opacity: sectionOpacity 
+      }}
+    >
       <div className="projects__dash-top"></div>
       <div className="projects__dash-bottom"></div>
       <div className="projects__cross"></div>
 
       <div className="projects__shell">
-        <div className="projects__visual" aria-live="polite">
+        <motion.div 
+          className="projects__visual" 
+          aria-live="polite"
+          style={{ 
+            x: imageX,
+            scale: imageScale
+          }}
+        >
           <a
             href={activeLink}
             target={isExternal ? '_blank' : '_self'}
@@ -122,9 +155,15 @@ export default function Projects({ language }: ProjectsProps) {
               />
             </AnimatePresence>
           </a>
-        </div>
+        </motion.div>
 
-        <div className="projects__copy">
+        <motion.div 
+          className="projects__copy"
+          style={{ 
+            y: titleY,
+            opacity: titleOpacity
+          }}
+        >
           <h2 id="projects-title" className="projects__title">
             {copy.title}
           </h2>
@@ -143,10 +182,13 @@ export default function Projects({ language }: ProjectsProps) {
               <small>{activeProject.title}</small>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
 
-      <div className="projects__controls" aria-label="Controle do carrossel de projetos">
+      <motion.div 
+        className="projects__controls"
+        style={{ scale: controlsScale }}
+      >
         <motion.button 
           type="button" 
           onClick={prevProject} 
@@ -167,9 +209,12 @@ export default function Projects({ language }: ProjectsProps) {
         >
           <ChevronRight size={28} />
         </motion.button>
-      </div>
+      </motion.div>
 
-      <div className="projects__dots" aria-label="Projetos disponíveis">
+      <motion.div 
+        className="projects__dots"
+        style={{ scale: dotsScale }}
+      >
         {projects.map((project, index) => (
           <motion.button
             type="button"
@@ -183,7 +228,7 @@ export default function Projects({ language }: ProjectsProps) {
             transition={{ duration: 0.2 }}
           />
         ))}
-      </div>
-    </section>
+      </motion.div>
+    </motion.section>
   )
 }
