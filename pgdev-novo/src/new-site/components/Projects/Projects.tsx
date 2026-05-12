@@ -5,7 +5,7 @@ import { pt } from '../../i18n/pt'
 import { es } from '../../i18n/es'
 import type { Language } from '../../types'
 
-// Imagens desktop - AGORA EM .webp
+// Imagens desktop - APENAS ESTAS (sem mobile)
 import exemplo1 from '../../assets/exemplo1.webp'
 import exemplo2 from '../../assets/exemplo2.webp'
 import exemplo3 from '../../assets/exemplo3.webp'
@@ -13,20 +13,11 @@ import exemplo4 from '../../assets/exemplo4.webp'
 import exemplo5 from '../../assets/exemplo5.webp'
 import exemplo6 from '../../assets/exemplo6.webp'
 
-// Imagens mobile - AGORA EM .webp
-import exemplo1Mobile from '../../assets/exemplo1-mobile.webp'
-import exemplo2Mobile from '../../assets/exemplo2-mobile.webp'
-import exemplo3Mobile from '../../assets/exemplo3-mobile.webp'
-import exemplo4Mobile from '../../assets/exemplo4-mobile.webp'
-import exemplo5Mobile from '../../assets/exemplo5-mobile.webp'
-import exemplo6Mobile from '../../assets/exemplo6-mobile.webp'
-
 type ProjectsProps = {
   language: Language
 }
 
 const projectImages = [exemplo1, exemplo2, exemplo3, exemplo4, exemplo5, exemplo6]
-const projectImagesMobile = [exemplo1Mobile, exemplo2Mobile, exemplo3Mobile, exemplo4Mobile, exemplo5Mobile, exemplo6Mobile]
 
 const projectLinks = [
   'https://pablog-7.github.io/projeto-drbruno/',
@@ -64,24 +55,12 @@ export default function Projects({ language }: ProjectsProps) {
   const content = language === 'pt' ? pt : es
   const copy = language === 'pt' ? projectLead.pt : projectLead.es
   const [currentProject, setCurrentProject] = useState(0)
-  const [isMobile, setIsMobile] = useState(false)
-
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 900)
-    }
-    checkMobile()
-    window.addEventListener('resize', checkMobile)
-    return () => window.removeEventListener('resize', checkMobile)
-  }, [])
 
   const projects = content.projects.items
   const totalProjects = projects.length
   const safeIndex = totalProjects > 0 ? currentProject % totalProjects : 0
   const activeProject = projects[safeIndex]
-  const activeImage = isMobile 
-    ? (projectImagesMobile[safeIndex] ?? projectImagesMobile[0] ?? '')
-    : (projectImages[safeIndex] ?? projectImages[0] ?? '')
+  const activeImage = projectImages[safeIndex] ?? projectImages[0] ?? ''
   const activeLink = projectLinks[safeIndex] ?? projectLinks[0] ?? '#'
   const isExternal = isExternalLink(activeLink)
 
@@ -92,15 +71,13 @@ export default function Projects({ language }: ProjectsProps) {
     if (!totalProjects) return
 
     const nextIndex = (safeIndex + 1) % totalProjects
-    const nextImage = isMobile
-      ? projectImagesMobile[nextIndex]
-      : projectImages[nextIndex]
+    const nextImage = projectImages[nextIndex]
 
     if (!nextImage) return
 
     const image = new Image()
     image.src = nextImage
-  }, [safeIndex, isMobile, totalProjects])
+  }, [safeIndex, totalProjects])
 
   function nextProject() {
     setCurrentProject((prev) => (prev + 1) % totalProjects)
