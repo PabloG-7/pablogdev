@@ -641,8 +641,9 @@
   .hero-bg-logo {
     width: 55vw;
     max-width: 180px;
-     top: 47%;
-    opacity: 0.4;
+     top: 50%;
+       right: 20%;
+    opacity: 0.3;
   }
 }
 
@@ -650,6 +651,6 @@
   .hero-bg-logo {
     width: 65vw;
     max-width: 160px;
-    opacity: 0.4;
+    opacity: 0.3;
   }
 }
