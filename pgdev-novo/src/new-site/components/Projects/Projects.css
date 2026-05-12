@@ -1,5 +1,5 @@
 /* ============================================
-   PROJECTS - SEM CÍRCULOS, SEM FRESCURA
+   PROJECTS - MINIMALISTA (VERSÃO TRAÇOS E XIS)
    ============================================ */
 
 .projects {
@@ -9,105 +9,61 @@
   overflow: hidden;
 }
 
-/* CÍRCULOS EM POSIÇÕES DIFERENTES */
-.projects::before {
-  content: '';
-  position: absolute;
-  top: 20%;
-  right: -80px;
-  width: 300px;
-  height: 300px;
-  border: 2px solid rgba(254, 201, 15, 0.06);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.projects::after {
-  content: '';
-  position: absolute;
-  bottom: 15%;
-  left: -60px;
-  width: 250px;
-  height: 250px;
-  border: 1px solid rgba(254, 201, 15, 0.04);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 0;
-}
-
-/* CÍRCULO EXTRA NO CANTO SUPERIOR ESQUERDO */
-.projects__circle {
-  position: absolute;
-  top: 10%;
-  left: -40px;
-  width: 180px;
-  height: 180px;
-  border: 1px solid rgba(254, 201, 15, 0.05);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 0;
-}
-
-/* GRID DE PONTOS SUTIS */
-.projects__grid {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: 
-    linear-gradient(to right, rgba(254, 201, 15, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(254, 201, 15, 0.03) 1px, transparent 1px);
-  background-size: 40px 40px;
-  pointer-events: none;
-  z-index: 0;
-}
-
-/* LISTRA VERTICAL NA LATERAL ESQUERDA */
-.projects__left-line {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 2px;
-  height: 30%;
-  background: linear-gradient(to bottom, #fec90f, transparent);
-  pointer-events: none;
-  z-index: 1;
-}
-
-/* LISTRA VERTICAL NA LATERAL DIREITA */
-.projects__right-line {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 2px;
-  height: 30%;
-  background: linear-gradient(to top, #fec90f, transparent);
-  pointer-events: none;
-  z-index: 1;
-}
-
-/* LINHA HORIZONTAL SUTIL NO TOPO */
-.projects__top-line {
+/* TRAÇO CURTO NO TOPO DIREITO */
+.projects__dash-top {
   position: absolute;
   top: 80px;
-  left: 0;
-  width: 100%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(254, 201, 15, 0.2), transparent);
+  right: 80px;
+  width: 40px;
+  height: 2px;
+  background: #fec90f;
+  opacity: 0.4;
   pointer-events: none;
+  z-index: 1;
 }
 
-/* LINHA HORIZONTAL SUTIL NO RODAPÉ */
-.projects__bottom-line {
+/* TRAÇO CURTO EMBAIXO ESQUERDO */
+.projects__dash-bottom {
   position: absolute;
-  bottom: 80px;
-  left: 0;
+  bottom: 190px;
+  left: 80px;
+  width: 40px;
+  height: 2px;
+  background: #fec90f;
+  opacity: 0.4;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* XIS DECORATIVO (CRUZ) */
+.projects__cross {
+  position: absolute;
+  top: 50%;
+  right: 80px;
+  width: 30px;
+  height: 30px;
+  transform: translateY(-50%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.projects__cross::before,
+.projects__cross::after {
+  content: '';
+  position: absolute;
   width: 100%;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(254, 201, 15, 0.2), transparent);
-  pointer-events: none;
+  background: rgba(254, 201, 15, 0.2);
+  top: 50%;
+  left: 0;
+}
+
+.projects__cross::before {
+  transform: rotate(45deg);
+}
+
+.projects__cross::after {
+  transform: rotate(-45deg);
 }
 
 .projects__shell {
@@ -316,7 +272,7 @@
 }
 
 /* ============================================
-   RESPONSIVO - IMAGEM MANTIDA NO TAMANHO ORIGINAL
+   RESPONSIVO - TUDO DENTRO DO CONTAINER
    ============================================ */
 
 @media (max-width: 900px) {
@@ -333,7 +289,6 @@
     justify-content: center;
   }
 
-  /* IMAGEM MANTIDA NO TAMANHO ORIGINAL - NÃO DIMINUIU */
   .projects__image-link {
     max-width: 100%;
   }
@@ -352,9 +307,22 @@
     justify-content: center;
   }
   
-  .projects__top-line,
-  .projects__bottom-line {
-    display: none;
+  .projects__dash-top {
+    top: 40px;
+    right: 30px;
+    width: 30px;
+  }
+  
+  .projects__dash-bottom {
+    bottom: 40px;
+    left: 30px;
+    width: 30px;
+  }
+  
+  .projects__cross {
+    right: 30px;
+    width: 22px;
+    height: 22px;
   }
 }
 
@@ -371,7 +339,6 @@
     font-size: 1.6rem;
   }
 
-  /* IMAGEM MANTIDA NO TAMANHO ORIGINAL */
   .projects__image-link {
     max-width: 100%;
   }
@@ -398,9 +365,22 @@
     width: 40px;
   }
   
-  .projects__left-line,
-  .projects__right-line {
-    height: 20%;
+  .projects__dash-top {
+    top: 30px;
+    right: 25px;
+    width: 25px;
+  }
+  
+  .projects__dash-bottom {
+    bottom: 30px;
+    left: 25px;
+    width: 25px;
+  }
+  
+  .projects__cross {
+    right: 25px;
+    width: 20px;
+    height: 20px;
   }
 }
 
@@ -448,8 +428,22 @@
     width: 35px;
   }
   
-  .projects__grid {
-    background-size: 30px 30px;
+  .projects__dash-top {
+    top: 25px;
+    right: 20px;
+    width: 20px;
+  }
+  
+  .projects__dash-bottom {
+    bottom: 25px;
+    left: 20px;
+    width: 20px;
+  }
+  
+  .projects__cross {
+    right: 20px;
+    width: 18px;
+    height: 18px;
   }
 }
 
@@ -503,8 +497,21 @@
     width: 30px;
   }
   
-  .projects__left-line,
-  .projects__right-line {
-    display: none;
+  .projects__dash-top {
+    top: 20px;
+    right: 16px;
+    width: 18px;
+  }
+  
+  .projects__dash-bottom {
+    bottom: 20px;
+    left: 16px;
+    width: 18px;
+  }
+  
+  .projects__cross {
+    right: 16px;
+    width: 16px;
+    height: 16px;
   }
 }

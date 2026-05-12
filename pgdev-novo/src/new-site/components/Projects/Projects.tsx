@@ -114,8 +114,13 @@ export default function Projects({ language }: ProjectsProps) {
 
   return (
     <section className="projects" id="projetos" aria-labelledby="projects-title">
+      {/* Elementos minimalistas - DIFERENTES */}
+      <div className="projects__dash-top"></div>
+      <div className="projects__dash-bottom"></div>
+      <div className="projects__cross"></div>
+
       <div className="projects__shell">
-        {/* LADO ESQUERDO - IMAGEM (agora vem primeiro) */}
+        {/* LADO ESQUERDO - IMAGEM */}
         <div className="projects__visual" aria-live="polite">
           <a
             href={activeLink}
