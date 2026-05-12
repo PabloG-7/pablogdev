@@ -2,7 +2,7 @@ import './Hero.css'
 import { useState, useEffect } from 'react'
 import heroDevices from '../../assets/hero-devices.png'
 import logo from '../../assets/logo.png'
-import { ArrowRight, CheckCircle, Lightbulb, Code, TrendingUp } from 'lucide-react'
+import { ArrowRight, Calendar, MessageCircle, Layout, Shield, Headphones, Lightbulb, Code, TrendingUp } from 'lucide-react'
 import { pt } from '../../i18n/pt'
 import { es } from '../../i18n/es'
 import type { Language } from '../../types'
@@ -79,34 +79,59 @@ export default function Hero({ language }: HeroProps) {
       
       <div className="hero-container">
         <div className="hero-content">
+          {/* NOVO TÍTULO */}
           <h1 className="hero-title">
-            {language === 'pt' ? 'Sites e sistemas' : 'Sitios y sistemas'}{' '}
-            <span className="hero-highlight">{language === 'pt' ? 'profissionais' : 'profesionales'}</span>
-            <br /> {language === 'pt' ? 'para seu negócio' : 'para tu negocio'}
+            {language === 'pt'
+              ? 'Transforme seu atendimento com'
+              : 'Transforma tu atención con'}{' '}
+            <span className="hero-highlight">
+              {language === 'pt' ? 'sites e sistemas' : 'sitios y sistemas'}
+            </span>
           </h1>
 
+          {/* NOVO SUBTÍTULO */}
           <p className="hero-text">
-            {language === 'pt' 
-              ? 'Desenvolvimento de sites institucionais, landing pages, sistemas web e agendamentos.'
-              : 'Desarrollo de sitios institucionales, landing pages, sistemas web y programación.'}
+            {language === 'pt'
+              ? 'Sites e sistemas para organizar atendimentos, integrar WhatsApp e deixar seu negócio mais profissional.'
+              : 'Sitios y sistemas para organizar atenciones, integrar WhatsApp y dejar tu negocio más profesional.'}
           </p>
 
+          {/* NOVAS FEATURES COM ÍCONES TROCADOS */}
           <div className="hero-features">
             <div className="feature">
-              <CheckCircle size={18} />
-              <span>{language === 'pt' ? 'Sites responsivos e otimizados' : 'Sitios responsivos y optimizados'}</span>
+              <Calendar size={18} />
+              <span>
+                {language === 'pt'
+                  ? 'Agendamentos online'
+                  : 'Agendamientos en línea'}
+              </span>
             </div>
+
             <div className="feature">
-              <CheckCircle size={18} />
-              <span>{language === 'pt' ? 'Sistemas personalizados' : 'Sistemas personalizados'}</span>
+              <MessageCircle size={18} />
+              <span>
+                {language === 'pt'
+                  ? 'Integração com WhatsApp'
+                  : 'Integración con WhatsApp'}
+              </span>
             </div>
+
             <div className="feature">
-              <CheckCircle size={18} />
-              <span>{language === 'pt' ? 'Organização de processos' : 'Organización de procesos'}</span>
+              <Layout size={18} />
+              <span>
+                {language === 'pt'
+                  ? 'Mais organização'
+                  : 'Más organización'}
+              </span>
             </div>
+
             <div className="feature">
-              <CheckCircle size={18} />
-              <span>{language === 'pt' ? 'Suporte e manutenção' : 'Soporte y mantenimiento'}</span>
+              <Headphones size={18} />
+              <span>
+                {language === 'pt'
+                  ? 'Suporte e acompanhamento'
+                  : 'Soporte y acompañamiento'}
+              </span>
             </div>
           </div>
 
@@ -117,24 +142,48 @@ export default function Hero({ language }: HeroProps) {
               rel="noopener noreferrer" 
               className="hero-btn primary"
             >
-              {content.hero.primaryButton}
+              Falar no WhatsApp
               <ArrowRight size={16} />
             </a>
             <ProjectPreview language={language} />
           </div>
 
+          {/* NOVOS STATS */}
           <div className="hero-stats">
             <div className="stat">
               <Lightbulb size={18} color="#fec90f" />
-              {language === 'pt' ? 'Ideia' : 'Idea'} <span>{language === 'pt' ? '→ Projeto' : '→ Proyecto'}</span>
+              {language === 'pt'
+                ? 'Atendimento'
+                : 'Atención'}{' '}
+              <span>
+                {language === 'pt'
+                  ? '→ Mais Organização'
+                  : '→ Más Organización'}
+              </span>
             </div>
+
             <div className="stat">
               <Code size={18} color="#fec90f" />
-              {language === 'pt' ? 'Projeto' : 'Proyecto'} <span>{language === 'pt' ? '→ Site no ar' : '→ Sitio online'}</span>
+              {language === 'pt'
+                ? 'Organização'
+                : 'Organización'}{' '}
+              <span>
+                {language === 'pt'
+                  ? '→ Mais praticidade'
+                  : '→ Más practicidad'}
+              </span>
             </div>
+
             <div className="stat">
               <TrendingUp size={18} color="#fec90f" />
-              {language === 'pt' ? 'Site' : 'Sitio'} <span>{language === 'pt' ? '→ Resultado' : '→ Resultado'}</span>
+              {language === 'pt'
+                ? 'Negócio'
+                : 'Negocio'}{' '}
+              <span>
+                {language === 'pt'
+                  ? '→ Mais resultado'
+                  : '→ Más resultados'}
+              </span>
             </div>
           </div>
         </div>
