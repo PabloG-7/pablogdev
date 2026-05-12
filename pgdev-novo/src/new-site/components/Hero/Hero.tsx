@@ -20,8 +20,36 @@ export default function Hero({ language }: HeroProps) {
 
   const whatsappLink = `https://wa.me/5511961111894?text=${encodeURIComponent(whatsappMessage)}`
 
+  // Gerar estrelas aleatórias
+  const stars = Array.from({ length: 30 }, (_, i) => ({
+    id: i,
+    top: Math.random() * 100,
+    left: Math.random() * 100,
+    size: 1 + Math.random() * 2,
+    delay: Math.random() * 3,
+    duration: 2 + Math.random() * 3
+  }))
+
   return (
     <section className="hero" id="inicio">
+      {/* EFEITO DE ESTRELAS NO FUNDO */}
+      <div className="hero__stars">
+        {stars.map((star) => (
+          <div
+            key={star.id}
+            className="star"
+            style={{
+              top: `${star.top}%`,
+              left: `${star.left}%`,
+              width: `${star.size}px`,
+              height: `${star.size}px`,
+              animationDelay: `${star.delay}s`,
+              animationDuration: `${star.duration}s`
+            }}
+          />
+        ))}
+      </div>
+
       {/* ELEMENTOS MINIMALISTAS */}
       <div className="hero__line-top"></div>
       <div className="hero__line-right"></div>
