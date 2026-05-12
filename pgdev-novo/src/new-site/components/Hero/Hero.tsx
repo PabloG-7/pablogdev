@@ -2,9 +2,7 @@ import './Hero.css'
 import { useState, useEffect } from 'react'
 import heroDevices from '../../assets/hero-devices.png'
 import logo from '../../assets/logo.png'
-import { ArrowRight, Calendar, MessageCircle, Layout, Shield, Headphones, Lightbulb, Code, TrendingUp } from 'lucide-react'
-import { pt } from '../../i18n/pt'
-import { es } from '../../i18n/es'
+import { ArrowRight, Calendar, MessageCircle, Layout, Headphones, Lightbulb, Code, TrendingUp } from 'lucide-react'
 import type { Language } from '../../types'
 import ProjectPreview from '../ProjectPreview/ProjectPreview'
 
@@ -13,7 +11,6 @@ type HeroProps = {
 }
 
 export default function Hero({ language }: HeroProps) {
-  const content = language === 'pt' ? pt : es
   const [isMobile, setIsMobile] = useState(false)
 
   const whatsappMessage =
