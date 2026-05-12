@@ -1,5 +1,7 @@
 import './Hero.css'
+import { useState, useEffect } from 'react'
 import heroDevices from '../../assets/hero-devices.png'
+import logo from '../../assets/logo.png'
 import { ArrowRight, CheckCircle, Lightbulb, Code, TrendingUp } from 'lucide-react'
 import { pt } from '../../i18n/pt'
 import { es } from '../../i18n/es'
@@ -12,6 +14,7 @@ type HeroProps = {
 
 export default function Hero({ language }: HeroProps) {
   const content = language === 'pt' ? pt : es
+  const [isMobile, setIsMobile] = useState(false)
 
   const whatsappMessage =
     language === 'pt'
@@ -19,6 +22,16 @@ export default function Hero({ language }: HeroProps) {
       : '¡Hola! Vi el sitio de PabloG.Dev y quiero entender la mejor solución para mi negocio.'
 
   const whatsappLink = `https://wa.me/5511961111894?text=${encodeURIComponent(whatsappMessage)}`
+
+  // Detectar tela menor que 768px
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768)
+    }
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
 
   // Gerar estrelas aleatórias
   const stars = Array.from({ length: 30 }, (_, i) => ({
@@ -56,7 +69,13 @@ export default function Hero({ language }: HeroProps) {
       <div className="hero__dot"></div>
       <div className="hero__wave"></div>
 
-      <img src={heroDevices} alt="" className="hero-bg-logo" aria-hidden="true" />
+      {/* IMAGEM DE FUNDO - TROCA EM TELAS MENORES */}
+      <img 
+        src={isMobile ? logo : heroDevices} 
+        alt="" 
+        className="hero-bg-logo" 
+        aria-hidden="true" 
+      />
       
       <div className="hero-container">
         <div className="hero-content">

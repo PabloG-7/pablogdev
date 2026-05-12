@@ -620,3 +620,36 @@
     opacity: 0;
   }
 }
+
+/* ============================================
+   AJUSTE PARA LOGO EM TELAS MENORES
+   ============================================ */
+
+@media (max-width: 768px) {
+  .hero-bg-logo {
+    width: 45vw;
+    max-width: 200px;
+    right: 25%;
+    transform: translateX(50%) translateY(-50%);
+    top: 53%;
+    opacity: 0.22;
+    object-fit: contain;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-bg-logo {
+    width: 55vw;
+    max-width: 180px;
+     top: 47%;
+    opacity: 0.4;
+  }
+}
+
+@media (max-width: 360px) {
+  .hero-bg-logo {
+    width: 65vw;
+    max-width: 160px;
+    opacity: 0.4;
+  }
+}
