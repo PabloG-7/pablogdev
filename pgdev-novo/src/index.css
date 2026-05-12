@@ -14,10 +14,19 @@ html {
   scroll-behavior: smooth;
 }
 
+/* AJUSTE: min-height no lugar de height */
 html, 
 body, 
 #root {
-  height: 100%;
+  min-height: 100%;
+}
+
+/* NOVAS PROPRIEDADES ADICIONADAS */
+html,
+body {
+  overscroll-behavior: none;
+  -webkit-tap-highlight-color: transparent;
+  background: #000c24;
 }
 
 body {
