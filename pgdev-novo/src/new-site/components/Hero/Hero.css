@@ -12,6 +12,70 @@
   overflow: hidden;
 }
 
+/* ELEMENTOS MINIMALISTAS PRA COMBINAR COM AS OUTRAS SEÇÕES */
+.hero__line-top {
+  position: absolute;
+  top: 100px;
+  left: 60px;
+  width: 50px;
+  height: 1px;
+  background: linear-gradient(90deg, #fec90f, transparent);
+  opacity: 0.3;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.hero__line-right {
+  position: absolute;
+  top: 0;
+  right: 80px;
+  width: 1px;
+  height: 60px;
+  background: linear-gradient(to bottom, #fec90f, transparent);
+  opacity: 0.3;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.hero__dot {
+  position: absolute;
+  bottom: 80px;
+  right: 80px;
+  width: 4px;
+  height: 4px;
+  background: rgba(254, 201, 15, 0.4);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* CÍRCULOS FUNDO PRA COMBINAR */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -150px;
+  right: -100px;
+  width: 400px;
+  height: 400px;
+  border: 2px solid rgba(254, 201, 15, 0.04);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -120px;
+  left: -80px;
+  width: 300px;
+  height: 300px;
+  border: 1px solid rgba(254, 201, 15, 0.03);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
 .hero-bg-logo {
   position: absolute;
   top: 50%;
@@ -176,7 +240,7 @@
 }
 
 /* ============================================
-   RESPONSIVE - HERO BG LOGO
+   RESPONSIVE - ELEMENTOS APARECEM EM TODAS TELAS
    ============================================ */
 
 @media (max-width: 1024px) {
@@ -185,6 +249,22 @@
     right: -4%;
     top: 52%;
     opacity: 0.9;
+  }
+  
+  .hero__line-top {
+    top: 70px;
+    left: 40px;
+    width: 40px;
+  }
+  
+  .hero__line-right {
+    right: 50px;
+    height: 45px;
+  }
+  
+  .hero__dot {
+    bottom: 50px;
+    right: 50px;
   }
 }
 
@@ -228,6 +308,38 @@
 
   .stat {
     font-size: 0.8125rem;
+  }
+
+  .hero::before {
+    width: 250px;
+    height: 250px;
+    top: -100px;
+    right: -80px;
+  }
+
+  .hero::after {
+    width: 200px;
+    height: 200px;
+    bottom: -80px;
+    left: -60px;
+  }
+  
+  .hero__line-top {
+    top: 50px;
+    left: 30px;
+    width: 35px;
+  }
+  
+  .hero__line-right {
+    right: 35px;
+    height: 35px;
+  }
+  
+  .hero__dot {
+    bottom: 35px;
+    right: 35px;
+    width: 3px;
+    height: 3px;
   }
 }
 
@@ -279,6 +391,24 @@
   .stat {
     font-size: 0.8125rem;
   }
+  
+  .hero__line-top {
+    top: 35px;
+    left: 20px;
+    width: 30px;
+  }
+  
+  .hero__line-right {
+    right: 25px;
+    height: 30px;
+  }
+  
+  .hero__dot {
+    bottom: 25px;
+    right: 25px;
+    width: 3px;
+    height: 3px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -313,6 +443,32 @@
   .stat {
     font-size: 0.875rem;
   }
+
+  .hero::before,
+  .hero::after {
+    display: none;
+  }
+  
+  .hero__line-top {
+    top: 95px;
+    left: 15px;
+    width: 25px;
+    opacity: 0.2;
+  }
+  
+  .hero__line-right {
+    right: 15px;
+    height: 25px;
+    opacity: 0.2;
+  }
+  
+  .hero__dot {
+    bottom: 20px;
+    right: 20px;
+    width: 2px;
+    height: 2px;
+    opacity: 0.3;
+  }
 }
 
 @media (max-width: 360px) {
@@ -334,6 +490,18 @@
 
   .stat {
     font-size: 0.8125rem;
+  }
+  
+  .hero__line-top {
+    display: none;
+  }
+  
+  .hero__line-right {
+    display: none;
+  }
+  
+  .hero__dot {
+    display: none;
   }
 }
 
@@ -369,8 +537,7 @@
   background: #000c24;
 }
 
-.hero::after {
-  content: '';
+.hero__wave {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -379,6 +546,7 @@
   background: linear-gradient(90deg, transparent, rgba(254, 201, 15, 0.2), transparent);
   animation: wave 8s ease-in-out infinite;
   pointer-events: none;
+  z-index: 1;
 }
 
 @keyframes wave {

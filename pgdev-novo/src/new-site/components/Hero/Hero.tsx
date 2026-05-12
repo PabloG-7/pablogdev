@@ -22,6 +22,12 @@ export default function Hero({ language }: HeroProps) {
 
   return (
     <section className="hero" id="inicio">
+      {/* ELEMENTOS MINIMALISTAS */}
+      <div className="hero__line-top"></div>
+      <div className="hero__line-right"></div>
+      <div className="hero__dot"></div>
+      <div className="hero__wave"></div>
+
       <img src={heroDevices} alt="" className="hero-bg-logo" aria-hidden="true" />
       
       <div className="hero-container">
