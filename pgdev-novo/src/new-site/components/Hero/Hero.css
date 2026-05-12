@@ -41,43 +41,6 @@
   }
 }
 
-/* ELEMENTOS MINIMALISTAS PRA COMBINAR COM AS OUTRAS SEÇÕES */
-.hero__line-top {
-  position: absolute;
-  top: 100px;
-  left: 60px;
-  width: 50px;
-  height: 1px;
-  background: linear-gradient(90deg, #fec90f, transparent);
-  opacity: 0.3;
-  pointer-events: none;
-  z-index: 2;
-}
-
-.hero__line-right {
-  position: absolute;
-  top: 0;
-  right: 80px;
-  width: 1px;
-  height: 60px;
-  background: linear-gradient(to bottom, #fec90f, transparent);
-  opacity: 0.3;
-  pointer-events: none;
-  z-index: 2;
-}
-
-.hero__dot {
-  position: absolute;
-  bottom: 80px;
-  right: 80px;
-  width: 4px;
-  height: 4px;
-  background: rgba(254, 201, 15, 0.4);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 2;
-}
-
 /* CÍRCULOS FUNDO PRA COMBINAR */
 .hero::before {
   content: '';
@@ -280,23 +243,6 @@
     opacity: 0.9;
   }
   
-  .hero__line-top {
-    top: 70px;
-    left: 40px;
-    width: 40px;
-  }
-  
-  .hero__line-right {
-    right: 50px;
-    height: 45px;
-  }
-  
-  .hero__dot {
-    bottom: 50px;
-    right: 50px;
-  }
-  
-  /* ESTRELAS MENORES EM TABLET */
   .star {
     background: rgba(254, 201, 15, 0.3);
   }
@@ -308,10 +254,13 @@
   }
 
   .hero-bg-logo {
-    width: 78vw;
-    right: -5%;
-    top: 58%;
-    opacity: 0.28;
+    width: 45vw;
+    max-width: 200px;
+    right: 25%;
+    transform: translateX(50%) translateY(-50%);
+    top: 53%;
+    opacity: 0.22;
+    object-fit: contain;
   }
 
   .hero-container {
@@ -358,25 +307,6 @@
     left: -60px;
   }
   
-  .hero__line-top {
-    top: 50px;
-    left: 30px;
-    width: 35px;
-  }
-  
-  .hero__line-right {
-    right: 35px;
-    height: 35px;
-  }
-  
-  .hero__dot {
-    bottom: 35px;
-    right: 35px;
-    width: 3px;
-    height: 3px;
-  }
-  
-  /* ESTRELAS MAIS SUTIS EM TABLET */
   .star {
     background: rgba(254, 201, 15, 0.25);
   }
@@ -388,10 +318,11 @@
   }
 
   .hero-bg-logo {
-    width: 78vw;
-    right: -7%;
-    top: 52%;
-    opacity: 0.5;
+    width: 55vw;
+    max-width: 180px;
+    top: 50%;
+    right: 20%;
+    opacity: 0.3;
   }
 
   .hero-container {
@@ -431,24 +362,6 @@
     font-size: 0.8125rem;
   }
   
-  .hero__line-top {
-    top: 35px;
-    left: 20px;
-    width: 30px;
-  }
-  
-  .hero__line-right {
-    right: 25px;
-    height: 30px;
-  }
-  
-  .hero__dot {
-    bottom: 25px;
-    right: 25px;
-    width: 3px;
-    height: 3px;
-  }
-  
   /* ESTRELAS EM MOBILE */
   .hero__stars {
     opacity: 0.5;
@@ -461,9 +374,10 @@
 
 @media (max-width: 480px) {
   .hero-bg-logo {
-    width: 78vw;
-    right: -7%;
-    top: 47%;
+    width: 55vw;
+    max-width: 180px;
+    top: 50%;
+    right: 20%;
     opacity: 0.3;
   }
 
@@ -497,27 +411,6 @@
     display: none;
   }
   
-  .hero__line-top {
-    top: 95px;
-    left: 15px;
-    width: 25px;
-    opacity: 0.2;
-  }
-  
-  .hero__line-right {
-    right: 15px;
-    height: 25px;
-    opacity: 0.2;
-  }
-  
-  .hero__dot {
-    bottom: 20px;
-    right: 20px;
-    width: 2px;
-    height: 2px;
-    opacity: 0.3;
-  }
-  
   /* ESTRELAS EM MOBILE PEQUENO */
   .hero__stars {
     opacity: 0.3;
@@ -529,6 +422,12 @@
 }
 
 @media (max-width: 360px) {
+  .hero-bg-logo {
+    width: 65vw;
+    max-width: 160px;
+    opacity: 0.3;
+  }
+
   .hero-container {
     padding: 32px 16px;
   }
@@ -547,18 +446,6 @@
 
   .stat {
     font-size: 0.8125rem;
-  }
-  
-  .hero__line-top {
-    display: none;
-  }
-  
-  .hero__line-right {
-    display: none;
-  }
-  
-  .hero__dot {
-    display: none;
   }
   
   /* ESTRELAS EM TELAS MUITO PEQUENAS */
@@ -618,39 +505,5 @@
   100% {
     transform: translateX(100%);
     opacity: 0;
-  }
-}
-
-/* ============================================
-   AJUSTE PARA LOGO EM TELAS MENORES
-   ============================================ */
-
-@media (max-width: 768px) {
-  .hero-bg-logo {
-    width: 45vw;
-    max-width: 200px;
-    right: 25%;
-    transform: translateX(50%) translateY(-50%);
-    top: 53%;
-    opacity: 0.22;
-    object-fit: contain;
-  }
-}
-
-@media (max-width: 480px) {
-  .hero-bg-logo {
-    width: 55vw;
-    max-width: 180px;
-     top: 50%;
-       right: 20%;
-    opacity: 0.3;
-  }
-}
-
-@media (max-width: 360px) {
-  .hero-bg-logo {
-    width: 65vw;
-    max-width: 160px;
-    opacity: 0.3;
   }
 }
