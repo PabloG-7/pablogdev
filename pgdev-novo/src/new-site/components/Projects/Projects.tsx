@@ -1,5 +1,6 @@
 import './Projects.css'
 import { useEffect, useMemo, useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { pt } from '../../i18n/pt'
 import { es } from '../../i18n/es'
@@ -66,7 +67,6 @@ export default function Projects({ language }: ProjectsProps) {
 
   const projectNumber = useMemo(() => String(safeIndex + 1).padStart(2, '0'), [safeIndex])
 
-  // Pré-carrega a próxima imagem
   useEffect(() => {
     if (!totalProjects) return
 
@@ -91,13 +91,11 @@ export default function Projects({ language }: ProjectsProps) {
 
   return (
     <section className="projects" id="projetos" aria-labelledby="projects-title">
-      {/* Elementos minimalistas - DIFERENTES */}
       <div className="projects__dash-top"></div>
       <div className="projects__dash-bottom"></div>
       <div className="projects__cross"></div>
 
       <div className="projects__shell">
-        {/* LADO ESQUERDO - IMAGEM */}
         <div className="projects__visual" aria-live="polite">
           <a
             href={activeLink}
@@ -106,27 +104,40 @@ export default function Projects({ language }: ProjectsProps) {
             className="projects__image-link"
             aria-label={`${safeIndex >= 3 ? copy.viewDemo : copy.viewProject}: ${activeProject.title}`}
           >
-            <img 
-              className="projects__image" 
-              src={activeImage} 
-              alt={activeProject.title}
-              width={900}
-              height={560}
-              loading={safeIndex === 0 ? 'eager' : 'lazy'}
-              decoding="async"
-              fetchPriority={safeIndex === 0 ? 'high' : 'low'}
-            />
+            <AnimatePresence mode="wait">
+              <motion.img
+                key={activeImage}
+                src={activeImage}
+                alt={activeProject.title}
+                className="projects__image"
+                width={900}
+                height={560}
+                loading={safeIndex === 0 ? 'eager' : 'lazy'}
+                decoding="async"
+                fetchPriority={safeIndex === 0 ? 'high' : 'low'}
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.3, ease: 'easeInOut' }}
+              />
+            </AnimatePresence>
           </a>
         </div>
 
-        {/* LADO DIREITO - CONTEÚDO */}
         <div className="projects__copy">
           <h2 id="projects-title" className="projects__title">
             {copy.title}
           </h2>
 
           <div className="projects__meta">
-            <span>{projectNumber}</span>
+            <motion.span
+              key={projectNumber}
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.2 }}
+            >
+              {projectNumber}
+            </motion.span>
             <div>
               <strong>{activeProject.category}</strong>
               <small>{activeProject.title}</small>
@@ -135,25 +146,41 @@ export default function Projects({ language }: ProjectsProps) {
         </div>
       </div>
 
-      {/* CONTROLES E DOTS FORA DO SHELL */}
       <div className="projects__controls" aria-label="Controle do carrossel de projetos">
-        <button type="button" onClick={prevProject} aria-label={copy.previous}>
+        <motion.button 
+          type="button" 
+          onClick={prevProject} 
+          aria-label={copy.previous}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          transition={{ duration: 0.2 }}
+        >
           <ChevronLeft size={28} />
-        </button>
-        <button type="button" onClick={nextProject} aria-label={copy.next}>
+        </motion.button>
+        <motion.button 
+          type="button" 
+          onClick={nextProject} 
+          aria-label={copy.next}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          transition={{ duration: 0.2 }}
+        >
           <ChevronRight size={28} />
-        </button>
+        </motion.button>
       </div>
 
       <div className="projects__dots" aria-label="Projetos disponíveis">
         {projects.map((project, index) => (
-          <button
+          <motion.button
             type="button"
             key={project.title}
             className={index === currentProject ? 'is-active' : ''}
             onClick={() => setCurrentProject(index)}
             aria-label={`${copy.page} ${index + 1}`}
             aria-current={index === currentProject}
+            whileHover={{ scale: 1.2 }}
+            whileTap={{ scale: 0.95 }}
+            transition={{ duration: 0.2 }}
           />
         ))}
       </div>
