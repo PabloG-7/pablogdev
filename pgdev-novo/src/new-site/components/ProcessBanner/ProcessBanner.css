@@ -177,7 +177,7 @@
   }
 }
 
-/* Mobile - ocupando todo espaço (igual ao antigo) */
+/* Mobile - ocupando todo espaço */
 @media (max-width: 768px) {
   .process-banner {
     padding: 28px 0 34px;
@@ -200,8 +200,13 @@
   .process-image {
     max-width: 100%;
     width: 100%;
-    margin: 0;
+    aspect-ratio: 16 / 9;
     border-radius: 0;
+    box-shadow: none;
+    border: none;
+  }
+
+  .process-image:hover {
     box-shadow: none;
     border: none;
   }
