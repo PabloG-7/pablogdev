@@ -77,15 +77,14 @@ export default function Hero({ language }: HeroProps) {
       <div className="hero-container">
         <div className="hero-content">
           {/* NOVO TÍTULO */}
-          <h1 className="hero-title">
-            {language === 'pt'
-              ? 'Transforme seu atendimento com'
-              : 'Transforma tu atención con'}{' '}
-            <span className="hero-highlight">
-              {language === 'pt' ? 'sites e sistemas' : 'sitios y sistemas'}
-            </span>
-          </h1>
-
+        <h1 className="hero-title">
+  {language === 'pt'
+    ? 'Transforme seu atendimento e vendas com'
+    : 'Transforma tu atención y ventas con'}{' '}
+  <span className="hero-highlight">
+    {language === 'pt' ? 'sites e sistemas' : 'sitios y sistemas'}
+  </span>
+</h1>
           {/* NOVO SUBTÍTULO */}
           <p className="hero-text">
             {language === 'pt'
