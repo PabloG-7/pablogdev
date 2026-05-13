@@ -1,5 +1,4 @@
 import './Hero.css'
-import { useState, useEffect } from 'react'
 import heroDevices from '../../assets/hero-devices.png'
 import logo from '../../assets/logo.png'
 import { ArrowRight, Calendar, MessageCircle, Layout, Headphones, Lightbulb, Code, TrendingUp } from 'lucide-react'
@@ -11,24 +10,12 @@ type HeroProps = {
 }
 
 export default function Hero({ language }: HeroProps) {
-  const [isMobile, setIsMobile] = useState(false)
-
   const whatsappMessage =
     language === 'pt'
       ? 'Olá! Vi o site da PabloG.Dev e quero entender a melhor solução para meu negócio.'
       : '¡Hola! Vi el sitio de PabloG.Dev y quiero entender la mejor solución para mi negocio.'
 
   const whatsappLink = `https://wa.me/5511961111894?text=${encodeURIComponent(whatsappMessage)}`
-
-  // Detectar tela menor que 768px
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 768)
-    }
-    checkMobile()
-    window.addEventListener('resize', checkMobile)
-    return () => window.removeEventListener('resize', checkMobile)
-  }, [])
 
   // Gerar estrelas aleatórias
   const stars = Array.from({ length: 30 }, (_, i) => ({
@@ -66,25 +53,34 @@ export default function Hero({ language }: HeroProps) {
       <div className="hero__dot"></div>
       <div className="hero__wave"></div>
 
-      {/* IMAGEM DE FUNDO - TROCA EM TELAS MENORES */}
+      {/* IMAGEM DE FUNDO - DESKTOP */}
       <img 
-        src={isMobile ? logo : heroDevices} 
+        src={heroDevices}
         alt="" 
-        className="hero-bg-logo" 
+        className="hero-bg-logo hero-bg-logo--desktop" 
+        aria-hidden="true" 
+      />
+
+      {/* IMAGEM DE FUNDO - MOBILE */}
+      <img 
+        src={logo}
+        alt="" 
+        className="hero-bg-logo hero-bg-logo--mobile" 
         aria-hidden="true" 
       />
       
       <div className="hero-container">
         <div className="hero-content">
           {/* NOVO TÍTULO */}
-        <h1 className="hero-title">
-  {language === 'pt'
-    ? 'Transforme seu atendimento e vendas com'
-    : 'Transforma tu atención y ventas con'}{' '}
-  <span className="hero-highlight">
-    {language === 'pt' ? 'sites e sistemas' : 'sitios y sistemas'}
-  </span>
-</h1>
+          <h1 className="hero-title">
+            {language === 'pt'
+              ? 'Transforme seu atendimento e vendas com'
+              : 'Transforma tu atención y ventas con'}{' '}
+            <span className="hero-highlight">
+              {language === 'pt' ? 'sites e sistemas' : 'sitios y sistemas'}
+            </span>
+          </h1>
+          
           {/* NOVO SUBTÍTULO */}
           <p className="hero-text">
             {language === 'pt'

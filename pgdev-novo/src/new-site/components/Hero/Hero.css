@@ -507,3 +507,21 @@
     opacity: 0;
   }
 }
+
+.hero-bg-logo--mobile {
+  display: none;
+}
+
+.hero-bg-logo--desktop {
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .hero-bg-logo--desktop {
+    display: none;
+  }
+
+  .hero-bg-logo--mobile {
+    display: block;
+  }
+}
