@@ -49,13 +49,13 @@ export default function PabloGomesPage({ language }: Props) {
 
             <h1>
               Pablo Gomes de Oliveira
-              <span>PabloG.Dev</span>
+              <span>Desenvolvedor da PabloG.Dev</span>
             </h1>
 
             <p>
               {isPt
-                ? 'Desenvolvedor focado em criar soluções digitais sob medida para negócios. Especializado em sites profissionais, sistemas web e agendamentos online que resolvem problemas reais.'
-                : 'Desarrollador enfocado en crear soluciones digitales a medida para negocios. Especializado en sitios web profesionales, sistemas web y reservas online que resuelven problemas reales.'}
+                ? 'Pablo Gomes de Oliveira é o desenvolvedor por trás da PabloG.Dev, também conhecido como PabloG e PabloGDev, criando sites profissionais, sistemas web e agendamentos online para negócios..'
+                : 'Pablo Gomes de Oliveira es el desarrollador detrás de PabloG.Dev, también conocido como PabloG y PabloGDev, creando sitios profesionales, sistemas web y agendamientos en línea para negocios..'}
             </p>
 
             <div className="pablo-actions">
@@ -67,27 +67,31 @@ export default function PabloGomesPage({ language }: Props) {
             </div>
 
             {/* Social Links com palavras coloridas */}
-<div className="pablo-social-text">
-  <a href="https://github.com/pablog-7" target="_blank" rel="noopener noreferrer" className="social-github">
-    GitHub
-  </a>
-  <span className="social-separator">•</span>
-  <a href="https://www.linkedin.com/in/pablogomesdev/" target="_blank" rel="noopener noreferrer" className="social-linkedin">
-    LinkedIn
-  </a>
-  <span className="social-separator">•</span>
-  <a href="https://www.instagram.com/pablog.dev/" target="_blank" rel="noopener noreferrer" className="social-instagram">
-    Instagram
-  </a>
-  <span className="social-separator">•</span>
-  <a href="https://www.facebook.com/profile.php?id=61579501306846" target="_blank" rel="noopener noreferrer" className="social-facebook">
-    Facebook
-  </a>
-  <span className="social-separator">•</span>
-  <a href="mailto:pgdevsoftware@gmail.com" className="social-email">
-    E-mail
-  </a>
-</div>
+            <div className="pablo-social-text">
+              <a href="https://github.com/pablog-7" target="_blank" rel="noopener noreferrer" className="social-github">
+                GitHub
+              </a>
+              <span className="social-separator">•</span>
+              <a href="https://www.linkedin.com/in/pablogomesdev/" target="_blank" rel="noopener noreferrer" className="social-linkedin">
+                LinkedIn
+              </a>
+              <span className="social-separator">•</span>
+              <a href="https://www.instagram.com/pablog.dev/" target="_blank" rel="noopener noreferrer" className="social-instagram">
+                Instagram
+              </a>
+              <span className="social-separator">•</span>
+              <a href="https://www.instagram.com/pablogomesss__/" target="_blank" rel="noopener noreferrer" className="social-instagram-personal">
+                Instagram Pessoal
+              </a>
+              <span className="social-separator">•</span>
+              <a href="https://www.facebook.com/profile.php?id=61579501306846" target="_blank" rel="noopener noreferrer" className="social-facebook">
+                Facebook
+              </a>
+              <span className="social-separator">•</span>
+              <a href="mailto:pgdevsoftware@gmail.com" className="social-email">
+                E-mail
+              </a>
+            </div>
           </div>
         </div>
       </section>

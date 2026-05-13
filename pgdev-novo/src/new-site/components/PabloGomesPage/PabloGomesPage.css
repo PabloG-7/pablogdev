@@ -560,3 +560,17 @@
     font-size: 0.7rem;
   }
 }
+/* Instagram Pessoal */
+.social-instagram-personal {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.social-instagram-personal:hover {
+  color: #ffffff;
+  background: linear-gradient(135deg, #f58529, #dd2a7b, #8134af);
+  border-color: transparent;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(221, 42, 123, 0.35);
+}
