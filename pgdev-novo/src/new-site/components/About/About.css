@@ -372,7 +372,7 @@
   object-fit: contain; /* Muda de cover para contain */
   /* OU usa scale-down para manter proporção sem cortar */
   
-  opacity: 0.08;
+  opacity: 1.08;
   
   filter:
     blur(1px)
@@ -386,6 +386,6 @@
 @media (max-width: 768px) {
   .about-video {
     object-fit: cover; /* Volta para cover no mobile se preferir */
-    opacity: 0.05; /* Reduz ainda mais a opacidade */
+    opacity: 0.17; /* Reduz ainda mais a opacidade */
   }
 }
