@@ -36,22 +36,22 @@ function ProcessBanner({ language }: ProcessBannerProps) {
     const esBanners = [
       {
         id: 1,
-        image: '/banner-1.png',
+        image: '/banneres-1.png',
         alt: 'Atención rápida por WhatsApp',
       },
       {
         id: 2,
-        image: '/banner-2.png',
+        image: '/banneres-2.png',
         alt: 'Agendamientos online',
       },
       {
         id: 3,
-        image: '/banner-3.png',
+        image: '/banneres-3.png',
         alt: 'Experiencia tipo app',
       },
       {
         id: 4,
-        image: '/banner-4.png',
+        image: '/banneres-4.png',
         alt: 'Sitios profesionales',
       },
     ]
