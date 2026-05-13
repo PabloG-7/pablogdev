@@ -1,5 +1,5 @@
 import './About.css'
-import logo from '../../assets/logo.png'
+import logo from '../../assets/apenas-logo-pablogdev.png'
 import { pt } from '../../i18n/pt'
 import { es } from '../../i18n/es'
 import type { Language } from '../../types'
@@ -13,6 +13,17 @@ export default function About({ language }: AboutProps) {
 
   return (
     <section className="about" id="sobre">
+      {/* Vídeo de fundo premium */}
+      <video
+        className="about-video"
+        autoPlay
+        muted
+        loop
+        playsInline
+      >
+        <source src="/about-video.mp4" type="video/mp4" />
+      </video>
+
       {/* Elementos minimalistas - VERSÃO PONTOS */}
       <div className="about__dot-top"></div>
       <div className="about__dot-bottom"></div>
