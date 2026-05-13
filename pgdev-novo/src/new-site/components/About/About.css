@@ -369,10 +369,9 @@
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: contain; /* Muda de cover para contain */
-  /* OU usa scale-down para manter proporção sem cortar */
+  object-fit: cover; /* Volta para cover em desktop para preencher tudo */
   
-  opacity: 1.08;
+  opacity: 0.17;
   
   filter:
     blur(1px)
@@ -382,10 +381,19 @@
   z-index: 0;
 }
 
-/* No mobile - mostrar o vídeo de forma diferente */
+/* Em telas grandes (notebook/desktop) - garantir que preencha */
+@media (min-width: 1024px) {
+  .about-video {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+/* No mobile - mostrar o vídeo sem cortar muito */
 @media (max-width: 768px) {
   .about-video {
-    object-fit: cover; /* Volta para cover no mobile se preferir */
-    opacity: 0.17; /* Reduz ainda mais a opacidade */
+    object-fit: contain; /* No mobile usa contain para não cortar */
+    opacity: 0.17;
   }
 }
