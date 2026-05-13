@@ -141,10 +141,10 @@
   }
 }
 
-/* Mobile - SEM SETAS e imagem enorme */
+/* Mobile - COM BORDAS ARREDONDADAS E MENOR PADDING */
 @media (max-width: 768px) {
   .process-banner {
-    padding: 40px 0;
+    padding: 28px 0 34px;
   }
 
   /* Remove as setas no mobile */
@@ -158,9 +158,10 @@
   }
 
   .process-image {
-    max-width: 100%;
-    width: 100%;
-    border-radius: 0;
+    max-width: calc(100% - 24px);
+    width: calc(100% - 24px);
+    margin: 0 auto;
+    border-radius: 18px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   }
 
@@ -182,6 +183,16 @@
 
 /* Para telas muito pequenas */
 @media (max-width: 480px) {
+  .process-banner {
+    padding: 24px 0 30px;
+  }
+
+  .process-image {
+    max-width: calc(100% - 16px);
+    width: calc(100% - 16px);
+    border-radius: 14px;
+  }
+
   .dot {
     width: 35px;
   }
