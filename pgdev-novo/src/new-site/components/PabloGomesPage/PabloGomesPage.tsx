@@ -14,16 +14,16 @@ export default function PabloGomesPage({ language }: Props) {
   // SEO: Atualizar title e description da página
   useEffect(() => {
     document.title = isPt
-      ? 'Pablo Gomes | Criador da PabloG.Dev'
-      : 'Pablo Gomes | Creador de PabloG.Dev'
+      ? 'Pablo Gomes de Oliveira | Criador da PabloG.Dev'
+      : 'Pablo Gomes de Oliveira | Creador de PabloG.Dev'
 
     const description = document.querySelector('meta[name="description"]')
     if (description) {
       description.setAttribute(
         'content',
         isPt
-          ? 'Pablo Gomes é o profissional por trás da PabloG.Dev, focada em sites profissionais, sistemas web e agendamentos online para empresas.'
-          : 'Pablo Gomes es el profesional detrás de PabloG.Dev, enfocada en sitios web profesionales, sistemas web y reservas online para empresas.'
+          ? 'Pablo Gomes de Oliveira é o desenvolvedor por trás da PabloG.Dev, também encontrada como PabloG, PabloGDev e PablogDev.'
+          : 'Pablo Gomes de Oliveira es el desarrollador detrás de PabloG.Dev, también encontrada como PabloG, PabloGDev y PablogDev.'
       )
     }
   }, [isPt])
@@ -48,7 +48,7 @@ export default function PabloGomesPage({ language }: Props) {
             </span>
 
             <h1>
-              Pablo Gomes
+              Pablo Gomes de Oliveira
               <span>PabloG.Dev</span>
             </h1>
 
