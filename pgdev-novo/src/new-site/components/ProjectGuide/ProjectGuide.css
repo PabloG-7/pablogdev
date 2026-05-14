@@ -200,10 +200,10 @@ body {
 }
 
 .project-guide__assistant-icon {
-  width: 44px;
+  width: 49px;
   height: 44px;
   border-radius: 12px;
-  background: rgba(254, 201, 15, 0.1);
+  background: #fec90f;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -212,8 +212,8 @@ body {
 }
 
 .project-guide__assistant-image {
-  width: 56px;
-  height: 56px;
+  width: 76px;
+  height: 76px;
   object-fit: contain;
   margin-top: -6px;
 }
