@@ -1,3 +1,16 @@
+/* ============================================
+   FIX BODY SCROLL LOCK
+   ============================================ */
+
+html,
+body {
+  overscroll-behavior: none;
+}
+
+/* ============================================
+   PROJECT GUIDE - FLOAT BUTTON
+   ============================================ */
+
 .project-guide-float {
   position: fixed;
   right: max(24px, env(safe-area-inset-right));
@@ -28,6 +41,7 @@
   width: 125%;
   height: 125%;
   object-fit: contain;
+  margin-bottom: 6px;
 }
 
 /* Tooltip texto */
@@ -118,7 +132,7 @@
 }
 
 .project-guide__overlay {
-  position: absolute;
+  position: fixed;
   inset: 0;
   background: rgba(0, 12, 36, 0.85);
   backdrop-filter: blur(6px);
@@ -193,15 +207,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+  overflow: visible;
   flex-shrink: 0;
 }
 
 .project-guide__assistant-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 12px;
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+  margin-top: -6px;
 }
 
 .project-guide__badge {
@@ -563,6 +577,12 @@
   .project-guide__assistant-icon {
     width: 36px;
     height: 36px;
+  }
+
+  .project-guide__assistant-image {
+    width: 48px;
+    height: 48px;
+    margin-top: -4px;
   }
 
   .project-guide__title {

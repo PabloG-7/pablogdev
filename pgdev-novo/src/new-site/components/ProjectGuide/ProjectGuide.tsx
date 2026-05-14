@@ -565,7 +565,19 @@ function ProjectGuide({ language }: ProjectGuideProps) {
   }, [])
 
   useEffect(() => {
-    if (!open) return
+    if (!open) {
+      document.body.style.overflow = ''
+      document.body.style.position = ''
+      document.body.style.width = ''
+      return
+    }
+
+    // Bloqueia scroll do fundo
+    const scrollY = window.scrollY
+    document.body.style.overflow = 'hidden'
+    document.body.style.position = 'fixed'
+    document.body.style.width = '100%'
+    document.body.style.top = `-${scrollY}px`
 
     setTimeout(() => closeButtonRef.current?.focus(), 100)
 
@@ -576,6 +588,11 @@ function ProjectGuide({ language }: ProjectGuideProps) {
     window.addEventListener('keydown', handleKeyDown)
 
     return () => {
+      document.body.style.overflow = ''
+      document.body.style.position = ''
+      document.body.style.width = ''
+      document.body.style.top = ''
+      window.scrollTo(0, scrollY)
       window.removeEventListener('keydown', handleKeyDown)
     }
   }, [open])
