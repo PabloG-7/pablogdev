@@ -522,11 +522,11 @@ body {
   }
 
   .project-guide-float {
-    right: max(16px, env(safe-area-inset-right));
-    bottom: max(16px, env(safe-area-inset-bottom));
-    width: 50px;
-    height: 50px;
-  }
+  right: max(16px, env(safe-area-inset-right));
+  bottom: max(82px, env(safe-area-inset-bottom));
+  width: 50px;
+  height: 50px;
+}
 
   .project-guide-float::before {
     display: none;
