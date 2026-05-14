@@ -28,7 +28,7 @@
 
 /* Tooltip texto */
 .project-guide-float::before {
-  content: 'Montar meu projeto →';
+  content: 'Diagnóstico inteligente →';
   position: absolute;
   right: 64px;
   top: 50%;
@@ -89,7 +89,7 @@
 }
 
 /* ============================================
-   MODAL - COM SUPORTE SAFE-AREA
+   MODAL - SMART DIAGNOSTIC
    ============================================ */
 
 .project-guide {
@@ -118,7 +118,7 @@
 .project-guide__modal {
   position: relative;
   z-index: 1;
-  width: min(100%, 480px);
+  width: min(100%, 560px);
   max-height: calc(100vh - 32px);
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
@@ -156,12 +156,32 @@
   align-items: center;
   justify-content: center;
   transition: all 0.2s ease;
+  z-index: 2;
 }
 
 .project-guide__close:hover {
   background: rgba(255, 255, 255, 0.08);
   color: #fff;
   transform: scale(1.05);
+}
+
+/* Header com ícone do assistente */
+.project-guide__header {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.project-guide__assistant-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: rgba(254, 201, 15, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fec90f;
 }
 
 .project-guide__badge {
@@ -174,22 +194,73 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  margin-bottom: 18px;
+  margin-bottom: 8px;
 }
 
 .project-guide__title {
-  margin: 0 0 12px;
-  font-size: 1.1rem;
+  margin: 0;
+  font-size: 1.2rem;
   font-weight: 700;
+  color: #ffffff;
+  line-height: 1.3;
+}
+
+/* Barra de progresso */
+.project-guide__progress {
+  height: 3px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 3px;
+  margin: 20px 0 16px;
+  overflow: hidden;
+}
+
+.project-guide__progress span {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, #fec90f, #ffd43b);
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+.project-guide__helper {
+  margin: 0 0 20px;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+/* Step */
+.project-guide__step {
+  margin-bottom: 24px;
+}
+
+.project-guide__question {
+  margin: 0 0 16px;
+  font-size: 1rem;
+  font-weight: 600;
   color: #ffffff;
   line-height: 1.4;
 }
 
+.project-guide__mini-title {
+  margin: 16px 0 10px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Opções */
 .project-guide__options {
   display: flex;
   flex-direction: column;
   gap: 10px;
   margin-bottom: 12px;
+}
+
+.project-guide__options--grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
 }
 
 .project-guide__option {
@@ -237,18 +308,12 @@
 
 .project-guide__option small {
   display: block;
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   color: rgba(255, 255, 255, 0.5);
   font-weight: normal;
 }
 
-.project-guide__helper {
-  margin: 4px 0 14px;
-  color: rgba(255, 255, 255, 0.45);
-  font-size: 0.75rem;
-  line-height: 1.4;
-}
-
+/* Chips */
 .project-guide__chips {
   display: flex;
   flex-wrap: wrap;
@@ -284,33 +349,98 @@
   font-weight: 700;
 }
 
-.project-guide__chips--single {
+/* Resultado da recomendação */
+.project-guide__result {
+  margin-top: 24px;
+  padding: 18px;
+  border-radius: 16px;
+  background: rgba(254, 201, 15, 0.04);
+  border: 1px solid rgba(254, 201, 15, 0.1);
+}
+
+.project-guide__result span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #fec90f;
+  margin-bottom: 12px;
+}
+
+.project-guide__result strong {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+
+.project-guide__result ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.project-guide__result li {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.8rem;
+  line-height: 1.6;
+  margin-bottom: 6px;
+}
+
+.project-guide__result li:last-child {
+  margin-bottom: 0;
+}
+
+/* Footer com botões */
+.project-guide__footer {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.project-guide__back {
+  padding: 12px 20px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
   gap: 8px;
 }
 
-.project-guide__chips--single button {
-  width: 100%;
-  justify-content: flex-start;
-  border-radius: 12px;
+.project-guide__back:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(254, 201, 15, 0.2);
+  color: #ffffff;
+  transform: translateX(-2px);
 }
 
 .project-guide__submit {
-  width: 100%;
-  margin-top: 28px;
-  padding: 14px 20px;
-  border-radius: 14px;
+  flex: 1;
+  padding: 12px 20px;
+  border-radius: 12px;
   background: #fec90f;
   border: none;
   color: #000c24;
   font-weight: 700;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   cursor: pointer;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 8px;
   transition: all 0.2s ease;
 }
 
@@ -327,12 +457,12 @@
 }
 
 /* ============================================
-   RESPONSIVE - COM SUPORTE SAFE-AREA (PADDING TOP AUMENTADO)
+   RESPONSIVE
    ============================================ */
 
 @media (max-width: 640px) {
   .project-guide {
-    padding-top: max(56px, env(safe-area-inset-top));  /* ← AUMENTADO para 56px */
+    padding-top: max(56px, env(safe-area-inset-top));
     padding-right: max(12px, env(safe-area-inset-right));
     padding-bottom: max(12px, env(safe-area-inset-bottom));
     padding-left: max(12px, env(safe-area-inset-left));
@@ -344,10 +474,8 @@
     border-radius: 18px;
   }
 
-  @supports (height: 100dvh) {
-    .project-guide__modal {
-      max-height: calc(100dvh - 64px);
-    }
+  .project-guide__options--grid {
+    grid-template-columns: 1fr;
   }
 
   .project-guide-float {
@@ -358,25 +486,15 @@
   }
 
   .project-guide-float::before {
-    right: 62px;
-    font-size: 0.7rem;
-    padding: 6px 14px;
+    display: none;
   }
 
   .project-guide-float::after {
-    right: 56px;
-  }
-
-  .project-guide-float:hover::before {
-    right: 66px;
-  }
-
-  .project-guide-float:hover::after {
-    right: 60px;
+    display: none;
   }
 
   .project-guide__option {
-    padding: 13px 14px;
+    padding: 12px 14px;
     gap: 12px;
   }
 
@@ -385,65 +503,45 @@
     justify-content: center;
   }
 
-  .project-guide__chips--single button {
-    justify-content: flex-start;
+  .project-guide__title {
+    font-size: 1rem;
+  }
+
+  .project-guide__footer {
+    flex-wrap: wrap;
+  }
+
+  .project-guide__back {
+    width: auto;
+    padding: 12px 16px;
+  }
+
+  .project-guide__submit {
+    width: auto;
   }
 }
 
 @media (max-width: 480px) {
   .project-guide__modal {
-    padding: 22px 16px;
+    padding: 20px 16px;
+  }
+
+  .project-guide__header {
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .project-guide__assistant-icon {
+    width: 36px;
+    height: 36px;
   }
 
   .project-guide__title {
-    font-size: 1rem;
+    font-size: 0.95rem;
   }
 
-  .project-guide__badge {
-    font-size: 0.65rem;
-    margin-bottom: 14px;
-  }
-
-  .project-guide__option {
-    padding: 12px 14px;
-  }
-
-  .project-guide__option strong {
-    font-size: 0.85rem;
-  }
-
-  .project-guide__option small {
-    font-size: 0.7rem;
-    line-height: 1.35;
-  }
-
-  .project-guide__submit {
-    padding: 13px;
-    font-size: 0.85rem;
-  }
-
-  .project-guide-float {
-    width: 46px;
-    height: 46px;
-  }
-
-  .project-guide-float::before {
-    display: none;
-  }
-  
-  .project-guide-float::after {
-    display: none;
-  }
-
-  .project-guide__chips button {
-    font-size: 0.75rem;
-    padding: 8px 14px;
-  }
-}
-
-@media (max-width: 360px) {
-  .project-guide__modal {
-    padding: 20px 14px;
+  .project-guide__question {
+    font-size: 0.9rem;
   }
 
   .project-guide__option {
@@ -451,14 +549,57 @@
     gap: 10px;
   }
 
-  .project-guide__chips button {
-    font-size: 0.7rem;
-    padding: 7px 12px;
+  .project-guide__option strong {
+    font-size: 0.85rem;
   }
 
+  .project-guide__option small {
+    font-size: 0.65rem;
+  }
+
+  .project-guide__chips button {
+    font-size: 0.75rem;
+    padding: 7px 14px;
+  }
+
+  .project-guide__result {
+    padding: 14px;
+  }
+
+  .project-guide__result strong {
+    font-size: 0.85rem;
+  }
+
+  .project-guide__result li {
+    font-size: 0.75rem;
+  }
+
+  .project-guide__back,
   .project-guide__submit {
-    padding: 12px;
+    padding: 10px 16px;
     font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .project-guide__modal {
+    padding: 18px 14px;
+  }
+
+  .project-guide__option {
+    padding: 8px 10px;
+    gap: 8px;
+  }
+
+  .project-guide__chips button {
+    font-size: 0.7rem;
+    padding: 6px 12px;
+  }
+
+  .project-guide__back,
+  .project-guide__submit {
+    padding: 8px 14px;
+    font-size: 0.75rem;
   }
 }
 
@@ -467,7 +608,62 @@
 .project-guide__option:focus-visible,
 .project-guide__chips button:focus-visible,
 .project-guide__submit:focus-visible,
+.project-guide__back:focus-visible,
 .project-guide-float:focus-visible {
   outline: 2px solid #fec90f;
   outline-offset: 2px;
 }
+
+/* ============================================
+   CUSTOM FIELDS (NOME E IDEIA)
+   ============================================ */
+
+.project-guide__custom {
+  display: grid;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.project-guide__custom label {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.project-guide__custom input,
+.project-guide__custom textarea {
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+  color: #ffffff;
+  padding: 12px 14px;
+  outline: none;
+  font-size: 0.85rem;
+  transition: all 0.2s ease;
+}
+
+.project-guide__custom input:focus,
+.project-guide__custom textarea:focus {
+  border-color: rgba(254, 201, 15, 0.4);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.project-guide__custom input::placeholder,
+.project-guide__custom textarea::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.project-guide__custom textarea {
+  min-height: 96px;
+  resize: vertical;
+  font-family: inherit;
+}
+
+.project-guide__result-priority {
+  margin: 0 0 12px;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
