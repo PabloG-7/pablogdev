@@ -255,7 +255,7 @@ function ProjectGuide({ language }: ProjectGuideProps) {
         { key: 'messageFlow', label: isPt ? 'Mensagens prontas e botões inteligentes' : 'Mensajes listos y botones inteligentes' },
         { key: 'catalog', label: isPt ? 'Catálogo simples integrado ao WhatsApp' : 'Catálogo simple integrado a WhatsApp' },
         { key: 'contactRoute', label: isPt ? 'Direcionamento inteligente de atendimento' : 'Direccionamiento inteligente de atención' },
-        { key: 'supportPage', label: isPt ? 'Página simples de apoio e informações' : 'Página simple de apoyo e informaciones' },
+        { key: 'supportPage', label: isPt ? 'Página simples de apoio e informações' : 'Página simple de apoyo e información' },
         { key: 'quickReply', label: isPt ? 'Respostas rápidas para perguntas comuns' : 'Respuestas rápidas para preguntas comunes' },
       ]
     }
@@ -558,6 +558,12 @@ function ProjectGuide({ language }: ProjectGuideProps) {
     closeGuide()
   }
 
+  // Pré-carregar a imagem do assistente
+  useEffect(() => {
+    const img = new Image()
+    img.src = '/dog-assistant.webp'
+  }, [])
+
   useEffect(() => {
     if (!open) return
 
@@ -585,9 +591,12 @@ function ProjectGuide({ language }: ProjectGuideProps) {
           aria-label={isPt ? 'Abrir diagnóstico inteligente' : 'Abrir diagnóstico inteligente'}
         >
           <img
-            src="/dog-assistant.png"
+            src="/dog-assistant.webp"
             alt={isPt ? 'Assistente PabloG' : 'Asistente PabloG'}
             className="project-guide__float-image"
+            width="70"
+            height="70"
+            decoding="async"
           />
         </button>
       )}
@@ -620,9 +629,12 @@ function ProjectGuide({ language }: ProjectGuideProps) {
             <div className="project-guide__header">
               <div className="project-guide__assistant-icon">
                 <img
-                  src="/dog-assistant.png"
+                  src="/dog-assistant.webp"
                   alt={isPt ? 'Assistente PabloG' : 'Asistente PabloG'}
                   className="project-guide__assistant-image"
+                  width="44"
+                  height="44"
+                  decoding="async"
                 />
               </div>
 

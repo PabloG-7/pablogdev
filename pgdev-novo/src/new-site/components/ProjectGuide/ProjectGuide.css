@@ -1,16 +1,3 @@
-/* ============================================
-   PREVENT BOUNCE/OVERSCOLL
-   ============================================ */
-
-html,
-body {
-  overscroll-behavior: none;
-}
-
-/* ============================================
-   PROJECT GUIDE - FLOAT BUTTON
-   ============================================ */
-
 .project-guide-float {
   position: fixed;
   right: max(24px, env(safe-area-inset-right));
