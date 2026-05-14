@@ -14,7 +14,11 @@ export default function Footer({ language }: FooterProps) {
   const content = language === 'pt' ? pt : es
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
+    try {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    } catch {
+      window.scrollTo(0, 0)
+    }
   }
 
   return (
@@ -30,7 +34,13 @@ export default function Footer({ language }: FooterProps) {
         <div className="footer-main">
           <div className="footer-brand">
             <div className="footer-logo-wrapper">
-              <img src={logo} alt="PabloG.Dev" className="footer-logo" />
+              <img 
+                src={logo} 
+                alt="PabloG.Dev" 
+                className="footer-logo" 
+                loading="lazy"
+                decoding="async"
+              />
               <div className="footer-logo-glow"></div>
             </div>
             <div>
@@ -48,7 +58,15 @@ export default function Footer({ language }: FooterProps) {
                 {content.footer.contact}
               </h4>
               <div className="footer-contact-info">
-                <a href="https://wa.me/5511961111894" target="_blank" rel="noreferrer">
+                <a 
+                  href={
+                    language === 'pt'
+                      ? 'https://wa.me/5511961111894?text=Olá!%20Vi%20o%20site%20da%20PabloG.Dev%20e%20quero%20entender%20melhor%20os%20serviços.'
+                      : 'https://wa.me/5511961111894?text=¡Hola!%20Vi%20el%20sitio%20de%20PabloG.Dev%20y%20quiero%20entender%20mejor%20los%20servicios.'
+                  } 
+                  target="_blank" 
+                  rel="noreferrer"
+                >
                   <div className="footer-icon-bg">
                     <FaWhatsapp size={14} />
                   </div>
@@ -88,7 +106,11 @@ export default function Footer({ language }: FooterProps) {
 
         <div className="footer-bottom">
           <span>{content.footer.copyright}</span>
-          <button onClick={scrollToTop} className="footer-back-top" aria-label="Voltar ao topo">
+          <button 
+            onClick={scrollToTop} 
+            className="footer-back-top" 
+            aria-label={language === 'pt' ? 'Voltar ao topo' : 'Volver arriba'}
+          >
             <ChevronUp size={18} />
           </button>
         </div>

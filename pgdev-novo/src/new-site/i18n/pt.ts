@@ -180,10 +180,9 @@ projects: {
   },
 
   footer: {
-    text: 'Sites e sistemas profissionais para negócios que querem crescer com mais presença e organização.',
-    contact: 'Contato',
-    socialMedia: 'Redes Sociais',
-    copyright: '© 2026 PabloG.Dev - Todos os direitos reservados.',
-    accentColor: '#fec90f'
-  }
-}
+  text: 'Sites, sistemas e plataformas de agendamento para negócios que querem crescer com mais presença e organização.',
+  contact: 'Contato',
+  socialMedia: 'Redes Sociais',
+  copyright: '© 2026 PabloG Dev - Todos os direitos reservados.',
+  accentColor: '#fec90f'
+}}
