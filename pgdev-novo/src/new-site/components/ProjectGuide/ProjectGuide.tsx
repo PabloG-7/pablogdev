@@ -561,9 +561,6 @@ function ProjectGuide({ language }: ProjectGuideProps) {
   useEffect(() => {
     if (!open) return
 
-    document.body.style.overflow = 'hidden'
-    document.documentElement.style.overflow = 'hidden'
-
     setTimeout(() => closeButtonRef.current?.focus(), 100)
 
     function handleKeyDown(event: KeyboardEvent) {
@@ -573,8 +570,6 @@ function ProjectGuide({ language }: ProjectGuideProps) {
     window.addEventListener('keydown', handleKeyDown)
 
     return () => {
-      document.body.style.overflow = ''
-      document.documentElement.style.overflow = ''
       window.removeEventListener('keydown', handleKeyDown)
     }
   }, [open])
