@@ -9,22 +9,18 @@ import {
   Clock,
   Star,
   PawPrint,
-  User,
-  Phone,
   Info,
-  Award,
   Shield,
   Heart,
-  Bone,
-  Home,
   Scissors,
-  Syringe,
   Dog,
-  MapPin,
   CreditCard,
-    Droplet,      // Para Banho
-  Sparkles,     // Para Banho + Tosa (completo)
-  Stethoscope   // Para Consulta veterinária
+  Droplet,
+  Sparkles,
+  Stethoscope,
+  Gift,
+  Trophy,
+  Users
 } from 'lucide-react'
 import './PetshopDemo.css'
 import '../BookingDemoGlobal.css'
@@ -41,36 +37,13 @@ export default function PetshopDemo({ language }: Props) {
 
   const text = {
     back: isPt ? 'Voltar' : 'Volver',
-    service: isPt ? 'SERVIÇO' : 'SERVICIO',
-    professional: isPt ? 'PROFISSIONAL' : 'PROFESIONAL',
-    date: isPt ? 'DATA' : 'FECHA',
-    time: isPt ? 'HORÁRIO' : 'HORARIO',
-    fullName: isPt ? 'NOME DO TUTOR' : 'NOMBRE DEL TUTOR',
-    namePlaceholder: isPt ? 'Digite seu nome completo' : 'Escribe tu nombre completo',
-    whatsapp: isPt ? 'WHATSAPP' : 'WHATSAPP',
-    phonePlaceholder: isPt ? '(11) 99999-9999' : '(11) 99999-9999',
-    petName: isPt ? 'NOME DO PET' : 'NOMBRE DE LA MASCOTA',
-    petNamePlaceholder: isPt ? 'Digite o nome do seu pet' : 'Escribe el nombre de tu mascota',
-    petSize: isPt ? 'PORTE DO PET' : 'TAMAÑO',
-    petBreed: isPt ? 'RAÇA (OPCIONAL)' : 'RAZA (OPCIONAL)',
-    petBreedPlaceholder: isPt ? 'Ex: Gold-Retriever, SRD' : 'Ej: Gold-Retriever',
-    observation: isPt ? 'OBSERVAÇÃO' : 'OBSERVACIÓN',
-    observationPlaceholder: isPt ? 'Alguma informação adicional? (ex: pet nervoso, precisa de atenção especial)' : '¿Información adicional?',
-    confirm: isPt ? 'CONFIRMAR AGENDAMENTO' : 'CONFIRMAR TURNO',
-    continue: isPt ? 'CONTINUAR' : 'CONTINUAR',
+    confirm: isPt ? 'Confirmar agendamento' : 'Confirmar',
+    continue: isPt ? 'Continuar' : 'Continuar',
     appointmentConfirmed: isPt ? 'Agendamento confirmado!' : '¡Turno confirmado!',
     hourReserved: isPt ? 'seu horário foi reservado com sucesso.' : 'tu horario fue reservado con éxito.',
-    newAppointmentBtn: isPt ? 'NOVO AGENDAMENTO' : 'NUEVO TURNO',
-    wantThisSystem: isPt ? 'QUERO ESTE SISTEMA' : 'QUIERO ESTE SISTEMA',
-    step1: isPt ? 'SERVIÇO' : 'SERVICIO',
-    step2: isPt ? 'PROFISSIONAL' : 'PROFESIONAL',
-    step3: isPt ? 'DATA' : 'FECHA',
-    step4: isPt ? 'HORÁRIO' : 'HORARIO',
-    step5: isPt ? 'DADOS' : 'DATOS',
-    total: isPt ? 'TOTAL' : 'TOTAL',
-    about: isPt ? 'SOBRE NÓS' : 'SOBRE NOSOTROS',
-    services: isPt ? 'NOSSOS SERVIÇOS' : 'NUESTROS SERVICIOS',
-    whyUs: isPt ? 'POR QUE ESCOLHER?' : 'POR QUÉ ELEGIR?'
+    newAppointmentBtn: isPt ? 'Novo agendamento' : 'Nuevo turno',
+    wantThisSystem: isPt ? 'Quero este sistema' : 'Quiero este sistema',
+    total: isPt ? 'Total' : 'Total'
   }
 
   const [activeStep, setActiveStep] = useState(1)
@@ -96,7 +69,6 @@ export default function PetshopDemo({ language }: Props) {
   useEffect(() => {
     document.documentElement.classList.add('booking-demo-active')
     document.body.classList.add('booking-demo-active')
-
     return () => {
       document.documentElement.classList.remove('booking-demo-active')
       document.body.classList.remove('booking-demo-active')
@@ -136,7 +108,6 @@ export default function PetshopDemo({ language }: Props) {
   }
 
   const getProfessionalImage = (prof: any) => {
-    // MAPEAMENTO CORRETO DAS FOTOS DA PASTA public/demo/petshop/
     const imageMap: Record<string, string> = {
       'Equipe Pet': '/demo/petshop/equipe.jpg',
       'Dr. Carlos Vet': '/demo/petshop/carlos.jpg',
@@ -146,448 +117,352 @@ export default function PetshopDemo({ language }: Props) {
     if (imageMap[prof.name]) {
       return imageMap[prof.name]
     }
-    
-    // Fallback para avatar se a imagem não existir
-    return `https://ui-avatars.com/api/?name=${encodeURIComponent(prof.name)}&background=8B5CF6&color=fff&size=120&rounded=true&bold=true`
+    return `https://ui-avatars.com/api/?name=${encodeURIComponent(prof.name)}&background=F59E0B&color=fff&size=120&rounded=true&bold=true`
   }
 
-  const renderStepIndicator = () => {
-    const steps = [1, 2, 3, 4, 5]
-    const labels = [text.step1, text.step2, text.step3, text.step4, text.step5]
-
-    return (
-      <div className="petshop-steps">
-        {steps.map((step, idx) => (
-          <div key={step} className={`petshop-step ${activeStep >= step ? 'active' : ''}`}>
-            <div className="step-number">{step}</div>
-            <span>{labels[idx]}</span>
-            {idx < 4 && <div className="step-line-custom" />}
-          </div>
-        ))}
-      </div>
-    )
+  const getServiceIcon = (serviceName: string) => {
+    if (serviceName === 'Banho completo') return <Droplet size={24} />
+    if (serviceName === 'Tosa higiênica') return <Scissors size={24} />
+    if (serviceName === 'Banho + Tosa') return <Sparkles size={24} />
+    if (serviceName === 'Consulta veterinária') return <Stethoscope size={24} />
+    return <PawPrint size={24} />
   }
 
-  const renderStepContent = () => {
-    switch (activeStep) {
-      case 1:
-  return (
-    <div className="step-content-petshop">
-      <div className="petshop-section-title">
-        <PawPrint size={20} />
-        <h3>{text.service}</h3>
-      </div>
-      <div className="petshop-services">
-        {data.services.map((service) => {
-          // Mapeamento de ícones sem repetição
-          let icon;
-          if (service.name === 'Banho completo') {
-            icon = <Droplet size={20} />;
-          } else if (service.name === 'Tosa higiênica') {
-            icon = <Scissors size={20} />;
-          } else if (service.name === 'Banho + Tosa') {
-            icon = <Sparkles size={20} />;
-          } else if (service.name === 'Consulta veterinária') {
-            icon = <Stethoscope size={20} />;
-          } else {
-            icon = <PawPrint size={20} />;
-          }
-          
-          return (
-            <button
-              key={service.name}
-              className={`petshop-service-item ${selectedService.name === service.name ? 'active' : ''}`}
-              onClick={() => setSelectedService(service)}
-            >
-              <div className="service-left">
-                <div className="service-icon-petshop">
-                  {icon}
-                </div>
-                <div className="service-info">
-                  <h4>{service.name}</h4>
-                  <span>{service.duration}</span>
-                </div>
-              </div>
-              <div className="service-right">
-                <strong>{service.price}</strong>
-                {selectedService.name === service.name && <Check size={16} />}
-              </div>
-            </button>
-          )
-        })}
-      </div>
-    </div>
-  )
-      case 2:
-        return (
-          <div className="step-content-petshop">
-            <div className="petshop-section-title">
-              <Heart size={20} />
-              <h3>{text.professional}</h3>
-            </div>
-            <div className="petshop-professionals">
-              {data.professionals.map((prof) => (
-                <button
-                  key={prof.name}
-                  className={`petshop-professional-card ${selectedProfessional.name === prof.name ? 'active' : ''}`}
-                  onClick={() => setSelectedProfessional(prof)}
-                >
-                  <img 
-                    src={getProfessionalImage(prof)} 
-                    alt={prof.name}
-                    onError={(e) => {
-                      (e.target as HTMLImageElement).src = `https://ui-avatars.com/api/?name=${encodeURIComponent(prof.name)}&background=8B5CF6&color=fff&size=120&rounded=true&bold=true`
-                    }}
-                  />
-                  <div className="professional-info">
-                    <h4>{prof.name}</h4>
-                    <p>{prof.role}</p>
-                    <div className="professional-rating-petshop">
-                      <Star size={12} fill="#8B5CF6" stroke="#8B5CF6" />
-                      <span>{prof.rating}</span>
-                      <span className="reviews">({Math.floor(30 + Math.random() * 100)} avaliações)</span>
-                    </div>
-                  </div>
-                  {selectedProfessional.name === prof.name && <div className="professional-check"><Check size={14} /></div>}
-                </button>
-              ))}
-            </div>
-          </div>
-        )
-      case 3:
-        return (
-          <div className="step-content-petshop">
-            <div className="petshop-section-title">
-              <Calendar size={20} />
-              <h3>{text.date}</h3>
-            </div>
-            <div className="petshop-dates">
-              {data.dates.map((date) => (
-                <button
-                  key={date.label}
-                  className={`petshop-date-card ${selectedDate.label === date.label ? 'active' : ''}`}
-                  onClick={() => setSelectedDate(date)}
-                >
-                  <span className="date-day">{date.label.split(',')[0]}</span>
-                  <span className="date-full">{date.label.split(',')[1] || ''}</span>
-                  <span className="date-availability">{date.status}</span>
-                </button>
-              ))}
-            </div>
-          </div>
-        )
-      case 4:
-        return (
-          <div className="step-content-petshop">
-            <div className="petshop-section-title">
-              <Clock size={20} />
-              <h3>{text.time}</h3>
-            </div>
-            <div className="petshop-times">
-              {data.timeSlots.map((slot) => (
-                <button
-                  key={slot.time}
-                  disabled={!slot.available}
-                  className={`petshop-time-slot ${selectedTimeSlot.time === slot.time ? 'active' : ''} ${!slot.available ? 'disabled' : ''}`}
-                  onClick={() => slot.available && setSelectedTimeSlot(slot)}
-                >
-                  {slot.time}
-                </button>
-              ))}
-            </div>
-            <div className="time-note-petshop">
-              <Clock size={12} />
-              <span>Atendimento com duração média de 60-90 minutos</span>
-            </div>
-          </div>
-        )
-      case 5:
-        return (
-          <div className="step-content-petshop">
-            <div className="petshop-section-title">
-              <Dog size={20} />
-              <h3>{text.step5}</h3>
-            </div>
-            <form onSubmit={handleSubmit} className="petshop-form">
-              <div className="petshop-form-row">
-                <div className="petshop-input-group">
-                  <label><User size={14} />{text.fullName}</label>
-                  <input
-                    type="text"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    placeholder={text.namePlaceholder}
-                    required
-                  />
-                </div>
-                <div className="petshop-input-group">
-                  <label><Phone size={14} />{text.whatsapp}</label>
-                  <input
-                    type="tel"
-                    value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
-                    placeholder={text.phonePlaceholder}
-                    required
-                  />
-                </div>
-              </div>
-              <div className="petshop-form-row">
-                <div className="petshop-input-group">
-                  <label><PawPrint size={14} />{text.petName}</label>
-                  <input
-                    type="text"
-                    value={petName}
-                    onChange={(e) => setPetName(e.target.value)}
-                    placeholder={text.petNamePlaceholder}
-                    required
-                  />
-                </div>
-                <div className="petshop-input-group">
-                  <label><Info size={14} />{text.petSize}</label>
-                  <select value={petSize} onChange={(e) => setPetSize(e.target.value)}>
-                    <option value="Pequeno">🐕 Pequeno (até 10kg)</option>
-                    <option value="Médio">🐕‍🦺 Médio (10kg a 25kg)</option>
-                    <option value="Grande">🐕 Grande (acima de 25kg)</option>
-                  </select>
-                </div>
-              </div>
-              <div className="petshop-input-group">
-                <label><Bone size={14} />{text.petBreed}</label>
-                <input
-                  type="text"
-                  value={petBreed}
-                  onChange={(e) => setPetBreed(e.target.value)}
-                  placeholder={text.petBreedPlaceholder}
-                />
-              </div>
-              <div className="petshop-input-group">
-                <label><MessageCircle size={14} />{text.observation}</label>
-                <textarea
-                  rows={3}
-                  value={observation}
-                  onChange={(e) => setObservation(e.target.value)}
-                  placeholder={text.observationPlaceholder}
-                />
-              </div>
-            </form>
-          </div>
-        )
-      default:
-        return null
-    }
-  }
-
-  const isStepValid = () => {
-    if (activeStep === 5) {
-      return name.trim() !== '' && phone.trim() !== '' && petName.trim() !== ''
-    }
-    return true
-  }
+  const steps = [
+    { step: 1, icon: PawPrint, label: 'Serviço' },
+    { step: 2, icon: Users, label: 'Profissional' },
+    { step: 3, icon: Calendar, label: 'Data' },
+    { step: 4, icon: Clock, label: 'Horário' },
+    { step: 5, icon: Dog, label: 'Dados' }
+  ]
 
   return (
-    <div className="petshop-demo-case">
-      {/* HERO SECTION COM IMAGEM DE PET */}
-      <div className="petshop-hero">
-        <div className="hero-overlay"></div>
-        <div className="hero-content">
-          <div className="hero-logo">
-            <PawPrint size={48} />
-            <h1>{data.business}</h1>
-            <p>AMOR • CUIDADO • DEDICAÇÃO</p>
+    <div className="petshop-modern-demo">
+      {/* Header Amigável */}
+      <header className="petshop-header-demo">
+        <div className="header-content-demo">
+          <a href="/" className="back-btn-demo">
+            <ArrowLeft size={18} />
+            <span>Voltar</span>
+          </a>
+          <div className="logo-demo">
+            <PawPrint size={28} />
+            <span>Pet & Cia</span>
           </div>
-          <div className="hero-info-bar">
-            <span><MapPin size={14} /> RUA DOS PETS, 456 - SÃO PAULO</span>
-            <span><Clock size={14} /> SEG-SÁB: 09H - 19H | DOM: 10H - 14H</span>
-            <span><Heart size={14} /> Atendimento com amor</span>
-          </div>
+        
         </div>
-        <a href="/" className="hero-back-btn">
-          <ArrowLeft size={18} /> VOLTAR
-        </a>
-      </div>
+      </header>
 
-      <div className="petshop-container">
+      <div className="petshop-main-demo">
         {!confirmed ? (
           <>
-            {/* SISTEMA DE AGENDAMENTO */}
-            <div className="booking-system-card-petshop">
-              <div className="system-header-petshop">
-                <h2>AGENDE O ATENDIMENTO DO SEU PET</h2>
-                <p>Preencha os dados abaixo e garanta a vaga do seu amigo</p>
+            {/* Hero Section com Imagem de Fundo */}
+            <section className="hero-friendly-demo">
+              <div className="hero-overlay-demo"></div>
+              <div className="hero-content-demo">
+                <div className="hero-badge-demo">
+                  <Trophy size={16} />
+                  <span>+10.000 pets felizes</span>
+                </div>
+                <h1>Cuidado e carinho<br />para o seu <span>melhor amigo</span></h1>
+                <p>Agende banho, tosa ou consulta veterinária em poucos cliques</p>
+                <div className="hero-features-demo">
+                  <div><Heart size={18} /><span>Atendimento humanizado</span></div>
+                  <div><Shield size={18} /><span>Profissionais certificados</span></div>
+                  <div><Star size={18} /><span>4.9 ★ (1.230 avaliações)</span></div>
+                </div>
+              </div>
+            </section>
+
+            {/* Sistema de Agendamento */}
+            <div className="booking-wrapper-demo">
+              {/* Steps */}
+              <div className="steps-container-demo">
+                {steps.map((item) => (
+                  <div key={item.step} className={`step-item-demo ${activeStep >= item.step ? 'active' : ''}`}>
+                    <div className="step-circle-demo">
+                      <item.icon size={18} />
+                    </div>
+                    <span>{item.label}</span>
+                    {item.step < 5 && <div className="step-line-demo" />}
+                  </div>
+                ))}
               </div>
 
-              {renderStepIndicator()}
+              {/* Conteúdo Principal */}
+              <div className="booking-content-demo">
+                {/* Coluna Esquerda */}
+                <div className="form-area-demo">
+                  {activeStep === 1 && (
+                    <div className="step-panel-demo">
+                      <h3>Escolha um serviço</h3>
+                      <div className="services-list-demo">
+                        {data.services.map((service) => (
+                          <button
+                            key={service.name}
+                            className={`service-btn-demo ${selectedService.name === service.name ? 'active' : ''}`}
+                            onClick={() => setSelectedService(service)}
+                          >
+                            <div className="service-icon-demo">{getServiceIcon(service.name)}</div>
+                            <div className="service-text-demo">
+                              <strong>{service.name}</strong>
+                              <span>{service.duration}</span>
+                            </div>
+                            <div className="service-price-demo">{service.price}</div>
+                            {selectedService.name === service.name && <Check size={18} />}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  )}
 
-              <div className="system-main-petshop">
-                <div className="system-content-petshop">
-                  {renderStepContent()}
-                  
-                  <div className="system-actions-petshop">
+                  {activeStep === 2 && (
+                    <div className="step-panel-demo">
+                      <h3>Escolha o profissional</h3>
+                      <div className="professionals-list-demo">
+                        {data.professionals.map((prof) => (
+                          <button
+                            key={prof.name}
+                            className={`professional-btn-demo ${selectedProfessional.name === prof.name ? 'active' : ''}`}
+                            onClick={() => setSelectedProfessional(prof)}
+                          >
+                            <img src={getProfessionalImage(prof)} alt={prof.name} />
+                            <div className="professional-text-demo">
+                              <strong>{prof.name}</strong>
+                              <p>{prof.role}</p>
+                              <div className="rating-demo"><Star size={12} fill="#F59E0B" stroke="#F59E0B" /> {prof.rating}</div>
+                            </div>
+                            {selectedProfessional.name === prof.name && <Check size={16} />}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {activeStep === 3 && (
+                    <div className="step-panel-demo">
+                      <h3>Selecione a data</h3>
+                      <div className="dates-list-demo">
+                        {data.dates.map((date) => (
+                          <button
+                            key={date.label}
+                            className={`date-btn-demo ${selectedDate.label === date.label ? 'active' : ''}`}
+                            onClick={() => setSelectedDate(date)}
+                          >
+                            <span className="date-day-demo">{date.label.split(',')[0]}</span>
+                            <span className="date-full-demo">{date.label.split(',')[1]}</span>
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {activeStep === 4 && (
+                    <div className="step-panel-demo">
+                      <h3>Horários disponíveis</h3>
+                      <div className="times-list-demo">
+                        {data.timeSlots.map((slot) => (
+                          <button
+                            key={slot.time}
+                            disabled={!slot.available}
+                            className={`time-btn-demo ${selectedTimeSlot.time === slot.time ? 'active' : ''} ${!slot.available ? 'disabled' : ''}`}
+                            onClick={() => slot.available && setSelectedTimeSlot(slot)}
+                          >
+                            {slot.time}
+                          </button>
+                        ))}
+                      </div>
+                      <div className="time-note-demo">
+                        <Clock size={14} />
+                        <span>Atendimento com duração média de 60 minutos</span>
+                      </div>
+                    </div>
+                  )}
+
+                  {activeStep === 5 && (
+                    <div className="step-panel-demo">
+                      <h3>Dados do tutor e do pet</h3>
+                      <form className="pet-form-demo" onSubmit={handleSubmit}>
+                        <input
+                          type="text"
+                          placeholder="Seu nome completo"
+                          value={name}
+                          onChange={(e) => setName(e.target.value)}
+                          required
+                        />
+                        <input
+                          type="tel"
+                          placeholder="Seu WhatsApp"
+                          value={phone}
+                          onChange={(e) => setPhone(e.target.value)}
+                          required
+                        />
+                        <input
+                          type="text"
+                          placeholder="Nome do pet"
+                          value={petName}
+                          onChange={(e) => setPetName(e.target.value)}
+                          required
+                        />
+                        <select value={petSize} onChange={(e) => setPetSize(e.target.value)}>
+                          <option value="Pequeno">🐕 Pequeno (até 10kg)</option>
+                          <option value="Médio">🐕‍🦺 Médio (10kg a 25kg)</option>
+                          <option value="Grande">🐕 Grande (acima de 25kg)</option>
+                        </select>
+                        <input
+                          type="text"
+                          placeholder="Raça (opcional)"
+                          value={petBreed}
+                          onChange={(e) => setPetBreed(e.target.value)}
+                        />
+                        <textarea
+                          rows={3}
+                          placeholder="Observações (ex: pet nervoso, precisa de atenção especial)"
+                          value={observation}
+                          onChange={(e) => setObservation(e.target.value)}
+                        />
+                      </form>
+                    </div>
+                  )}
+
+                  <div className="form-buttons-demo">
                     {activeStep > 1 && (
-                      <button className="btn-back-petshop" onClick={handlePrevStep}>
-                        VOLTAR
+                      <button className="btn-prev-demo" onClick={handlePrevStep}>
+                        Voltar
                       </button>
                     )}
                     {activeStep < 5 ? (
-                      <button className="btn-next-petshop" onClick={handleNextStep} disabled={!isStepValid()}>
-                        CONTINUAR <ChevronRight size={18} />
+                      <button className="btn-next-demo" onClick={handleNextStep}>
+                        Continuar <ChevronRight size={16} />
                       </button>
                     ) : (
-                      <button className="btn-confirm-petshop" onClick={handleSubmit} disabled={!isStepValid()}>
-                        <CheckCircle size={18} /> CONFIRMAR AGENDAMENTO
+                      <button className="btn-confirm-demo" onClick={handleSubmit}>
+                        <CheckCircle size={18} /> Confirmar
                       </button>
                     )}
                   </div>
                 </div>
 
-                <div className="system-summary-petshop">
-                  <div className="summary-title-petshop">RESUMO DO ATENDIMENTO</div>
-                  <div className="summary-service-petshop">
-                    <span>SERVIÇO</span>
-                    <strong>{selectedService.name}</strong>
+                {/* Coluna Direita - Resumo */}
+                <div className="summary-area-demo">
+                  <div className="summary-card-demo">
+                    <div className="summary-header-demo">
+                      <PawPrint size={20} />
+                      <h4>Resumo do atendimento</h4>
+                    </div>
+                    
+                    <div className="summary-item-demo">
+                      <span>Serviço</span>
+                      <strong>{selectedService.name}</strong>
+                    </div>
+                    
+                    <div className="summary-item-demo">
+                      <span>Profissional</span>
+                      <strong>{selectedProfessional.name}</strong>
+                    </div>
+                    
+                    <div className="summary-item-demo">
+                      <span>Data</span>
+                      <strong>{selectedDate.label}</strong>
+                    </div>
+                    
+                    <div className="summary-item-demo">
+                      <span>Horário</span>
+                      <strong>{selectedTimeSlot.time}</strong>
+                    </div>
+                    
+                    {petName && (
+                      <div className="summary-item-demo">
+                        <span>Pet</span>
+                        <strong>{petName}</strong>
+                      </div>
+                    )}
+                    
+                    <div className="summary-divider-demo" />
+                    
+                    <div className="summary-total-demo">
+                      <span>Total</span>
+                      <strong>{selectedService.price}</strong>
+                    </div>
+
+                    <div className="payment-methods-demo">
+                      <CreditCard size={14} />
+                      <span>Aceitamos cartão, PIX e dinheiro</span>
+                    </div>
                   </div>
-                  <div className="summary-service-petshop">
-                    <span>PROFISSIONAL</span>
-                    <strong>{selectedProfessional.name}</strong>
-                  </div>
-                  <div className="summary-service-petshop">
-                    <span>DATA</span>
-                    <strong>{selectedDate.label}</strong>
-                  </div>
-                  <div className="summary-service-petshop">
-                    <span>HORÁRIO</span>
-                    <strong>{selectedTimeSlot.time}</strong>
-                  </div>
-                  <div className="summary-total-petshop">
-                    <span>{text.total}</span>
-                    <strong>{selectedService.price}</strong>
-                  </div>
-                  <div className="summary-payment-petshop">
-                    <CreditCard size={12} />
-                    <span>Aceitamos cartões, PIX e dinheiro</span>
-                  </div>
-                  <div className="summary-note-petshop">
-                    <Shield size={12} /> Confirmação imediata via WhatsApp
+
+                  <div className="perks-card-demo">
+                    <h4>Benefícios exclusivos</h4>
+                    <div className="perk-demo"><Gift size={14} /> 1ª visita com 10% off</div>
+                    <div className="perk-demo"><Heart size={14} /> Produtos hipoalergênicos</div>
+                    <div className="perk-demo"><Shield size={14} /> Ambiente climatizado</div>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* NOSSOS SERVIÇOS DESTAQUES */}
-            <div className="petshop-services-highlight">
-              <h3>{text.services}</h3>
-              <div className="services-highlight-grid">
-                <div className="service-highlight-card">
-                  <Scissors size={32} />
-                  <h4>Banho e Tosa</h4>
-                  <p>Produtos hipoalergênicos e profissionais especializados</p>
+            {/* Seção de Depoimentos */}
+            <section className="testimonials-demo">
+              <h3>O que dizem nossos clientes</h3>
+              <div className="testimonials-grid-demo">
+                <div className="testimonial-demo">
+                  <div className="stars-demo">★★★★★</div>
+                  <p>"Meu pet ama esse lugar! Atendimento maravilhoso e profissionais muito atenciosos."</p>
+                  <strong>- Amanda Silva</strong>
                 </div>
-                <div className="service-highlight-card">
-                  <Syringe size={32} />
-                  <h4>Vacinação</h4>
-                  <p>Todas as vacinas com acompanhamento veterinário</p>
+                <div className="testimonial-demo">
+                  <div className="stars-demo">★★★★★</div>
+                  <p>"Melhor petshop de SP! Ambiente limpo, organizado e cuidam super bem do Thor."</p>
+                  <strong>- Rafael Oliveira</strong>
                 </div>
-                <div className="service-highlight-card">
-                  <Heart size={32} />
-                  <h4>Consultas</h4>
-                  <p>Atendimento veterinário completo</p>
-                </div>
-                <div className="service-highlight-card">
-                  <Bone size={32} />
-                  <h4>Petshop</h4>
-                  <p>Rações, brinquedos e acessórios</p>
+                <div className="testimonial-demo">
+                  <div className="stars-demo">★★★★★</div>
+                  <p>"Equipe qualificada e muito carinhosa com os animais. Recomendo demais!"</p>
+                  <strong>- Juliana Costa</strong>
                 </div>
               </div>
-            </div>
-
-            {/* SOBRE NÓS */}
-            <div className="petshop-about">
-              <div className="about-left">
-                <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=600&h=400&fit=crop" alt="Petshop" />
-              </div>
-              <div className="about-right">
-                <h3>{text.about}</h3>
-                <p>Há mais de 10 anos cuidando dos seus pets com muito amor e dedicação. Nossa missão é proporcionar bem-estar e saúde para os animais, com atendimento humanizado e estrutura de primeira qualidade.</p>
-                <div className="about-features-petshop">
-                  <div><Award size={18} /> 10+ anos de experiência</div>
-                  <div><Heart size={18} /> Atendimento humanizado</div>
-                  <div><Home size={18} /> Estrutura climatizada</div>
-                  <div><Dog size={18} /> Profissionais qualificados</div>
-                </div>
-              </div>
-            </div>
-
-            {/* POR QUE ESCOLHER */}
-            <div className="petshop-why">
-              <h3>{text.whyUs}</h3>
-              <div className="why-grid-petshop">
-                <div className="why-card-petshop">
-                  <Award size={28} />
-                  <h4>Profissionais Especializados</h4>
-                  <p>Equipe treinada e apaixonada por pets</p>
-                </div>
-                <div className="why-card-petshop">
-                  <Clock size={28} />
-                  <h4>Agendamento Rápido</h4>
-                  <p>Sem longas filas de espera</p>
-                </div>
-                <div className="why-card-petshop">
-                  <Shield size={28} />
-                  <h4>Segurança Garantida</h4>
-                  <p>Produtos de qualidade e ambiente seguro</p>
-                </div>
-                <div className="why-card-petshop">
-                  <MessageCircle size={28} />
-                  <h4>Lembrete Automático</h4>
-                  <p>Confirmação via WhatsApp</p>
-                </div>
-              </div>
-            </div>
+            </section>
           </>
         ) : (
-          /* TELA DE SUCESSO */
-          <div className="success-screen-petshop">
-            <div className="success-card-petshop">
-              <div className="success-icon-petshop">
-                <PawPrint size={56} />
-              </div>
+          /* Tela de Sucesso */
+          <div className="success-screen-demo">
+            <div className="success-card-demo">
+              <div className="success-icon-demo"><PawPrint size={64} /></div>
               <h2>{text.appointmentConfirmed}</h2>
               <p>{name}, {text.hourReserved}</p>
               
-              <div className="success-details-petshop">
-                <div><span>SERVIÇO:</span><strong>{selectedService.name}</strong></div>
-                <div><span>PROFISSIONAL:</span><strong>{selectedProfessional.name}</strong></div>
-                <div><span>PET:</span><strong>{petName} ({petSize})</strong></div>
-                <div><span>DATA:</span><strong>{selectedDate.label}</strong></div>
-                <div><span>HORÁRIO:</span><strong>{selectedTimeSlot.time}</strong></div>
-                <div className="code-highlight-petshop"><span>CÓDIGO:</span><strong>{confirmationCode}</strong></div>
+              <div className="booking-details-demo">
+                <div><span>Serviço:</span><strong>{selectedService.name}</strong></div>
+                <div><span>Profissional:</span><strong>{selectedProfessional.name}</strong></div>
+                <div><span>Pet:</span><strong>{petName}</strong></div>
+                <div><span>Data/Horário:</span><strong>{selectedDate.label} - {selectedTimeSlot.time}</strong></div>
+                <div className="code-demo"><span>Código:</span><strong>{confirmationCode}</strong></div>
               </div>
 
-              <div className="whatsapp-alert-petshop">
+              <div className="whatsapp-message-demo">
                 <MessageCircle size={18} />
-                <span>Enviamos a confirmação via WhatsApp</span>
+                <span>Confirmação enviada por WhatsApp</span>
               </div>
 
-              <div className="prepare-note-petshop">
+              <div className="reminder-demo">
                 <Info size={14} />
-                <span>Não se esqueça de trazer a carteirinha de vacinação</span>
+                <span>Não esqueça a carteirinha de vacinação!</span>
               </div>
 
-              <button onClick={handleReset} className="new-booking-petshop">
-                NOVO AGENDAMENTO
+              <button onClick={handleReset} className="new-booking-demo">
+                Novo agendamento
               </button>
             </div>
           </div>
         )}
 
-        {/* FOOTER */}
-        <footer className="petshop-footer">
-          <a href={data.whatsapp} target="_blank" rel="noopener noreferrer" className="footer-whatsapp-petshop">
+        {/* Footer */}
+        <footer className="petshop-footer-demo">
+          <a href={data.whatsapp} target="_blank" rel="noopener noreferrer" className="whatsapp-link-demo">
             <MessageCircle size={18} />
             {text.wantThisSystem}
           </a>
-          <p>Pet & Cia © 2026 - Todos os direitos reservados</p>
-          <p className="footer-info">CNPJ: 12.345.678/0001-90 | CRMV: 12345</p>
+          <p>Pet & Cia © 2026 - Cuidando do seu melhor amigo com amor</p>
         </footer>
       </div>
     </div>

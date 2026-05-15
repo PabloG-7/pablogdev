@@ -1,26 +1,24 @@
 import { useState, useEffect, useMemo } from 'react'
 import {
-   Calendar,
   CheckCircle,
   ArrowLeft,
   MessageCircle,
   ChevronRight,
   Check,
   Crown,
-  Clock,
   Star,
   Scissors,
-  User,
   Award,
   Shield,
-  ThumbsUp,
   MapPin,
   Wifi,
   Coffee,
-  Users,       
-  Sparkles,      // Para corte + barba (completo)
-  Flame,         // Para barba completa (estilo)
-  Smile          // Para sobrancelha
+  Sparkles,
+  Flame,
+  Smile,
+  CreditCard,
+  Gift,
+  Zap
 } from 'lucide-react'
 import './BarbeariaDemo.css'
 import '../BookingDemoGlobal.css'
@@ -58,8 +56,7 @@ export default function BarbeariaDemo({ language }: Props) {
     step5: isPt ? 'DADOS' : 'DATOS',
     total: isPt ? 'TOTAL' : 'TOTAL',
     about: isPt ? 'SOBRE' : 'SOBRE',
-    reviews: isPt ? 'AVALIAÇÕES' : 'VALORACIONES',
-    structure: isPt ? 'ESTRUTURA' : 'ESTRUCTURA'
+    reviews: isPt ? 'AVALIAÇÕES' : 'VALORACIONES'
   }
 
   const [activeStep, setActiveStep] = useState(1)
@@ -81,7 +78,6 @@ export default function BarbeariaDemo({ language }: Props) {
   useEffect(() => {
     document.documentElement.classList.add('booking-demo-active')
     document.body.classList.add('booking-demo-active')
-
     return () => {
       document.documentElement.classList.remove('booking-demo-active')
       document.body.classList.remove('booking-demo-active')
@@ -117,7 +113,6 @@ export default function BarbeariaDemo({ language }: Props) {
   }
 
   const getProfessionalImage = (prof: any) => {
-    // MAPEAMENTO CORRETO DAS FOTOS DA PASTA public/demo/barbearia/
     const imageMap: Record<string, string> = {
       'Carlos Silva': '/demo/barbearia/carlitoss.jpg',
       'Rafael Souza': '/demo/barbearia/rafael.jpg',
@@ -127,365 +122,307 @@ export default function BarbeariaDemo({ language }: Props) {
     if (imageMap[prof.name]) {
       return imageMap[prof.name]
     }
-    
-    // Fallback para avatar se a imagem não existir
-    return `https://ui-avatars.com/api/?name=${encodeURIComponent(prof.name)}&background=8B4513&color=fff&size=120&rounded=true&bold=true`
+    return `https://ui-avatars.com/api/?name=${encodeURIComponent(prof.name)}&background=000000&color=D4AF37&size=120&rounded=true&bold=true`
   }
 
-  const renderStepIndicator = () => {
-    const steps = [1, 2, 3, 4, 5]
-    const labels = [text.step1, text.step2, text.step3, text.step4, text.step5]
-
-    return (
-      <div className="barbearia-steps">
-        {steps.map((step, idx) => (
-          <div key={step} className={`barbearia-step ${activeStep >= step ? 'active' : ''}`}>
-            <div className="step-number">{step}</div>
-            <span>{labels[idx]}</span>
-            {idx < 4 && <div className="step-line-custom" />}
-          </div>
-        ))}
-      </div>
-    )
-  }
-
-  const renderStepContent = () => {
-    switch (activeStep) {
-    case 1:
-  return (
-    <div className="step-content-barbearia">
-      <div className="barbearia-section-title">
-        <Scissors size={20} />
-        <h3>{text.step1}</h3>
-      </div>
-      <div className="barbearia-services">
-        {data.services.map((service) => {
-          // Mapeamento de ícones sem repetição
-          let icon;
-          if (service.name === 'Corte Masculino') {
-            icon = <Scissors size={20} />;
-          } else if (service.name === 'Corte + Barba') {
-            icon = <Sparkles size={20} />;
-          } else if (service.name === 'Barba Completa') {
-            icon = <Flame size={20} />;
-          } else if (service.name === 'Sobrancelha') {
-            icon = <Smile size={20} />;
-          } else {
-            icon = <Scissors size={20} />;
-          }
-          
-          return (
-            <button
-              key={service.name}
-              className={`barbearia-service-item ${selectedService.name === service.name ? 'active' : ''}`}
-              onClick={() => setSelectedService(service)}
-            >
-              <div className="service-left">
-                <div className="service-icon-barbearia">
-                  {icon}
-                </div>
-                <div className="service-info">
-                  <h4>{service.name}</h4>
-                  <span>{service.duration}</span>
-                </div>
-              </div>
-              <div className="service-right">
-                <strong>{service.price}</strong>
-                {selectedService.name === service.name && <Check size={16} />}
-              </div>
-            </button>
-          )
-        })}
-      </div>
-    </div>
-  )
-      case 2:
-        return (
-          <div className="step-content-barbearia">
-            <div className="barbearia-section-title">
-              <Users size={20} />
-              <h3>ESCOLHA SEU BARBEIRO</h3>
-            </div>
-            <div className="barbearia-barbers">
-              {data.professionals.map((prof) => (
-                <button
-                  key={prof.name}
-                  className={`barbearia-barber-card ${selectedProfessional.name === prof.name ? 'active' : ''}`}
-                  onClick={() => setSelectedProfessional(prof)}
-                >
-                  <img 
-                    src={getProfessionalImage(prof)} 
-                    alt={prof.name}
-                    onError={(e) => {
-                      (e.target as HTMLImageElement).src = `https://ui-avatars.com/api/?name=${encodeURIComponent(prof.name)}&background=8B4513&color=fff&size=120&rounded=true&bold=true`
-                    }}
-                  />
-                  <div className="barber-info">
-                    <h4>{prof.name}</h4>
-                    <p>{prof.role}</p>
-                    <div className="barber-stars">
-                      <Star size={12} fill="#D4AF37" stroke="#D4AF37" />
-                      <span>{prof.rating}</span>
-                    </div>
-                  </div>
-                  {selectedProfessional.name === prof.name && <div className="barber-check"><Check size={14} /></div>}
-                </button>
-              ))}
-            </div>
-          </div>
-        )
-      case 3:
-        return (
-          <div className="step-content-barbearia">
-            <div className="barbearia-section-title">
-              <Calendar size={20} />
-              <h3>SELECIONE A DATA</h3>
-            </div>
-            <div className="barbearia-dates">
-              {data.dates.map((date) => (
-                <button
-                  key={date.label}
-                  className={`barbearia-date-card ${selectedDate.label === date.label ? 'active' : ''}`}
-                  onClick={() => setSelectedDate(date)}
-                >
-                  <span className="date-day">{date.label.split(',')[0]}</span>
-                  <span className="date-full">{date.label.split(',')[1] || ''}</span>
-                  <span className="date-badge">{date.status}</span>
-                </button>
-              ))}
-            </div>
-          </div>
-        )
-      case 4:
-        return (
-          <div className="step-content-barbearia">
-            <div className="barbearia-section-title">
-              <Clock size={20} />
-              <h3>ESCOLHA O HORÁRIO</h3>
-            </div>
-            <div className="barbearia-times">
-              {data.timeSlots.map((slot) => (
-                <button
-                  key={slot.time}
-                  disabled={!slot.available}
-                  className={`barbearia-time-slot ${selectedTimeSlot.time === slot.time ? 'active' : ''} ${!slot.available ? 'disabled' : ''}`}
-                  onClick={() => slot.available && setSelectedTimeSlot(slot)}
-                >
-                  {slot.time}
-                </button>
-              ))}
-            </div>
-          </div>
-        )
-      case 5:
-        return (
-          <div className="step-content-barbearia">
-            <div className="barbearia-section-title">
-              <User size={20} />
-              <h3>SEUS DADOS</h3>
-            </div>
-            <form onSubmit={handleSubmit} className="barbearia-form">
-              <div className="barbearia-input-group">
-                <label>NOME COMPLETO</label>
-                <input
-                  type="text"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  placeholder="Digite seu nome"
-                  required
-                />
-              </div>
-              <div className="barbearia-input-group">
-                <label>WHATSAPP</label>
-                <input
-                  type="tel"
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                  placeholder="(11) 99999-9999"
-                  required
-                />
-              </div>
-            </form>
-          </div>
-        )
-      default:
-        return null
-    }
+  const getServiceIcon = (serviceName: string) => {
+    if (serviceName === 'Corte Masculino') return <Scissors size={22} />
+    if (serviceName === 'Corte + Barba') return <Sparkles size={22} />
+    if (serviceName === 'Barba Completa') return <Flame size={22} />
+    if (serviceName === 'Sobrancelha') return <Smile size={22} />
+    return <Scissors size={22} />
   }
 
   return (
-    <div className="barbearia-demo-case">
-      {/* HERO SECTION COM IMAGEM DE FUNDO */}
-      <div className="barbearia-hero">
-        <div className="hero-overlay"></div>
-        <div className="hero-content">
-          <div className="hero-logo">
-            <Scissors size={48} />
-            <h1>CLASSIC BARBER</h1>
-            <p>ESTILO • TRADIÇÃO • AUTENTICIDADE</p>
+    <div className="barbearia-modern">
+      {/* Header Minimalista */}
+      <header className="modern-header">
+        <div className="header-container">
+          <a href="/" className="back-link">
+            <ArrowLeft size={18} />
+            <span>{text.back}</span>
+          </a>
+          <div className="logo-area">
+            <Scissors size={28} />
+            <span>CLASSIC BARBER</span>
           </div>
-          <div className="hero-info-bar">
-            <span><MapPin size={14} /> RUA DA MODA, 123 - CENTRO</span>
-            <span><Clock size={14} /> TER-SÁB: 09H - 20H</span>
-            <span><Award size={14} /> 10 ANOS DE EXPERIÊNCIA</span>
+          <div className="header-contact">
+            <MapPin size={16} />
+            <span>Centro, SP</span>
           </div>
         </div>
-        <a href="/" className="hero-back-btn">
-          <ArrowLeft size={18} /> VOLTAR
-        </a>
-      </div>
+      </header>
 
-      <div className="barbearia-container">
+      <div className="modern-container">
         {!confirmed ? (
           <>
-            {/* SISTEMA DE AGENDAMENTO */}
-            <div className="booking-system-card">
-              <div className="system-header">
-                <h2>AGENDE SEU HORÁRIO</h2>
-                <p>Preencha os dados abaixo e garanta sua vaga</p>
+            {/* Hero Section com Imagem de Fundo */}
+            <div className="hero-with-bg">
+              <div className="hero-overlay-bg"></div>
+              <div className="hero-content-bg">
+                <h1>CORTE E BARBA<br /><span>COM ESTILO</span></h1>
+                <p>Agende seu horário em segundos e tenha uma experiência premium</p>
+                <div className="hero-stats-bg">
+                  <div><Zap size={18} /><span>+10.000 clientes</span></div>
+                  <div><Award size={18} /><span>5 anos de excelência</span></div>
+                  <div><Star size={18} /><span>4.9 ★ Avaliações</span></div>
+                </div>
               </div>
+            </div>
 
-              {renderStepIndicator()}
+            {/* Booking Grid - Layout de duas colunas */}
+            <div className="booking-grid">
+              {/* Coluna Esquerda - Formulário */}
+              <div className="booking-form-column">
+                <div className="form-header">
+                  <h2>Agende seu horário</h2>
+                  <div className="step-indicator-modern">
+                    {[1, 2, 3, 4, 5].map((step) => (
+                      <div key={step} className={`step-dot ${activeStep >= step ? 'active' : ''}`}>
+                        {step}
+                      </div>
+                    ))}
+                  </div>
+                </div>
 
-              <div className="system-main">
-                <div className="system-content">
-                  {renderStepContent()}
-                  
-                  <div className="system-actions">
+                <div className="form-content">
+                  {activeStep === 1 && (
+                    <div className="step-form">
+                      <h3>Escolha o serviço</h3>
+                      <div className="services-modern">
+                        {data.services.map((service) => (
+                          <button
+                            key={service.name}
+                            className={`service-card-modern ${selectedService.name === service.name ? 'active' : ''}`}
+                            onClick={() => setSelectedService(service)}
+                          >
+                            <div className="service-icon">{getServiceIcon(service.name)}</div>
+                            <div className="service-details">
+                              <strong>{service.name}</strong>
+                              <span>{service.duration}</span>
+                            </div>
+                            <div className="service-price">{service.price}</div>
+                            {selectedService.name === service.name && <Check size={18} />}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {activeStep === 2 && (
+                    <div className="step-form">
+                      <h3>Escolha o profissional</h3>
+                      <div className="professionals-modern">
+                        {data.professionals.map((prof) => (
+                          <button
+                            key={prof.name}
+                            className={`professional-card ${selectedProfessional.name === prof.name ? 'active' : ''}`}
+                            onClick={() => setSelectedProfessional(prof)}
+                          >
+                            <img src={getProfessionalImage(prof)} alt={prof.name} />
+                            <div>
+                              <strong>{prof.name}</strong>
+                              <p>{prof.role}</p>
+                              <div className="rating"><Star size={12} fill="#D4AF37" /> {prof.rating}</div>
+                            </div>
+                            {selectedProfessional.name === prof.name && <Check size={16} />}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {activeStep === 3 && (
+                    <div className="step-form">
+                      <h3>Selecione a data</h3>
+                      <div className="dates-modern">
+                        {data.dates.map((date) => (
+                          <button
+                            key={date.label}
+                            className={`date-card-modern ${selectedDate.label === date.label ? 'active' : ''}`}
+                            onClick={() => setSelectedDate(date)}
+                          >
+                            <span className="date-day">{date.label.split(',')[0]}</span>
+                            <span className="date-info">{date.label.split(',')[1]}</span>
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {activeStep === 4 && (
+                    <div className="step-form">
+                      <h3>Escolha o horário</h3>
+                      <div className="times-modern">
+                        {data.timeSlots.map((slot) => (
+                          <button
+                            key={slot.time}
+                            disabled={!slot.available}
+                            className={`time-slot-modern ${selectedTimeSlot.time === slot.time ? 'active' : ''}`}
+                            onClick={() => slot.available && setSelectedTimeSlot(slot)}
+                          >
+                            {slot.time}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {activeStep === 5 && (
+                    <div className="step-form">
+                      <h3>Seus dados</h3>
+                      <form onSubmit={handleSubmit} className="user-form">
+                        <input
+                          type="text"
+                          placeholder="Nome completo"
+                          value={name}
+                          onChange={(e) => setName(e.target.value)}
+                          required
+                        />
+                        <input
+                          type="tel"
+                          placeholder="WhatsApp"
+                          value={phone}
+                          onChange={(e) => setPhone(e.target.value)}
+                          required
+                        />
+                      </form>
+                    </div>
+                  )}
+
+                  <div className="form-actions">
                     {activeStep > 1 && (
-                      <button className="btn-back-barbearia" onClick={handlePrevStep}>
-                        VOLTAR
+                      <button className="btn-prev" onClick={handlePrevStep}>
+                        Voltar
                       </button>
                     )}
                     {activeStep < 5 ? (
-                      <button className="btn-next-barbearia" onClick={handleNextStep}>
-                        CONTINUAR <ChevronRight size={18} />
+                      <button className="btn-next" onClick={handleNextStep}>
+                        Continuar <ChevronRight size={16} />
                       </button>
                     ) : (
-                      <button className="btn-confirm-barbearia" onClick={handleSubmit}>
-                        <CheckCircle size={18} /> CONFIRMAR AGENDAMENTO
+                      <button className="btn-confirm" onClick={handleSubmit}>
+                        <CheckCircle size={18} /> Confirmar
                       </button>
                     )}
                   </div>
                 </div>
+              </div>
 
-                <div className="system-summary">
-                  <div className="summary-title">SEU AGENDAMENTO</div>
-                  <div className="summary-service">
-                    <span>SERVIÇO</span>
+              {/* Coluna Direita - Resumo e Benefícios */}
+              <div className="booking-summary-column">
+                <div className="summary-card">
+                  <h3>Resumo do agendamento</h3>
+                  
+                  <div className="summary-item">
+                    <span>Serviço</span>
                     <strong>{selectedService.name}</strong>
                   </div>
-                  <div className="summary-service">
-                    <span>BARBEIRO</span>
+                  
+                  <div className="summary-item">
+                    <span>Profissional</span>
                     <strong>{selectedProfessional.name}</strong>
                   </div>
-                  <div className="summary-service">
-                    <span>DATA</span>
+                  
+                  <div className="summary-item">
+                    <span>Data</span>
                     <strong>{selectedDate.label}</strong>
                   </div>
-                  <div className="summary-service">
-                    <span>HORÁRIO</span>
+                  
+                  <div className="summary-item">
+                    <span>Horário</span>
                     <strong>{selectedTimeSlot.time}</strong>
                   </div>
+                  
+                  <div className="summary-divider"></div>
+                  
                   <div className="summary-total">
-                    <span>TOTAL</span>
+                    <span>Total</span>
                     <strong>{selectedService.price}</strong>
                   </div>
-                  <div className="summary-note">
-                    <Shield size={12} /> Confirmação imediata via WhatsApp
+
+                  <div className="benefits-list">
+                    <div><Shield size={14} /> Confirmação imediata</div>
+                    <div><CreditCard size={14} /> Pague na barbearia</div>
+                    <div><Gift size={14} /> 1ª visita com desconto</div>
+                  </div>
+                </div>
+
+                {/* Diferenciais */}
+                <div className="perks-card">
+                  <h4>Diferenciais Classic Barber</h4>
+                  <div className="perk-item">
+                    <Coffee size={16} />
+                    <span>Bebida especial cortesia</span>
+                  </div>
+                  <div className="perk-item">
+                    <Wifi size={16} />
+                    <span>Wi-Fi de alta velocidade</span>
+                  </div>
+                  <div className="perk-item">
+                    <Award size={16} />
+                    <span>Produtos premium importados</span>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* SEÇÃO SOBRE A BARBEARIA */}
-            <div className="barbearia-about">
-              <div className="about-left">
-                <img src="https://images.pexels.com/photos/1805600/pexels-photo-1805600.jpeg" alt="Barbearia" />
-              </div>
-              <div className="about-right">
-                <h3>{text.about} <span>CLASSIC BARBER</span></h3>
-                <p>Há mais de uma década, a Classic Barber é referência em cortes masculinos e barba na região. Nosso compromisso é oferecer uma experiência única, combinando técnicas tradicionais com as tendências mais atuais.</p>
-                <div className="about-features">
-                  <div><Award size={18} /> Barbeiros Experientes</div>
-                  <div><Coffee size={18} /> Cerveja e Whisky grátis</div>
-                  <div><Wifi size={18} /> Wi-Fi disponível</div>
-                  <div><ThumbsUp size={18} /> Satisfação garantida</div>
+            {/* Seção de Depoimentos */}
+            <div className="testimonials-section">
+              <h3>O que nossos clientes dizem</h3>
+              <div className="testimonials-grid">
+                <div className="testimonial-card">
+                  <div className="stars">★★★★★</div>
+                  <p>"Melhor barbearia de SP! Ambiente incrível e profissionais top."</p>
+                  <strong>- Ana Silva</strong>
                 </div>
-              </div>
-            </div>
-
-            {/* SEÇÃO DE AVALIAÇÕES */}
-            <div className="barbearia-reviews">
-              <h3>{text.reviews}</h3>
-              <div className="reviews-grid">
-                <div className="review-card">
-                  <Star size={16} fill="#D4AF37" stroke="#D4AF37" />
-                  <Star size={16} fill="#D4AF37" stroke="#D4AF37" />
-                  <Star size={16} fill="#D4AF37" stroke="#D4AF37" />
-                  <Star size={16} fill="#D4AF37" stroke="#D4AF37" />
-                  <Star size={16} fill="#D4AF37" stroke="#D4AF37" />
-                  <p>Melhor barbearia da região! Atendimento impecável e profissionais muito qualificados.</p>
-                  <strong>- Mariana S.</strong>
+                <div className="testimonial-card">
+                  <div className="stars">★★★★★</div>
+                  <p>"Atendimento impecável, sai daqui parecendo outra pessoa."</p>
+                  <strong>- Marcos Lima</strong>
                 </div>
-                <div className="review-card">
-                  <Star size={16} fill="#D4AF37" stroke="#D4AF37" />
-                  <Star size={16} fill="#D4AF37" stroke="#D4AF37" />
-                  <Star size={16} fill="#D4AF37" stroke="#D4AF37" />
-                  <Star size={16} fill="#D4AF37" stroke="#D4AF37" />
-                  <Star size={16} fill="#D4AF37" stroke="#D4AF37" />
-                  <p>Sempre saio satisfeito. Ambiente agradável e muito profissionalismo.</p>
-                  <strong>- Rafael C.</strong>
-                </div>
-                <div className="review-card">
-                  <Star size={16} fill="#D4AF37" stroke="#D4AF37" />
-                  <Star size={16} fill="#D4AF37" stroke="#D4AF37" />
-                  <Star size={16} fill="#D4AF37" stroke="#D4AF37" />
-                  <Star size={16} fill="#D4AF37" stroke="#D4AF37" />
-                  <Star size={16} fill="#D4AF37" stroke="#D4AF37" />
-                  <p>Atendimento top, recomendo demais! O Carlos é fera no degrade.</p>
-                  <strong>- Thiago M.</strong>
+                <div className="testimonial-card">
+                  <div className="stars">★★★★★</div>
+                  <p>"Recomendo demais! O degrade do Carlos é sensacional."</p>
+                  <strong>- Fernando R.</strong>
                 </div>
               </div>
             </div>
           </>
         ) : (
-          /* TELA DE SUCESSO */
-          <div className="success-screen-barbearia">
-            <div className="success-card-barbearia">
-              <div className="success-crown">
-                <Crown size={56} />
-              </div>
+          /* Tela de Sucesso */
+          <div className="success-modern">
+            <div className="success-card-modern">
+              <div className="success-icon"><Crown size={64} /></div>
               <h2>{text.appointmentConfirmed}</h2>
               <p>{name}, {text.hourReserved}</p>
               
-              <div className="success-details-barbearia">
-                <div><span>SERVIÇO:</span><strong>{selectedService.name}</strong></div>
-                <div><span>BARBEIRO:</span><strong>{selectedProfessional.name}</strong></div>
-                <div><span>DATA:</span><strong>{selectedDate.label}</strong></div>
-                <div><span>HORÁRIO:</span><strong>{selectedTimeSlot.time}</strong></div>
-                <div className="code-highlight"><span>CÓDIGO:</span><strong>{confirmationCode}</strong></div>
+              <div className="booking-details">
+                <div><span>Serviço:</span><strong>{selectedService.name}</strong></div>
+                <div><span>Profissional:</span><strong>{selectedProfessional.name}</strong></div>
+                <div><span>Data/Horário:</span><strong>{selectedDate.label} - {selectedTimeSlot.time}</strong></div>
+                <div className="code"><span>Código:</span><strong>{confirmationCode}</strong></div>
               </div>
 
-              <div className="whatsapp-alert">
+              <div className="whatsapp-message">
                 <MessageCircle size={18} />
-                <span>Enviamos a confirmação via WhatsApp</span>
+                <span>Confirmação enviada via WhatsApp</span>
               </div>
 
-              <button onClick={handleReset} className="new-booking-barbearia">
-                NOVO AGENDAMENTO
+              <button onClick={handleReset} className="new-booking">
+                Novo agendamento
               </button>
             </div>
           </div>
         )}
 
-        {/* FOOTER */}
-        <footer className="barbearia-footer">
-          <a href={data.whatsapp} target="_blank" rel="noopener noreferrer" className="footer-whatsapp">
+        {/* Footer */}
+        <footer className="modern-footer">
+          <a href={data.whatsapp} target="_blank" rel="noopener noreferrer" className="whatsapp-button">
             <MessageCircle size={18} />
             {text.wantThisSystem}
           </a>
-          <p>Classic Barber © 2026 - Todos os direitos reservados</p>
+          <p>Classic Barber © 2026 - Tradição e estilo desde 2018</p>
         </footer>
       </div>
     </div>

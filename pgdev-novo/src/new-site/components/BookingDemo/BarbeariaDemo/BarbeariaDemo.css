@@ -1,981 +1,809 @@
-/* BARBEARIA DEMO - VISUAL AUTÊNTICO E PREMIUM */
-.barbearia-demo-case {
+/* BARBEARIA MODERN - DESIGN CLEAN PREMIUM */
+.barbearia-modern {
   min-height: 100vh;
-  background: #0a0a0a;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: #f5f5f5;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
 }
 
-/* HERO SECTION COM IMAGEM */
-.barbearia-demo-case .barbearia-hero {
-  position: relative;
-  height: 85vh;
-  min-height: 550px;
-  background: url('https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=1920&h=1080&fit=crop');
-  background-size: cover;
-  background-position: center 30%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-
-.barbearia-demo-case .hero-overlay {
-  position: absolute;
+/* Header */
+.modern-header {
+  background: #ffffff;
+  border-bottom: 1px solid #e5e5e5;
+  position: sticky;
   top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(135deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.7) 100%);
-}
-
-.barbearia-demo-case .hero-content {
-  position: relative;
-  z-index: 2;
-}
-
-.barbearia-demo-case .hero-logo svg {
-  color: #D4AF37;
-  margin-bottom: 20px;
-}
-
-.barbearia-demo-case .hero-logo h1 {
-  font-size: 4rem;
-  letter-spacing: 8px;
-  color: #D4AF37;
-  margin-bottom: 10px;
-  font-weight: 700;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-}
-
-.barbearia-demo-case .hero-logo p {
-  color: rgba(255,255,255,0.8);
-  letter-spacing: 3px;
-  font-size: 0.85rem;
-  font-weight: 500;
-}
-
-.barbearia-demo-case .hero-info-bar {
-  display: flex;
-  gap: 40px;
-  justify-content: center;
-  margin-top: 50px;
-  padding: 15px 30px;
-  background: rgba(0,0,0,0.6);
+  z-index: 100;
   backdrop-filter: blur(10px);
-  border-radius: 50px;
 }
 
-.barbearia-demo-case .hero-info-bar span {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: #D4AF37;
-  font-size: 0.8rem;
-  font-weight: 500;
-}
-
-.barbearia-demo-case .hero-back-btn {
-  position: absolute;
-  top: 30px;
-  left: 30px;
-  z-index: 3;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: white;
-  text-decoration: none;
-  font-size: 0.75rem;
-  font-weight: 600;
-  background: rgba(0,0,0,0.5);
-  padding: 8px 16px;
-  border-radius: 30px;
-  backdrop-filter: blur(5px);
-  transition: all 0.3s;
-}
-
-.barbearia-demo-case .hero-back-btn:hover {
-  background: #D4AF37;
-  color: #0a0a0a;
-}
-
-/* CONTAINER PRINCIPAL */
-.barbearia-demo-case .barbearia-container {
+.header-container {
   max-width: 1200px;
-  margin: -80px auto 0;
-  padding: 0 24px 48px;
-  position: relative;
-  z-index: 3;
-}
-
-/* CARD DO SISTEMA DE AGENDAMENTO */
-.barbearia-demo-case .booking-system-card {
-  background: #1a1a1a;
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
-  border: 1px solid rgba(212, 175, 55, 0.2);
-}
-
-.barbearia-demo-case .system-header {
-  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
-  padding: 30px;
-  text-align: center;
-  border-bottom: 2px solid #D4AF37;
-}
-
-.barbearia-demo-case .system-header h2 {
-  color: #D4AF37;
-  font-size: 1.5rem;
-  letter-spacing: 2px;
-  margin-bottom: 8px;
-}
-
-.barbearia-demo-case .system-header p {
-  color: #888;
-  font-size: 0.8rem;
-}
-
-/* STEP INDICATOR ESTILO BARBEARIA */
-.barbearia-demo-case .barbearia-steps {
+  margin: 0 auto;
+  padding: 16px 24px;
   display: flex;
   justify-content: space-between;
-  padding: 30px 40px;
-  background: #111;
-  border-bottom: 1px solid #222;
+  align-items: center;
 }
 
-.barbearia-demo-case .barbearia-step {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-  flex: 1;
-}
-
-.barbearia-demo-case .step-number {
-  width: 40px;
-  height: 40px;
-  background: #222;
-  border: 2px solid #333;
-  border-radius: 50%;
+.back-link {
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 8px;
   color: #666;
-  font-weight: 700;
-  margin-bottom: 10px;
-  transition: all 0.3s;
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.2s;
 }
 
-.barbearia-demo-case .barbearia-step.active .step-number {
-  background: #D4AF37;
-  border-color: #D4AF37;
-  color: #0a0a0a;
+.back-link:hover {
+  color: #000;
 }
 
-.barbearia-demo-case .barbearia-step span {
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 1px;
-  color: #555;
-}
-
-.barbearia-demo-case .barbearia-step.active span {
-  color: #D4AF37;
-}
-
-.barbearia-demo-case .step-line-custom {
-  position: absolute;
-  top: 20px;
-  left: 60%;
-  width: 80%;
-  height: 2px;
-  background: #222;
-}
-
-.barbearia-demo-case .barbearia-step:last-child .step-line-custom {
-  display: none;
-}
-
-/* MAIN CONTENT */
-.barbearia-demo-case .system-main {
-  display: flex;
-  gap: 0;
-  min-height: 500px;
-}
-
-.barbearia-demo-case .system-content {
-  flex: 1;
-  padding: 40px;
-}
-
-/* SECTION TITLE */
-.barbearia-demo-case .barbearia-section-title {
+.logo-area {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-bottom: 25px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid #333;
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: 1px;
+  color: #1a1a1a;
 }
 
-.barbearia-demo-case .barbearia-section-title svg {
+.logo-area svg {
   color: #D4AF37;
 }
 
-.barbearia-demo-case .barbearia-section-title h3 {
+.header-contact {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #666;
+  font-size: 14px;
+}
+
+/* Container Principal */
+.modern-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px 48px;
+}
+
+/* Hero com imagem de fundo */
+.hero-with-bg {
+  position: relative;
+  min-height: 500px;
+  background: url('https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=1920&h=800&fit=crop');
+  background-size: cover;
+  background-position: center;
+  border-radius: 24px;
+  margin: 20px 0 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+.hero-overlay-bg {
+  position: absolute;
+  top: 1;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.65) 100%);
+}
+
+.hero-content-bg {
+  position: relative;
+  z-index: 2;
+  padding: 60px 40px;
+}
+
+.hero-content-bg h1 {
+  font-size: 56px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 16px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  letter-spacing: -0.5px;
+}
+
+.hero-content-bg h1 span {
   color: #D4AF37;
-  font-size: 0.85rem;
-  letter-spacing: 2px;
+}
+
+.hero-content-bg p {
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 18px;
+  margin-bottom: 32px;
+}
+
+.hero-stats-bg {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+}
+
+.hero-stats-bg div {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #ffffff;
+  font-size: 14px;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(5px);
+  padding: 8px 20px;
+  border-radius: 40px;
+}
+
+.hero-stats-bg svg {
+  color: #D4AF37;
+}
+
+/* Booking Grid - Layout 2 colunas */
+.booking-grid {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 32px;
+  margin: 40px 0;
+}
+
+/* Coluna do Formulário */
+.booking-form-column {
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.form-header {
+  padding: 28px 32px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.form-header h2 {
+  font-size: 20px;
   font-weight: 600;
+  margin-bottom: 20px;
+  color: #1a1a1a;
 }
 
-/* SERVIÇOS */
-.barbearia-demo-case .barbearia-services {
+.step-indicator-modern {
+  display: flex;
+  gap: 8px;
+}
+
+.step-dot {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #e5e5e5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 600;
+  color: #999;
+  transition: all 0.3s;
+}
+
+.step-dot.active {
+  background: #D4AF37;
+  color: #fff;
+}
+
+.form-content {
+  padding: 32px;
+}
+
+.step-form h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #1a1a1a;
+}
+
+/* Serviços Modernos */
+.services-modern {
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
-.barbearia-demo-case .barbearia-service-item {
+.service-card-modern {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 18px 20px;
-  background: #111;
-  border: 1px solid #222;
+  gap: 16px;
+  padding: 16px 20px;
+  background: #fafafa;
+  border: 1px solid #e5e5e5;
   border-radius: 12px;
   cursor: pointer;
-  transition: all 0.3s;
+  transition: all 0.2s;
   width: 100%;
 }
 
-.barbearia-demo-case .barbearia-service-item:hover {
+.service-card-modern:hover {
   border-color: #D4AF37;
-  transform: translateX(5px);
+  background: #fff;
 }
 
-.barbearia-demo-case .barbearia-service-item.active {
-  background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+.service-card-modern.active {
   border-color: #D4AF37;
+  background: #fffdf8;
   border-left: 3px solid #D4AF37;
 }
 
-.barbearia-demo-case .service-left {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-.barbearia-demo-case .service-icon-barbearia {
-  width: 45px;
-  height: 45px;
-  background: #1a1a1a;
-  border-radius: 10px;
+.service-icon {
+  width: 48px;
+  height: 48px;
+  background: #fff;
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #D4AF37;
-  border: 1px solid #333;
+  border: 1px solid #e5e5e5;
 }
 
-.barbearia-demo-case .service-info h4 {
-  color: white;
-  font-size: 0.9rem;
-  font-weight: 600;
+.service-details {
+  flex: 1;
+  text-align: left;
+}
+
+.service-details strong {
+  display: block;
+  font-size: 15px;
+  color: #1a1a1a;
   margin-bottom: 4px;
 }
 
-.barbearia-demo-case .service-info span {
-  font-size: 0.7rem;
-  color: #666;
+.service-details span {
+  font-size: 12px;
+  color: #999;
 }
 
-.barbearia-demo-case .service-right {
-  display: flex;
-  align-items: center;
+.service-price {
+  font-weight: 700;
+  color: #D4AF37;
+  font-size: 16px;
+}
+
+/* Profissionais */
+.professionals-modern {
+  display: grid;
   gap: 12px;
 }
 
-.barbearia-demo-case .service-right strong {
-  color: #D4AF37;
-  font-size: 1rem;
-}
-
-.barbearia-demo-case .service-right svg {
-  color: #10b981;
-}
-
-/* BARBEIROS */
-.barbearia-demo-case .barbearia-barbers {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 20px;
-}
-
-.barbearia-demo-case .barbearia-barber-card {
-  position: relative;
-  padding: 20px;
-  background: #111;
-  border: 1px solid #222;
-  border-radius: 16px;
-  cursor: pointer;
-  transition: all 0.3s;
-  text-align: center;
-}
-
-.barbearia-demo-case .barbearia-barber-card:hover {
-  transform: translateY(-5px);
-  border-color: #D4AF37;
-}
-
-.barbearia-demo-case .barbearia-barber-card.active {
-  background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
-  border-color: #D4AF37;
-}
-
-.barbearia-demo-case .barbearia-barber-card img {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin: 0 auto 12px;
-  border: 2px solid #333;
-}
-
-.barbearia-demo-case .barbearia-barber-card.active img {
-  border-color: #D4AF37;
-}
-
-.barbearia-demo-case .barber-info h4 {
-  color: white;
-  font-size: 0.9rem;
-  margin-bottom: 4px;
-}
-
-.barbearia-demo-case .barber-info p {
-  font-size: 0.7rem;
-  color: #666;
-  margin-bottom: 6px;
-}
-
-.barbearia-demo-case .barber-stars {
+.professional-card {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 4px;
-}
-
-.barbearia-demo-case .barber-stars span {
-  color: #D4AF37;
-  font-size: 0.7rem;
-}
-
-.barbearia-demo-case .barber-check {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: #10b981;
-  border-radius: 50%;
-  padding: 4px;
-  color: white;
-}
-
-/* DATAS */
-.barbearia-demo-case .barbearia-dates {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-  gap: 15px;
-}
-
-.barbearia-demo-case .barbearia-date-card {
-  padding: 15px;
-  background: #111;
-  border: 1px solid #222;
+  gap: 16px;
+  padding: 12px 16px;
+  background: #fafafa;
+  border: 1px solid #e5e5e5;
   border-radius: 12px;
   cursor: pointer;
-  transition: all 0.3s;
-  text-align: center;
+  transition: all 0.2s;
+  width: 100%;
+  text-align: left;
 }
 
-.barbearia-demo-case .barbearia-date-card:hover {
+.professional-card.active {
   border-color: #D4AF37;
+  background: #fffdf8;
 }
 
-.barbearia-demo-case .barbearia-date-card.active {
-  background: #D4AF37;
-  border-color: #D4AF37;
+.professional-card img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
-.barbearia-demo-case .barbearia-date-card.active .date-day,
-.barbearia-demo-case .barbearia-date-card.active .date-full,
-.barbearia-demo-case .barbearia-date-card.active .date-badge {
-  color: #0a0a0a;
-}
-
-.barbearia-demo-case .date-day {
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: white;
+.professional-card strong {
   display: block;
+  font-size: 14px;
+  color: #1a1a1a;
 }
 
-.barbearia-demo-case .date-full {
-  font-size: 0.7rem;
-  color: #666;
-  display: block;
-  margin: 5px 0;
+.professional-card p {
+  font-size: 12px;
+  color: #999;
+  margin: 2px 0;
 }
 
-.barbearia-demo-case .date-badge {
-  font-size: 0.65rem;
-  color: #888;
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  color: #D4AF37;
 }
 
-/* HORÁRIOS */
-.barbearia-demo-case .barbearia-times {
+/* Datas */
+.dates-modern {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
   gap: 12px;
 }
 
-.barbearia-demo-case .barbearia-time-slot {
+.date-card-modern {
   padding: 12px;
-  background: #111;
-  border: 1px solid #222;
+  background: #000;
+  border: 1px solid #e5e5e5;
+  border-radius: 12px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.date-card-modern.active {
+  background: #D4AF37;
+  border-color: #D4AF37;
+  color: #fff;
+}
+
+.date-card-modern.active .date-info {
+  color: #fff;
+}
+
+.date-day {
+  font-size: 20px;
+  font-weight: 700;
+  display: block;
+}
+
+.date-info {
+  font-size: 11px;
+  color: #999;
+}
+
+/* Horários */
+.times-modern {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  gap: 10px;
+}
+
+.time-slot-modern {
+  padding: 10px;
+  background: #000000;
+  border: 1px solid #e5e5e5;
   border-radius: 10px;
   cursor: pointer;
-  color: white;
-  font-size: 0.8rem;
-  font-weight: 500;
-  transition: all 0.3s;
+  font-size: 14px;
+  transition: all 0.2s;
 }
 
-.barbearia-demo-case .barbearia-time-slot:hover:not(.disabled) {
+.time-slot-modern:hover:not(:disabled) {
   background: #D4AF37;
-  color: #0a0a0a;
+  color: #fff;
   border-color: #D4AF37;
 }
 
-.barbearia-demo-case .barbearia-time-slot.active {
+.time-slot-modern.active {
   background: #D4AF37;
-  color: #0a0a0a;
+  color: #fff;
   border-color: #D4AF37;
 }
 
-.barbearia-demo-case .barbearia-time-slot.disabled {
+.time-slot-modern.disabled {
   opacity: 0.3;
   cursor: not-allowed;
   text-decoration: line-through;
 }
 
-/* FORMULÁRIO */
-.barbearia-demo-case .barbearia-form {
+/* Formulário Usuário */
+.user-form {
   display: flex;
   flex-direction: column;
-  gap: 25px;
+  gap: 16px;
 }
 
-.barbearia-demo-case .barbearia-input-group {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.barbearia-demo-case .barbearia-input-group label {
-  color: #D4AF37;
-  font-size: 0.7rem;
-  letter-spacing: 1px;
-  font-weight: 600;
-}
-
-.barbearia-demo-case .barbearia-input-group input {
+.user-form input {
   padding: 14px 16px;
-  background: #111;
-  border: 1px solid #222;
-  border-radius: 10px;
-  color: white;
-  font-size: 0.9rem;
-  transition: all 0.3s;
+  border: 1px solid #e5e5e5;
+  border-radius: 12px;
+  font-size: 15px;
+  transition: all 0.2s;
 }
 
-.barbearia-demo-case .barbearia-input-group input:focus {
+.user-form input:focus {
   outline: none;
   border-color: #D4AF37;
 }
 
-.barbearia-demo-case .barbearia-input-group input::placeholder {
-  color: #444;
-}
-
-/* BOTÕES */
-.barbearia-demo-case .system-actions {
+/* Ações do Formulário */
+.form-actions {
   display: flex;
-  gap: 15px;
+  gap: 12px;
   margin-top: 40px;
-  padding-top: 30px;
-  border-top: 1px solid #222;
+  padding-top: 24px;
+  border-top: 1px solid #f0f0f0;
 }
 
-.barbearia-demo-case .btn-back-barbearia {
+.btn-prev {
   flex: 1;
   padding: 12px;
   background: transparent;
-  border: 1px solid #333;
-  border-radius: 10px;
-  color: #888;
-  font-weight: 600;
-  font-size: 0.75rem;
-  letter-spacing: 1px;
+  border: 1px solid #e5e5e5;
+  border-radius: 12px;
   cursor: pointer;
-  transition: all 0.3s;
+  font-weight: 500;
+  transition: all 0.2s;
 }
 
-.barbearia-demo-case .btn-back-barbearia:hover {
+.btn-prev:hover {
   border-color: #D4AF37;
-  color: #D4AF37;
 }
 
-.barbearia-demo-case .btn-next-barbearia,
-.barbearia-demo-case .btn-confirm-barbearia {
+.btn-next, .btn-confirm {
   flex: 2;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
   padding: 12px;
-  background: #D4AF37;
+  background: #1a1a1a;
+  color: #fff;
   border: none;
-  border-radius: 10px;
-  color: #0a0a0a;
-  font-weight: 700;
-  font-size: 0.75rem;
-  letter-spacing: 1px;
+  border-radius: 12px;
   cursor: pointer;
-  transition: all 0.3s;
+  font-weight: 600;
+  transition: all 0.2s;
 }
 
-.barbearia-demo-case .btn-next-barbearia:hover,
-.barbearia-demo-case .btn-confirm-barbearia:hover {
-  background: #e6c555;
+.btn-next:hover, .btn-confirm:hover {
+  background: #D4AF37;
   transform: translateY(-2px);
 }
 
-/* RESUMO LATERAL */
-.barbearia-demo-case .system-summary {
-  width: 280px;
-  background: #0a0a0a;
-  border-left: 1px solid #222;
-  padding: 30px;
-}
-
-.barbearia-demo-case .summary-title {
-  color: #D4AF37;
-  font-size: 0.8rem;
-  letter-spacing: 2px;
-  font-weight: 600;
-  padding-bottom: 15px;
-  border-bottom: 1px solid #222;
-  margin-bottom: 20px;
-}
-
-.barbearia-demo-case .summary-service {
+/* Coluna de Resumo */
+.booking-summary-column {
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 15px;
-  font-size: 0.75rem;
+  flex-direction: column;
+  gap: 20px;
 }
 
-.barbearia-demo-case .summary-service span {
-  color: #666;
-}
-
-.barbearia-demo-case .summary-service strong {
-  color: white;
-  text-align: right;
-}
-
-.barbearia-demo-case .summary-total {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
-  padding-top: 15px;
-  border-top: 1px solid #222;
-  font-size: 0.85rem;
-}
-
-.barbearia-demo-case .summary-total span {
-  color: #D4AF37;
-  font-weight: 600;
-}
-
-.barbearia-demo-case .summary-total strong {
-  color: #D4AF37;
-  font-size: 1.1rem;
-}
-
-.barbearia-demo-case .summary-note {
-  margin-top: 20px;
-  padding: 12px;
-  background: #111;
-  border-radius: 8px;
-  font-size: 0.65rem;
-  color: #888;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-/* SEÇÃO SOBRE */
-.barbearia-demo-case .barbearia-about {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
-  margin: 60px 0;
-  background: #111;
+.summary-card {
+  background: #ffffff;
   border-radius: 20px;
-  overflow: hidden;
-  border: 1px solid #222;
+  padding: 24px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
 }
 
-.barbearia-demo-case .about-left img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.barbearia-demo-case .about-right {
-  padding: 40px;
-}
-
-.barbearia-demo-case .about-right h3 {
-  color: #D4AF37;
-  font-size: 1rem;
-  letter-spacing: 2px;
+.summary-card h3 {
+  font-size: 16px;
+  color: black;
+  font-weight: 600;
   margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #D4AF37;
+  display: inline-block;
 }
 
-.barbearia-demo-case .about-right p {
-  color: #aaa;
-  line-height: 1.6;
-  font-size: 0.85rem;
-  margin-bottom: 25px;
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  font-size: 14px;
 }
 
-.barbearia-demo-case .about-features {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 15px;
+.summary-item span {
+  color: #999;
 }
 
-.barbearia-demo-case .about-features div {
+.summary-item strong {
+  color: #1a1a1a;
+}
+
+.summary-divider {
+  height: 1px;
+  background: #e5e5e5;
+  margin: 16px 0;
+}
+
+.summary-total {
+  display: flex;
+  justify-content: space-between;
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+.summary-total span {
+  color: #1a1a1a;
+}
+
+.summary-total strong {
+  color: #D4AF37;
+}
+
+.benefits-list {
+  background: #fafafa;
+  padding: 16px;
+  border-radius: 12px;
+}
+
+.benefits-list div {
   display: flex;
   align-items: center;
   gap: 10px;
-  color: white;
-  font-size: 0.8rem;
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 12px;
 }
 
-.barbearia-demo-case .about-features svg {
+.benefits-list div:last-child {
+  margin-bottom: 0;
+}
+
+.benefits-list svg {
   color: #D4AF37;
 }
 
-/* AVALIAÇÕES */
-.barbearia-demo-case .barbearia-reviews {
+/* Perks Card */
+.perks-card {
+  background: #1a1a1a;
+  border-radius: 20px;
+  padding: 24px;
+  color: #fff;
+}
+
+.perks-card h4 {
+  font-size: 14px;
+  margin-bottom: 16px;
+  color: #D4AF37;
+}
+
+.perk-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+  margin-bottom: 12px;
+  color: #ccc;
+}
+
+.perk-item svg {
+  color: #D4AF37;
+}
+
+/* Depoimentos */
+.testimonials-section {
   margin: 60px 0;
 }
 
-.barbearia-demo-case .barbearia-reviews h3 {
+.testimonials-section h3 {
   text-align: center;
-  color: #D4AF37;
-  font-size: 1rem;
-  letter-spacing: 2px;
-  margin-bottom: 30px;
+  font-size: 24px;
+  font-weight: 500;
+  margin-bottom: 32px;
+  color: #1a1a1a;
 }
 
-.barbearia-demo-case .reviews-grid {
+.testimonials-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 25px;
+  gap: 24px;
 }
 
-.barbearia-demo-case .review-card {
-  background: #111;
-  padding: 25px;
+.testimonial-card {
+  background: #fff;
+  padding: 24px;
   border-radius: 16px;
-  border: 1px solid #222;
-  transition: all 0.3s;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
-.barbearia-demo-case .review-card:hover {
-  transform: translateY(-5px);
-  border-color: #D4AF37;
-}
-
-.barbearia-demo-case .review-card svg {
-  margin-bottom: 15px;
-}
-
-.barbearia-demo-case .review-card p {
-  color: #aaa;
-  font-size: 0.8rem;
-  line-height: 1.5;
-  margin-bottom: 15px;
-}
-
-.barbearia-demo-case .review-card strong {
+.testimonial-card .stars {
   color: #D4AF37;
-  font-size: 0.75rem;
+  font-size: 14px;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
 }
 
-/* TELA DE SUCESSO */
-.barbearia-demo-case .success-screen-barbearia {
+.testimonial-card p {
+  color: #666;
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
+
+.testimonial-card strong {
+  color: #1a1a1a;
+  font-size: 13px;
+}
+
+/* Tela de Sucesso */
+.success-modern {
+  min-height: 60vh;
   display: flex;
-  justify-content: center;
   align-items: center;
-  min-height: 600px;
+  justify-content: center;
+  padding: 60px 0;
 }
 
-.barbearia-demo-case .success-card-barbearia {
-  background: #1a1a1a;
+.success-card-modern {
+  background: #fff;
   border-radius: 24px;
-  padding: 50px;
+  padding: 48px;
   text-align: center;
   max-width: 500px;
-  width: 100%;
-  border: 1px solid #D4AF37;
-  animation: barbeariaFadeInScale 0.5s ease;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
 }
 
-@keyframes barbeariaFadeInScale {
-  from {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-.barbearia-demo-case .success-crown {
-  width: 96px;
-  height: 96px;
-  background: linear-gradient(135deg, #D4AF3720 0%, #D4AF3710 100%);
+.success-icon {
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(135deg, #D4AF37 0%, #e6c555 100%);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 20px;
-  color: #D4AF37;
+  margin: 0 auto 24px;
+  color: #fff;
 }
 
-.barbearia-demo-case .success-card-barbearia h2 {
-  color: #D4AF37;
-  font-size: 1.5rem;
-  margin-bottom: 10px;
+.success-card-modern h2 {
+  font-size: 24px;
+  margin-bottom: 8px;
+  color: #1a1a1a;
 }
 
-.barbearia-demo-case .success-card-barbearia > p {
-  color: #888;
-  font-size: 0.85rem;
-  margin-bottom: 30px;
+.success-card-modern > p {
+  color: #666;
+  margin-bottom: 32px;
 }
 
-.barbearia-demo-case .success-details-barbearia {
-  background: #111;
+.booking-details {
+  background: #fafafa;
   border-radius: 16px;
   padding: 20px;
-  margin-bottom: 25px;
   text-align: left;
+  margin-bottom: 24px;
 }
 
-.barbearia-demo-case .success-details-barbearia div {
+.booking-details div {
   display: flex;
   justify-content: space-between;
-  padding: 10px 0;
-  border-bottom: 1px solid #222;
+  padding: 8px 0;
+  border-bottom: 1px solid #e5e5e5;
 }
 
-.barbearia-demo-case .success-details-barbearia div:last-child {
+.booking-details div:last-child {
   border-bottom: none;
 }
 
-.barbearia-demo-case .success-details-barbearia span {
-  color: #666;
-  font-size: 0.75rem;
+.booking-details span {
+  color: #999;
+  font-size: 13px;
 }
 
-.barbearia-demo-case .success-details-barbearia strong {
-  color: white;
-  font-size: 0.8rem;
+.booking-details strong {
+  color: #1a1a1a;
+  font-size: 13px;
 }
 
-.barbearia-demo-case .code-highlight {
-  background: #1a1a1a;
-  margin: 0 -20px -20px;
-  padding: 15px 20px;
-  border-radius: 0 0 16px 16px;
+.booking-details .code strong {
+  color: #D4AF37;
+  font-size: 16px;
 }
 
-.barbearia-demo-case .code-highlight strong {
-  color: #D4AF37 !important;
-  font-size: 1rem !important;
-}
-
-.barbearia-demo-case .whatsapp-alert {
+.whatsapp-message {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  padding: 12px;
   background: #075E54;
-  border-radius: 10px;
-  margin-bottom: 25px;
-  color: white;
-  font-size: 0.75rem;
+  color: #fff;
+  padding: 12px;
+  border-radius: 12px;
+  margin-bottom: 24px;
+  font-size: 14px;
 }
 
-.barbearia-demo-case .new-booking-barbearia {
+.new-booking {
   width: 100%;
   padding: 14px;
   background: transparent;
-  border: 1px solid #D4AF37;
-  border-radius: 10px;
+  border: 2px solid #D4AF37;
+  border-radius: 12px;
   color: #D4AF37;
-  font-weight: 700;
+  font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s;
+  transition: all 0.2s;
 }
 
-.barbearia-demo-case .new-booking-barbearia:hover {
+.new-booking:hover {
   background: #D4AF37;
-  color: #0a0a0a;
+  color: #fff;
 }
 
-/* FOOTER */
-.barbearia-demo-case .barbearia-footer {
-  margin-top: 60px;
-  padding-top: 40px;
-  border-top: 1px solid #222;
+/* Footer */
+.modern-footer {
   text-align: center;
+  padding-top: 48px;
+  margin-top: 48px;
+  border-top: 1px solid #e5e5e5;
 }
 
-.barbearia-demo-case .footer-whatsapp {
+.whatsapp-button {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  padding: 12px 30px;
-  background: #D4AF37;
-  color: #0a0a0a;
-  text-decoration: none;
+  background: #1a1a1a;
+  color: #fff;
+  padding: 14px 32px;
   border-radius: 40px;
-  font-weight: 700;
-  font-size: 0.8rem;
-  letter-spacing: 1px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
   margin-bottom: 20px;
-  transition: all 0.3s;
+  transition: all 0.2s;
 }
 
-.barbearia-demo-case .footer-whatsapp:hover {
-  background: #e6c555;
-  transform: translateY(-3px);
+.whatsapp-button:hover {
+  background: #D4AF37;
+  transform: translateY(-2px);
 }
 
-.barbearia-demo-case .barbearia-footer p {
-  color: #444;
-  font-size: 0.7rem;
+.modern-footer p {
+  color: #999;
+  font-size: 12px;
 }
 
-/* RESPONSIVO */
-@media (max-width: 968px) {
-  .barbearia-demo-case .system-main {
-    flex-direction: column;
-  }
-  
-  .barbearia-demo-case .system-summary {
-    width: 100%;
-    border-left: none;
-    border-top: 1px solid #222;
-  }
-  
-  .barbearia-demo-case .hero-info-bar {
-    flex-direction: column;
-    gap: 10px;
-    border-radius: 20px;
-    margin: 30px 20px 0;
-  }
-  
-  .barbearia-demo-case .hero-logo h1 {
-    font-size: 2rem;
-    letter-spacing: 4px;
-  }
-  
-  .barbearia-demo-case .barbearia-about {
+/* Responsivo */
+@media (max-width: 900px) {
+  .booking-grid {
     grid-template-columns: 1fr;
   }
   
-  .barbearia-demo-case .about-left {
-    height: 250px;
+  .hero-content-bg h1 {
+    font-size: 36px;
   }
   
-  .barbearia-demo-case .barbearia-steps {
-    padding: 20px;
+  .hero-stats-bg {
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
   }
   
-  .barbearia-demo-case .system-content {
-    padding: 25px;
+  .header-container {
+    flex-direction: column;
+    gap: 12px;
   }
   
-  .barbearia-demo-case .step-line-custom {
-    left: 70%;
+  .hero-content-bg {
+    padding: 40px 20px;
   }
 }
 
-@media (max-width: 768px) {
-  .barbearia-demo-case .barbearia-container {
+@media (max-width: 600px) {
+  .modern-container {
     padding: 0 16px 32px;
   }
   
-  .barbearia-demo-case .hero-back-btn {
-    top: 20px;
-    left: 20px;
+  .form-content {
+    padding: 20px;
   }
   
-  .barbearia-demo-case .barbearia-barbers {
-    grid-template-columns: 1fr;
+  .form-header {
+    padding: 20px;
   }
   
-  .barbearia-demo-case .reviews-grid {
-    grid-template-columns: 1fr;
+  .success-card-modern {
+    padding: 32px 20px;
   }
   
-  .barbearia-demo-case .about-features {
-    grid-template-columns: 1fr;
+  .hero-with-bg {
+    min-height: 400px;
   }
   
-  .barbearia-demo-case .success-card-barbearia {
-    padding: 30px 20px;
-  }
-}
-
-@media (max-width: 480px) {
-  .barbearia-demo-case .barbearia-step span {
-    font-size: 0.55rem;
+  .hero-content-bg h1 {
+    font-size: 28px;
   }
   
-  .barbearia-demo-case .step-number {
-    width: 32px;
-    height: 32px;
-    font-size: 0.75rem;
-  }
-  
-  .barbearia-demo-case .barbearia-service-item {
-    padding: 12px;
-  }
-  
-  .barbearia-demo-case .service-icon-barbearia {
-    width: 35px;
-    height: 35px;
+  .hero-content-bg p {
+    font-size: 14px;
   }
 }
