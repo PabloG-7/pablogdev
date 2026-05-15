@@ -35,7 +35,8 @@ textarea {
 }
 
 main {
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: visible;
 }
 
 .container {

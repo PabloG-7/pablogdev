@@ -1,9 +1,18 @@
-/* Booking Demo Global Styles - Scrollbar personalizada */
-.booking-demo-active {
-  overflow: auto;
+html.booking-demo-active,
+body.booking-demo-active {
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  height: auto !important;
+  min-height: 100% !important;
+  overscroll-behavior-y: auto !important;
+  touch-action: auto !important;
 }
 
-/* Chrome, Safari, Edge, Opera (Desktop e Mobile) */
+.booking-demo-active {
+  scrollbar-width: thin;
+  scrollbar-color: var(--booking-accent, #fec90f) #ffffff;
+}
+
 .booking-demo-active::-webkit-scrollbar {
   width: 8px;
 }
@@ -22,27 +31,9 @@
   background: var(--booking-accent-hover, #e5b40d);
 }
 
-/* Firefox */
-.booking-demo-active {
-  scrollbar-width: thin;
-  scrollbar-color: var(--booking-accent, #fec90f) #ffffff;
-}
-
-/* iOS (iPhone/iPad) - scrollbar só aparece quando rola */
-@media (hover: none) and (pointer: coarse) {
-  .booking-demo-active::-webkit-scrollbar {
-    width: 3px;
-    background: transparent;
-  }
-  
-  .booking-demo-active::-webkit-scrollbar-track {
-    background: transparent;
-  }
-}
-
-/* Android */
-@media (max-width: 768px) {
-  .booking-demo-active::-webkit-scrollbar {
-    width: 4px;
-  }
+html,
+body {
+  overflow-x: hidden;
+  overflow-y: auto;
+  scroll-behavior: smooth;
 }

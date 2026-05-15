@@ -79,8 +79,11 @@ export default function BarbeariaDemo({ language }: Props) {
   }, [confirmed])
 
   useEffect(() => {
+    document.documentElement.classList.add('booking-demo-active')
     document.body.classList.add('booking-demo-active')
+
     return () => {
+      document.documentElement.classList.remove('booking-demo-active')
       document.body.classList.remove('booking-demo-active')
     }
   }, [])
