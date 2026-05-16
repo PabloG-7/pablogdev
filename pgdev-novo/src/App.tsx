@@ -7,11 +7,14 @@ import Header from './new-site/components/Header/Header'
 import Hero from './new-site/components/Hero/Hero'
 import ProcessBanner from './new-site/components/ProcessBanner/ProcessBanner'
 import Services from './new-site/components/Services/Services'
+import ExperienceDemo from './new-site/components/ExperienceDemo/ExperienceDemo'
 import Projects from './new-site/components/Projects/Projects'
 import About from './new-site/components/About/About'
 import Contact from './new-site/components/Contact/Contact'
 import Footer from './new-site/components/Footer/Footer'
 import ProjectGuide from './new-site/components/ProjectGuide/ProjectGuide'
+
+import FullBookingExperience from './new-site/components/FullBookingExperience/FullBookingExperience'
 
 import BookingDemo from './new-site/components/BookingDemo/BookingDemo'
 import PabloGomesPage from './new-site/components/PabloGomesPage/PabloGomesPage'
@@ -61,6 +64,10 @@ function App() {
     return <BookingDemo type="petshop" language={language} />
   }
 
+ if (path === '/demo-agendamento') {
+  return <FullBookingExperience language={currentLanguage} />
+}
+
   if (path === '/pablo-gomes') return <PabloGomesPage language="pt" />
   if (path === '/es/pablo-gomes') return <PabloGomesPage language="es" />
 
@@ -71,6 +78,7 @@ function App() {
         <Hero language={currentLanguage} />
         <ProcessBanner language={currentLanguage} />
         <Services language={currentLanguage} />
+        <ExperienceDemo language={currentLanguage} />
         <Projects language={currentLanguage} />
         <About language={currentLanguage} />
         <Contact language={currentLanguage} />

@@ -197,6 +197,7 @@ function ProjectPreview({ language }: Props) {
 
     document.body.style.overflow = 'hidden'
     document.documentElement.style.overflow = 'hidden'
+    document.body.style.touchAction = 'none'
 
     if (nav) (nav as HTMLElement).style.display = 'none'
     if (header) (header as HTMLElement).style.zIndex = '0'
@@ -204,6 +205,7 @@ function ProjectPreview({ language }: Props) {
     return () => {
       document.body.style.overflow = ''
       document.documentElement.style.overflow = ''
+      document.body.style.touchAction = ''
 
       if (nav) (nav as HTMLElement).style.display = ''
       if (header) (header as HTMLElement).style.zIndex = ''
