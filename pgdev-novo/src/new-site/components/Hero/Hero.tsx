@@ -1,7 +1,7 @@
 import './Hero.css'
 import heroDevices from '../../assets/hero-devices.png'
 import logo from '../../assets/logo.png'
-import { ArrowRight, Calendar, MessageCircle, Layout, Headphones, Lightbulb, Code, TrendingUp } from 'lucide-react'
+import { ArrowRight, Calendar, MessageCircle, Layout, Headphones, Globe, Calendar as CalendarIcon, Settings2 } from 'lucide-react'
 import type { Language } from '../../types'
 import ProjectPreview from '../ProjectPreview/ProjectPreview'
 
@@ -140,42 +140,42 @@ export default function Hero({ language }: HeroProps) {
             <ProjectPreview language={language} />
           </div>
 
-          {/* NOVOS STATS */}
+          {/* STATS MELHORADOS - CLEAN & DIRETO */}
           <div className="hero-stats">
             <div className="stat">
-              <Lightbulb size={18} color="#fec90f" />
-              {language === 'pt'
-                ? 'Atendimento'
-                : 'Atención'}{' '}
-              <span>
-                {language === 'pt'
-                  ? '→ Mais Organização'
-                  : '→ Más Organización'}
-              </span>
+              <Globe size={16} />
+              <div className="stat-info">
+                <strong>{language === 'pt' ? 'Sites' : 'Sitios'}</strong>
+                <p>
+                  {language === 'pt'
+                    ? 'Sem presença online → Mais autoridade'
+                    : 'Sin presencia online → Más autoridad'}
+                </p>
+              </div>
             </div>
 
             <div className="stat">
-              <Code size={18} color="#fec90f" />
-              {language === 'pt'
-                ? 'Organização'
-                : 'Organización'}{' '}
-              <span>
-                {language === 'pt'
-                  ? '→ Mais praticidade'
-                  : '→ Más practicidad'}
-              </span>
+              <CalendarIcon size={16} />
+              <div className="stat-info">
+                <strong>{language === 'pt' ? 'Agendamentos' : 'Reservas'}</strong>
+                <p>
+                  {language === 'pt'
+                    ? 'Horários bagunçados → Mais organização'
+                    : 'Horarios desorganizados → Más organización'}
+                </p>
+              </div>
             </div>
 
             <div className="stat">
-              <TrendingUp size={18} color="#fec90f" />
-              {language === 'pt'
-                ? 'Negócio'
-                : 'Negocio'}{' '}
-              <span>
-                {language === 'pt'
-                  ? '→ Mais resultado'
-                  : '→ Más resultados'}
-              </span>
+              <Settings2 size={16} />
+              <div className="stat-info">
+                <strong>{language === 'pt' ? 'Sistemas' : 'Sistemas'}</strong>
+                <p>
+                  {language === 'pt'
+                    ? 'Controle manual → Mais praticidade'
+                    : 'Control manual → Más practicidad'}
+                </p>
+              </div>
             </div>
           </div>
         </div>

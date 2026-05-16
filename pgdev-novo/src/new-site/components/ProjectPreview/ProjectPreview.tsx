@@ -27,6 +27,17 @@ import {
   Wrench,
   X,
   Zap,
+  Layers,
+  Grid3x3,
+  LayoutGrid,
+  Clock,
+  Target,
+  FileText,
+  Settings,
+  Database,
+  Cloud,
+  Lock,
+  RefreshCw,
 } from 'lucide-react'
 import logoPng from '../../assets/apenas-logo.png'
 import type { CSSProperties } from 'react'
@@ -40,6 +51,7 @@ type ProjectType = 'website' | 'landing' | 'system'
 type Industry = 'service' | 'health' | 'food' | 'store'
 type DeviceMode = 'desktop' | 'mobile'
 type StylePreset = 'premium' | 'clean' | 'bold'
+type LayoutVariant = 'variant1' | 'variant2' | 'variant3'
 
 const STORAGE_KEY = 'project_preview_state_v2'
 
@@ -49,6 +61,7 @@ interface SavedState {
   industry: Industry
   deviceMode: DeviceMode
   stylePreset: StylePreset
+  layoutVariant: LayoutVariant
   primaryColor: string
   secondaryColor: string
   accentColor: string
@@ -91,6 +104,7 @@ const defaultState: SavedState = {
   industry: 'service',
   deviceMode: 'desktop',
   stylePreset: 'premium',
+  layoutVariant: 'variant1',
   primaryColor: '#fec90f',
   secondaryColor: '#000c24',
   accentColor: '#3b82f6',
@@ -144,6 +158,7 @@ function ProjectPreview({ language }: Props) {
   const [industry, setIndustry] = useState<Industry>(saved.industry)
   const [deviceMode, setDeviceMode] = useState<DeviceMode>(saved.deviceMode)
   const [stylePreset, setStylePreset] = useState<StylePreset>(saved.stylePreset)
+  const [layoutVariant, setLayoutVariant] = useState<LayoutVariant>(saved.layoutVariant)
   const [primaryColor, setPrimaryColor] = useState(saved.primaryColor)
   const [secondaryColor, setSecondaryColor] = useState(saved.secondaryColor)
   const [accentColor, setAccentColor] = useState(saved.accentColor)
@@ -155,11 +170,12 @@ function ProjectPreview({ language }: Props) {
       industry,
       deviceMode,
       stylePreset,
+      layoutVariant,
       primaryColor,
       secondaryColor,
       accentColor,
     })
-  }, [businessName, projectType, industry, deviceMode, stylePreset, primaryColor, secondaryColor, accentColor])
+  }, [businessName, projectType, industry, deviceMode, stylePreset, layoutVariant, primaryColor, secondaryColor, accentColor])
 
   const handleKeyDown = useCallback(
     (e: KeyboardEvent) => {
@@ -173,9 +189,6 @@ function ProjectPreview({ language }: Props) {
     return () => document.removeEventListener('keydown', handleKeyDown)
   }, [handleKeyDown])
 
-  // ============================================
-  // useEffect CORRIGIDO - remove o position fixed problemático
-  // ============================================
   useEffect(() => {
     const nav = document.querySelector('nav')
     const header = document.querySelector('header')
@@ -240,8 +253,8 @@ function ProjectPreview({ language }: Props) {
   }[stylePreset]
 
   const whatsappMessage = isPt
-    ? `Olá! Vi a simulação no site e quero um projeto para "${name}". Tipo: ${typeLabel}. Segmento: ${industryCopy.label}. Estilo: ${styleLabel}. Cores: ${primaryColor} / ${secondaryColor} / ${accentColor}`
-    : `¡Hola! Vi la simulación en el sitio y quiero un proyecto para "${name}". Tipo: ${typeLabel}. Segmento: ${industryCopy.label}. Estilo: ${styleLabel}. Colores: ${primaryColor} / ${secondaryColor} / ${accentColor}`
+    ? `Olá! Vi a simulação no site e quero um projeto para "${name}". Tipo: ${typeLabel}. Segmento: ${industryCopy.label}. Estilo: ${styleLabel}. Layout: ${layoutVariant}. Cores: ${primaryColor} / ${secondaryColor} / ${accentColor}`
+    : `¡Hola! Vi la simulación en el sitio y quiero un proyecto para "${name}". Tipo: ${typeLabel}. Segmento: ${industryCopy.label}. Estilo: ${styleLabel}. Layout: ${layoutVariant}. Colores: ${primaryColor} / ${secondaryColor} / ${accentColor}`
 
   const deviceStyle = {
     '--primary': primaryColor,
@@ -266,9 +279,475 @@ function ProjectPreview({ language }: Props) {
     setIndustry('service')
     setDeviceMode('desktop')
     setStylePreset('premium')
+    setLayoutVariant('variant1')
     setPrimaryColor(defaultState.primaryColor)
     setSecondaryColor(defaultState.secondaryColor)
     setAccentColor(defaultState.accentColor)
+  }
+
+  const renderWebsitePreview = () => {
+    switch(layoutVariant) {
+      case 'variant2':
+        return (
+          <div className="preview-site preview-site--variant2">
+            <div className="preview-site__hero-alt">
+              <div className="preview-site__hero-alt-content">
+                <span className="preview-site__hero-badge">{industryCopy.label}</span>
+                <h3>{industryCopy.headline}</h3>
+                <p>
+                  {isPt
+                    ? 'Uma presença digital clara, bonita e pensada para gerar contatos todos os dias.'
+                    : 'Una presencia digital clara, bonita y pensada para generar contactos todos los días.'}
+                </p>
+                <button type="button" className="preview-site__hero-cta">
+                  {industryCopy.action}
+                  <ArrowRight size={13} />
+                </button>
+              </div>
+              <div className="preview-site__hero-image">
+                <div className="preview-site__hero-placeholder"></div>
+              </div>
+            </div>
+            <div className="preview-site__features-grid">
+              {[1, 2, 3, 4].map((i) => (
+                <div key={i} className="preview-site__feature-card">
+                  <div className="preview-site__section-icon"><Star size={16} /></div>
+                  <span>{isPt ? 'Recurso premium' : 'Recurso premium'}</span>
+                  <small>{isPt ? 'Benefício exclusivo' : 'Beneficio exclusivo'}</small>
+                </div>
+              ))}
+            </div>
+          </div>
+        )
+      case 'variant3':
+        return (
+          <div className="preview-site preview-site--variant3">
+            <div className="preview-site__showcase">
+              <div className="preview-site__showcase-header">
+                <h3>{isPt ? 'Soluções que transformam' : 'Soluciones que transforman'}</h3>
+                <p>{isPt ? 'Conheça nossos diferenciais' : 'Conozca nuestros diferenciales'}</p>
+              </div>
+              <div className="preview-site__showcase-grid">
+                <div className="preview-site__showcase-item">
+                  <Shield size={24} />
+                  <strong>{isPt ? 'Segurança' : 'Seguridad'}</strong>
+                </div>
+                <div className="preview-site__showcase-item">
+                  <Zap size={24} />
+                  <strong>{isPt ? 'Velocidade' : 'Velocidad'}</strong>
+                </div>
+                <div className="preview-site__showcase-item">
+                  <Heart size={24} />
+                  <strong>{isPt ? 'Suporte' : 'Soporte'}</strong>
+                </div>
+              </div>
+              <div className="preview-site__testimonial">
+                <p>"Serviço excelente, super recomendo!"</p>
+                <span>- Cliente satisfeito</span>
+              </div>
+            </div>
+          </div>
+        )
+      default:
+        return (
+          <div className="preview-site">
+            <div className="preview-site__header">
+              <div className="preview-site__brand">
+                <div className="preview-site__logo">{initials}</div>
+                <span className="preview-site__name">{name}</span>
+              </div>
+              <div className="preview-site__menu">
+                <span className="active">{isPt ? 'Home' : 'Inicio'}</span>
+                <span>{isPt ? 'Serviços' : 'Servicios'}</span>
+                <span>{isPt ? 'Sobre' : 'Sobre'}</span>
+                <span>{isPt ? 'Contato' : 'Contacto'}</span>
+              </div>
+              <Menu className="preview-site__menu-icon" size={16} />
+            </div>
+
+            <div className="preview-site__hero">
+              <span className="preview-site__hero-badge">{industryCopy.label}</span>
+              <h3>{industryCopy.headline}</h3>
+              <p>
+                {isPt
+                  ? 'Uma presença digital clara, bonita e pensada para gerar contatos todos os dias.'
+                  : 'Una presencia digital clara, bonita y pensada para generar contactos todos los días.'}
+              </p>
+              <button type="button" className="preview-site__hero-cta">
+                {industryCopy.action}
+                <ArrowRight size={13} />
+              </button>
+            </div>
+
+            <div className="preview-site__sections">
+              <div className="preview-site__section">
+                <div className="preview-site__section-icon"><Wrench size={16} /></div>
+                <span>{isPt ? 'Serviços' : 'Servicios'}</span>
+                <small>{isPt ? 'Tudo bem explicado' : 'Todo bien explicado'}</small>
+              </div>
+              <div className="preview-site__section">
+                <div className="preview-site__section-icon"><Users size={16} /></div>
+                <span>{isPt ? 'Prova social' : 'Prueba social'}</span>
+                <small>{isPt ? 'Depoimentos reais' : 'Testimonios reales'}</small>
+              </div>
+              <div className="preview-site__section">
+                <div className="preview-site__section-icon"><MessageCircle size={16} /></div>
+                <span>WhatsApp</span>
+                <small>{isPt ? 'Contato em 1 clique' : 'Contacto en 1 clic'}</small>
+              </div>
+            </div>
+
+            <div className="preview-site__strip">
+              <div>
+                <strong>4.9</strong>
+                <span>{isPt ? 'avaliação média' : 'valoración media'}</span>
+              </div>
+              <div>
+                <strong>24h</strong>
+                <span>{isPt ? 'resposta rápida' : 'respuesta rápida'}</span>
+              </div>
+              <div>
+                <strong>100%</strong>
+                <span>{isPt ? 'responsivo' : 'responsivo'}</span>
+              </div>
+            </div>
+          </div>
+        )
+    }
+  }
+
+  const renderLandingPreview = () => {
+    switch(layoutVariant) {
+      case 'variant2':
+        return (
+          <div className="preview-landing preview-landing--variant2">
+            <div className="preview-landing__hero-split">
+              <div className="preview-landing__hero-left">
+                <div className="preview-landing__icon-circle">
+                  <Target size={24} />
+                </div>
+                <h3>{isPt ? 'Resultados que impactam seu negócio' : 'Resultados que impactan tu negocio'}</h3>
+                <p>
+                  {isPt
+                    ? 'Aumente suas vendas com uma landing page otimizada e profissional.'
+                    : 'Aumenta tus ventas con una landing page optimizada y profesional.'}
+                </p>
+                <div className="preview-landing__benefits">
+                  <div className="preview-landing__benefit">
+                    <CheckCircle size={14} />
+                    <span>{isPt ? 'Alta conversão garantida' : 'Alta conversión garantizada'}</span>
+                  </div>
+                  <div className="preview-landing__benefit">
+                    <CheckCircle size={14} />
+                    <span>{isPt ? 'Design responsivo' : 'Diseño responsivo'}</span>
+                  </div>
+                  <div className="preview-landing__benefit">
+                    <CheckCircle size={14} />
+                    <span>{isPt ? 'Otimização para SEO' : 'Optimización para SEO'}</span>
+                  </div>
+                </div>
+                <button type="button" className="preview-landing__big-cta">
+                  {industryCopy.action}
+                  <ArrowRight size={14} />
+                </button>
+              </div>
+              <div className="preview-landing__hero-right">
+                <div className="preview-landing__stats-card">
+                  <div className="stat">
+                    <strong>+150%</strong>
+                    <span>{isPt ? 'mais leads' : 'más leads'}</span>
+                  </div>
+                  <div className="stat">
+                    <strong>98%</strong>
+                    <span>{isPt ? 'satisfação' : 'satisfacción'}</span>
+                  </div>
+                  <div className="stat">
+                    <strong>24/7</strong>
+                    <span>{isPt ? 'suporte' : 'soporte'}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )
+      case 'variant3':
+        return (
+          <div className="preview-landing preview-landing--variant3">
+            <div className="preview-landing__pricing-full">
+              <div className="preview-landing__pricing-header">
+                <h3>{isPt ? 'Invista no sucesso do seu negócio' : 'Invierte en el éxito de tu negocio'}</h3>
+                <p>{isPt ? 'Escolha o plano ideal para você' : 'Elige el plan ideal para ti'}</p>
+              </div>
+              <div className="preview-landing__pricing-cards-full">
+                <div className="preview-landing__pricing-card-full">
+                  <strong>{isPt ? 'Plano Essencial' : 'Plan Esencial'}</strong>
+                  <div className="price">R$ 997</div>
+                  <ul>
+                    <li>✓ {isPt ? 'Landing page completa' : 'Landing page completa'}</li>
+                    <li>✓ {isPt ? 'Design profissional' : 'Diseño profesional'}</li>
+                    <li>✓ {isPt ? 'Formulário de contato' : 'Formulario de contacto'}</li>
+                    <li>✓ {isPt ? 'SEO básico' : 'SEO básico'}</li>
+                  </ul>
+                  <button>{isPt ? 'Escolher plano' : 'Elegir plan'}</button>
+                </div>
+                <div className="preview-landing__pricing-card-full featured">
+                  <div className="popular-badge">{isPt ? 'MAIS POPULAR' : 'MÁS POPULAR'}</div>
+                  <strong>{isPt ? 'Plano Premium' : 'Plan Premium'}</strong>
+                  <div className="price">R$ 1.997</div>
+                  <ul>
+                    <li>✓ {isPt ? 'Tudo do plano essencial' : 'Todo del plan esencial'}</li>
+                    <li>✓ {isPt ? 'Chat integrado' : 'Chat integrado'}</li>
+                    <li>✓ {isPt ? 'Integração com WhatsApp' : 'Integración con WhatsApp'}</li>
+                    <li>✓ {isPt ? 'Suporte prioritário' : 'Soporte prioritario'}</li>
+                    <li>✓ {isPt ? 'Analytics avançado' : 'Analytics avanzado'}</li>
+                  </ul>
+                  <button>{isPt ? 'Escolher plano' : 'Elegir plan'}</button>
+                </div>
+              </div>
+              <div className="preview-landing__guarantee">
+                <Shield size={16} />
+                <span>{isPt ? '30 dias de garantia ou seu dinheiro de volta' : '30 días de garantía o tu dinero de vuelta'}</span>
+              </div>
+            </div>
+          </div>
+        )
+      default:
+        return (
+          <div className="preview-landing">
+            <div className="preview-landing__top">
+              <div className="preview-landing__brand">
+                <div className="preview-landing__logo">{initials}</div>
+                <span>{name}</span>
+              </div>
+              <span className="preview-landing__cta-top">{industryCopy.action}</span>
+            </div>
+
+            <div className="preview-landing__hero">
+              <div className="preview-landing__icon-circle">
+                <Zap size={20} />
+              </div>
+              <span className="preview-landing__eyebrow">{typeLabel} · {industryCopy.label}</span>
+              <h3>{isPt ? 'Transforme visitantes em clientes' : 'Transforma visitantes en clientes'}</h3>
+              <p>
+                {isPt
+                  ? 'Uma página direta, persuasiva e otimizada para o cliente tomar uma ação.'
+                  : 'Una página directa, persuasiva y optimizada para que el cliente tome acción.'}
+              </p>
+              <button type="button" className="preview-landing__big-cta">
+                {industryCopy.action}
+                <ArrowRight size={14} />
+              </button>
+
+              <div className="preview-landing__trust">
+                <div className="preview-landing__trust-item">
+                  <Shield size={12} />
+                  {isPt ? 'Seguro' : 'Seguro'}
+                </div>
+                <div className="preview-landing__trust-item">
+                  <Heart size={12} />
+                  {isPt ? 'Humano' : 'Humano'}
+                </div>
+                <div className="preview-landing__trust-item">
+                  <CheckCircle size={12} />
+                  {isPt ? 'Sem enrolação' : 'Sin vueltas'}
+                </div>
+              </div>
+
+              <div className="preview-landing__features">
+                <div className="preview-landing__feature">
+                  <TrendingUp size={14} />
+                  <span>{isPt ? 'Alta conversão' : 'Alta conversión'}</span>
+                </div>
+                <div className="preview-landing__feature">
+                  <Star size={14} />
+                  <span>{isPt ? 'Design premium' : 'Diseño premium'}</span>
+                </div>
+                <div className="preview-landing__feature">
+                  <Phone size={14} />
+                  <span>WhatsApp</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        )
+    }
+  }
+
+  const renderSystemPreview = () => {
+    switch(layoutVariant) {
+      case 'variant2':
+        return (
+          <div className="preview-dashboard preview-dashboard--variant2">
+            <div className="preview-dashboard__header">
+              <div className="preview-dashboard__logo-large">{initials}</div>
+              <div className="preview-dashboard__user-info">
+                <strong>{name}</strong>
+                <span>{isPt ? 'Administrador' : 'Administrador'}</span>
+              </div>
+            </div>
+            <div className="preview-dashboard__stats-grid">
+              <div className="stat-card">
+                <Users size={20} />
+                <div>
+                  <strong>1,284</strong>
+                  <span>{isPt ? 'Usuários ativos' : 'Usuarios activos'}</span>
+                </div>
+              </div>
+              <div className="stat-card">
+                <BarChart3 size={20} />
+                <div>
+                  <strong>R$ 45.2K</strong>
+                  <span>{isPt ? 'Receita mensal' : 'Ingresos mensuales'}</span>
+                </div>
+              </div>
+              <div className="stat-card">
+                <Clock size={20} />
+                <div>
+                  <strong>98.5%</strong>
+                  <span>{isPt ? 'Tempo ativo' : 'Tiempo activo'}</span>
+                </div>
+              </div>
+            </div>
+            <div className="preview-dashboard__activity">
+              <h4>{isPt ? 'Atividade recente' : 'Actividad reciente'}</h4>
+              <div className="activity-item">
+                <div className="activity-dot"></div>
+                <span>{isPt ? 'Novo usuário cadastrado' : 'Nuevo usuario registrado'}</span>
+                <small>{isPt ? 'há 5 minutos' : 'hace 5 minutos'}</small>
+              </div>
+              <div className="activity-item">
+                <div className="activity-dot"></div>
+                <span>{isPt ? 'Venda concluída - R$ 1.200' : 'Venta completada - R$ 1.200'}</span>
+                <small>{isPt ? 'há 1 hora' : 'hace 1 hora'}</small>
+              </div>
+              <div className="activity-item">
+                <div className="activity-dot"></div>
+                <span>{isPt ? 'Backup realizado' : 'Backup realizado'}</span>
+                <small>{isPt ? 'há 3 horas' : 'hace 3 horas'}</small>
+              </div>
+            </div>
+          </div>
+        )
+      case 'variant3':
+        return (
+          <div className="preview-dashboard preview-dashboard--variant3">
+            <div className="preview-dashboard__projects">
+              <div className="preview-dashboard__projects-header">
+                <h4>{isPt ? 'Meus Projetos' : 'Mis Proyectos'}</h4>
+                <button className="new-project-btn">+ Novo</button>
+              </div>
+              <div className="project-list">
+                <div className="project-item">
+                  <div className="project-icon"><FileText size={16} /></div>
+                  <div className="project-info">
+                    <strong>{name}</strong>
+                    <span>{isPt ? 'Última atualização: hoje' : 'Última actualización: hoy'}</span>
+                  </div>
+                  <div className="project-progress">
+                    <div className="progress-bar" style={{ width: '75%' }}></div>
+                  </div>
+                </div>
+                <div className="project-item">
+                  <div className="project-icon"><Settings size={16} /></div>
+                  <div className="project-info">
+                    <strong>{isPt ? 'Configurações' : 'Configuraciones'}</strong>
+                    <span>{isPt ? '5 tarefas pendentes' : '5 tareas pendientes'}</span>
+                  </div>
+                  <div className="project-progress">
+                    <div className="progress-bar" style={{ width: '40%' }}></div>
+                  </div>
+                </div>
+                <div className="project-item">
+                  <div className="project-icon"><Database size={16} /></div>
+                  <div className="project-info">
+                    <strong>{isPt ? 'Banco de Dados' : 'Base de Datos'}</strong>
+                    <span>{isPt ? 'Backup automático' : 'Backup automático'}</span>
+                  </div>
+                  <div className="project-progress">
+                    <div className="progress-bar" style={{ width: '100%' }}></div>
+                  </div>
+                </div>
+              </div>
+              <div className="preview-dashboard__features-list">
+                <div className="feature-item">
+                  <Cloud size={14} />
+                  <span>{isPt ? 'Cloud storage' : 'Cloud storage'}</span>
+                </div>
+                <div className="feature-item">
+                  <Lock size={14} />
+                  <span>{isPt ? 'Segurança avançada' : 'Seguridad avanzada'}</span>
+                </div>
+                <div className="feature-item">
+                  <RefreshCw size={14} />
+                  <span>{isPt ? 'Backup diário' : 'Backup diario'}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        )
+      default:
+        return (
+          <div className="preview-dashboard">
+            <div className="preview-dashboard__sidebar">
+              <div className="preview-dashboard__logo">{initials}</div>
+              <div className="preview-dashboard__nav-item active" />
+              <div className="preview-dashboard__nav-item" />
+              <div className="preview-dashboard__nav-item" />
+              <div className="preview-dashboard__nav-item" />
+            </div>
+
+            <div className="preview-dashboard__main">
+              <div className="preview-dashboard__heading">
+                <div>
+                  <strong>{name}</strong>
+                  <small>{typeLabel} · {industryCopy.label}</small>
+                </div>
+                <div className="preview-dashboard__status">Online</div>
+              </div>
+
+              <div className="preview-dashboard__metrics">
+                <div className="preview-dashboard__metric">
+                  <strong>128</strong>
+                  <span>{isPt ? 'Clientes' : 'Clientes'}</span>
+                </div>
+                <div className="preview-dashboard__metric">
+                  <strong>42</strong>
+                  <span>{industryCopy.metric}</span>
+                </div>
+                <div className="preview-dashboard__metric">
+                  <strong>23%</strong>
+                  <span>{isPt ? 'Crescimento' : 'Crecimiento'}</span>
+                </div>
+              </div>
+
+              <div className="preview-dashboard__chart">
+                <div className="preview-dashboard__chart-header">
+                  <span>{isPt ? 'Performance do mês' : 'Performance del mes'}</span>
+                  <strong>+R$24K</strong>
+                </div>
+                <div className="preview-dashboard__chart-bars">
+                  {[65, 45, 82, 58, 36, 72, 52].map((height, index) => (
+                    <div className="preview-dashboard__chart-bar" key={height + index}>
+                      <div className="preview-dashboard__chart-bar-fill" style={{ height: `${height}%` }} />
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="preview-dashboard__table">
+                <div>
+                  <span>{isPt ? 'Novo cliente' : 'Nuevo cliente'}</span>
+                  <strong>{isPt ? 'Aguardando contato' : 'Esperando contacto'}</strong>
+                </div>
+                <div>
+                  <span>{isPt ? 'Tarefa' : 'Tarea'}</span>
+                  <strong>{isPt ? 'Enviar proposta' : 'Enviar propuesta'}</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+        )
+    }
   }
 
   return (
@@ -360,6 +839,39 @@ function ProjectPreview({ language }: Props) {
                       >
                         <BarChart3 size={13} />
                         Sistema
+                      </button>
+                    </div>
+                  </div>
+
+                  <div className="preview__group">
+                    <span>
+                      <Layers size={13} />
+                      {isPt ? 'Layout visual' : 'Diseño visual'}
+                    </span>
+                    <div className="preview__chips" role="group">
+                      <button
+                        type="button"
+                        className={layoutVariant === 'variant1' ? 'is-active' : ''}
+                        onClick={() => setLayoutVariant('variant1')}
+                      >
+                        <LayoutTemplate size={13} />
+                        Layout 1
+                      </button>
+                      <button
+                        type="button"
+                        className={layoutVariant === 'variant2' ? 'is-active' : ''}
+                        onClick={() => setLayoutVariant('variant2')}
+                      >
+                        <Grid3x3 size={13} />
+                        Layout 2
+                      </button>
+                      <button
+                        type="button"
+                        className={layoutVariant === 'variant3' ? 'is-active' : ''}
+                        onClick={() => setLayoutVariant('variant3')}
+                      >
+                        <LayoutGrid size={13} />
+                        Layout 3
                       </button>
                     </div>
                   </div>
@@ -515,191 +1027,9 @@ function ProjectPreview({ language }: Props) {
                       <strong>{name}</strong>
                     </div>
 
-                    {projectType === 'system' && (
-                      <div className="preview-dashboard">
-                        <div className="preview-dashboard__sidebar">
-                          <div className="preview-dashboard__logo">{initials}</div>
-                          <div className="preview-dashboard__nav-item active" />
-                          <div className="preview-dashboard__nav-item" />
-                          <div className="preview-dashboard__nav-item" />
-                          <div className="preview-dashboard__nav-item" />
-                        </div>
-
-                        <div className="preview-dashboard__main">
-                          <div className="preview-dashboard__heading">
-                            <div>
-                              <strong>{name}</strong>
-                              <small>{typeLabel} · {industryCopy.label}</small>
-                            </div>
-                            <div className="preview-dashboard__status">Online</div>
-                          </div>
-
-                          <div className="preview-dashboard__metrics">
-                            <div className="preview-dashboard__metric">
-                              <strong>128</strong>
-                              <span>{isPt ? 'Clientes' : 'Clientes'}</span>
-                            </div>
-                            <div className="preview-dashboard__metric">
-                              <strong>42</strong>
-                              <span>{industryCopy.metric}</span>
-                            </div>
-                            <div className="preview-dashboard__metric">
-                              <strong>23%</strong>
-                              <span>{isPt ? 'Crescimento' : 'Crecimiento'}</span>
-                            </div>
-                          </div>
-
-                          <div className="preview-dashboard__chart">
-                            <div className="preview-dashboard__chart-header">
-                              <span>{isPt ? 'Performance do mês' : 'Performance del mes'}</span>
-                              <strong>+R$24K</strong>
-                            </div>
-                            <div className="preview-dashboard__chart-bars">
-                              {[65, 45, 82, 58, 36, 72, 52].map((height, index) => (
-                                <div className="preview-dashboard__chart-bar" key={height + index}>
-                                  <div className="preview-dashboard__chart-bar-fill" style={{ height: `${height}%` }} />
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-
-                          <div className="preview-dashboard__table">
-                            <div>
-                              <span>{isPt ? 'Novo cliente' : 'Nuevo cliente'}</span>
-                              <strong>{isPt ? 'Aguardando contato' : 'Esperando contacto'}</strong>
-                            </div>
-                            <div>
-                              <span>{isPt ? 'Tarefa' : 'Tarea'}</span>
-                              <strong>{isPt ? 'Enviar proposta' : 'Enviar propuesta'}</strong>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    )}
-
-                    {projectType === 'website' && (
-                      <div className="preview-site">
-                        <div className="preview-site__header">
-                          <div className="preview-site__brand">
-                            <div className="preview-site__logo">{initials}</div>
-                            <span className="preview-site__name">{name}</span>
-                          </div>
-                          <div className="preview-site__menu">
-                            <span className="active">{isPt ? 'Home' : 'Inicio'}</span>
-                            <span>{isPt ? 'Serviços' : 'Servicios'}</span>
-                            <span>{isPt ? 'Sobre' : 'Sobre'}</span>
-                            <span>{isPt ? 'Contato' : 'Contacto'}</span>
-                          </div>
-                          <Menu className="preview-site__menu-icon" size={16} />
-                        </div>
-
-                        <div className="preview-site__hero">
-                          <span className="preview-site__hero-badge">{industryCopy.label}</span>
-                          <h3>{industryCopy.headline}</h3>
-                          <p>
-                            {isPt
-                              ? 'Uma presença digital clara, bonita e pensada para gerar contatos todos os dias.'
-                              : 'Una presencia digital clara, bonita y pensada para generar contactos todos los días.'}
-                          </p>
-                          <button type="button" className="preview-site__hero-cta">
-                            {industryCopy.action}
-                            <ArrowRight size={13} />
-                          </button>
-                        </div>
-
-                        <div className="preview-site__sections">
-                          <div className="preview-site__section">
-                            <div className="preview-site__section-icon"><Wrench size={16} /></div>
-                            <span>{isPt ? 'Serviços' : 'Servicios'}</span>
-                            <small>{isPt ? 'Tudo bem explicado' : 'Todo bien explicado'}</small>
-                          </div>
-                          <div className="preview-site__section">
-                            <div className="preview-site__section-icon"><Users size={16} /></div>
-                            <span>{isPt ? 'Prova social' : 'Prueba social'}</span>
-                            <small>{isPt ? 'Depoimentos reais' : 'Testimonios reales'}</small>
-                          </div>
-                          <div className="preview-site__section">
-                            <div className="preview-site__section-icon"><MessageCircle size={16} /></div>
-                            <span>WhatsApp</span>
-                            <small>{isPt ? 'Contato em 1 clique' : 'Contacto en 1 clic'}</small>
-                          </div>
-                        </div>
-
-                        <div className="preview-site__strip">
-                          <div>
-                            <strong>4.9</strong>
-                            <span>{isPt ? 'avaliação média' : 'valoración media'}</span>
-                          </div>
-                          <div>
-                            <strong>24h</strong>
-                            <span>{isPt ? 'resposta rápida' : 'respuesta rápida'}</span>
-                          </div>
-                          <div>
-                            <strong>100%</strong>
-                            <span>{isPt ? 'responsivo' : 'responsivo'}</span>
-                          </div>
-                        </div>
-                      </div>
-                    )}
-
-                    {projectType === 'landing' && (
-                      <div className="preview-landing">
-                        <div className="preview-landing__top">
-                          <div className="preview-landing__brand">
-                            <div className="preview-landing__logo">{initials}</div>
-                            <span>{name}</span>
-                          </div>
-                          <span className="preview-landing__cta-top">{industryCopy.action}</span>
-                        </div>
-
-                        <div className="preview-landing__hero">
-                          <div className="preview-landing__icon-circle">
-                            <Zap size={20} />
-                          </div>
-                          <span className="preview-landing__eyebrow">{typeLabel} · {industryCopy.label}</span>
-                          <h3>{isPt ? 'Transforme visitantes em clientes' : 'Transforma visitantes en clientes'}</h3>
-                          <p>
-                            {isPt
-                              ? 'Uma página direta, persuasiva e otimizada para o cliente tomar uma ação.'
-                              : 'Una página directa, persuasiva y optimizada para que el cliente tome acción.'}
-                          </p>
-                          <button type="button" className="preview-landing__big-cta">
-                            {industryCopy.action}
-                            <ArrowRight size={14} />
-                          </button>
-
-                          <div className="preview-landing__trust">
-                            <div className="preview-landing__trust-item">
-                              <Shield size={12} />
-                              {isPt ? 'Seguro' : 'Seguro'}
-                            </div>
-                            <div className="preview-landing__trust-item">
-                              <Heart size={12} />
-                              {isPt ? 'Humano' : 'Humano'}
-                            </div>
-                            <div className="preview-landing__trust-item">
-                              <CheckCircle size={12} />
-                              {isPt ? 'Sem enrolação' : 'Sin vueltas'}
-                            </div>
-                          </div>
-
-                          <div className="preview-landing__features">
-                            <div className="preview-landing__feature">
-                              <TrendingUp size={14} />
-                              <span>{isPt ? 'Alta conversão' : 'Alta conversión'}</span>
-                            </div>
-                            <div className="preview-landing__feature">
-                              <Star size={14} />
-                              <span>{isPt ? 'Design premium' : 'Diseño premium'}</span>
-                            </div>
-                            <div className="preview-landing__feature">
-                              <Phone size={14} />
-                              <span>WhatsApp</span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    )}
+                    {projectType === 'system' && renderSystemPreview()}
+                    {projectType === 'website' && renderWebsitePreview()}
+                    {projectType === 'landing' && renderLandingPreview()}
                   </div>
 
                   <div className="preview__insights">

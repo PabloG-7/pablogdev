@@ -1,5 +1,6 @@
 import './ProjectGuide.css'
 import { useEffect, useMemo, useRef, useState } from 'react'
+import { motion } from 'framer-motion'
 import {
   ArrowLeft,
   ArrowRight,
@@ -600,22 +601,56 @@ function ProjectGuide({ language }: ProjectGuideProps) {
   return (
     <>
       {!open && (
-        <button
+        <motion.button
           ref={floatButtonRef}
           type="button"
           className="project-guide-float"
           onClick={() => setOpen(true)}
           aria-label={isPt ? 'Abrir diagnóstico inteligente' : 'Abrir diagnóstico inteligente'}
+          initial={{ opacity: 0, scale: 0.8, y: 20 }}
+          animate={{
+            opacity: 1,
+            scale: [1, 1.03, 1],
+            y: [0, -4, 0],
+          }}
+          transition={{
+            opacity: { duration: 0.4 },
+            scale: {
+              duration: 4,
+              repeat: Infinity,
+              ease: 'easeInOut',
+            },
+            y: {
+              duration: 4,
+              repeat: Infinity,
+              ease: 'easeInOut',
+            },
+          }}
+          whileHover={{
+            scale: 1.08,
+            y: -6,
+          }}
+          whileTap={{
+            scale: 0.96,
+          }}
         >
-          <img
+          <motion.img
             src="/dog-assistant.webp"
             alt={isPt ? 'Assistente PabloG' : 'Asistente PabloG'}
             className="project-guide__float-image"
             width="70"
             height="70"
             decoding="async"
+            animate={{
+              rotate: [0, -2, 2, 0],
+            }}
+            transition={{
+              duration: 5,
+              repeat: Infinity,
+              ease: 'easeInOut',
+            }}
           />
-        </button>
+        </motion.button>
       )}
 
       {open && (

@@ -232,7 +232,7 @@
   transform: translateY(-2px);
 }
 
-/* Stats */
+/* Stats - Clean & Direto */
 .hero-stats {
   display: flex;
   gap: 32px;
@@ -243,18 +243,33 @@
 .stat {
   display: flex;
   align-items: center;
-  gap: 8px;
-  color: #ffffff;
-  font-size: 0.875rem;
-  font-weight: 500;
+  gap: 10px;
 }
 
 .stat svg {
+  color: #fec90f;
   flex-shrink: 0;
+  opacity: 0.8;
 }
 
-.stat span {
+.stat-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.stat-info strong {
+  color: #ffffff;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.stat-info p {
+  margin: 0;
   color: rgba(255, 255, 255, 0.5);
+  font-size: 0.75rem;
+  line-height: 1.4;
+  white-space: nowrap;
 }
 
 /* ============================================
@@ -314,9 +329,9 @@
   .hero-stats {
     gap: 24px;
   }
-
-  .stat {
-    font-size: 0.8125rem;
+  
+  .stat-info p {
+    white-space: normal;
   }
 
   .hero::before {
@@ -380,12 +395,8 @@
   }
 
   .hero-stats {
-    flex-wrap: wrap;
+    flex-direction: column;
     gap: 16px;
-  }
-
-  .stat {
-    font-size: 0.8125rem;
   }
   
   /* ESTRELAS EM MOBILE */
@@ -423,13 +434,16 @@
     font-size: 0.8125rem;
   }
 
-  .hero-stats {
-    flex-direction: column;
-    gap: 12px;
-  }
-
   .stat {
-    font-size: 0.875rem;
+    gap: 8px;
+  }
+  
+  .stat-info strong {
+    font-size: 0.8rem;
+  }
+  
+  .stat-info p {
+    font-size: 0.7rem;
   }
 
   .hero::before,
@@ -467,11 +481,7 @@
   }
 
   .hero-stats {
-    gap: 10px;
-  }
-
-  .stat {
-    font-size: 0.8125rem;
+    gap: 14px;
   }
   
   /* ESTRELAS EM TELAS MUITO PEQUENAS */
