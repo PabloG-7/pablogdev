@@ -2344,3 +2344,19 @@
     justify-content: center;
   }
 }
+
+/* ============================================
+   FLOW PUBLIC LINK - CUSTOM STYLE
+   ============================================ */
+
+.flow-public-link {
+  display: inline-flex;
+  color: #fec90f;
+  font-size: 0.75rem;
+  text-decoration: none;
+  margin-top: 4px;
+}
+
+.flow-public-link:hover {
+  text-decoration: underline;
+}

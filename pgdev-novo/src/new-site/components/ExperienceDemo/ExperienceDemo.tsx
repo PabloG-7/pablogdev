@@ -29,7 +29,7 @@ export default function ExperienceDemo({ language }: Props) {
     text: isPt
       ? 'Agendamentos, clientes e confirmações automáticas em um só lugar.'
       : 'Reservas, clientes y confirmaciones automáticas en un solo lugar.',
-    cta: isPt ? 'Demo completa' : 'Demo completa',
+    cta: isPt ? 'Ver experiência completa' : 'Ver demostración completa',
   }
 
   return (

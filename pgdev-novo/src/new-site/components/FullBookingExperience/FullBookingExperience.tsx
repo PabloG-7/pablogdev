@@ -298,7 +298,9 @@ export default function FullBookingExperience({ language }: Props) {
                 <div className="flow-phone">
                   <div className="flow-phone-header">
                     <strong>PGDev Agenda</strong>
-                    <span>pablogdev.com/agendar</span>
+                    <a href="/agendar-demo" className="flow-public-link">
+                      pablogdev.com/agendar-demo
+                    </a>
                   </div>
 
                   <div className="flow-step active">
