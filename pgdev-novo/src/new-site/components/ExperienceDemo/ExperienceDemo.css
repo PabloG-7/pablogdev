@@ -47,6 +47,14 @@
   margin: 0 0 28px;
 }
 
+.experience-strong-text {
+  color: #fec90f !important;
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+  margin-top: -12px !important;
+  margin-bottom: 28px !important;
+}
+
 .experience-btn {
   display: inline-flex;
   align-items: center;
@@ -74,7 +82,7 @@
   padding: 16px;
 }
 
-/* Tabs */
+/* Tabs - Aumentado para melhor legibilidade */
 .experience-tabs {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -87,9 +95,9 @@
   background: rgba(255, 255, 255, 0.03);
   color: rgba(255, 255, 255, 0.55);
   border-radius: 10px;
-  padding: 8px 6px;
+  padding: 10px 8px;
   font-weight: 500;
-  font-size: 0.7rem;
+  font-size: 0.74rem;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
@@ -103,12 +111,12 @@
   color: #000c24;
 }
 
-/* Screen */
+/* Screen - Altura aumentada */
 .experience-screen {
   background: #ffffff;
   border-radius: 16px;
   padding: 20px;
-  min-height: 280px;
+  min-height: 320px;
 }
 
 /* Dashboard */
@@ -140,6 +148,7 @@
   font-weight: 700;
 }
 
+/* Mini Chart - Mais sutil */
 .mini-chart {
   display: flex;
   align-items: flex-end;
@@ -152,6 +161,12 @@
   flex: 1;
   background: linear-gradient(180deg, #fec90f, #d4a800);
   border-radius: 4px 4px 2px 2px;
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+}
+
+.mini-chart div:hover {
+  opacity: 1;
 }
 
 /* Agenda */
@@ -188,14 +203,22 @@
 }
 
 .schedule-item small {
-  font-size: 0.8rem;
+  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  border-radius: 20px;
+  font-weight: 500;
 }
 
-.schedule-item small.confirmado {
+.schedule-item small.confirmed {
+  background: rgba(76, 175, 80, 0.12);
   color: #4caf50;
 }
 
-.schedule-item small.pendente {
+.schedule-item small.pending {
+  background: rgba(255, 152, 0, 0.12);
   color: #ff9800;
 }
 
@@ -204,6 +227,21 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
+}
+
+.auto-confirm-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(254, 201, 15, 0.12);
+  color: #fec90f;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 6px 12px;
+  border-radius: 20px;
+  width: fit-content;
 }
 
 .experience-message {
@@ -249,11 +287,11 @@
   color: #fec90f;
 }
 
-/* Client */
+/* Client - Mais respiro */
 .client-preview {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 20px;
 }
 
 .client-header {
@@ -289,7 +327,7 @@
 .client-details {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
 }
 
 .client-details > div {
@@ -307,8 +345,8 @@
 
 .client-details strong {
   color: #000c24;
-  font-size: 0.8rem;
-  font-weight: 500;
+  font-size: 0.85rem;
+  font-weight: 600;
 }
 
 .client-details .confirmed {

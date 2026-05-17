@@ -6,7 +6,9 @@ import {
   Users,
   Clock,
   CheckCircle,
-  ArrowRight
+  ArrowRight,
+  Check,
+  Hourglass
 } from 'lucide-react'
 import type { Language } from '../../types'
 import './ExperienceDemo.css'
@@ -30,6 +32,10 @@ export default function ExperienceDemo({ language }: Props) {
       ? 'Agendamentos, clientes e confirmações automáticas em um só lugar.'
       : 'Reservas, clientes y confirmaciones automáticas en un solo lugar.',
     cta: isPt ? 'Ver experiência completa' : 'Ver demostración completa',
+    subtitle: isPt
+      ? 'Menos mensagens manuais. Mais organização no atendimento.'
+      : 'Menos mensajes manuales. Más organización en la atención.',
+    autoConfirm: isPt ? 'Confirmação automática' : 'Confirmación automática'
   }
 
   return (
@@ -44,6 +50,7 @@ export default function ExperienceDemo({ language }: Props) {
             <span className="experience-highlight">.</span>
           </h2>
           <p>{copy.text}</p>
+          <p className="experience-strong-text">{copy.subtitle}</p>
           <a href="/demo-agendamento" className="experience-btn">
             {copy.cta}
             <ArrowRight size={16} />
@@ -53,10 +60,10 @@ export default function ExperienceDemo({ language }: Props) {
         <div className="experience-panel">
           <div className="experience-tabs">
             {[
-              { id: 'dashboard', icon: BarChart3, label: 'Visão' },
-              { id: 'agenda', icon: CalendarCheck, label: 'Agenda' },
-              { id: 'whatsapp', icon: MessageCircle, label: 'Zap' },
-              { id: 'cliente', icon: Users, label: 'Cliente' },
+              { id: 'dashboard', icon: BarChart3, label: isPt ? 'Resumo' : 'Resumen' },
+              { id: 'agenda', icon: CalendarCheck, label: isPt ? 'Horários' : 'Horarios' },
+              { id: 'whatsapp', icon: MessageCircle, label: 'WhatsApp' },
+              { id: 'cliente', icon: Users, label: isPt ? 'Clientes' : 'Clientes' },
             ].map((tab) => {
               const Icon = tab.icon
               return (
@@ -85,7 +92,7 @@ export default function ExperienceDemo({ language }: Props) {
                     <strong>35</strong>
                   </div>
                   <div>
-                    <span>{isPt ? 'Ticket médio' : 'Ticket promedio'}</span>
+                    <span>{isPt ? 'Valor médio' : 'Valor promedio'}</span>
                     <strong>R$ 76</strong>
                   </div>
                   <div>
@@ -104,10 +111,10 @@ export default function ExperienceDemo({ language }: Props) {
             {activeTab === 'agenda' && (
               <div className="schedule-list">
                 {[
-                  ['09:00', isPt ? 'Banho e Tosa' : 'Baño y Corte', 'confirmado'],
-                  ['10:30', isPt ? 'Consulta' : 'Consulta', 'confirmado'],
-                  ['14:00', isPt ? 'Vacinação' : 'Vacunación', 'pendente'],
-                  ['15:30', isPt ? 'Retorno' : 'Retorno', 'confirmado'],
+                  ['09:00', isPt ? 'Banho e Tosa' : 'Baño y Corte', 'confirmed'],
+                  ['10:30', isPt ? 'Consulta' : 'Consulta', 'confirmed'],
+                  ['14:00', isPt ? 'Vacinação' : 'Vacunación', 'pending'],
+                  ['15:30', isPt ? 'Retorno' : 'Retorno', 'confirmed'],
                 ].map((item, idx) => (
                   <div className="schedule-item" key={idx}>
                     <div>
@@ -115,7 +122,13 @@ export default function ExperienceDemo({ language }: Props) {
                       <strong>{item[0]}</strong>
                     </div>
                     <span>{item[1]}</span>
-                    <small className={item[2]}>{item[2] === 'confirmado' ? '✓' : '○'}</small>
+                    <small className={item[2] === 'confirmed' ? 'confirmed' : 'pending'}>
+                      {item[2] === 'confirmed' ? (
+                        <><Check size={10} /> {isPt ? 'Confirmado' : 'Confirmado'}</>
+                      ) : (
+                        <><Hourglass size={10} /> {isPt ? 'Pendente' : 'Pendiente'}</>
+                      )}
+                    </small>
                   </div>
                 ))}
               </div>
@@ -123,6 +136,9 @@ export default function ExperienceDemo({ language }: Props) {
 
             {activeTab === 'whatsapp' && (
               <div className="whatsapp-preview">
+                <div className="auto-confirm-badge">
+                  {copy.autoConfirm}
+                </div>
                 <div className="experience-message">
                   <MessageCircle size={14} />
                   <p>
@@ -145,7 +161,7 @@ export default function ExperienceDemo({ language }: Props) {
                   <div className="experience-avatar">A</div>
                   <div>
                     <strong>Ana Souza</strong>
-                    <span>{isPt ? 'Cliente desde março' : 'Cliente desde marzo'}</span>
+                    <span>{isPt ? 'Último atendimento há 2 dias' : 'Última atención hace 2 días'}</span>
                   </div>
                 </div>
                 <div className="client-details">
