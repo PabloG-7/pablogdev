@@ -29,9 +29,9 @@ export default function ExperienceDemo({ language }: Props) {
       ? 'Veja como funciona na prática'
       : 'Mira cómo funciona en la práctica',
     text: isPt
-      ? 'Agendamentos, clientes e confirmações automáticas em um só lugar.'
-      : 'Reservas, clientes y confirmaciones automáticas en un solo lugar.',
-    cta: isPt ? 'Ver experiência completa' : 'Ver demostración completa',
+      ? 'Veja passo a passo como o cliente agenda e como tudo aparece no sistema.'
+      : 'Mira paso a paso cómo el cliente agenda y cómo todo aparece en el sistema.',
+    cta: isPt ? 'Ver tutorial interativo' : 'Ver tutorial interactivo',
     subtitle: isPt
       ? 'Menos mensagens manuais. Mais organização no atendimento.'
       : 'Menos mensajes manuales. Más organización en la atención.',

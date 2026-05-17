@@ -22,7 +22,17 @@ import {
   Smile,
   Calendar as CalendarIcon,
   UserPlus,
-  CheckCircle
+  CheckCircle,
+  Lock,
+  ChevronRight as ChevronRightIcon,
+  GraduationCap,
+  Sparkles,
+  Phone,
+  ArrowRight as ArrowRightIcon,
+  Award,
+  Compass,
+  Target,
+  Gift,
 } from 'lucide-react'
 import type { Language } from '../../types'
 import './FullBookingExperience.css'
@@ -41,6 +51,7 @@ export default function FullBookingExperience({ language }: Props) {
   const [showModal, setShowModal] = useState(false)
   const [typing, setTyping] = useState(false)
   const [showSuccess, setShowSuccess] = useState(false)
+  const [tutorialStep, setTutorialStep] = useState(1)
   const [appointments, setAppointments] = useState([
     { id: 1, time: '09:00', client: 'Ana Souza', service: 'Consulta', status: 'confirmed', phone: '(11) 99999-1234' },
     { id: 2, time: '10:30', client: 'Carlos Lima', service: 'Banho e Tosa', status: 'pending', phone: '(11) 98888-5678' },
@@ -72,6 +83,16 @@ export default function FullBookingExperience({ language }: Props) {
     setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() + 1))
   }
 
+  const goTutorialStep = (step: number, tab: Tab) => {
+    setTutorialStep(step)
+    setActiveTab(tab)
+  }
+
+  const canOpenAgenda = tutorialStep >= 2
+  const canOpenMessages = tutorialStep >= 3
+  const canOpenClients = tutorialStep >= 4
+  const canOpenFinance = tutorialStep >= 5
+
   // Typing effect no WhatsApp
   useEffect(() => {
     if (activeTab !== 'mensagens') return
@@ -102,7 +123,7 @@ export default function FullBookingExperience({ language }: Props) {
 
     setAppointments(prev => [newAppointment, ...prev])
     setShowSuccess(true)
-    setActiveTab('agenda')
+    goTutorialStep(2, 'agenda')
 
     setTimeout(() => {
       setShowSuccess(false)
@@ -129,6 +150,67 @@ export default function FullBookingExperience({ language }: Props) {
     }
   }
 
+  const getTutorialMessage = () => {
+    switch(tutorialStep) {
+      case 1:
+        return {
+          title: isPt ? 'Bem-vindo ao tour interativo' : 'Bienvenido al tour interactivo',
+          message: isPt 
+            ? 'Clique em "Confirmar horário" para ver como um cliente agenda automaticamente.' 
+            : 'Haz clic en "Confirmar hora" para ver cómo un cliente agenda automáticamente.',
+          icon: <GraduationCap size={20} />
+        }
+      case 2:
+        return {
+          title: isPt ? 'Agendamento confirmado!' : '¡Reserva confirmada!',
+          message: isPt 
+            ? 'Seu agendamento apareceu na agenda. Clique em "Ver confirmação no WhatsApp" para continuar.' 
+            : 'Tu reserva apareció en el calendario. Haz clic en "Ver confirmación en WhatsApp" para continuar.',
+          icon: <Calendar size={20} />
+        }
+      case 3:
+        return {
+          title: isPt ? 'Confirmação automática' : 'Confirmación automática',
+          message: isPt 
+            ? 'Veja como a confirmação chega automaticamente no WhatsApp. Clique em "Ver cliente salvo".' 
+            : 'Mira cómo la confirmación llega automáticamente a WhatsApp. Haz clic en "Ver cliente guardado".',
+          icon: <Phone size={20} />
+        }
+      case 4:
+        return {
+          title: isPt ? 'Cliente salvo com sucesso' : 'Cliente guardado con éxito',
+          message: isPt 
+            ? 'O cliente foi salvo automaticamente no seu banco de dados. Clique em "Ver resultado financeiro".' 
+            : 'El cliente fue guardado automáticamente en tu base de datos. Haz clic en "Ver resultado financiero".',
+          icon: <Users size={20} />
+        }
+      case 5:
+        return {
+          title: isPt ? 'Resultados organizados' : 'Resultados organizados',
+          message: isPt 
+            ? 'Veja seu faturamento, atendimentos e confirmações tudo organizado. Pronto para começar?' 
+            : 'Mira tus ingresos, atenciones y confirmaciones todo organizado. ¿Listo para comenzar?',
+          icon: <Target size={20} />
+        }
+      default:
+        return {
+          title: '',
+          message: '',
+          icon: null
+        }
+    }
+  }
+
+  const tutorialData = getTutorialMessage()
+
+  const handleNavClick = (tab: Tab) => {
+    if (tab === 'agenda' && !canOpenAgenda) return
+    if (tab === 'mensagens' && !canOpenMessages) return
+    if (tab === 'clientes' && !canOpenClients) return
+    if (tab === 'financeiro' && !canOpenFinance) return
+    setActiveTab(tab)
+  }
+
   return (
     <div className="booking-system">
       {/* Mobile Topbar */}
@@ -153,46 +235,60 @@ export default function FullBookingExperience({ language }: Props) {
           <span className="booking-logo-text">PabloG<span>.dev</span></span>
         </div>
 
+        <div className="booking-step-badge">
+          <Sparkles size={12} />
+          <span>{isPt ? `Passo ${tutorialStep} de 5` : `Paso ${tutorialStep} de 5`}</span>
+          <Award size={12} />
+        </div>
+
         <nav className="booking-nav">
           <button 
             type="button"
             className={`booking-nav-item ${activeTab === 'como-funciona' ? 'active' : ''}`}
             onClick={() => setActiveTab('como-funciona')}
           >
-            <CalendarIcon size={18} />
+            <Compass size={18} />
             <span>{isPt ? 'Como funciona' : 'Cómo funciona'}</span>
           </button>
           <button 
             type="button"
-            className={`booking-nav-item ${activeTab === 'agenda' ? 'active' : ''}`}
-            onClick={() => setActiveTab('agenda')}
+            className={`booking-nav-item ${activeTab === 'agenda' ? 'active' : ''} ${!canOpenAgenda ? 'locked' : ''}`}
+            onClick={() => handleNavClick('agenda')}
+            disabled={!canOpenAgenda}
           >
             <Calendar size={18} />
             <span>{isPt ? 'Agenda' : 'Calendario'}</span>
+            {!canOpenAgenda && <Lock size={12} className="lock-icon" />}
           </button>
           <button 
             type="button"
-            className={`booking-nav-item ${activeTab === 'clientes' ? 'active' : ''}`}
-            onClick={() => setActiveTab('clientes')}
+            className={`booking-nav-item ${activeTab === 'clientes' ? 'active' : ''} ${!canOpenClients ? 'locked' : ''}`}
+            onClick={() => handleNavClick('clientes')}
+            disabled={!canOpenClients}
           >
             <Users size={18} />
             <span>{isPt ? 'Clientes' : 'Clientes'}</span>
+            {!canOpenClients && <Lock size={12} className="lock-icon" />}
           </button>
           <button 
             type="button"
-            className={`booking-nav-item ${activeTab === 'financeiro' ? 'active' : ''}`}
-            onClick={() => setActiveTab('financeiro')}
+            className={`booking-nav-item ${activeTab === 'financeiro' ? 'active' : ''} ${!canOpenFinance ? 'locked' : ''}`}
+            onClick={() => handleNavClick('financeiro')}
+            disabled={!canOpenFinance}
           >
             <DollarSign size={18} />
             <span>{isPt ? 'Financeiro' : 'Finanzas'}</span>
+            {!canOpenFinance && <Lock size={12} className="lock-icon" />}
           </button>
           <button 
             type="button"
-            className={`booking-nav-item ${activeTab === 'mensagens' ? 'active' : ''}`}
-            onClick={() => setActiveTab('mensagens')}
+            className={`booking-nav-item ${activeTab === 'mensagens' ? 'active' : ''} ${!canOpenMessages ? 'locked' : ''}`}
+            onClick={() => handleNavClick('mensagens')}
+            disabled={!canOpenMessages}
           >
             <MessageCircle size={18} />
             <span>WhatsApp</span>
+            {!canOpenMessages && <Lock size={12} className="lock-icon" />}
           </button>
         </nav>
 
@@ -220,7 +316,8 @@ export default function FullBookingExperience({ language }: Props) {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -16 }}
             >
-              ✅ {isPt ? 'Novo agendamento recebido' : 'Nueva reserva recibida'}
+              <CheckCircle size={16} />
+              {isPt ? 'Novo agendamento recebido' : 'Nueva reserva recibida'}
             </motion.div>
           )}
         </AnimatePresence>
@@ -255,6 +352,27 @@ export default function FullBookingExperience({ language }: Props) {
             </button>
           </div>
         </header>
+
+        {/* Tutorial Box */}
+        <div className="booking-tutorial-box">
+          <div className="tutorial-icon-wrapper">
+            {tutorialData.icon}
+          </div>
+          <div className="tutorial-content">
+            <strong>{tutorialData.title}</strong>
+            <p>{tutorialData.message}</p>
+          </div>
+          <div className="tutorial-step-progress">
+            <div className="progress-dots">
+              {[1, 2, 3, 4, 5].map(step => (
+                <div 
+                  key={step} 
+                  className={`progress-dot ${step <= tutorialStep ? 'active' : ''} ${step === tutorialStep ? 'current' : ''}`}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
 
         {/* Top Stats */}
         <div className="booking-top-stats">
@@ -294,7 +412,9 @@ export default function FullBookingExperience({ language }: Props) {
               </div>
 
               <div className="flow-mini-explanation">
-                <span>📱</span>
+                <div className="mini-explanation-icon">
+                  <Target size={20} />
+                </div>
                 <p>{isPt ? 'Seu cliente escolhe o serviço, horário e recebe confirmação automática.' : 'Tu cliente elige el servicio, horario y recibe confirmación automática.'}</p>
               </div>
 
@@ -308,7 +428,7 @@ export default function FullBookingExperience({ language }: Props) {
                   </div>
 
                   <div className="flow-step active">
-                    <small>01</small>
+                    <div className="flow-step-number">01</div>
                     <div>
                       <strong>{isPt ? 'Escolha o serviço' : 'Elige el servicio'}</strong>
                       <p>{isPt ? 'Consulta, corte, banho e tosa...' : 'Consulta, corte, baño...'}</p>
@@ -316,12 +436,12 @@ export default function FullBookingExperience({ language }: Props) {
                   </div>
 
                   <div className="flow-service-card selected">
-                    <span>Consulta</span>
+                    <span>Consulta com Dra. Marina</span>
                     <strong>R$ 120</strong>
                   </div>
 
                   <div className="flow-step active">
-                    <small>02</small>
+                    <div className="flow-step-number">02</div>
                     <div>
                       <strong>{isPt ? 'Escolha o horário' : 'Elige el horario'}</strong>
                       <p>{isPt ? 'Horários disponíveis em tempo real.' : 'Horarios disponibles en tiempo real.'}</p>
@@ -339,7 +459,9 @@ export default function FullBookingExperience({ language }: Props) {
                     className="flow-confirm-btn"
                     onClick={handleFlowConfirm}
                   >
-                    {isPt ? 'Confirmar agendamento' : 'Confirmar reserva'}
+                    <CheckCircle size={16} />
+                    {isPt ? 'Confirmar horário' : 'Confirmar hora'}
+                    <ArrowRightIcon size={14} />
                   </button>
                 </div>
 
@@ -452,6 +574,15 @@ export default function FullBookingExperience({ language }: Props) {
                       </motion.div>
                     ))}
                   </div>
+
+                  <button 
+                    className="booking-next-step-btn"
+                    onClick={() => goTutorialStep(3, 'mensagens')}
+                  >
+                    <MessageCircle size={16} />
+                    {isPt ? 'Ver confirmação no WhatsApp' : 'Ver confirmación en WhatsApp'}
+                    <ChevronRightIcon size={14} />
+                  </button>
                 </>
               )}
             </motion.div>
@@ -482,32 +613,43 @@ export default function FullBookingExperience({ language }: Props) {
                   </button>
                 </div>
               ) : (
-                <div className="booking-clients-grid">
-                  {clients.map((client, idx) => (
-                    <motion.div 
-                      key={client.id}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: idx * 0.05 }}
-                      className="booking-client-card"
-                      onClick={() => setSelectedClient(client)}
-                    >
-                      <div className="booking-client-card-avatar">{client.avatar}</div>
-                      <div className="booking-client-card-info">
-                        <div className="booking-client-card-name">{client.name}</div>
-                        <div className="booking-client-card-phone">{client.phone}</div>
-                        <div className="booking-client-card-stats">
-                          <span>{client.total} {isPt ? 'atendimentos' : 'atenciones'}</span>
-                          <span>•</span>
-                          <span>{client.lastVisit}</span>
+                <>
+                  <div className="booking-clients-grid">
+                    {clients.map((client, idx) => (
+                      <motion.div 
+                        key={client.id}
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: idx * 0.05 }}
+                        className="booking-client-card"
+                        onClick={() => setSelectedClient(client)}
+                      >
+                        <div className="booking-client-card-avatar">{client.avatar}</div>
+                        <div className="booking-client-card-info">
+                          <div className="booking-client-card-name">{client.name}</div>
+                          <div className="booking-client-card-phone">{client.phone}</div>
+                          <div className="booking-client-card-stats">
+                            <span>{client.total} {isPt ? 'atendimentos' : 'atenciones'}</span>
+                            <span>•</span>
+                            <span>{client.lastVisit}</span>
+                          </div>
                         </div>
-                      </div>
-                      <button type="button" className="booking-client-card-action">
-                        <MessageCircle size={16} />
-                      </button>
-                    </motion.div>
-                  ))}
-                </div>
+                        <button type="button" className="booking-client-card-action">
+                          <MessageCircle size={16} />
+                        </button>
+                      </motion.div>
+                    ))}
+                  </div>
+
+                  <button 
+                    className="booking-next-step-btn"
+                    onClick={() => goTutorialStep(5, 'financeiro')}
+                  >
+                    <DollarSign size={16} />
+                    {isPt ? 'Ver resultado financeiro' : 'Ver resultado financiero'}
+                    <ChevronRightIcon size={14} />
+                  </button>
+                </>
               )}
             </motion.div>
           )}
@@ -576,6 +718,12 @@ export default function FullBookingExperience({ language }: Props) {
                   ))}
                 </div>
               </div>
+
+              <a href="/contato" className="booking-final-cta">
+                <Gift size={18} />
+                {isPt ? 'Quero um sistema assim' : 'Quiero un sistema así'}
+                <ArrowRightIcon size={16} />
+              </a>
             </motion.div>
           )}
 
@@ -664,6 +812,15 @@ export default function FullBookingExperience({ language }: Props) {
                   <CheckCircle size={12} />
                   <span>{isPt ? 'Confirmações e lembretes automáticos para clientes' : 'Confirmaciones y recordatorios automáticos para clientes'}</span>
                 </div>
+
+                <button 
+                  className="booking-next-step-btn full-width"
+                  onClick={() => goTutorialStep(4, 'clientes')}
+                >
+                  <Users size={16} />
+                  {isPt ? 'Ver cliente salvo' : 'Ver cliente guardado'}
+                  <ChevronRightIcon size={14} />
+                </button>
 
                 <div className="booking-chat-input">
                   <button type="button" className="chat-action-btn">

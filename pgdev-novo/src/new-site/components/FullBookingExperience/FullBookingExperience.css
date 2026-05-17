@@ -89,6 +89,7 @@
   transition: all 0.15s ease;
   width: 100%;
   text-align: left;
+  position: relative;
 }
 
 .booking-nav-item:hover {
@@ -1540,14 +1541,22 @@
   border: 1px solid rgba(254, 201, 15, 0.12);
 }
 
-.flow-mini-explanation span {
-  font-size: 1.2rem;
+.flow-mini-explanation .mini-explanation-icon {
+  width: 36px;
+  height: 36px;
+  background: rgba(254, 201, 15, 0.12);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fec90f;
 }
 
 .flow-mini-explanation p {
   color: rgba(255, 255, 255, 0.8);
   font-size: 0.85rem;
   margin: 0;
+  flex: 1;
 }
 
 .flow-grid {
@@ -1591,15 +1600,17 @@
   margin-bottom: 14px;
 }
 
-.flow-step small {
+.flow-step-number {
   width: 34px;
   height: 34px;
   background: rgba(254, 201, 15, 0.12);
   color: #fec90f;
   border-radius: 12px;
-  display: grid;
-  place-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-weight: 900;
+  flex-shrink: 0;
 }
 
 .flow-step strong {
@@ -1642,6 +1653,12 @@
   background: rgba(255, 255, 255, 0.04);
   color: #ffffff;
   font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.flow-times button:hover {
+  background: rgba(254, 201, 15, 0.1);
 }
 
 .flow-times button.selected {
@@ -1657,6 +1674,17 @@
   background: #fec90f;
   color: #000c24;
   font-weight: 900;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+.flow-confirm-btn:hover {
+  background: #ffd43b;
+  transform: translateY(-1px);
 }
 
 .flow-result {
@@ -1716,6 +1744,277 @@
 .flow-whatsapp-card p {
   color: #ffffff;
   line-height: 1.6;
+}
+
+/* ============================================
+   NOVO AGENDAMENTO - DESTAQUE
+   ============================================ */
+
+.new-appointment {
+  border-left: 2px solid #fec90f;
+  background: rgba(254, 201, 15, 0.05);
+  animation: glowPulse 0.5s ease-out;
+}
+
+@keyframes glowPulse {
+  0% {
+    border-left-color: transparent;
+    background: transparent;
+  }
+  50% {
+    border-left-color: #fec90f;
+    background: rgba(254, 201, 15, 0.08);
+  }
+  100% {
+    border-left-color: #fec90f;
+    background: rgba(254, 201, 15, 0.05);
+  }
+}
+
+/* ============================================
+   TOAST DE SUCESSO
+   ============================================ */
+
+.booking-toast {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  z-index: 200;
+  padding: 14px 18px;
+  border-radius: 14px;
+  background: rgba(34, 197, 94, 0.14);
+  border: 1px solid rgba(34, 197, 94, 0.25);
+  color: #ffffff;
+  font-weight: 700;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(14px);
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+@media (max-width: 700px) {
+  .booking-toast {
+    top: 72px;
+    left: 16px;
+    right: 16px;
+    text-align: center;
+    justify-content: center;
+  }
+}
+
+/* ============================================
+   FLOW PUBLIC LINK - CUSTOM STYLE
+   ============================================ */
+
+.flow-public-link {
+  display: inline-flex;
+  color: #fec90f;
+  font-size: 0.75rem;
+  text-decoration: none;
+  margin-top: 4px;
+}
+
+.flow-public-link:hover {
+  text-decoration: underline;
+}
+
+/* ============================================
+   TUTORIAL STYLES - PROFESSIONAL VERSION
+   ============================================ */
+
+/* Aba bloqueada */
+.booking-nav-item.locked {
+  opacity: 0.45;
+  cursor: not-allowed;
+  position: relative;
+}
+
+.booking-nav-item.locked:hover {
+  background: transparent;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.booking-nav-item .lock-icon {
+  position: absolute;
+  right: 12px;
+  opacity: 0.7;
+}
+
+@media (max-width: 1024px) {
+  .booking-nav-item .lock-icon {
+    position: static;
+    margin-left: 2px;
+  }
+}
+
+/* Badge de etapa - Premium */
+.booking-step-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, rgba(254, 201, 15, 0.15), rgba(254, 201, 15, 0.05));
+  color: #fec90f;
+  border: 1px solid rgba(254, 201, 15, 0.25);
+  padding: 8px 14px;
+  border-radius: 40px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  margin-bottom: 24px;
+  margin-left: 8px;
+  width: fit-content;
+  backdrop-filter: blur(4px);
+  letter-spacing: 0.3px;
+}
+
+.booking-step-badge svg:first-child {
+  color: #fec90f;
+}
+
+.booking-step-badge svg:last-child {
+  color: rgba(254, 201, 15, 0.6);
+}
+
+/* Box de explicação do tutorial - Premium */
+.booking-tutorial-box {
+  margin-bottom: 24px;
+  padding: 20px 24px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(254, 201, 15, 0.08), rgba(254, 201, 15, 0.02));
+  border: 1px solid rgba(254, 201, 15, 0.2);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.booking-tutorial-box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #fec90f, transparent);
+}
+
+.booking-tutorial-box .tutorial-icon-wrapper {
+  width: 44px;
+  height: 44px;
+  background: rgba(254, 201, 15, 0.12);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #fec90f;
+}
+
+.booking-tutorial-box .tutorial-content {
+  flex: 1;
+}
+
+.booking-tutorial-box .tutorial-content strong {
+  display: block;
+  font-size: 0.9rem;
+  margin-bottom: 6px;
+  color: #fec90f;
+  font-weight: 700;
+}
+
+.booking-tutorial-box .tutorial-content p {
+  font-size: 0.85rem;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.45;
+}
+
+.booking-tutorial-box .tutorial-step-progress {
+  flex-shrink: 0;
+}
+
+.booking-tutorial-box .progress-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.booking-tutorial-box .progress-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.booking-tutorial-box .progress-dot.active {
+  background: rgba(254, 201, 15, 0.4);
+}
+
+.booking-tutorial-box .progress-dot.current {
+  background: #fec90f;
+  width: 20px;
+  border-radius: 4px;
+}
+
+/* Botão próximo passo */
+.booking-next-step-btn {
+  margin-top: 18px;
+  height: 48px;
+  padding: 0 22px;
+  border: none;
+  border-radius: 14px;
+  background: #fec90f;
+  color: #000c24;
+  font-weight: 900;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: all 0.2s ease;
+  font-size: 0.85rem;
+  width: 100%;
+}
+
+.booking-next-step-btn:hover {
+  background: #ffd43b;
+  transform: translateY(-1px);
+}
+
+.booking-next-step-btn.full-width {
+  width: calc(100% - 40px);
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 16px;
+}
+
+/* CTA final do financeiro */
+.booking-final-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #fec90f, #e5b40c);
+  color: #000c24;
+  text-decoration: none;
+  font-weight: 900;
+  font-size: 1rem;
+  padding: 16px 24px;
+  border-radius: 16px;
+  margin-top: 24px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: none;
+  text-align: center;
+}
+
+.booking-final-cta:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #ffd43b, #fec90f);
+  box-shadow: 0 8px 20px rgba(254, 201, 15, 0.2);
 }
 
 /* ============================================
@@ -1826,7 +2125,8 @@
   /* Esconde elementos desktop da sidebar */
   .booking-logo,
   .booking-user-info,
-  .booking-back-site {
+  .booking-back-site,
+  .booking-step-badge {
     display: none;
   }
 
@@ -1876,6 +2176,30 @@
   
   .booking-messages-view {
     min-height: calc(100dvh - 180px);
+  }
+
+  /* Tutorial box mobile */
+  .booking-tutorial-box {
+    padding: 16px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .booking-tutorial-box .tutorial-step-progress {
+    align-self: flex-start;
+  }
+
+  .booking-tutorial-box .tutorial-icon-wrapper {
+    width: 36px;
+    height: 36px;
+  }
+
+  .booking-tutorial-box .tutorial-content strong {
+    font-size: 0.85rem;
+  }
+
+  .booking-tutorial-box .tutorial-content p {
+    font-size: 0.8rem;
   }
 }
 
@@ -2089,6 +2413,28 @@
   .flow-mini-explanation p {
     font-size: 0.75rem;
   }
+
+  .flow-mini-explanation .mini-explanation-icon {
+    width: 28px;
+    height: 28px;
+  }
+
+  /* Botões do tutorial mobile */
+  .booking-next-step-btn {
+    height: 44px;
+    font-size: 0.8rem;
+  }
+
+  .booking-next-step-btn.full-width {
+    width: calc(100% - 24px);
+    margin-left: 12px;
+    margin-right: 12px;
+  }
+
+  .booking-final-cta {
+    font-size: 0.9rem;
+    padding: 14px 20px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -2213,113 +2559,4 @@
       padding-bottom: calc(110px + env(safe-area-inset-bottom));
     }
   }
-}
-
-/* ============================================
-   NOVO AGENDAMENTO - DESTAQUE
-   ============================================ */
-
-.new-appointment {
-  border-left: 2px solid #fec90f;
-  background: rgba(254, 201, 15, 0.05);
-  animation: glowPulse 0.5s ease-out;
-}
-
-@keyframes glowPulse {
-  0% {
-    border-left-color: transparent;
-    background: transparent;
-  }
-  50% {
-    border-left-color: #fec90f;
-    background: rgba(254, 201, 15, 0.08);
-  }
-  100% {
-    border-left-color: #fec90f;
-    background: rgba(254, 201, 15, 0.05);
-  }
-}
-
-/* ============================================
-   BOTÃO FLOW COM ANIMAÇÃO
-   ============================================ */
-
-.flow-confirm-btn {
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  height: 48px;
-  border: none;
-  border-radius: 16px;
-  background: #fec90f;
-  color: #000c24;
-  font-weight: 900;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.flow-confirm-btn::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: rgba(255, 255, 255, 0.12);
-  opacity: 0;
-  transition: opacity 0.2s;
-}
-
-.flow-confirm-btn:hover::after {
-  opacity: 1;
-}
-
-.flow-confirm-btn:active {
-  transform: scale(0.98);
-}
-
-/* ============================================
-   TOAST DE SUCESSO
-   ============================================ */
-
-.booking-toast {
-  position: fixed;
-  top: 24px;
-  right: 24px;
-  z-index: 200;
-  padding: 14px 18px;
-  border-radius: 14px;
-  background: rgba(34, 197, 94, 0.14);
-  border: 1px solid rgba(34, 197, 94, 0.25);
-  color: #ffffff;
-  font-weight: 700;
-  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
-  backdrop-filter: blur(14px);
-  font-size: 0.85rem;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-@media (max-width: 700px) {
-  .booking-toast {
-    top: 72px;
-    left: 16px;
-    right: 16px;
-    text-align: center;
-    justify-content: center;
-  }
-}
-
-/* ============================================
-   FLOW PUBLIC LINK - CUSTOM STYLE
-   ============================================ */
-
-.flow-public-link {
-  display: inline-flex;
-  color: #fec90f;
-  font-size: 0.75rem;
-  text-decoration: none;
-  margin-top: 4px;
-}
-
-.flow-public-link:hover {
-  text-decoration: underline;
 }
