@@ -41,6 +41,22 @@ export default function FullBookingExperience({ language }: Props) {
   const [selectedClient, setSelectedClient] = useState<any>(null)
   const [showModal, setShowModal] = useState(false)
   const [typing, setTyping] = useState(false)
+  const [showSuccess, setShowSuccess] = useState(false)
+  const [appointments, setAppointments] = useState([
+    { id: 1, time: '09:00', client: 'Ana Souza', service: 'Consulta', status: 'confirmed', phone: '(11) 99999-1234' },
+    { id: 2, time: '10:30', client: 'Carlos Lima', service: 'Banho e Tosa', status: 'pending', phone: '(11) 98888-5678' },
+    { id: 3, time: '13:00', client: 'Fernanda Costa', service: 'Corte', status: 'confirmed', phone: '(11) 97777-9012' },
+    { id: 4, time: '15:30', client: 'Lucas Mendes', service: 'Retorno', status: 'cancelled', phone: '(11) 96666-3456' },
+    { id: 5, time: '17:00', client: 'Mariana Silva', service: 'Massagem', status: 'completed', phone: '(11) 95555-7890' },
+  ])
+
+  const clients = [
+    { id: 1, name: 'Ana Souza', phone: '(11) 99999-1234', total: 12, totalSpent: 1440, lastVisit: '2 dias atrás', avatar: 'A', nextAppointment: '09:00 - Consulta' },
+    { id: 2, name: 'Carlos Lima', phone: '(11) 98888-5678', total: 8, totalSpent: 680, lastVisit: '3 dias atrás', avatar: 'C', nextAppointment: '10:30 - Banho' },
+    { id: 3, name: 'Fernanda Costa', phone: '(11) 97777-9012', total: 15, totalSpent: 1125, lastVisit: '5 dias atrás', avatar: 'F', nextAppointment: '13:00 - Corte' },
+    { id: 4, name: 'Lucas Mendes', phone: '(11) 96666-3456', total: 6, totalSpent: 540, lastVisit: '1 dia atrás', avatar: 'L', nextAppointment: '15:30 - Retorno' },
+    { id: 5, name: 'Mariana Silva', phone: '(11) 95555-7890', total: 4, totalSpent: 340, lastVisit: 'Hoje', avatar: 'M', nextAppointment: '17:00 - Massagem' },
+  ]
 
   const getMonthName = (date: Date) => {
     return date.toLocaleString(isPt ? 'pt-BR' : 'es-ES', {
@@ -57,7 +73,7 @@ export default function FullBookingExperience({ language }: Props) {
     setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() + 1))
   }
 
-  // Typing effect no WhatsApp - CORRIGIDO com useEffect
+  // Typing effect no WhatsApp
   useEffect(() => {
     if (activeTab !== 'mensagens') return
 
@@ -74,21 +90,25 @@ export default function FullBookingExperience({ language }: Props) {
     return () => clearInterval(interval)
   }, [activeTab])
 
-  const appointments = [
-    { id: 1, time: '09:00', client: 'Ana Souza', service: 'Consulta', status: 'confirmed', phone: '(11) 99999-1234' },
-    { id: 2, time: '10:30', client: 'Carlos Lima', service: 'Banho e Tosa', status: 'pending', phone: '(11) 98888-5678' },
-    { id: 3, time: '13:00', client: 'Fernanda Costa', service: 'Corte', status: 'confirmed', phone: '(11) 97777-9012' },
-    { id: 4, time: '15:30', client: 'Lucas Mendes', service: 'Retorno', status: 'cancelled', phone: '(11) 96666-3456' },
-    { id: 5, time: '17:00', client: 'Mariana Silva', service: 'Massagem', status: 'completed', phone: '(11) 95555-7890' },
-  ]
+  // Função para confirmar agendamento no fluxo
+  const handleFlowConfirm = () => {
+    const newAppointment = {
+      id: Date.now(),
+      time: '14:00',
+      client: 'Ana Souza',
+      service: 'Consulta',
+      status: 'confirmed',
+      phone: '(11) 99999-1234',
+    }
 
-  const clients = [
-    { id: 1, name: 'Ana Souza', phone: '(11) 99999-1234', total: 12, totalSpent: 1440, lastVisit: '2 dias atrás', avatar: 'A', nextAppointment: '09:00 - Consulta' },
-    { id: 2, name: 'Carlos Lima', phone: '(11) 98888-5678', total: 8, totalSpent: 680, lastVisit: '3 dias atrás', avatar: 'C', nextAppointment: '10:30 - Banho' },
-    { id: 3, name: 'Fernanda Costa', phone: '(11) 97777-9012', total: 15, totalSpent: 1125, lastVisit: '5 dias atrás', avatar: 'F', nextAppointment: '13:00 - Corte' },
-    { id: 4, name: 'Lucas Mendes', phone: '(11) 96666-3456', total: 6, totalSpent: 540, lastVisit: '1 dia atrás', avatar: 'L', nextAppointment: '15:30 - Retorno' },
-    { id: 5, name: 'Mariana Silva', phone: '(11) 95555-7890', total: 4, totalSpent: 340, lastVisit: 'Hoje', avatar: 'M', nextAppointment: '17:00 - Massagem' },
-  ]
+    setAppointments(prev => [newAppointment, ...prev])
+    setShowSuccess(true)
+    setActiveTab('agenda')
+
+    setTimeout(() => {
+      setShowSuccess(false)
+    }, 3000)
+  }
 
   const getStatusColor = (status: string) => {
     switch(status) {
@@ -192,6 +212,20 @@ export default function FullBookingExperience({ language }: Props) {
       </aside>
 
       <main className="booking-main-content">
+        {/* Toast de sucesso */}
+        <AnimatePresence>
+          {showSuccess && (
+            <motion.div
+              className="booking-toast"
+              initial={{ opacity: 0, y: -16 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -16 }}
+            >
+              ✅ {isPt ? 'Novo agendamento recebido' : 'Nueva reserva recibida'}
+            </motion.div>
+          )}
+        </AnimatePresence>
+
         <header className="booking-header">
           <a href="/" className="booking-mobile-back">
             <ArrowLeft size={16} />
@@ -223,7 +257,7 @@ export default function FullBookingExperience({ language }: Props) {
           </div>
         </header>
 
-        {/* Top Stats - Agora depois do header */}
+        {/* Top Stats */}
         <div className="booking-top-stats">
           <div className="booking-mini-stat">
             <span>{isPt ? 'Hoje' : 'Hoy'}</span>
@@ -294,7 +328,11 @@ export default function FullBookingExperience({ language }: Props) {
                     <button type="button">16:30</button>
                   </div>
 
-                  <button type="button" className="flow-confirm-btn">
+                  <button 
+                    type="button" 
+                    className="flow-confirm-btn"
+                    onClick={handleFlowConfirm}
+                  >
                     {isPt ? 'Confirmar agendamento' : 'Confirmar reserva'}
                   </button>
                 </div>
@@ -377,7 +415,7 @@ export default function FullBookingExperience({ language }: Props) {
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: idx * 0.05 }}
-                        className="booking-appointment-row"
+                        className={`booking-appointment-row ${idx === 0 ? 'new-appointment' : ''}`}
                       >
                         <div className="booking-appointment-time">
                           <Clock size={14} />
@@ -500,7 +538,6 @@ export default function FullBookingExperience({ language }: Props) {
                 </motion.div>
               </div>
 
-              {/* Gráfico */}
               <div className="booking-chart-container">
                 <div className="booking-chart-header">
                   <h3>{isPt ? 'Receita semanal' : 'Ingresos semanales'}</h3>
