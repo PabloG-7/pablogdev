@@ -18,6 +18,49 @@
 }
 
 /* ============================================
+   LOGO IMAGES
+   ============================================ */
+
+.booking-logo-img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+.booking-mobile-logo-img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
+/* ============================================
+   WHATSAPP ICON REAL
+   ============================================ */
+
+.whatsapp-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  margin-bottom: 12px;
+}
+
+.whatsapp-icon-small {
+  width: 14px;
+  height: 14px;
+  object-fit: contain;
+}
+
+.flow-whatsapp-card {
+  background: rgba(37, 211, 102, 0.08);
+  border-color: rgba(37, 211, 102, 0.16);
+  border-left: 3px solid #25d366;
+}
+
+.auto-messages-badge img {
+  margin-right: 4px;
+}
+
+/* ============================================
    SIDEBAR - LARGURA REDUZIDA
    ============================================ */
 
@@ -1730,22 +1773,6 @@
   width: fit-content;
 }
 
-.flow-whatsapp-card {
-  background: rgba(37, 211, 102, 0.08);
-  border-color: rgba(37, 211, 102, 0.16);
-  border-left: 3px solid #22c55e;
-}
-
-.flow-whatsapp-card svg {
-  color: #25d366;
-  margin-bottom: 12px;
-}
-
-.flow-whatsapp-card p {
-  color: #ffffff;
-  line-height: 1.6;
-}
-
 /* ============================================
    NOVO AGENDAMENTO - DESTAQUE
    ============================================ */
@@ -1881,14 +1908,15 @@
   margin-bottom: 24px;
   padding: 20px 24px;
   border-radius: 20px;
-  background: linear-gradient(135deg, rgba(254, 201, 15, 0.08), rgba(254, 201, 15, 0.02));
-  border: 1px solid rgba(254, 201, 15, 0.2);
+  background: linear-gradient(135deg, rgba(254, 201, 15, 0.12), rgba(254, 201, 15, 0.03));
+  border: 1px solid rgba(254, 201, 15, 0.25);
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 20px;
   position: relative;
   overflow: hidden;
   transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .booking-tutorial-box::before {
@@ -1897,20 +1925,32 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, #fec90f, transparent);
+  height: 3px;
+  background: linear-gradient(90deg, #fec90f, #ffd43b, #fec90f);
+  animation: shimmer 2s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
 }
 
 .booking-tutorial-box .tutorial-icon-wrapper {
-  width: 44px;
-  height: 44px;
-  background: rgba(254, 201, 15, 0.12);
-  border-radius: 16px;
+  width: 52px;
+  height: 52px;
+  background: rgba(254, 201, 15, 0.15);
+  border-radius: 18px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
   color: #fec90f;
+  animation: pulse-icon 2s ease-in-out infinite;
+}
+
+@keyframes pulse-icon {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
 }
 
 .booking-tutorial-box .tutorial-content {
@@ -1919,44 +1959,72 @@
 
 .booking-tutorial-box .tutorial-content strong {
   display: block;
-  font-size: 0.9rem;
+  font-size: 1rem;
   margin-bottom: 6px;
   color: #fec90f;
   font-weight: 700;
+  letter-spacing: -0.3px;
 }
 
 .booking-tutorial-box .tutorial-content p {
   font-size: 0.85rem;
   margin: 0;
-  color: rgba(255, 255, 255, 0.75);
+  color: rgba(255, 255, 255, 0.8);
   line-height: 1.45;
 }
 
 .booking-tutorial-box .tutorial-step-progress {
-  flex-shrink: 0;
-}
-
-.booking-tutorial-box .progress-dots {
   display: flex;
-  gap: 6px;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
 }
 
-.booking-tutorial-box .progress-dot {
-  width: 8px;
-  height: 8px;
+.booking-tutorial-box .progress-steps {
+  display: flex;
+  gap: 8px;
+}
+
+.booking-tutorial-box .progress-step {
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.5);
   transition: all 0.3s ease;
 }
 
-.booking-tutorial-box .progress-dot.active {
-  background: rgba(254, 201, 15, 0.4);
+.booking-tutorial-box .progress-step.completed {
+  background: rgba(76, 175, 80, 0.2);
+  color: #4caf50;
 }
 
-.booking-tutorial-box .progress-dot.current {
+.booking-tutorial-box .progress-step.current {
   background: #fec90f;
-  width: 20px;
-  border-radius: 4px;
+  color: #000c24;
+  transform: scale(1.1);
+  box-shadow: 0 0 10px rgba(254, 201, 15, 0.5);
+}
+
+.tutorial-skip-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  padding: 4px 12px;
+  font-size: 0.65rem;
+  color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.tutorial-skip-btn:hover {
+  background: rgba(254, 201, 15, 0.15);
+  color: #fec90f;
 }
 
 /* Botão próximo passo */
@@ -2180,24 +2248,37 @@
 
   /* Tutorial box mobile */
   .booking-tutorial-box {
-    padding: 16px;
     flex-direction: column;
     align-items: flex-start;
+    padding: 16px;
   }
-
+  
   .booking-tutorial-box .tutorial-step-progress {
-    align-self: flex-start;
+    align-self: stretch;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
   }
-
+  
+  .booking-tutorial-box .progress-steps {
+    gap: 6px;
+  }
+  
+  .booking-tutorial-box .progress-step {
+    width: 24px;
+    height: 24px;
+    font-size: 0.65rem;
+  }
+  
   .booking-tutorial-box .tutorial-icon-wrapper {
-    width: 36px;
-    height: 36px;
+    width: 44px;
+    height: 44px;
   }
-
+  
   .booking-tutorial-box .tutorial-content strong {
-    font-size: 0.85rem;
+    font-size: 0.9rem;
   }
-
+  
   .booking-tutorial-box .tutorial-content p {
     font-size: 0.8rem;
   }
@@ -2559,4 +2640,18 @@
       padding-bottom: calc(110px + env(safe-area-inset-bottom));
     }
   }
+}
+/* Ajuste para o ícone do WhatsApp */
+.flow-whatsapp-card svg {
+  margin-bottom: 12px;
+}
+
+.auto-messages-badge svg {
+  margin-right: 6px;
+}
+
+.booking-client-card-action svg,
+.drawer-btn svg,
+.booking-next-step-btn svg {
+  margin-right: 0;
 }

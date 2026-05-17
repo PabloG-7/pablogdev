@@ -4,7 +4,6 @@ import {
   ArrowLeft,
   Calendar,
   Users,
-  MessageCircle,
   DollarSign,
   Settings,
   ChevronLeft,
@@ -27,14 +26,17 @@ import {
   ChevronRight as ChevronRightIcon,
   GraduationCap,
   Sparkles,
-  Phone,
   ArrowRight as ArrowRightIcon,
   Award,
   Compass,
   Target,
   Gift,
 } from 'lucide-react'
+// Import do ícone do WhatsApp do react-icons
+import { FaWhatsapp } from 'react-icons/fa'
 import type { Language } from '../../types'
+// Import da logo
+import logoImg from '../../assets/apenas-logo.png'
 import './FullBookingExperience.css'
 
 type Props = {
@@ -52,6 +54,7 @@ export default function FullBookingExperience({ language }: Props) {
   const [typing, setTyping] = useState(false)
   const [showSuccess, setShowSuccess] = useState(false)
   const [tutorialStep, setTutorialStep] = useState(1)
+  const [showTutorial, setShowTutorial] = useState(true)
   const [appointments, setAppointments] = useState([
     { id: 1, time: '09:00', client: 'Ana Souza', service: 'Consulta', status: 'confirmed', phone: '(11) 99999-1234' },
     { id: 2, time: '10:30', client: 'Carlos Lima', service: 'Banho e Tosa', status: 'pending', phone: '(11) 98888-5678' },
@@ -86,6 +89,9 @@ export default function FullBookingExperience({ language }: Props) {
   const goTutorialStep = (step: number, tab: Tab) => {
     setTutorialStep(step)
     setActiveTab(tab)
+    if (step === 5) {
+      setTimeout(() => setShowTutorial(false), 3000)
+    }
   }
 
   const canOpenAgenda = tutorialStep >= 2
@@ -174,7 +180,7 @@ export default function FullBookingExperience({ language }: Props) {
           message: isPt 
             ? 'Veja como a confirmação chega automaticamente no WhatsApp. Clique em "Ver cliente salvo".' 
             : 'Mira cómo la confirmación llega automáticamente a WhatsApp. Haz clic en "Ver cliente guardado".',
-          icon: <Phone size={20} />
+          icon: <FaWhatsapp size={20} />
         }
       case 4:
         return {
@@ -188,8 +194,8 @@ export default function FullBookingExperience({ language }: Props) {
         return {
           title: isPt ? 'Resultados organizados' : 'Resultados organizados',
           message: isPt 
-            ? 'Veja seu faturamento, atendimentos e confirmações tudo organizado. Pronto para começar?' 
-            : 'Mira tus ingresos, atenciones y confirmaciones todo organizado. ¿Listo para comenzar?',
+            ? 'Veja seu faturamento, atendimentos e confirmações tudo organizado. Pronto para começar!' 
+            : 'Mira tus ingresos, atenciones y confirmaciones todo organizado. ¡Listo para comenzar!',
           icon: <Target size={20} />
         }
       default:
@@ -216,8 +222,8 @@ export default function FullBookingExperience({ language }: Props) {
       {/* Mobile Topbar */}
       <div className="booking-mobile-topbar">
         <div className="booking-mobile-logo">
-          <div className="booking-logo-mark">P</div>
-          <span>PGDev Flow</span>
+          <img src={logoImg} alt="Logo" className="booking-mobile-logo-img" />
+          <span>Agendamento</span>
         </div>
         <div className="booking-mobile-status">
           <div className="booking-live-dot"></div>
@@ -231,14 +237,12 @@ export default function FullBookingExperience({ language }: Props) {
 
       <aside className="booking-sidebar">
         <div className="booking-logo">
-          <div className="booking-logo-mark">P</div>
-          <span className="booking-logo-text">PabloG<span>.dev</span></span>
+          <img src={logoImg} alt="Logo" className="booking-logo-img" />
+          <span className="booking-logo-text">Agendamento</span>
         </div>
 
         <div className="booking-step-badge">
-          <Sparkles size={12} />
           <span>{isPt ? `Passo ${tutorialStep} de 5` : `Paso ${tutorialStep} de 5`}</span>
-          <Award size={12} />
         </div>
 
         <nav className="booking-nav">
@@ -248,7 +252,7 @@ export default function FullBookingExperience({ language }: Props) {
             onClick={() => setActiveTab('como-funciona')}
           >
             <Compass size={18} />
-            <span>{isPt ? 'Como funciona' : 'Cómo funciona'}</span>
+            <span>{isPt ? 'Agendar' : 'Agendar'}</span>
           </button>
           <button 
             type="button"
@@ -286,7 +290,7 @@ export default function FullBookingExperience({ language }: Props) {
             onClick={() => handleNavClick('mensagens')}
             disabled={!canOpenMessages}
           >
-            <MessageCircle size={18} />
+            <FaWhatsapp size={18} />
             <span>WhatsApp</span>
             {!canOpenMessages && <Lock size={12} className="lock-icon" />}
           </button>
@@ -322,6 +326,41 @@ export default function FullBookingExperience({ language }: Props) {
           )}
         </AnimatePresence>
 
+        {/* Tutorial Box - Melhorado */}
+        {showTutorial && tutorialStep <= 5 && (
+          <motion.div 
+            className="booking-tutorial-box"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, type: "spring" }}
+          >
+            <div className="tutorial-icon-wrapper">
+              {tutorialData.icon}
+            </div>
+            <div className="tutorial-content">
+              <strong>{tutorialData.title}</strong>
+              <p>{tutorialData.message}</p>
+            </div>
+            <div className="tutorial-step-progress">
+              <div className="progress-steps">
+                {[1, 2, 3, 4, 5].map(step => (
+                  <div 
+                    key={step} 
+                    className={`progress-step ${step <= tutorialStep ? 'completed' : ''} ${step === tutorialStep ? 'current' : ''}`}
+                  >
+                    {step < tutorialStep ? <CheckCircle size={10} /> : step}
+                  </div>
+                ))}
+              </div>
+              {tutorialStep < 5 && (
+                <button onClick={() => goTutorialStep(tutorialStep + 1, activeTab)} className="tutorial-skip-btn">
+                  Pular
+                </button>
+              )}
+            </div>
+          </motion.div>
+        )}
+
         <header className="booking-header">
           <a href="/" className="booking-mobile-back">
             <ArrowLeft size={16} />
@@ -330,13 +369,19 @@ export default function FullBookingExperience({ language }: Props) {
 
           <div className="booking-header-title">
             <h1>
-              {activeTab === 'como-funciona' && (isPt ? 'Como funciona' : 'Cómo funciona')}
-              {activeTab === 'agenda' && (isPt ? 'Agendamentos' : 'Calendario')}
-              {activeTab === 'clientes' && (isPt ? 'Clientes' : 'Clientes')}
+              {activeTab === 'como-funciona' && (isPt ? 'Agende um horário' : 'Agenda una hora')}
+              {activeTab === 'agenda' && (isPt ? 'Sua agenda' : 'Tu calendario')}
+              {activeTab === 'clientes' && (isPt ? 'Seus clientes' : 'Tus clientes')}
               {activeTab === 'financeiro' && (isPt ? 'Financeiro' : 'Finanzas')}
               {activeTab === 'mensagens' && (isPt ? 'Conversas' : 'Conversaciones')}
             </h1>
-            <p>{isPt ? 'Agendamentos, clientes e confirmações organizados.' : 'Reservas, clientes y confirmaciones organizadas.'}</p>
+            <p>
+              {activeTab === 'como-funciona' && (isPt ? 'Simule um agendamento e veja como funciona' : 'Simula una reserva y mira cómo funciona')}
+              {activeTab === 'agenda' && (isPt ? 'Gerencie todos os seus horários' : 'Gestiona todos tus horarios')}
+              {activeTab === 'clientes' && (isPt ? 'Histórico completo de cada cliente' : 'Historial completo de cada cliente')}
+              {activeTab === 'financeiro' && (isPt ? 'Acompanhe seus resultados' : 'Sigue tus resultados')}
+              {activeTab === 'mensagens' && (isPt ? 'Comunique-se com seus clientes' : 'Comunícate con tus clientes')}
+            </p>
             <span className="booking-demo-badge">
               {isPt ? 'Demonstração interativa' : 'Demostración interactiva'}
             </span>
@@ -352,27 +397,6 @@ export default function FullBookingExperience({ language }: Props) {
             </button>
           </div>
         </header>
-
-        {/* Tutorial Box */}
-        <div className="booking-tutorial-box">
-          <div className="tutorial-icon-wrapper">
-            {tutorialData.icon}
-          </div>
-          <div className="tutorial-content">
-            <strong>{tutorialData.title}</strong>
-            <p>{tutorialData.message}</p>
-          </div>
-          <div className="tutorial-step-progress">
-            <div className="progress-dots">
-              {[1, 2, 3, 4, 5].map(step => (
-                <div 
-                  key={step} 
-                  className={`progress-dot ${step <= tutorialStep ? 'active' : ''} ${step === tutorialStep ? 'current' : ''}`}
-                />
-              ))}
-            </div>
-          </div>
-        </div>
 
         {/* Top Stats */}
         <div className="booking-top-stats">
@@ -402,7 +426,7 @@ export default function FullBookingExperience({ language }: Props) {
               className="booking-client-flow"
             >
               <div className="flow-copy">
-                <span>{isPt ? 'Link público' : 'Link público'}</span>
+                <span>{isPt ? '🔗 Link público do seu negócio' : '🔗 Link público de tu negocio'}</span>
                 <h2>{isPt ? 'Seu cliente agenda sozinho' : 'Tu cliente agenda solo'}</h2>
                 <p>
                   {isPt
@@ -415,13 +439,13 @@ export default function FullBookingExperience({ language }: Props) {
                 <div className="mini-explanation-icon">
                   <Target size={20} />
                 </div>
-                <p>{isPt ? 'Seu cliente escolhe o serviço, horário e recebe confirmação automática.' : 'Tu cliente elige el servicio, horario y recibe confirmación automática.'}</p>
+                <p>{isPt ? '📱 Seu cliente escolhe o serviço, horário e recebe confirmação automática.' : '📱 Tu cliente elige el servicio, horario y recibe confirmación automática.'}</p>
               </div>
 
               <div className="flow-grid">
                 <div className="flow-phone">
                   <div className="flow-phone-header">
-                    <strong>PGDev Agenda</strong>
+                    <strong>PGAgenda</strong>
                     <a href="/agendar-demo" className="flow-public-link">
                       pablogdev.com/agendar-demo
                     </a>
@@ -467,7 +491,7 @@ export default function FullBookingExperience({ language }: Props) {
 
                 <div className="flow-result">
                   <div className="flow-result-card">
-                    <span>{isPt ? 'Agenda atualizada' : 'Agenda actualizada'}</span>
+                    <span>{isPt ? '✅ Agenda atualizada' : '✅ Agenda actualizada'}</span>
                     <strong>Ana Souza</strong>
                     <p>14:00 — Consulta</p>
                     <small>{isPt ? 'Status: confirmado' : 'Estado: confirmado'}</small>
@@ -478,7 +502,7 @@ export default function FullBookingExperience({ language }: Props) {
                   </div>
 
                   <div className="flow-whatsapp-card">
-                    <MessageCircle size={18} />
+                    <FaWhatsapp size={24} color="#25D366" />
                     <p>
                       {isPt
                         ? 'Olá Ana! Seu horário foi confirmado para amanhã às 14h ✅'
@@ -575,14 +599,16 @@ export default function FullBookingExperience({ language }: Props) {
                     ))}
                   </div>
 
-                  <button 
-                    className="booking-next-step-btn"
-                    onClick={() => goTutorialStep(3, 'mensagens')}
-                  >
-                    <MessageCircle size={16} />
-                    {isPt ? 'Ver confirmação no WhatsApp' : 'Ver confirmación en WhatsApp'}
-                    <ChevronRightIcon size={14} />
-                  </button>
+                  {tutorialStep === 2 && (
+                    <button 
+                      className="booking-next-step-btn"
+                      onClick={() => goTutorialStep(3, 'mensagens')}
+                    >
+                      <FaWhatsapp size={16} />
+                      {isPt ? 'Ver confirmação no WhatsApp' : 'Ver confirmación en WhatsApp'}
+                      <ChevronRightIcon size={14} />
+                    </button>
+                  )}
                 </>
               )}
             </motion.div>
@@ -635,20 +661,22 @@ export default function FullBookingExperience({ language }: Props) {
                           </div>
                         </div>
                         <button type="button" className="booking-client-card-action">
-                          <MessageCircle size={16} />
+                          <FaWhatsapp size={16} />
                         </button>
                       </motion.div>
                     ))}
                   </div>
 
-                  <button 
-                    className="booking-next-step-btn"
-                    onClick={() => goTutorialStep(5, 'financeiro')}
-                  >
-                    <DollarSign size={16} />
-                    {isPt ? 'Ver resultado financeiro' : 'Ver resultado financiero'}
-                    <ChevronRightIcon size={14} />
-                  </button>
+                  {tutorialStep === 4 && (
+                    <button 
+                      className="booking-next-step-btn"
+                      onClick={() => goTutorialStep(5, 'financeiro')}
+                    >
+                      <DollarSign size={16} />
+                      {isPt ? 'Ver resultado financeiro' : 'Ver resultado financiero'}
+                      <ChevronRightIcon size={14} />
+                    </button>
+                  )}
                 </>
               )}
             </motion.div>
@@ -773,7 +801,7 @@ export default function FullBookingExperience({ language }: Props) {
                 </div>
 
                 <div className="auto-messages-badge">
-                  <MessageCircle size={12} />
+                  <FaWhatsapp size={14} color="#25D366" />
                   <span>{isPt ? 'Mensagens automáticas' : 'Mensajes automáticos'}</span>
                 </div>
 
@@ -813,14 +841,16 @@ export default function FullBookingExperience({ language }: Props) {
                   <span>{isPt ? 'Confirmações e lembretes automáticos para clientes' : 'Confirmaciones y recordatorios automáticos para clientes'}</span>
                 </div>
 
-                <button 
-                  className="booking-next-step-btn full-width"
-                  onClick={() => goTutorialStep(4, 'clientes')}
-                >
-                  <Users size={16} />
-                  {isPt ? 'Ver cliente salvo' : 'Ver cliente guardado'}
-                  <ChevronRightIcon size={14} />
-                </button>
+                {tutorialStep === 3 && (
+                  <button 
+                    className="booking-next-step-btn full-width"
+                    onClick={() => goTutorialStep(4, 'clientes')}
+                  >
+                    <Users size={16} />
+                    {isPt ? 'Ver cliente salvo' : 'Ver cliente guardado'}
+                    <ChevronRightIcon size={14} />
+                  </button>
+                )}
 
                 <div className="booking-chat-input">
                   <button type="button" className="chat-action-btn">
@@ -955,7 +985,7 @@ export default function FullBookingExperience({ language }: Props) {
                 </div>
                 <div className="drawer-actions">
                   <button className="drawer-btn primary">
-                    <MessageCircle size={16} />
+                    <FaWhatsapp size={16} />
                     {isPt ? 'Enviar mensagem' : 'Enviar mensaje'}
                   </button>
                   <button className="drawer-btn">
