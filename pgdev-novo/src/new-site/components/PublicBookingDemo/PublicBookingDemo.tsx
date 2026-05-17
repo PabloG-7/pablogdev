@@ -17,22 +17,22 @@ type Props = {
 const services = [
   {
     id: 1,
-    namePt: 'Consulta',
-    nameEs: 'Consulta',
+    namePt: 'Consulta com Dra. Marina',
+    nameEs: 'Consulta con Dra. Marina',
     duration: '50min',
     price: 'R$ 120',
   },
   {
     id: 2,
-    namePt: 'Retorno',
-    nameEs: 'Retorno',
+    namePt: 'Retorno com Dr. Carlos',
+    nameEs: 'Retorno con Dr. Carlos',
     duration: '30min',
     price: 'R$ 80',
   },
   {
     id: 3,
-    namePt: 'Atendimento premium',
-    nameEs: 'Atención premium',
+    namePt: 'Atendimento premium - Studio Bella',
+    nameEs: 'Atención premium - Studio Bella',
     duration: '1h 20min',
     price: 'R$ 240',
   },
@@ -46,14 +46,35 @@ const availableTimes = [
   '17:00',
 ]
 
+// Função para obter o dia da semana em português/espanhol
+const getWeekDay = (date: Date, isPt: boolean) => {
+  const weekDaysPt = ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado']
+  const weekDaysEs = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado']
+  const weekDays = isPt ? weekDaysPt : weekDaysEs
+  return weekDays[date.getDay()]
+}
+
+// Formatar data para exibição
+const formatDate = (date: Date, isPt: boolean) => {
+  const day = date.getDate()
+  const month = isPt 
+    ? ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'][date.getMonth()]
+    : ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'][date.getMonth()]
+  return `${day} de ${month}`
+}
+
 export default function PublicBookingDemo({
   language,
 }: Props) {
   const isPt = language === 'pt'
-
+  const [selectedDate] = useState(new Date(2025, 4, 25)) // 25 de Maio de 2025
   const [selectedService, setSelectedService] = useState(services[0])
   const [selectedTime, setSelectedTime] = useState('14:00')
   const [confirmed, setConfirmed] = useState(false)
+
+  const weekDay = getWeekDay(selectedDate, isPt)
+  const formattedDate = formatDate(selectedDate, isPt)
+  const fullDateString = `${weekDay} • ${formattedDate}`
 
   return (
     <main className="public-booking">
@@ -195,10 +216,12 @@ export default function PublicBookingDemo({
 
                 <div>
                   <span>
-                    {isPt ? 'Horário' : 'Horario'}
+                    {isPt ? 'Data e horário' : 'Fecha y hora'}
                   </span>
 
-                  <strong>{selectedTime}</strong>
+                  <strong>
+                    {fullDateString} • {selectedTime}
+                  </strong>
                 </div>
               </div>
 
@@ -209,8 +232,8 @@ export default function PublicBookingDemo({
               >
                 <span>
                   {isPt
-                    ? 'Confirmar agendamento'
-                    : 'Confirmar reserva'}
+                    ? 'Confirmar horário'
+                    : 'Confirmar hora'}
                 </span>
 
                 <ChevronRight size={18} />
@@ -237,7 +260,7 @@ export default function PublicBookingDemo({
               <div className="public-success-card">
                 <div>
                   <Calendar size={16} />
-                  <span>25 Maio</span>
+                  <span>{formattedDate}</span>
                 </div>
 
                 <div>
@@ -251,9 +274,18 @@ export default function PublicBookingDemo({
 
                 <p>
                   {isPt
-                    ? `Olá Ana! Seu horário foi confirmado para às ${selectedTime} ✅`
-                    : `¡Hola Ana! Tu horario fue confirmado para las ${selectedTime} ✅`}
+                    ? `Olá Ana! Seu horário foi confirmado para ${fullDateString} às ${selectedTime} ✅`
+                    : `¡Hola Ana! Tu horario fue confirmado para ${fullDateString} a las ${selectedTime} ✅`}
                 </p>
+              </div>
+
+              <div className="public-whatsapp-confirm">
+                <CheckCircle2 size={14} />
+                <span>
+                  {isPt
+                    ? 'Você receberá a confirmação no WhatsApp'
+                    : 'Recibirás la confirmación en WhatsApp'}
+                </span>
               </div>
 
               <a

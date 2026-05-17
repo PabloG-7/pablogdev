@@ -15,8 +15,6 @@ import {
   MoreHorizontal,
   Clock,
   TrendingUp,
-  TrendingDown,
-  Zap,
   X,
   Bell,
   Mic,
@@ -24,6 +22,7 @@ import {
   Smile,
   Calendar as CalendarIcon,
   UserPlus,
+  CheckCircle
 } from 'lucide-react'
 import type { Language } from '../../types'
 import './FullBookingExperience.css'
@@ -32,11 +31,11 @@ type Props = {
   language: Language
 }
 
-type Tab = 'fluxo' | 'agenda' | 'clientes' | 'financeiro' | 'mensagens'
+type Tab = 'como-funciona' | 'agenda' | 'clientes' | 'financeiro' | 'mensagens'
 
 export default function FullBookingExperience({ language }: Props) {
   const isPt = language === 'pt'
-  const [activeTab, setActiveTab] = useState<Tab>('fluxo')
+  const [activeTab, setActiveTab] = useState<Tab>('como-funciona')
   const [currentDate, setCurrentDate] = useState(new Date())
   const [selectedClient, setSelectedClient] = useState<any>(null)
   const [showModal, setShowModal] = useState(false)
@@ -157,11 +156,11 @@ export default function FullBookingExperience({ language }: Props) {
         <nav className="booking-nav">
           <button 
             type="button"
-            className={`booking-nav-item ${activeTab === 'fluxo' ? 'active' : ''}`}
-            onClick={() => setActiveTab('fluxo')}
+            className={`booking-nav-item ${activeTab === 'como-funciona' ? 'active' : ''}`}
+            onClick={() => setActiveTab('como-funciona')}
           >
             <CalendarIcon size={18} />
-            <span>{isPt ? 'Fluxo' : 'Flujo'}</span>
+            <span>{isPt ? 'Como funciona' : 'Cómo funciona'}</span>
           </button>
           <button 
             type="button"
@@ -234,15 +233,15 @@ export default function FullBookingExperience({ language }: Props) {
 
           <div className="booking-header-title">
             <h1>
-              {activeTab === 'fluxo' && (isPt ? 'Fluxo do cliente' : 'Flujo del cliente')}
+              {activeTab === 'como-funciona' && (isPt ? 'Como funciona' : 'Cómo funciona')}
               {activeTab === 'agenda' && (isPt ? 'Agendamentos' : 'Calendario')}
               {activeTab === 'clientes' && (isPt ? 'Clientes' : 'Clientes')}
               {activeTab === 'financeiro' && (isPt ? 'Financeiro' : 'Finanzas')}
               {activeTab === 'mensagens' && (isPt ? 'Conversas' : 'Conversaciones')}
             </h1>
-            <p>{isPt ? 'Gerencie tudo em um só lugar' : 'Gestiona todo en un solo lugar'}</p>
+            <p>{isPt ? 'Agendamentos, clientes e confirmações organizados.' : 'Reservas, clientes y confirmaciones organizadas.'}</p>
             <span className="booking-demo-badge">
-              {isPt ? 'Demonstração visual' : 'Demostración visual'}
+              {isPt ? 'Demonstração interativa' : 'Demostración interactiva'}
             </span>
           </div>
 
@@ -261,23 +260,23 @@ export default function FullBookingExperience({ language }: Props) {
         <div className="booking-top-stats">
           <div className="booking-mini-stat">
             <span>{isPt ? 'Hoje' : 'Hoy'}</span>
-            <strong>12 {isPt ? 'agendamentos' : 'reservas'}</strong>
+            <strong>12 {isPt ? 'atendimentos' : 'atenciones'}</strong>
           </div>
           <div className="booking-mini-stat">
-            <span>{isPt ? 'Receita' : 'Ingresos'}</span>
+            <span>{isPt ? 'Recebido hoje' : 'Recibido hoy'}</span>
             <strong>R$ 1.240</strong>
           </div>
           <div className="booking-mini-stat online">
             <div className="booking-live-dot"></div>
-            <span>{isPt ? 'Status' : 'Estado'}</span>
-            <strong>{isPt ? 'Online' : 'En línea'}</strong>
+            <span>{isPt ? 'Sistema' : 'Sistema'}</span>
+            <strong>{isPt ? 'Ativo' : 'Activo'}</strong>
           </div>
         </div>
 
         <AnimatePresence mode="wait">
-          {activeTab === 'fluxo' && (
+          {activeTab === 'como-funciona' && (
             <motion.div
-              key="fluxo"
+              key="como-funciona"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
@@ -292,6 +291,11 @@ export default function FullBookingExperience({ language }: Props) {
                     ? 'Uma experiência simples: escolha do serviço, horário disponível e confirmação automática pelo WhatsApp.'
                     : 'Una experiencia simple: elección del servicio, horario disponible y confirmación automática por WhatsApp.'}
                 </p>
+              </div>
+
+              <div className="flow-mini-explanation">
+                <span>📱</span>
+                <p>{isPt ? 'Seu cliente escolhe o serviço, horário e recebe confirmação automática.' : 'Tu cliente elige el servicio, horario y recibe confirmación automática.'}</p>
               </div>
 
               <div className="flow-grid">
@@ -345,6 +349,10 @@ export default function FullBookingExperience({ language }: Props) {
                     <strong>Ana Souza</strong>
                     <p>14:00 — Consulta</p>
                     <small>{isPt ? 'Status: confirmado' : 'Estado: confirmado'}</small>
+                    <div className="flow-auto-badge">
+                      <CheckCircle size={12} />
+                      {isPt ? 'Nenhuma mensagem manual necessária' : 'Sin mensajes manuales necesarios'}
+                    </div>
                   </div>
 
                   <div className="flow-whatsapp-card">
@@ -426,7 +434,7 @@ export default function FullBookingExperience({ language }: Props) {
                         <div className="booking-appointment-client">
                           <div className="booking-client-avatar">{app.client.charAt(0)}</div>
                           <div>
-                            <div className="booking-client-name">{app.client}</div>
+                            <div className="booking-client-name-large">{app.client}</div>
                             <div className="booking-client-phone">{app.phone}</div>
                           </div>
                         </div>
@@ -513,84 +521,55 @@ export default function FullBookingExperience({ language }: Props) {
               transition={{ duration: 0.3 }}
               className="booking-finance-view"
             >
-              <div className="booking-stats-cards">
-                <motion.div whileHover={{ scale: 1.02 }} className="booking-stat-card">
-                  <div className="booking-stat-header">
-                    <span>{isPt ? 'Receita mensal' : 'Ingresos mensuales'}</span>
+              <div className="booking-stats-cards-simple">
+                <motion.div whileHover={{ scale: 1.02 }} className="booking-stat-card-simple">
+                  <div className="booking-stat-header-simple">
+                    <span>{isPt ? 'Faturamento hoje' : 'Ingresos hoy'}</span>
                     <TrendingUp size={16} className="trend-up" />
                   </div>
-                  <div className="booking-stat-value">R$ 12.480</div>
-                  <div className="booking-stat-change positive">+12% vs {isPt ? 'mês anterior' : 'mes anterior'}</div>
+                  <div className="booking-stat-value-simple">R$ 1.240</div>
                 </motion.div>
-                <motion.div whileHover={{ scale: 1.02 }} className="booking-stat-card">
-                  <div className="booking-stat-header">
-                    <span>{isPt ? 'Despesas' : 'Gastos'}</span>
-                    <TrendingDown size={16} className="trend-down" />
+                <motion.div whileHover={{ scale: 1.02 }} className="booking-stat-card-simple">
+                  <div className="booking-stat-header-simple">
+                    <span>{isPt ? 'Atendimentos hoje' : 'Atenciones hoy'}</span>
+                    <Users size={16} />
                   </div>
-                  <div className="booking-stat-value">R$ 5.720</div>
-                  <div className="booking-stat-change negative">-8% vs {isPt ? 'mês anterior' : 'mes anterior'}</div>
+                  <div className="booking-stat-value-simple">12</div>
                 </motion.div>
-                <motion.div whileHover={{ scale: 1.02 }} className="booking-stat-card highlight">
-                  <div className="booking-stat-header">
-                    <span>{isPt ? 'Lucro líquido' : 'Ganancia neta'}</span>
-                    <Zap size={16} />
+                <motion.div whileHover={{ scale: 1.02 }} className="booking-stat-card-simple highlight">
+                  <div className="booking-stat-header-simple">
+                    <span>{isPt ? 'Confirmações' : 'Confirmaciones'}</span>
+                    <CheckCircle size={16} />
                   </div>
-                  <div className="booking-stat-value">R$ 6.760</div>
-                  <div className="booking-stat-change positive">+28% vs {isPt ? 'mês anterior' : 'mes anterior'}</div>
+                  <div className="booking-stat-value-simple">92%</div>
                 </motion.div>
               </div>
 
-              <div className="booking-chart-container">
-                <div className="booking-chart-header">
-                  <h3>{isPt ? 'Receita semanal' : 'Ingresos semanales'}</h3>
-                  <span className="trend-up">+15%</span>
+              <div className="booking-simple-transactions">
+                <div className="booking-simple-transactions-header">
+                  <h3>{isPt ? 'Últimos atendimentos' : 'Últimas atenciones'}</h3>
                 </div>
-                <div className="booking-simple-chart">
-                  {[35, 70, 45, 90, 60, 80, 55].map((value, i) => (
-                    <div key={i} className="chart-bar-container">
-                      <motion.div 
-                        className="chart-bar" 
-                        style={{ height: `${value}%` }}
-                        initial={{ height: 0 }}
-                        animate={{ height: `${value}%` }}
-                        transition={{ delay: i * 0.1, duration: 0.5 }}
-                      >
-                        <span className="chart-value">R$ {value * 20}</span>
-                      </motion.div>
-                      <span className="chart-label">
-                        {['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'][i]}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="booking-transactions">
-                <div className="booking-transactions-header">
-                  <h3>{isPt ? 'Últimas transações' : 'Últimas transacciones'}</h3>
-                  <button type="button" className="booking-see-all">{isPt ? 'Ver todas' : 'Ver todas'}</button>
-                </div>
-                <div className="booking-transaction-list">
+                <div className="booking-simple-transaction-list">
                   {[
                     { title: 'Ana Souza - Consulta', amount: '+R$ 120,00', date: 'Hoje, 10:30', type: 'success' },
                     { title: 'Carlos Lima - Banho e Tosa', amount: '+R$ 85,00', date: 'Hoje, 09:15', type: 'success' },
-                    { title: 'Taxa de serviço', amount: '-R$ 5,00', date: 'Ontem', type: 'warning' },
+                    { title: 'Fernanda Costa - Corte', amount: '+R$ 95,00', date: 'Ontem, 14:00', type: 'success' },
                   ].map((trans, idx) => (
                     <motion.div 
                       key={idx}
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: idx * 0.1 }}
-                      className="booking-transaction-item"
+                      className="booking-simple-transaction-item"
                     >
-                      <div className="booking-transaction-info">
-                        <div className={`booking-transaction-icon ${trans.type}`}>✓</div>
+                      <div className="booking-simple-transaction-info">
+                        <div className={`booking-simple-transaction-icon ${trans.type}`}>✓</div>
                         <div>
-                          <div className="booking-transaction-title">{trans.title}</div>
-                          <div className="booking-transaction-date">{trans.date}</div>
+                          <div className="booking-simple-transaction-title">{trans.title}</div>
+                          <div className="booking-simple-transaction-date">{trans.date}</div>
                         </div>
                       </div>
-                      <div className={`booking-transaction-amount ${trans.type === 'success' ? 'positive' : 'negative'}`}>
+                      <div className={`booking-simple-transaction-amount positive`}>
                         {trans.amount}
                       </div>
                     </motion.div>
@@ -644,6 +623,12 @@ export default function FullBookingExperience({ language }: Props) {
                     </div>
                   </div>
                 </div>
+
+                <div className="auto-messages-badge">
+                  <MessageCircle size={12} />
+                  <span>{isPt ? 'Mensagens automáticas' : 'Mensajes automáticos'}</span>
+                </div>
+
                 <div className="booking-chat-messages">
                   <div className="booking-message received">
                     <div className="booking-message-bubble">
@@ -674,6 +659,12 @@ export default function FullBookingExperience({ language }: Props) {
                     <div className="booking-message-time">10:33 <span className="message-status">✓✓</span></div>
                   </div>
                 </div>
+
+                <div className="auto-footer-message">
+                  <CheckCircle size={12} />
+                  <span>{isPt ? 'Confirmações e lembretes automáticos para clientes' : 'Confirmaciones y recordatorios automáticos para clientes'}</span>
+                </div>
+
                 <div className="booking-chat-input">
                   <button type="button" className="chat-action-btn">
                     <Paperclip size={18} />
