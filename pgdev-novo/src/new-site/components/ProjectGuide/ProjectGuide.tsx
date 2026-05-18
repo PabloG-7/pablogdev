@@ -640,6 +640,8 @@ function ProjectGuide({ language }: ProjectGuideProps) {
             className="project-guide__float-image"
             width="70"
             height="70"
+            loading="eager"
+            fetchPriority="high"
             decoding="async"
             animate={{
               rotate: [0, -2, 2, 0],
@@ -686,6 +688,8 @@ function ProjectGuide({ language }: ProjectGuideProps) {
                   className="project-guide__assistant-image"
                   width="44"
                   height="44"
+                  loading="eager"
+                  fetchPriority="high"
                   decoding="async"
                 />
               </div>
@@ -710,7 +714,7 @@ function ProjectGuide({ language }: ProjectGuideProps) {
             <p className="project-guide__helper">
               {isPt
                 ? 'Responda algumas perguntas e receba uma recomendação personalizada para site, agendamento ou sistema.'
-                : 'Responde algunas preguntas y recibe una recomendación personalizada para sitio, reservas o sistema.'}
+                : 'Responde algunas preguntas y recibe una recomendación personalizada para sitio, reservas o sistemas.'}
             </p>
 
             {step === 1 && (
