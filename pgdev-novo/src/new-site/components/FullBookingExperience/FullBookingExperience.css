@@ -14,7 +14,7 @@
 .booking-simple {
   display: flex;
   min-height: 100vh;
-  background: #fec90f;
+  background: linear-gradient(180deg, #fec90f 0%, #f7c600 100%);
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
@@ -44,7 +44,7 @@
   padding: 12px 16px;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid rgba(0, 12, 36, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   z-index: 50;
 }
 
@@ -60,7 +60,7 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  background: #000c24;
+  background: rgba(0, 255, 0, 0.15);
   padding: 4px 10px;
   border-radius: 20px;
 }
@@ -177,6 +177,7 @@
 .simple-nav-item.active {
   background: #000c24;
   color: #fec90f;
+  box-shadow: 0 0 18px rgba(0, 12, 36, 0.18);
 }
 
 .simple-nav-item.locked {
@@ -383,6 +384,10 @@
   box-shadow: 0 4px 12px rgba(0, 12, 36, 0.2);
 }
 
+.simple-btn:active {
+  transform: scale(0.98);
+}
+
 .simple-hint {
   display: flex;
   align-items: center;
@@ -399,6 +404,7 @@
 /* Agenda */
 .simple-agenda {
   margin-bottom: 24px;
+  color: #000c24;
 }
 
 .simple-month {
@@ -466,7 +472,7 @@
 }
 
 .simple-appointment.new {
-  background: rgba(0, 12, 36, 0.04);
+  background: rgba(0, 12, 36, 0.08);
   border-left: 3px solid #000c24;
 }
 
@@ -478,8 +484,8 @@
 }
 
 .simple-status.confirmed {
-  background: rgba(0, 12, 36, 0.1);
-  color: #000c24;
+  background: #000c24;
+  color: #fec90f;
 }
 
 .simple-status.pending {
@@ -722,9 +728,10 @@
   background: #fec90f;
   backdrop-filter: blur(20px);
   border-top: 1px solid rgba(0, 12, 36, 0.1);
-  padding: 10px 16px;
+  padding: 6px 10px;
   justify-content: space-around;
   z-index: 50;
+  padding-bottom: calc(6px + env(safe-area-inset-bottom));
 }
 
 .simple-bottom-item {
@@ -735,12 +742,17 @@
   background: none;
   border: none;
   color: rgba(0, 12, 36, 0.6);
-  font-size: 0.6rem;
+  font-size: 0.55rem;
   cursor: pointer;
-  padding: 8px 12px;
+  padding: 6px 8px;
   border-radius: 12px;
   transition: all 0.2s;
   font-weight: 500;
+}
+
+.simple-bottom-item svg {
+  width: 16px;
+  height: 16px;
 }
 
 .simple-bottom-item.active {
@@ -900,7 +912,7 @@
 }
 
 /* ============================================
-   RESPONSIVE
+   RESPONSIVE - CORRIGIDO
    ============================================ */
 
 @media (max-width: 900px) {
@@ -917,11 +929,12 @@
   }
   
   .simple-main {
-    padding: 80px 20px 90px;
+    padding: 92px 20px 120px;
   }
   
   .simple-card {
     padding: 24px;
+    margin-bottom: 24px;
   }
   
   .simple-times {
@@ -943,8 +956,14 @@
 }
 
 @media (max-width: 480px) {
+  .simple-main {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+  
   .simple-card {
-    padding: 20px;
+    padding: 22px 20px;
+    border-radius: 24px;
   }
   
   .simple-header h2 {
