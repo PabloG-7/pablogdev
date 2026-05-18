@@ -140,12 +140,11 @@ function ProcessBanner({ language }: ProcessBannerProps) {
                 />
               )}
               <img
-                key={`${currentAd.image}-${currentAd.mobileImage ?? ''}`}
                 src={currentAd.image}
                 alt={currentAd.alt}
                 className="process-image"
-                loading={currentIndex === 0 ? 'eager' : 'lazy'}
-                fetchPriority={currentIndex === 0 ? 'high' : 'low'}
+                loading="eager"
+                fetchPriority={currentIndex === 0 ? 'high' : 'auto'}
                 decoding="async"
                 width={1536}
                 height={864}
