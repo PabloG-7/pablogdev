@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import {
   CalendarCheck,
-  MessageCircle,
   Users,
   Clock,
   CheckCircle,
@@ -9,8 +8,7 @@ import {
   Check,
   Hourglass,
   Lock,
-  Store,
-  Shield
+  Store
 } from 'lucide-react'
 import { FaWhatsapp } from 'react-icons/fa'
 import type { Language } from '../../types'
@@ -26,7 +24,7 @@ export default function ExperienceDemo({ language }: Props) {
   const isPt = language === 'pt'
   const [activeTab, setActiveTab] = useState<Tab>('agendamento')
   const [tutorialStep, setTutorialStep] = useState(1)
-  const [tutorialDone, setTutorialDone] = useState(false)
+  const [tutorialDone] = useState(false)
   const [selectedService, setSelectedService] = useState('consulta')
   const [selectedTime, setSelectedTime] = useState('14:00')
 
