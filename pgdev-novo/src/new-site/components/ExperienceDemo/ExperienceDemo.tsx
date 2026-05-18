@@ -6,7 +6,8 @@ import {
   CheckCircle,
   ArrowRight,
   Check,
-  Hourglass
+  Hourglass,
+  Lock
 } from 'lucide-react'
 import { FaWhatsapp } from 'react-icons/fa'
 import type { Language } from '../../types'
@@ -68,25 +69,21 @@ export default function ExperienceDemo({ language }: Props) {
           <p className="experience-strong-text">{copy.subtitle}</p>
           <div className="experience-interaction-hint">
             <span>Interaja com a prévia ao lado</span>
-            <ArrowRight size={16} />
+            <ArrowRight size={16} className="hint-arrow" />
           </div>
         </div>
 
         <div className="experience-panel">
           <div className="experience-tabs">
             {[
-              { id: 'agendamento', icon: CalendarCheck, label: isPt ? 'Agendamento' : 'Agendamiento' },
-              { id: 'agenda', icon: Clock, label: isPt ? 'Calendário' : 'Calendario' },
-              { id: 'whatsapp', icon: FaWhatsapp, label: 'WhatsApp' },
-              { id: 'cliente', icon: Users, label: isPt ? 'Clientes' : 'Clientes' },
-              { id: 'resultado', icon: CheckCircle, label: isPt ? 'Resultado' : 'Resultado' },
+              { id: 'agendamento', icon: CalendarCheck, label: isPt ? 'Agendamento' : 'Agendamiento', locked: false },
+              { id: 'agenda', icon: Clock, label: isPt ? 'Calendário' : 'Calendario', locked: !canOpenAgenda },
+              { id: 'whatsapp', icon: FaWhatsapp, label: 'WhatsApp', locked: !canOpenWhatsapp },
+              { id: 'cliente', icon: Users, label: isPt ? 'Clientes' : 'Clientes', locked: !canOpenCliente },
+              { id: 'resultado', icon: CheckCircle, label: isPt ? 'Resultado' : 'Resultado', locked: !canOpenResultado },
             ].map((tab) => {
               const Icon = tab.icon
-              const isDisabled = 
-                (tab.id === 'agenda' && !canOpenAgenda) ||
-                (tab.id === 'whatsapp' && !canOpenWhatsapp) ||
-                (tab.id === 'cliente' && !canOpenCliente) ||
-                (tab.id === 'resultado' && !canOpenResultado)
+              const isDisabled = tab.locked
               
               return (
                 <button
@@ -97,6 +94,7 @@ export default function ExperienceDemo({ language }: Props) {
                 >
                   <Icon size={14} />
                   {tab.label}
+                  {isDisabled && <Lock size={10} className="lock-icon" />}
                 </button>
               )
             })}
@@ -164,6 +162,7 @@ export default function ExperienceDemo({ language }: Props) {
                     setActiveTab('agenda')
                   }}
                 >
+                  <CheckCircle size={16} />
                   Confirmar horário
                 </button>
               </div>

@@ -64,6 +64,12 @@
   font-size: .85rem;
   font-weight: 700;
   padding: 10px 0;
+  white-space: nowrap;
+}
+
+.hint-arrow {
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
 }
 
 /* Hide old button */
@@ -101,6 +107,7 @@
   justify-content: center;
   gap: 6px;
   transition: all 0.2s ease;
+  position: relative;
 }
 
 .experience-tabs button.active {
@@ -109,9 +116,14 @@
 }
 
 .experience-tabs button.disabled {
-  opacity: 0.4;
+  opacity: 0.5;
   cursor: not-allowed;
   pointer-events: none;
+}
+
+.lock-icon {
+  opacity: 0.7;
+  margin-left: 2px;
 }
 
 /* Screen */
@@ -215,12 +227,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 8px;
   font-weight: 800;
   cursor: pointer;
   transition: all 0.2s ease;
   border: none;
   width: 100%;
-  gap: 8px;
 }
 
 .mini-confirm:hover {
@@ -626,6 +638,11 @@
     grid-template-columns: 1fr;
     gap: 40px;
   }
+  
+  /* Seta aponta para baixo mas mantém na mesma linha */
+  .hint-arrow {
+    transform: rotate(90deg);
+  }
 }
 
 @media (max-width: 600px) {
@@ -660,5 +677,11 @@
   
   .services-list {
     gap: 8px;
+  }
+  
+  /* Em telas muito pequenas, reduz fonte mas mantém */
+  .experience-interaction-hint {
+    font-size: 0.75rem;
+    gap: 6px;
   }
 }
