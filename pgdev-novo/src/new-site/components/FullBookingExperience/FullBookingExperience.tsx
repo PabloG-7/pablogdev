@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
-  Calendar,
   Users,
   DollarSign,
   ChevronLeft,
@@ -14,6 +13,8 @@ import {
   Target,
   Gift,
   Lock,
+  PlusCircle,  
+  List,        
 } from 'lucide-react'
 import { FaWhatsapp } from 'react-icons/fa'
 import type { Language } from '../../types'
@@ -24,7 +25,7 @@ type Props = {
   language: Language
 }
 
-type Tab = 'agendar' | 'agenda' | 'whatsapp' | 'clientes' | 'financeiro'
+type Tab = 'agendar' | 'Calendario' | 'whatsapp' | 'clientes' | 'financeiro'
 
 export default function FullBookingExperience({ language }: Props) {
   const isPt = language === 'pt'
@@ -75,7 +76,7 @@ export default function FullBookingExperience({ language }: Props) {
     setAppointments(prev => [newAppointment, ...prev])
     setShowSuccess(true)
     setTimeout(() => setShowSuccess(false), 2000)
-    goToStep(2, 'agenda')
+    goToStep(2, 'Calendario')
   }
 
   const getStatusColor = (status: string) => {
@@ -91,7 +92,7 @@ export default function FullBookingExperience({ language }: Props) {
   }
 
   const handleNavClick = (tab: Tab) => {
-    if (tab === 'agenda' && !canOpenAgenda) return
+    if (tab === 'Calendario' && !canOpenAgenda) return
     if (tab === 'whatsapp' && !canOpenWhatsapp) return
     if (tab === 'clientes' && !canOpenClientes) return
     if (tab === 'financeiro' && !canOpenFinanceiro) return
@@ -131,16 +132,16 @@ export default function FullBookingExperience({ language }: Props) {
             className={`simple-nav-item ${activeTab === 'agendar' ? 'active' : ''}`}
             onClick={() => setActiveTab('agendar')}
           >
-            <Calendar size={18} />
+            <PlusCircle size={18} /> {/* Ícone de AGENDAR (círculo com +) */}
             <span>Agendar</span>
           </button>
           <button 
-            className={`simple-nav-item ${activeTab === 'agenda' ? 'active' : ''} ${!canOpenAgenda ? 'locked' : ''}`}
-            onClick={() => handleNavClick('agenda')}
+            className={`simple-nav-item ${activeTab === 'Calendario' ? 'active' : ''} ${!canOpenAgenda ? 'locked' : ''}`}
+            onClick={() => handleNavClick('Calendario')}
             disabled={!canOpenAgenda}
           >
-            <Calendar size={18} />
-            <span>Agenda</span>
+            <List size={18} /> {/* Ícone de AGENDA (lista) - COMPLETAMENTE DIFERENTE */}
+            <span>Calendário</span>
             {!canOpenAgenda && <Lock size={12} />}
           </button>
           <button 
@@ -181,7 +182,7 @@ export default function FullBookingExperience({ language }: Props) {
         </div>
       </aside>
 
-      {/* Main Content */}
+      {/* Main Content - continua igual */}
       <main className="simple-main">
         {/* Toast simples */}
         <AnimatePresence>
@@ -244,11 +245,11 @@ export default function FullBookingExperience({ language }: Props) {
             </motion.div>
           )}
 
-          {/* ETAPA 2: AGENDA */}
-          {activeTab === 'agenda' && (
-            <motion.div key="agenda" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} className="simple-card">
+          {/* ETAPA 2: CALendário */}
+          {activeTab === 'Calendario' && (
+            <motion.div key="Calendario" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} className="simple-card">
               <div className="simple-header">
-                <h2>Agendamento na agenda</h2>
+                <h2>Agendamento no calendário</h2>
                 <p>O horário aparece automaticamente</p>
               </div>
 
@@ -382,12 +383,12 @@ export default function FullBookingExperience({ language }: Props) {
         {/* Bottom Nav Mobile */}
         <div className="simple-bottom-nav">
           <button className={`simple-bottom-item ${activeTab === 'agendar' ? 'active' : ''}`} onClick={() => setActiveTab('agendar')}>
-            <Calendar size={18} />
+            <PlusCircle size={18} />
             <span>Agendar</span>
           </button>
-          <button className={`simple-bottom-item ${activeTab === 'agenda' ? 'active' : ''} ${!canOpenAgenda ? 'locked' : ''}`} onClick={() => handleNavClick('agenda')} disabled={!canOpenAgenda}>
-            <Calendar size={18} />
-            <span>Agenda</span>
+          <button className={`simple-bottom-item ${activeTab === 'Calendario' ? 'active' : ''} ${!canOpenAgenda ? 'locked' : ''}`} onClick={() => handleNavClick('Calendario')} disabled={!canOpenAgenda}>
+            <List size={18} />
+            <span>Calendário</span>
           </button>
           <button className={`simple-bottom-item ${activeTab === 'whatsapp' ? 'active' : ''} ${!canOpenWhatsapp ? 'locked' : ''}`} onClick={() => handleNavClick('whatsapp')} disabled={!canOpenWhatsapp}>
             <FaWhatsapp size={18} />
