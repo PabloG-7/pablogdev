@@ -200,7 +200,8 @@
   .process-image {
     max-width: 100%;
     width: 100%;
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 656 / 572;
+    object-fit: cover;
     border-radius: 0;
     box-shadow: none;
     border: none;
@@ -235,6 +236,8 @@
   .process-image {
     max-width: 100%;
     width: 100%;
+    aspect-ratio: 656 / 572;
+    object-fit: cover;
     border-radius: 0;
   }
 

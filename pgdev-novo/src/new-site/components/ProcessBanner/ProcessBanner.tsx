@@ -11,10 +11,30 @@ function ProcessBanner({ language }: ProcessBannerProps) {
 
   const ads = useMemo(() => {
     const ptBanners = [
-      { id: 1, image: '/banner-1.webp', alt: 'Atendimento rápido pelo WhatsApp' },
-      { id: 2, image: '/banner-2.webp', alt: 'Agendamentos online' },
-      { id: 3, image: '/banner-3.webp', alt: 'Experiência tipo app' },
-      { id: 4, image: '/banner-4.webp', alt: 'Sites profissionais' },
+      {
+        id: 1,
+        image: '/banner-1.webp',
+        mobileImage: '/banner-1mobile.webp',
+        alt: 'Atendimento rápido pelo WhatsApp',
+      },
+      {
+        id: 2,
+        image: '/banner-2.webp',
+        mobileImage: '/banner-2mobile.webp',
+        alt: 'Agendamentos online',
+      },
+      {
+        id: 3,
+        image: '/banner-3.webp',
+        mobileImage: '/banner-3mobile.webp',
+        alt: 'Experiência tipo app',
+      },
+      {
+        id: 4,
+        image: '/banner-4.webp',
+        mobileImage: '/banner-4mobile.webp',
+        alt: 'Sites profissionais',
+      },
     ]
 
     const esBanners = [
@@ -34,8 +54,14 @@ function ProcessBanner({ language }: ProcessBannerProps) {
   useEffect(() => {
     const preloadImages = () => {
       ads.slice(1).forEach((ad) => {
-        const img = new Image()
-        img.src = ad.image
+        const desktopImg = new Image()
+        desktopImg.src = ad.image
+
+        // Só preload mobileImage se existir (para banners ES que não têm)
+        if (ad.mobileImage) {
+          const mobileImg = new Image()
+          mobileImg.src = ad.mobileImage
+        }
       })
     }
 
@@ -80,17 +106,25 @@ function ProcessBanner({ language }: ProcessBannerProps) {
           </button>
 
           <div className="carousel-slide">
-            <img
-              key={currentAd.image}
-              src={currentAd.image}
-              alt={currentAd.alt}
-              className="process-image"
-              loading={currentIndex === 0 ? 'eager' : 'lazy'}
-              fetchPriority={currentIndex === 0 ? 'high' : 'auto'}
-              decoding="async"
-              width="1536"
-              height="864"
-            />
+            <picture>
+              {currentAd.mobileImage && (
+                <source
+                  media="(max-width: 768px)"
+                  srcSet={currentAd.mobileImage}
+                />
+              )}
+              <img
+                key={currentAd.image}
+                src={currentAd.image}
+                alt={currentAd.alt}
+                className="process-image"
+                loading={currentIndex === 0 ? 'eager' : 'lazy'}
+                fetchPriority={currentIndex === 0 ? 'high' : 'auto'}
+                decoding="async"
+                width="1536"
+                height="864"
+              />
+            </picture>
           </div>
 
           <button
