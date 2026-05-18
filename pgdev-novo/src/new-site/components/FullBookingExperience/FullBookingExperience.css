@@ -1,6 +1,7 @@
 /* ============================================
    BOOKING SYSTEM - SUPER CLEAN
-   Cores: #fec90f (dourado) e #000c24 (azul escuro)
+   COR PRINCIPAL: #fec90f (AMARELO)
+   COR DE DESTAQUE: #000c24 (AZUL ESCURO)
    Uma etapa = Uma ideia
    ============================================ */
 
@@ -13,7 +14,7 @@
 .booking-simple {
   display: flex;
   min-height: 100vh;
-  background: #000c24;
+  background: #fec90f;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
@@ -24,6 +25,7 @@
 .simple-logo-img {
   width: 28px;
   height: 28px;
+  border-radius: 15px;
   object-fit: contain;
 }
 
@@ -37,12 +39,12 @@
   top: 0;
   left: 0;
   right: 0;
-  background: rgba(0, 12, 36, 0.95);
+  background: #000c24;
   backdrop-filter: blur(12px);
   padding: 12px 16px;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(0, 12, 36, 0.1);
   z-index: 50;
 }
 
@@ -58,7 +60,7 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  background: rgba(76, 175, 80, 0.12);
+  background: #000c24;
   padding: 4px 10px;
   border-radius: 20px;
 }
@@ -66,14 +68,15 @@
 .simple-dot {
   width: 6px;
   height: 6px;
-  background: #4caf50;
+  background: #00ef0c;
   border-radius: 50%;
   animation: pulse 1.5s infinite;
 }
 
 .simple-status span {
   font-size: 0.7rem;
-  color: #4caf50;
+  color: #00ef0c;
+  font-weight: 500;
 }
 
 @keyframes pulse {
@@ -87,8 +90,8 @@
 
 .simple-sidebar {
   width: 260px;
-  background: rgba(255, 255, 255, 0.02);
-  border-right: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgb(255, 255, 255);
+  border-right: 1px solid rgba(0, 12, 36, 0.1);
   display: flex;
   flex-direction: column;
   padding: 32px 20px;
@@ -107,11 +110,12 @@
 
 .simple-sidebar-logo span {
   font-weight: 700;
-  color: #ffffff;
+  color: #000c24;
+  font-size: 1.1rem;
 }
 
 .simple-sidebar-logo span span {
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(0, 12, 36, 0.5);
 }
 
 .simple-step-info {
@@ -122,20 +126,21 @@
 .simple-step-label {
   display: block;
   font-size: 0.7rem;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(0, 12, 36, 0.6);
   margin-bottom: 8px;
+  font-weight: 500;
 }
 
 .simple-step-bar {
   height: 4px;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(0, 12, 36, 0.1);
   border-radius: 4px;
   overflow: hidden;
 }
 
 .simple-step-progress {
   height: 100%;
-  background: #fec90f;
+  background: #000c24;
   border-radius: 4px;
   transition: width 0.3s;
 }
@@ -155,7 +160,7 @@
   background: transparent;
   border: none;
   border-radius: 10px;
-  color: rgba(255, 255, 255, 0.55);
+  color: rgba(0, 12, 36, 0.7);
   font-size: 0.85rem;
   font-weight: 500;
   cursor: pointer;
@@ -165,12 +170,12 @@
 }
 
 .simple-nav-item:hover {
-  background: rgba(254, 201, 15, 0.08);
-  color: #fec90f;
+  background: rgba(0, 12, 36, 0.08);
+  color: #000c24;
 }
 
 .simple-nav-item.active {
-  background: rgba(254, 201, 15, 0.12);
+  background: #000c24;
   color: #fec90f;
 }
 
@@ -181,7 +186,7 @@
 
 .simple-nav-item.locked:hover {
   background: transparent;
-  color: rgba(255, 255, 255, 0.55);
+  color: rgba(0, 12, 36, 0.7);
 }
 
 .simple-user {
@@ -189,14 +194,14 @@
   align-items: center;
   gap: 12px;
   padding: 16px 12px;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-top: 1px solid rgba(0, 12, 36, 0.1);
   margin-top: auto;
 }
 
 .simple-avatar {
   width: 40px;
   height: 40px;
-  background: rgba(254, 201, 15, 0.1);
+  background: #000c24;
   border-radius: 10px;
   display: flex;
   align-items: center;
@@ -208,12 +213,12 @@
 .simple-name {
   font-size: 0.85rem;
   font-weight: 600;
-  color: #ffffff;
+  color: #000c24;
 }
 
 .simple-role {
   font-size: 0.7rem;
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(0, 12, 36, 0.5);
 }
 
 /* ============================================
@@ -230,10 +235,11 @@
 .simple-card {
   max-width: 560px;
   margin: 0 auto;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: #ffffff;
+  border: 1px solid rgba(0, 12, 36, 0.1);
   border-radius: 28px;
   padding: 32px;
+  box-shadow: 0 8px 32px rgba(0, 12, 36, 0.08);
 }
 
 .simple-header {
@@ -243,14 +249,14 @@
 
 .simple-header h2 {
   font-size: 1.5rem;
-  font-weight: 600;
-  color: #ffffff;
+  font-weight: 700;
+  color: #000c24;
   margin-bottom: 8px;
 }
 
 .simple-header p {
   font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(0, 12, 36, 0.6);
 }
 
 /* Demo */
@@ -260,77 +266,98 @@
 }
 
 .simple-demo-link {
-  color: #fec90f;
+  color: #000c24;
   text-decoration: none;
   font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.simple-demo-link:hover {
+  text-decoration: underline;
 }
 
 .simple-step-label {
   font-size: 0.7rem;
-  color: #fec90f;
-  font-weight: 600;
+  color: #000c24;
+  font-weight: 700;
   margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .simple-service {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 14px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 14px 16px;
+  background: #ffffff;
+  border: 1px solid rgba(0, 12, 36, 0.1);
   border-radius: 14px;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
   cursor: pointer;
+  transition: all 0.2s;
+}
+
+.simple-service:hover {
+  background: rgba(0, 12, 36, 0.02);
+  border-color: rgba(0, 12, 36, 0.3);
+  transform: translateX(4px);
 }
 
 .simple-service.selected {
-  background: rgba(254, 201, 15, 0.08);
-  border-color: #fec90f;
+  background: rgba(0, 12, 36, 0.05);
+  border-color: #000c24;
+  border-width: 2px;
 }
 
 .simple-service strong {
   display: block;
-  color: #ffffff;
-  font-size: 0.85rem;
+  color: #000c24;
+  font-size: 0.9rem;
   margin-bottom: 4px;
 }
 
 .simple-service span {
   font-size: 0.7rem;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(0, 12, 36, 0.5);
 }
 
 .simple-price {
-  color: #fec90f;
-  font-weight: 600;
+  color: #000c24;
+  font-weight: 700;
+  font-size: 1rem;
 }
 
 .simple-times {
   display: flex;
   gap: 10px;
   margin-bottom: 24px;
+  flex-wrap: wrap;
 }
 
 .simple-time {
   flex: 1;
-  padding: 10px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 12px;
+  background: #ffffff;
+  border: 1px solid rgba(0, 12, 36, 0.1);
   border-radius: 12px;
-  color: #ffffff;
-  font-weight: 500;
+  color: #000c24;
+  font-weight: 600;
   cursor: pointer;
   transition: all 0.2s;
+  text-align: center;
 }
 
 .simple-time:hover {
-  background: rgba(254, 201, 15, 0.1);
+  background: rgba(0, 12, 36, 0.05);
+  border-color: #000c24;
+  transform: translateY(-2px);
 }
 
 .simple-time.active {
-  background: #fec90f;
-  color: #000c24;
+  background: #000c24;
+  color: #fec90f;
+  border-color: #000c24;
 }
 
 .simple-btn {
@@ -340,18 +367,20 @@
   justify-content: center;
   gap: 8px;
   padding: 14px;
-  background: #fec90f;
+  background: #000c24;
   border: none;
   border-radius: 16px;
   font-weight: 700;
-  color: #000c24;
+  color: #fec90f;
   cursor: pointer;
   transition: all 0.2s;
+  font-size: 0.9rem;
 }
 
 .simple-btn:hover {
-  background: #ffd43b;
-  transform: translateY(-1px);
+  background: #001a3d;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 12, 36, 0.2);
 }
 
 .simple-hint {
@@ -361,10 +390,10 @@
   gap: 8px;
   margin-top: 20px;
   padding: 10px;
-  background: rgba(254, 201, 15, 0.06);
+  background: rgba(0, 12, 36, 0.05);
   border-radius: 40px;
   font-size: 0.7rem;
-  color: #fec90f;
+  color: #000c24;
 }
 
 /* Agenda */
@@ -380,78 +409,88 @@
 }
 
 .simple-month button {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #ffffff;
+  border: 1px solid rgba(0, 12, 36, 0.1);
   border-radius: 8px;
-  padding: 6px 10px;
-  color: #ffffff;
+  padding: 6px 12px;
+  color: #000c24;
   cursor: pointer;
   transition: all 0.2s;
+  font-weight: 500;
 }
 
 .simple-month button:hover {
-  background: rgba(254, 201, 15, 0.1);
+  background: #000c24;
   color: #fec90f;
+  border-color: #000c24;
 }
 
 .simple-month span {
-  font-weight: 600;
-  color: #ffffff;
+  font-weight: 700;
+  color: #000c24;
+  font-size: 1rem;
 }
 
 .simple-week {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   margin-bottom: 16px;
+  gap: 4px;
 }
 
 .simple-weekday {
   font-size: 0.7rem;
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(0, 12, 36, 0.5);
   text-align: center;
+  font-weight: 600;
+  padding: 6px;
 }
 
 .simple-appointments {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
 }
 
 .simple-appointment {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 12px;
-  background: rgba(255, 255, 255, 0.03);
+  padding: 14px;
+  background: #ffffff;
   border-radius: 12px;
   font-size: 0.8rem;
+  flex-wrap: wrap;
+  gap: 8px;
+  border: 1px solid rgba(0, 12, 36, 0.08);
 }
 
 .simple-appointment.new {
-  background: rgba(254, 201, 15, 0.08);
-  border-left: 2px solid #fec90f;
+  background: rgba(0, 12, 36, 0.04);
+  border-left: 3px solid #000c24;
 }
 
 .simple-status {
   font-size: 0.7rem;
-  padding: 2px 8px;
+  padding: 4px 12px;
   border-radius: 20px;
+  font-weight: 600;
 }
 
 .simple-status.confirmed {
-  background: rgba(76, 175, 80, 0.12);
-  color: #4caf50;
+  background: rgba(0, 12, 36, 0.1);
+  color: #000c24;
 }
 
 .simple-status.pending {
-  background: rgba(255, 152, 0, 0.12);
-  color: #ff9800;
+  background: rgba(255, 152, 0, 0.15);
+  color: #e65100;
 }
 
 /* WhatsApp */
 .simple-whatsapp {
-  background: rgba(37, 211, 102, 0.06);
-  border: 1px solid rgba(37, 211, 102, 0.15);
+  background: rgba(0, 12, 36, 0.04);
+  border: 1px solid rgba(0, 12, 36, 0.1);
   border-radius: 20px;
   padding: 20px;
   margin-bottom: 24px;
@@ -460,14 +499,14 @@
 .simple-whatsapp-header {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   margin-bottom: 16px;
 }
 
 .simple-whatsapp-header span {
   color: #25d366;
-  font-weight: 600;
-  font-size: 0.8rem;
+  font-weight: 700;
+  font-size: 0.85rem;
 }
 
 .simple-whatsapp-bubble {
@@ -477,6 +516,7 @@
   color: #000c24;
   font-size: 0.85rem;
   margin-bottom: 12px;
+  font-weight: 500;
 }
 
 .simple-whatsapp-footer {
@@ -484,14 +524,14 @@
   align-items: center;
   gap: 6px;
   font-size: 0.7rem;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(0, 12, 36, 0.5);
 }
 
 /* Clientes */
 .simple-clients {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
   margin-bottom: 24px;
 }
 
@@ -500,43 +540,46 @@
   align-items: center;
   gap: 14px;
   padding: 14px;
-  background: rgba(255, 255, 255, 0.03);
+  background: #ffffff;
   border-radius: 14px;
   cursor: pointer;
   transition: all 0.2s;
+  border: 1px solid rgba(0, 12, 36, 0.08);
 }
 
 .simple-client:hover {
-  background: rgba(254, 201, 15, 0.05);
+  background: rgba(0, 12, 36, 0.04);
+  border-color: rgba(0, 12, 36, 0.2);
+  transform: translateX(4px);
 }
 
 .simple-client-avatar {
   width: 44px;
   height: 44px;
-  background: rgba(254, 201, 15, 0.1);
+  background: #000c24;
   border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 1rem;
   color: #fec90f;
 }
 
 .simple-client-name {
-  font-weight: 600;
-  color: #ffffff;
+  font-weight: 700;
+  color: #000c24;
   font-size: 0.85rem;
 }
 
 .simple-client-phone {
   font-size: 0.7rem;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(0, 12, 36, 0.6);
 }
 
 .simple-client-stats {
   font-size: 0.65rem;
-  color: rgba(255, 255, 255, 0.35);
+  color: rgba(0, 12, 36, 0.5);
   margin-top: 4px;
 }
 
@@ -545,54 +588,62 @@
   display: flex;
   gap: 12px;
   margin-bottom: 24px;
+  flex-wrap: wrap;
 }
 
 .simple-stat {
   flex: 1;
-  background: rgba(255, 255, 255, 0.03);
+  background: #ffffff;
   border-radius: 16px;
   padding: 16px;
   text-align: center;
+  min-width: 100px;
+  border: 1px solid rgba(0, 12, 36, 0.08);
 }
 
 .simple-stat span {
   display: block;
-  font-size: 0.65rem;
-  color: rgba(255, 255, 255, 0.5);
-  margin-bottom: 6px;
+  font-size: 0.7rem;
+  color: rgba(0, 12, 36, 0.6);
+  margin-bottom: 8px;
+  font-weight: 500;
 }
 
 .simple-stat strong {
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: #ffffff;
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #000c24;
 }
 
 .trend-up {
-  color: #4caf50;
+  color: #2e7d32;
   margin-top: 6px;
+  font-size: 0.7rem;
+  font-weight: 600;
 }
 
 .simple-benefits {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
   padding: 16px;
-  background: rgba(255, 255, 255, 0.03);
+  background: #ffffff;
   border-radius: 16px;
   margin-bottom: 24px;
+  border: 1px solid rgba(0, 12, 36, 0.08);
 }
 
 .simple-benefits div {
   display: flex;
   align-items: center;
   gap: 10px;
-  font-size: 0.8rem;
-  color: #ffffff;
+  font-size: 0.85rem;
+  color: #000c24;
+  font-weight: 500;
 }
 
 .simple-benefits svg {
-  color: #4caf50;
+  color: #2e7d32;
 }
 
 .simple-cta {
@@ -602,17 +653,21 @@
   gap: 8px;
   width: 100%;
   padding: 14px;
-  background: linear-gradient(135deg, #fec90f, #e5b40c);
+  background: #000c24;
+  border: none;
   border-radius: 16px;
-  color: #000c24;
+  color: #fec90f;
   font-weight: 700;
   text-decoration: none;
   transition: all 0.2s;
+  cursor: pointer;
+  font-size: 0.9rem;
 }
 
 .simple-cta:hover {
+  background: #001a3d;
   transform: translateY(-2px);
-  background: linear-gradient(135deg, #ffd43b, #fec90f);
+  box-shadow: 0 4px 12px rgba(0, 12, 36, 0.2);
 }
 
 /* Next Button */
@@ -623,18 +678,18 @@
   justify-content: center;
   gap: 8px;
   padding: 12px;
-  background: rgba(254, 201, 15, 0.1);
-  border: 1px solid rgba(254, 201, 15, 0.2);
+  background: rgba(0, 12, 36, 0.05);
+  border: 1px solid rgba(0, 12, 36, 0.15);
   border-radius: 40px;
   font-size: 0.8rem;
-  font-weight: 500;
-  color: #fec90f;
+  font-weight: 600;
+  color: #000c24;
   cursor: pointer;
   transition: all 0.2s;
 }
 
 .simple-next:hover {
-  background: rgba(254, 201, 15, 0.2);
+  background: rgba(0, 12, 36, 0.1);
   transform: translateY(-1px);
 }
 
@@ -648,12 +703,13 @@
   align-items: center;
   gap: 8px;
   padding: 12px 18px;
-  background: rgba(76, 175, 80, 0.15);
-  border: 1px solid rgba(76, 175, 80, 0.3);
+  background: #2e7d32;
+  border: 1px solid rgba(46, 125, 50, 0.3);
   border-radius: 12px;
-  color: #4caf50;
+  color: #ffffff;
   font-size: 0.8rem;
   backdrop-filter: blur(8px);
+  font-weight: 500;
 }
 
 /* Bottom Nav Mobile */
@@ -663,9 +719,9 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background: rgba(0, 12, 36, 0.95);
+  background: #fec90f;
   backdrop-filter: blur(20px);
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-top: 1px solid rgba(0, 12, 36, 0.1);
   padding: 10px 16px;
   justify-content: space-around;
   z-index: 50;
@@ -678,17 +734,18 @@
   gap: 4px;
   background: none;
   border: none;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(0, 12, 36, 0.6);
   font-size: 0.6rem;
   cursor: pointer;
-  padding: 6px 12px;
+  padding: 8px 12px;
   border-radius: 12px;
   transition: all 0.2s;
+  font-weight: 500;
 }
 
 .simple-bottom-item.active {
-  color: #fec90f;
-  background: rgba(254, 201, 15, 0.1);
+  color: #000c24;
+  background: rgba(0, 12, 36, 0.1);
 }
 
 .simple-bottom-item.locked {
@@ -702,7 +759,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 12, 36, 0.8);
   backdrop-filter: blur(4px);
   z-index: 200;
 }
@@ -714,10 +771,11 @@
   bottom: 0;
   width: 100%;
   max-width: 380px;
-  background: #000c24;
+  background: #fec90f;
   display: flex;
   flex-direction: column;
   z-index: 201;
+  box-shadow: -4px 0 24px rgba(0, 12, 36, 0.1);
 }
 
 .simple-drawer-header {
@@ -725,13 +783,13 @@
   align-items: center;
   gap: 16px;
   padding: 24px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(0, 12, 36, 0.1);
 }
 
 .simple-drawer-avatar {
   width: 52px;
   height: 52px;
-  background: rgba(254, 201, 15, 0.1);
+  background: #000c24;
   border-radius: 16px;
   display: flex;
   align-items: center;
@@ -742,13 +800,14 @@
 }
 
 .simple-drawer-header h3 {
-  color: #ffffff;
+  color: #000c24;
   font-size: 1rem;
   margin-bottom: 4px;
+  font-weight: 700;
 }
 
 .simple-drawer-header p {
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(0, 12, 36, 0.6);
   font-size: 0.75rem;
 }
 
@@ -756,8 +815,9 @@
   margin-left: auto;
   background: none;
   border: none;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(0, 12, 36, 0.6);
   cursor: pointer;
+  font-size: 1.2rem;
 }
 
 .simple-drawer-body {
@@ -775,7 +835,7 @@
 }
 
 .simple-drawer-stats > div {
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(255, 255, 255, 0.7);
   border-radius: 14px;
   padding: 14px;
   text-align: center;
@@ -783,37 +843,39 @@
 
 .simple-drawer-stats span {
   display: block;
-  font-size: 0.65rem;
-  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.7rem;
+  color: rgba(0, 12, 36, 0.6);
   margin-bottom: 6px;
 }
 
 .simple-drawer-stats strong {
-  font-size: 1.1rem;
-  color: #ffffff;
+  font-size: 1.2rem;
+  color: #000c24;
+  font-weight: 800;
 }
 
 .simple-drawer-info {
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(255, 255, 255, 0.7);
   border-radius: 14px;
   padding: 14px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
 }
 
 .simple-drawer-info > div {
   display: flex;
   justify-content: space-between;
-  font-size: 0.8rem;
+  font-size: 0.85rem;
 }
 
 .simple-drawer-info span {
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(0, 12, 36, 0.6);
 }
 
 .simple-drawer-info strong {
-  color: #ffffff;
+  color: #000c24;
+  font-weight: 700;
 }
 
 .simple-drawer-btn {
@@ -822,17 +884,19 @@
   justify-content: center;
   gap: 8px;
   padding: 14px;
-  background: #fec90f;
+  background: #000c24;
   border: none;
   border-radius: 14px;
-  font-weight: 600;
-  color: #000c24;
+  font-weight: 700;
+  color: #fec90f;
   cursor: pointer;
   transition: all 0.2s;
+  font-size: 0.9rem;
 }
 
 .simple-drawer-btn:hover {
-  background: #ffd43b;
+  background: #001a3d;
+  transform: translateY(-2px);
 }
 
 /* ============================================
@@ -872,6 +936,10 @@
     flex-wrap: wrap;
     gap: 8px;
   }
+  
+  .simple-week {
+    gap: 2px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -885,5 +953,11 @@
   
   .simple-service {
     flex-wrap: wrap;
+  }
+  
+  .simple-price {
+    margin-top: 8px;
+    width: 100%;
+    text-align: right;
   }
 }

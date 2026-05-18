@@ -1,18 +1,14 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
-  ArrowLeft,
   Calendar,
   Users,
   DollarSign,
   ChevronLeft,
   ChevronRight,
-  Plus,
-  Search,
   Clock,
   TrendingUp,
   X,
-  Bell,
   CheckCircle,
   ArrowRight as ArrowRightIcon,
   Target,
@@ -21,7 +17,7 @@ import {
 } from 'lucide-react'
 import { FaWhatsapp } from 'react-icons/fa'
 import type { Language } from '../../types'
-import logoImg from '../../assets/apenas-logo.png'
+import logoImg from '../../assets/apple-touch-icon.png'
 import './FullBookingExperience.css'
 
 type Props = {
@@ -35,7 +31,7 @@ export default function FullBookingExperience({ language }: Props) {
   const [activeTab, setActiveTab] = useState<Tab>('agendar')
   const [currentDate, setCurrentDate] = useState(new Date())
   const [selectedClient, setSelectedClient] = useState<any>(null)
-  const [showModal, setShowModal] = useState(false)
+
   const [showSuccess, setShowSuccess] = useState(false)
   const [tutorialStep, setTutorialStep] = useState(1)
   const [appointments, setAppointments] = useState([
@@ -108,7 +104,7 @@ export default function FullBookingExperience({ language }: Props) {
       <div className="simple-topbar">
         <div className="simple-logo">
           <img src={logoImg} alt="Logo" className="simple-logo-img" />
-          <span>PGAgenda</span>
+          <span>Agendamento</span>
         </div>
         <div className="simple-status">
           <div className="simple-dot"></div>
@@ -120,7 +116,7 @@ export default function FullBookingExperience({ language }: Props) {
       <aside className="simple-sidebar">
         <div className="simple-sidebar-logo">
           <img src={logoImg} alt="Logo" className="simple-logo-img" />
-          <span>PG<span>Agenda</span></span>
+          <span>Agendamento</span>
         </div>
 
         <div className="simple-step-info">
@@ -179,7 +175,7 @@ export default function FullBookingExperience({ language }: Props) {
         <div className="simple-user">
           <div className="simple-avatar">P</div>
           <div>
-            <div className="simple-name">Pablo Gonçalves</div>
+            <div className="simple-name">Pablo Gomes</div>
             <div className="simple-role">Admin</div>
           </div>
         </div>
