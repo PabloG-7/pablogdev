@@ -45,10 +45,30 @@ function ProcessBanner({ language }: ProcessBannerProps) {
     ]
 
     const esBanners: BannerAd[] = [
-      { id: 1, image: '/banneres-1.webp', alt: 'Atención rápida por WhatsApp' },
-      { id: 2, image: '/banneres-2.webp', alt: 'Agendamientos online' },
-      { id: 3, image: '/banneres-3.webp', alt: 'Experiencia tipo app' },
-      { id: 4, image: '/banneres-4.webp', alt: 'Sitios profesionales' },
+      {
+        id: 1,
+        image: '/banneres-1.webp',
+        mobileImage: '/banneres-1mobile.webp',
+        alt: 'Atención rápida por WhatsApp',
+      },
+      {
+        id: 2,
+        image: '/banneres-2.webp',
+        mobileImage: '/banneres-2mobile.webp',
+        alt: 'Agendamientos online',
+      },
+      {
+        id: 3,
+        image: '/banneres-3.webp',
+        mobileImage: '/banneres-3mobile.webp',
+        alt: 'Experiencia tipo app',
+      },
+      {
+        id: 4,
+        image: '/banneres-4.webp',
+        mobileImage: '/banneres-4mobile.webp',
+        alt: 'Sitios profesionales',
+      },
     ]
 
     return language === 'es' ? esBanners : ptBanners
