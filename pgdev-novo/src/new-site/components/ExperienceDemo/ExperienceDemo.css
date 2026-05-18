@@ -55,23 +55,20 @@
   margin-bottom: 28px !important;
 }
 
-.experience-btn {
+/* Experience interaction hint */
+.experience-interaction-hint {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: #fec90f;
-  color: #000c24;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 0.85rem;
-  border-radius: 999px;
-  padding: 10px 24px;
-  transition: all 0.2s ease;
+  color: #fec90f;
+  font-size: .85rem;
+  font-weight: 700;
+  padding: 10px 0;
 }
 
-.experience-btn:hover {
-  background: #ffd43b;
-  transform: translateY(-2px);
+/* Hide old button */
+.experience-btn {
+  display: none;
 }
 
 /* Panel */
@@ -82,10 +79,10 @@
   padding: 16px;
 }
 
-/* Tabs - Aumentado para melhor legibilidade */
+/* Tabs */
 .experience-tabs {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 6px;
   margin-bottom: 16px;
 }
@@ -111,69 +108,264 @@
   color: #000c24;
 }
 
-/* Screen - Altura aumentada */
+.experience-tabs button.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Screen */
 .experience-screen {
   background: #ffffff;
   border-radius: 16px;
   padding: 20px;
-  min-height: 320px;
+  min-height: 380px;
+  display: flex;
+  flex-direction: column;
 }
 
-/* Dashboard */
-.metric-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+/* ============================================
+   BOOKING PREVIEW MINI
+   ============================================ */
+
+.booking-preview-mini {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Services list */
+.services-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.mini-service {
+  display: flex;
+  justify-content: space-between;
   gap: 12px;
-  margin-bottom: 20px;
-}
-
-.metric-grid > div {
+  padding: 16px;
+  border-radius: 14px;
+  border: 1px solid #e5e7eb;
   background: #f8f9fa;
-  border-radius: 12px;
-  padding: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-.metric-grid span {
+.mini-service:hover {
+  transform: translateX(4px);
+}
+
+.mini-service.selected {
+  border: 2px solid #000c24;
+  background: #f8f9fa;
+}
+
+.mini-service strong {
+  color: #000c24;
+  font-size: .9rem;
+}
+
+.mini-service span {
   display: block;
-  color: #8a9;
-  font-size: 0.65rem;
+  margin-top: 4px;
+  color: rgba(0, 12, 36, .55);
+  font-size: .7rem;
+}
+
+.mini-service small {
+  color: #000c24;
+  font-weight: 800;
+}
+
+/* Time slots */
+.mini-times {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.mini-times button {
+  height: 44px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  color: #000c24;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.mini-times button:hover {
+  background: #f0f2f5;
+}
+
+.mini-times button.active {
+  background: #000c24;
+  color: #fec90f;
+}
+
+/* Confirm button */
+.mini-confirm {
+  height: 48px;
+  border-radius: 14px;
+  background: #000c24;
+  color: #fec90f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+  width: 100%;
+  gap: 8px;
+}
+
+.mini-confirm:hover {
+  background: #001a3d;
+  transform: translateY(-1px);
+}
+
+/* ============================================
+   MINI NEXT BUTTON
+   ============================================ */
+
+.mini-next {
+  width: 100%;
+  height: 44px;
+  border: 1px solid rgba(0, 12, 36, .12);
+  border-radius: 999px;
+  background: rgba(0, 12, 36, .05);
+  color: #000c24;
+  font-weight: 800;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: all 0.2s ease;
+}
+
+.mini-next:hover {
+  background: rgba(0, 12, 36, .1);
+  transform: translateY(-1px);
+}
+
+/* Mini next variants */
+.mini-next.calendar {
+  background: #000c24;
+  color: #fec90f;
+  border: none;
+}
+
+.mini-next.calendar:hover {
+  background: #001a3d;
+}
+
+.mini-next.whatsapp {
+  background: #25d366;
+  color: #073b1a;
+  border: none;
+}
+
+.mini-next.whatsapp:hover {
+  background: #20bd5a;
+}
+
+.mini-next.client {
+  background: rgba(0, 12, 36, .08);
+  color: #000c24;
+  border: 1px solid rgba(0, 12, 36, .15);
+}
+
+.mini-next.client:hover {
+  background: rgba(0, 12, 36, .12);
+}
+
+.mini-next.result {
+  background: #fec90f;
+  color: #000c24;
+  border: none;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.mini-next.result:hover {
+  background: #ffd43b;
+}
+
+.mini-next.strong {
+  background: #000c24;
+  color: #fec90f;
+  border: none;
+}
+
+.mini-next.strong:hover {
+  background: #001a3d;
+}
+
+/* ============================================
+   RESULT PREVIEW
+   ============================================ */
+
+.result-preview {
+  display: grid;
+  gap: 12px;
+}
+
+.result-preview > div {
+  background: #f8f9fa;
+  border-radius: 14px;
+  padding: 16px;
+  transition: all 0.2s ease;
+}
+
+.result-preview > div:hover {
+  transform: translateX(4px);
+}
+
+.result-preview span {
+  display: block;
+  color: rgba(0, 12, 36, .55);
+  font-size: .7rem;
+  margin-bottom: 6px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  margin-bottom: 4px;
+  font-weight: 600;
 }
 
-.metric-grid strong {
+.result-preview strong {
   color: #000c24;
-  font-size: 1.3rem;
+  font-size: 1rem;
   font-weight: 700;
 }
 
-/* Mini Chart - Mais sutil */
-.mini-chart {
+/* ============================================
+   AGENDA / CALENDAR
+   ============================================ */
+
+.schedule-date-hint {
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #f0f2f5;
+}
+
+.schedule-date-hint span {
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: #000c24;
   display: flex;
-  align-items: flex-end;
-  gap: 8px;
-  height: 60px;
-  padding: 0 4px;
+  align-items: center;
+  gap: 4px;
 }
 
-.mini-chart div {
-  flex: 1;
-  background: linear-gradient(180deg, #fec90f, #d4a800);
-  border-radius: 4px 4px 2px 2px;
-  opacity: 0.8;
-  transition: opacity 0.2s ease;
-}
-
-.mini-chart div:hover {
-  opacity: 1;
-}
-
-/* Agenda */
 .schedule-list {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  flex: 1;
 }
 
 .schedule-item {
@@ -222,17 +414,22 @@
   color: #ff9800;
 }
 
-/* WhatsApp */
+/* ============================================
+   WHATSAPP PREVIEW
+   ============================================ */
+
 .whatsapp-preview {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  flex: 1;
 }
 
 .auto-confirm-badge {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 6px;
   background: rgba(254, 201, 15, 0.12);
   color: #fec90f;
   font-size: 0.65rem;
@@ -254,7 +451,6 @@
 }
 
 .experience-message svg {
-  color: #25d366;
   flex-shrink: 0;
   margin-top: 2px;
 }
@@ -287,11 +483,15 @@
   color: #fec90f;
 }
 
-/* Client - Mais respiro */
+/* ============================================
+   CLIENT PREVIEW
+   ============================================ */
+
 .client-preview {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  flex: 1;
 }
 
 .client-header {
@@ -356,7 +556,67 @@
   gap: 4px;
 }
 
-/* Responsive */
+/* Ensure mini-next stays at bottom when content is shorter */
+.experience-screen > :last-child.mini-next {
+  margin-top: auto;
+}
+
+/* ============================================
+   DASHBOARD (mantido para compatibilidade)
+   ============================================ */
+
+.metric-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.metric-grid > div {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 14px;
+}
+
+.metric-grid span {
+  display: block;
+  color: #8a9;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.metric-grid strong {
+  color: #000c24;
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.mini-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  height: 60px;
+  padding: 0 4px;
+}
+
+.mini-chart div {
+  flex: 1;
+  background: linear-gradient(180deg, #fec90f, #d4a800);
+  border-radius: 4px 4px 2px 2px;
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+}
+
+.mini-chart div:hover {
+  opacity: 1;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
 @media (max-width: 900px) {
   .experience {
     padding: 60px 0;
@@ -383,5 +643,22 @@
   
   .features {
     flex-direction: column;
+  }
+  
+  .mini-times {
+    gap: 6px;
+  }
+  
+  .mini-times button {
+    height: 38px;
+    font-size: 0.75rem;
+  }
+  
+  .mini-service {
+    padding: 12px;
+  }
+  
+  .services-list {
+    gap: 8px;
   }
 }
