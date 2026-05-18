@@ -2,6 +2,13 @@ import { useEffect, useMemo, useState } from 'react'
 import './ProcessBanner.css'
 import type { Language } from '../../types'
 
+type BannerAd = {
+  id: number
+  image: string
+  mobileImage?: string
+  alt: string
+}
+
 type ProcessBannerProps = {
   language: Language
 }
@@ -9,8 +16,8 @@ type ProcessBannerProps = {
 function ProcessBanner({ language }: ProcessBannerProps) {
   const [currentIndex, setCurrentIndex] = useState(0)
 
-  const ads = useMemo(() => {
-    const ptBanners = [
+  const ads = useMemo<BannerAd[]>(() => {
+    const ptBanners: BannerAd[] = [
       {
         id: 1,
         image: '/banner-1.webp',
@@ -37,7 +44,7 @@ function ProcessBanner({ language }: ProcessBannerProps) {
       },
     ]
 
-    const esBanners = [
+    const esBanners: BannerAd[] = [
       { id: 1, image: '/banneres-1.webp', alt: 'Atención rápida por WhatsApp' },
       { id: 2, image: '/banneres-2.webp', alt: 'Agendamientos online' },
       { id: 3, image: '/banneres-3.webp', alt: 'Experiencia tipo app' },
@@ -57,7 +64,6 @@ function ProcessBanner({ language }: ProcessBannerProps) {
         const desktopImg = new Image()
         desktopImg.src = ad.image
 
-        // Só preload mobileImage se existir (para banners ES que não têm)
         if (ad.mobileImage) {
           const mobileImg = new Image()
           mobileImg.src = ad.mobileImage
