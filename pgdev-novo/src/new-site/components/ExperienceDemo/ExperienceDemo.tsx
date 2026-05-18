@@ -1,13 +1,16 @@
 import { useState } from 'react'
 import {
   CalendarCheck,
+  MessageCircle,
   Users,
   Clock,
   CheckCircle,
   ArrowRight,
   Check,
   Hourglass,
-  Lock
+  Lock,
+  Store,
+  Shield
 } from 'lucide-react'
 import { FaWhatsapp } from 'react-icons/fa'
 import type { Language } from '../../types'
@@ -23,7 +26,7 @@ export default function ExperienceDemo({ language }: Props) {
   const isPt = language === 'pt'
   const [activeTab, setActiveTab] = useState<Tab>('agendamento')
   const [tutorialStep, setTutorialStep] = useState(1)
-  const [tutorialDone] = useState(false)
+  const [tutorialDone, setTutorialDone] = useState(false)
   const [selectedService, setSelectedService] = useState('consulta')
   const [selectedTime, setSelectedTime] = useState('14:00')
 
@@ -102,7 +105,13 @@ export default function ExperienceDemo({ language }: Props) {
 
           <div className="experience-screen">
             {activeTab === 'agendamento' && (
-              <div className="booking-preview-mini">
+              <div className="preview-content">
+                <div className="business-header">
+                  <Store size={12} />
+                  <span>Studio Marina</span>
+                  <span className="rating">⭐ 4.9</span>
+                </div>
+
                 <div className="services-list">
                   <div 
                     className={`mini-service ${selectedService === 'consulta' ? 'selected' : ''}`}
@@ -110,7 +119,7 @@ export default function ExperienceDemo({ language }: Props) {
                   >
                     <div>
                       <strong>Consulta com Dra. Marina</strong>
-                      <span>50min • ⭐ 4.9</span>
+                      <span>50min</span>
                     </div>
                     <small>R$ 120</small>
                   </div>
@@ -121,7 +130,7 @@ export default function ExperienceDemo({ language }: Props) {
                   >
                     <div>
                       <strong>Banho e Tosa</strong>
-                      <span>40min • ⭐ 4.8</span>
+                      <span>40min</span>
                     </div>
                     <small>R$ 85</small>
                   </div>
@@ -162,18 +171,20 @@ export default function ExperienceDemo({ language }: Props) {
                     setActiveTab('agenda')
                   }}
                 >
-                  <CheckCircle size={16} />
                   Confirmar horário
                 </button>
               </div>
             )}
 
             {activeTab === 'agenda' && (
-              <>
+              <div className="preview-content">
+                <div className="business-header">
+                  <Store size={12} />
+                  <span>Studio Marina</span>
+                  <span className="date-badge">Hoje</span>
+                </div>
+
                 <div className="schedule-list">
-                  <div className="schedule-date-hint">
-                    <span>📅 Hoje, 14 de maio</span>
-                  </div>
                   {[
                     ['09:00', 'Banho e Tosa', 'confirmed'],
                     ['10:30', 'Consulta', 'confirmed'],
@@ -188,14 +199,15 @@ export default function ExperienceDemo({ language }: Props) {
                       <span>{item[1]}</span>
                       <small className={item[2] === 'confirmed' ? 'confirmed' : 'pending'}>
                         {item[2] === 'confirmed' ? (
-                          <><Check size={10} /> {isPt ? 'Confirmado' : 'Confirmado'}</>
+                          <><Check size={10} /> Confirmado</>
                         ) : (
-                          <><Hourglass size={10} /> {isPt ? 'Pendente' : 'Pendiente'}</>
+                          <><Hourglass size={10} /> Pendente</>
                         )}
                       </small>
                     </div>
                   ))}
                 </div>
+                
                 <button 
                   className="mini-next calendar" 
                   onClick={() => {
@@ -205,30 +217,32 @@ export default function ExperienceDemo({ language }: Props) {
                 >
                   Ver confirmação no WhatsApp
                 </button>
-              </>
+              </div>
             )}
 
             {activeTab === 'whatsapp' && (
-              <>
-                <div className="whatsapp-preview">
-                  <div className="auto-confirm-badge">
-                    <FaWhatsapp size={12} color="#25d366" />
-                    {copy.autoConfirm}
-                  </div>
+              <div className="preview-content">
+                <div className="business-header">
+                  <FaWhatsapp size={12} color="#25d366" />
+                  <span>Studio Marina</span>
+                  <span className="auto-badge">Automático</span>
+                </div>
+
+                <div className="whatsapp-message">
                   <div className="experience-message">
                     <FaWhatsapp size={14} color="#25d366" />
                     <p>
-                      {isPt 
-                        ? 'Olá! Seu horário está confirmado para amanhã às 14h. ✅'
-                        : '¡Hola! Tu horario está confirmado para mañana a las 14h. ✅'}
+                      Olá! Seu horário está confirmado para amanhã às 14h. ✅
                     </p>
                   </div>
-                  <div className="features">
-                    <div><CheckCircle size={12} /> {isPt ? 'Confirmação' : 'Confirmación'}</div>
-                    <div><CheckCircle size={12} /> {isPt ? 'Lembrete' : 'Recordatorio'}</div>
-                    <div><CheckCircle size={12} /> {isPt ? 'Pós-atendimento' : 'Post-servicio'}</div>
-                  </div>
                 </div>
+
+                <div className="features">
+                  <div><CheckCircle size={12} /> Confirmação</div>
+                  <div><CheckCircle size={12} /> Lembrete</div>
+                  <div><CheckCircle size={12} /> Pós-atendimento</div>
+                </div>
+                
                 <button 
                   className="mini-next whatsapp" 
                   onClick={() => {
@@ -238,34 +252,41 @@ export default function ExperienceDemo({ language }: Props) {
                 >
                   Ver cliente salvo
                 </button>
-              </>
+              </div>
             )}
 
             {activeTab === 'cliente' && (
-              <>
+              <div className="preview-content">
+                <div className="business-header">
+                  <Users size={12} />
+                  <span>Clientes</span>
+                  <span className="client-badge">+12 atendimentos</span>
+                </div>
+
                 <div className="client-preview">
                   <div className="client-header">
                     <div className="experience-avatar">A</div>
                     <div>
                       <strong>Ana Souza</strong>
-                      <span>{isPt ? 'Último atendimento há 2 dias' : 'Última atención hace 2 días'}</span>
+                      <span>Último atendimento há 2 dias</span>
                     </div>
                   </div>
                   <div className="client-details">
                     <div>
-                      <span>{isPt ? 'Serviço' : 'Servicio'}</span>
-                      <strong>{isPt ? 'Consulta' : 'Consulta'}</strong>
+                      <span>Serviço</span>
+                      <strong>Consulta</strong>
                     </div>
                     <div>
-                      <span>{isPt ? 'Horário' : 'Horario'}</span>
-                      <strong>{isPt ? 'Quinta, 14h' : 'Jueves, 14h'}</strong>
+                      <span>Horário</span>
+                      <strong>Quinta, 14h</strong>
                     </div>
                     <div>
-                      <span>{isPt ? 'Status' : 'Estado'}</span>
-                      <strong className="confirmed">✓ {isPt ? 'Confirmado' : 'Confirmado'}</strong>
+                      <span>Status</span>
+                      <strong className="confirmed">✓ Confirmado</strong>
                     </div>
                   </div>
                 </div>
+                
                 <button 
                   className="mini-next client" 
                   onClick={() => {
@@ -275,22 +296,24 @@ export default function ExperienceDemo({ language }: Props) {
                 >
                   Ver resultado final
                 </button>
-              </>
+              </div>
             )}
 
             {activeTab === 'resultado' && (
-              <div className="result-preview">
-                <div>
-                  <span>Fluxo completo</span>
-                  <strong>Cliente agendou sozinho</strong>
-                </div>
-                <div>
-                  <span>WhatsApp</span>
-                  <strong>Confirmação automática</strong>
-                </div>
-                <div>
-                  <span>Organização</span>
-                  <strong>Tudo salvo no sistema</strong>
+              <div className="preview-content">
+                <div className="result-preview">
+                  <div>
+                    <span>Fluxo completo</span>
+                    <strong>Cliente agendou sozinho</strong>
+                  </div>
+                  <div>
+                    <span>WhatsApp</span>
+                    <strong>Confirmação automática</strong>
+                  </div>
+                  <div>
+                    <span>Organização</span>
+                    <strong>Tudo salvo no sistema</strong>
+                  </div>
                 </div>
 
                 <a href="#contato" className="mini-next result">

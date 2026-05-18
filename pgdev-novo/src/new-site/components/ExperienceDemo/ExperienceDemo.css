@@ -126,7 +126,7 @@
   margin-left: 2px;
 }
 
-/* Screen */
+/* Screen - PADRÃO FIXO */
 .experience-screen {
   background: #ffffff;
   border-radius: 16px;
@@ -136,17 +136,61 @@
   flex-direction: column;
 }
 
-/* ============================================
-   BOOKING PREVIEW MINI
-   ============================================ */
-
-.booking-preview-mini {
+.preview-content {
+  flex: 1;
   display: flex;
   flex-direction: column;
   gap: 14px;
 }
 
-/* Services list */
+/* Business Header - padrão */
+.business-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 0.7rem;
+  color: rgba(0, 12, 36, .55);
+}
+
+.business-header span:first-of-type {
+  font-weight: 600;
+  color: #000c24;
+}
+
+.rating, .date-badge, .auto-badge, .client-badge {
+  margin-left: auto;
+  background: #f8f9fa;
+  padding: 2px 6px;
+  border-radius: 10px;
+  font-size: 0.6rem;
+  font-weight: 600;
+}
+
+.rating {
+  color: #fec90f;
+  background: rgba(254, 201, 15, 0.1);
+}
+
+.date-badge {
+  background: #fec90f;
+  color: #000c24;
+}
+
+.auto-badge {
+  background: rgba(37, 211, 102, 0.1);
+  color: #25d366;
+}
+
+.client-badge {
+  background: rgba(0, 12, 36, .05);
+}
+
+/* ============================================
+   BOOKING PREVIEW
+   ============================================ */
+
 .services-list {
   display: flex;
   flex-direction: column;
@@ -157,8 +201,8 @@
   display: flex;
   justify-content: space-between;
   gap: 12px;
-  padding: 16px;
-  border-radius: 14px;
+  padding: 12px;
+  border-radius: 12px;
   border: 1px solid #e5e7eb;
   background: #f8f9fa;
   cursor: pointer;
@@ -171,40 +215,41 @@
 
 .mini-service.selected {
   border: 2px solid #000c24;
-  background: #f8f9fa;
 }
 
 .mini-service strong {
   color: #000c24;
-  font-size: .9rem;
+  font-size: 0.85rem;
 }
 
 .mini-service span {
   display: block;
   margin-top: 4px;
   color: rgba(0, 12, 36, .55);
-  font-size: .7rem;
+  font-size: 0.65rem;
 }
 
 .mini-service small {
   color: #000c24;
   font-weight: 800;
+  font-size: 0.8rem;
 }
 
 /* Time slots */
 .mini-times {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
+  gap: 8px;
 }
 
 .mini-times button {
-  height: 44px;
-  border-radius: 12px;
+  height: 40px;
+  border-radius: 10px;
   border: 1px solid #e5e7eb;
   background: #fff;
   color: #000c24;
-  font-weight: 700;
+  font-weight: 600;
+  font-size: 0.75rem;
   cursor: pointer;
   transition: all 0.2s ease;
 }
@@ -220,24 +265,24 @@
 
 /* Confirm button */
 .mini-confirm {
-  height: 48px;
-  border-radius: 14px;
+  height: 44px;
+  border-radius: 12px;
   background: #000c24;
   color: #fec90f;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  font-weight: 800;
+  font-weight: 700;
   cursor: pointer;
   transition: all 0.2s ease;
   border: none;
   width: 100%;
+  font-size: 0.85rem;
 }
 
 .mini-confirm:hover {
   background: #001a3d;
-  transform: translateY(-1px);
 }
 
 /* ============================================
@@ -251,18 +296,17 @@
   border-radius: 999px;
   background: rgba(0, 12, 36, .05);
   color: #000c24;
-  font-weight: 800;
+  font-weight: 700;
   cursor: pointer;
-  margin-top: 20px;
+  margin-top: auto;
   transition: all 0.2s ease;
+  font-size: 0.8rem;
 }
 
 .mini-next:hover {
   background: rgba(0, 12, 36, .1);
-  transform: translateY(-1px);
 }
 
-/* Mini next variants */
 .mini-next.calendar {
   background: #000c24;
   color: #fec90f;
@@ -289,10 +333,6 @@
   border: 1px solid rgba(0, 12, 36, .15);
 }
 
-.mini-next.client:hover {
-  background: rgba(0, 12, 36, .12);
-}
-
 .mini-next.result {
   background: #fec90f;
   color: #000c24;
@@ -302,76 +342,16 @@
   align-items: center;
   justify-content: center;
   text-align: center;
+  margin-top: auto;
 }
 
 .mini-next.result:hover {
   background: #ffd43b;
 }
 
-.mini-next.strong {
-  background: #000c24;
-  color: #fec90f;
-  border: none;
-}
-
-.mini-next.strong:hover {
-  background: #001a3d;
-}
-
 /* ============================================
-   RESULT PREVIEW
+   AGENDA / SCHEDULE
    ============================================ */
-
-.result-preview {
-  display: grid;
-  gap: 12px;
-}
-
-.result-preview > div {
-  background: #f8f9fa;
-  border-radius: 14px;
-  padding: 16px;
-  transition: all 0.2s ease;
-}
-
-.result-preview > div:hover {
-  transform: translateX(4px);
-}
-
-.result-preview span {
-  display: block;
-  color: rgba(0, 12, 36, .55);
-  font-size: .7rem;
-  margin-bottom: 6px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  font-weight: 600;
-}
-
-.result-preview strong {
-  color: #000c24;
-  font-size: 1rem;
-  font-weight: 700;
-}
-
-/* ============================================
-   AGENDA / CALENDAR
-   ============================================ */
-
-.schedule-date-hint {
-  margin-bottom: 12px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid #f0f2f5;
-}
-
-.schedule-date-hint span {
-  font-size: 0.7rem;
-  font-weight: 500;
-  color: #000c24;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
 
 .schedule-list {
   display: flex;
@@ -384,7 +364,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 0;
+  padding: 8px 0;
   border-bottom: 1px solid #f0f2f5;
 }
 
@@ -396,18 +376,18 @@
 }
 
 .schedule-item div strong {
-  font-size: 0.85rem;
+  font-size: 0.8rem;
 }
 
 .schedule-item span {
   color: #000c24;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   flex: 1;
   margin-left: 12px;
 }
 
 .schedule-item small {
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   display: flex;
   align-items: center;
   gap: 4px;
@@ -430,27 +410,8 @@
    WHATSAPP PREVIEW
    ============================================ */
 
-.whatsapp-preview {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+.whatsapp-message {
   flex: 1;
-}
-
-.auto-confirm-badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  background: rgba(254, 201, 15, 0.12);
-  color: #fec90f;
-  font-size: 0.65rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  padding: 6px 12px;
-  border-radius: 20px;
-  width: fit-content;
 }
 
 .experience-message {
@@ -462,14 +423,9 @@
   align-items: flex-start;
 }
 
-.experience-message svg {
-  flex-shrink: 0;
-  margin-top: 2px;
-}
-
 .experience-message p {
   color: #000c24;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   line-height: 1.4;
   margin: 0;
 }
@@ -484,15 +440,11 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   color: #000c24;
   background: #f8f9fa;
-  padding: 6px 12px;
+  padding: 6px 10px;
   border-radius: 20px;
-}
-
-.features svg {
-  color: #fec90f;
 }
 
 /* ============================================
@@ -502,7 +454,7 @@
 .client-preview {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 16px;
   flex: 1;
 }
 
@@ -513,116 +465,86 @@
 }
 
 .experience-avatar {
-  width: 44px;
-  height: 44px;
+  width: 40px;
+  height: 40px;
   background: linear-gradient(135deg, #fec90f, #d4a800);
   border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 700;
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: #000c24;
 }
 
 .client-header strong {
   display: block;
   color: #000c24;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
 }
 
 .client-header span {
   color: #8a9;
-  font-size: 0.7rem;
+  font-size: 0.65rem;
 }
 
 .client-details {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
 }
 
 .client-details > div {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 8px 0;
+  padding: 6px 0;
   border-bottom: 1px solid #f0f2f5;
 }
 
 .client-details span {
   color: #8a9;
-  font-size: 0.7rem;
+  font-size: 0.65rem;
 }
 
 .client-details strong {
   color: #000c24;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   font-weight: 600;
 }
 
 .client-details .confirmed {
   color: #4caf50;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-
-/* Ensure mini-next stays at bottom when content is shorter */
-.experience-screen > :last-child.mini-next {
-  margin-top: auto;
 }
 
 /* ============================================
-   DASHBOARD (mantido para compatibilidade)
+   RESULT PREVIEW
    ============================================ */
 
-.metric-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
-  margin-bottom: 20px;
+.result-preview {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
 }
 
-.metric-grid > div {
+.result-preview > div {
   background: #f8f9fa;
   border-radius: 12px;
-  padding: 14px;
+  padding: 12px;
 }
 
-.metric-grid span {
+.result-preview span {
   display: block;
-  color: #8a9;
+  color: rgba(0, 12, 36, .55);
   font-size: 0.65rem;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
   margin-bottom: 4px;
 }
 
-.metric-grid strong {
+.result-preview strong {
   color: #000c24;
-  font-size: 1.3rem;
+  font-size: 0.85rem;
   font-weight: 700;
-}
-
-.mini-chart {
-  display: flex;
-  align-items: flex-end;
-  gap: 8px;
-  height: 60px;
-  padding: 0 4px;
-}
-
-.mini-chart div {
-  flex: 1;
-  background: linear-gradient(180deg, #fec90f, #d4a800);
-  border-radius: 4px 4px 2px 2px;
-  opacity: 0.8;
-  transition: opacity 0.2s ease;
-}
-
-.mini-chart div:hover {
-  opacity: 1;
 }
 
 /* ============================================
@@ -639,7 +561,6 @@
     gap: 40px;
   }
   
-  /* Seta aponta para baixo mas mantém na mesma linha */
   .hint-arrow {
     transform: rotate(90deg);
   }
@@ -654,10 +575,6 @@
     grid-template-columns: repeat(2, 1fr);
   }
   
-  .metric-grid {
-    grid-template-columns: 1fr;
-  }
-  
   .features {
     flex-direction: column;
   }
@@ -667,21 +584,21 @@
   }
   
   .mini-times button {
-    height: 38px;
-    font-size: 0.75rem;
+    height: 36px;
+    font-size: 0.7rem;
   }
   
   .mini-service {
-    padding: 12px;
+    padding: 10px;
   }
   
   .services-list {
     gap: 8px;
   }
   
-  /* Em telas muito pequenas, reduz fonte mas mantém */
   .experience-interaction-hint {
     font-size: 0.75rem;
     gap: 6px;
+    white-space: nowrap;
   }
 }
