@@ -79,19 +79,21 @@ function ProcessBanner({ language }: ProcessBannerProps) {
   }, [language])
 
   useEffect(() => {
-    const preloadImage = (src: string) => {
+    const preloadImage = (src: string, priority = false) => {
       const img = new Image()
       img.decoding = 'async'
       img.src = src
+
+      if (priority) {
+        img.fetchPriority = 'high'
+      }
     }
 
     ads.forEach((ad, index) => {
-      if (index === 0) return
-
-      preloadImage(ad.image)
+      preloadImage(ad.image, index === 0)
 
       if (ad.mobileImage) {
-        preloadImage(ad.mobileImage)
+        preloadImage(ad.mobileImage, index === 0)
       }
     })
   }, [ads])
@@ -143,10 +145,10 @@ function ProcessBanner({ language }: ProcessBannerProps) {
                 alt={currentAd.alt}
                 className="process-image"
                 loading={currentIndex === 0 ? 'eager' : 'lazy'}
-                fetchPriority={currentIndex === 0 ? 'high' : 'auto'}
+                fetchPriority={currentIndex === 0 ? 'high' : 'low'}
                 decoding="async"
-                width={currentAd.mobileImage ? 656 : 1536}
-                height={currentAd.mobileImage ? 572 : 864}
+                width={1536}
+                height={864}
               />
             </picture>
           </div>
