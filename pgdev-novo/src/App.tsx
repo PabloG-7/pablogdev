@@ -14,10 +14,6 @@ import Contact from './new-site/components/Contact/Contact'
 import Footer from './new-site/components/Footer/Footer'
 import ProjectGuide from './new-site/components/ProjectGuide/ProjectGuide'
 
-import PublicBookingDemo from './new-site/components/PublicBookingDemo/PublicBookingDemo'
-
-import FullBookingExperience from './new-site/components/FullBookingExperience/FullBookingExperience'
-
 import BookingDemo from './new-site/components/BookingDemo/BookingDemo'
 import PabloGomesPage from './new-site/components/PabloGomesPage/PabloGomesPage'
 
@@ -65,14 +61,6 @@ function App() {
   if (path === '/demo-petshop') {
     return <BookingDemo type="petshop" language={language} />
   }
-
- if (path === '/demo-agendamento') {
-  return <FullBookingExperience language={currentLanguage} />
-}
-
-if (path === '/agendar-demo') {
-  return <PublicBookingDemo language={currentLanguage} />
-}
 
   if (path === '/pablo-gomes') return <PabloGomesPage language="pt" />
   if (path === '/es/pablo-gomes') return <PabloGomesPage language="es" />
