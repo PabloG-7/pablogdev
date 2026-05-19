@@ -8,6 +8,8 @@ import Hero from './new-site/components/Hero/Hero'
 import ProcessBanner from './new-site/components/ProcessBanner/ProcessBanner'
 import Services from './new-site/components/Services/Services'
 import ExperienceDemo from './new-site/components/ExperienceDemo/ExperienceDemo'
+import SystemExperience from './new-site/components/SystemExperience/SystemExperience'
+import SiteExperience from './new-site/components/SiteExperience/SiteExperience'
 import Projects from './new-site/components/Projects/Projects'
 import About from './new-site/components/About/About'
 import Contact from './new-site/components/Contact/Contact'
@@ -73,6 +75,8 @@ function App() {
         <ProcessBanner language={currentLanguage} />
         <Services language={currentLanguage} />
         <ExperienceDemo language={currentLanguage} />
+        <SystemExperience language={currentLanguage} />
+        <SiteExperience language={currentLanguage} />
         <Projects language={currentLanguage} />
         <About language={currentLanguage} />
         <Contact language={currentLanguage} />
