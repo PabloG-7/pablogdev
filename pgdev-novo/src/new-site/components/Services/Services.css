@@ -56,6 +56,10 @@
   margin-top: 2px;
 }
 
+.service-info {
+  flex: 1;
+}
+
 .service-info h3 {
   margin: 0 0 6px;
   font-size: 1rem;
@@ -64,10 +68,47 @@
 }
 
 .service-info p {
-  margin: 0;
+  margin: 0 0 12px;
   font-size: 0.8125rem;
   color: rgba(255, 255, 255, 0.5);
   line-height: 1.4;
+}
+
+.service-points {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 12px;
+}
+
+.service-points li {
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.75rem;
+  margin-bottom: 6px;
+  padding-left: 12px;
+  position: relative;
+}
+
+.service-points li::before {
+  content: "•";
+  color: #fec90f;
+  position: absolute;
+  left: 0;
+}
+
+.service-info a {
+  color: #fec90f;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: gap 0.2s ease;
+}
+
+.service-info a:hover {
+  gap: 8px;
+  text-decoration: underline;
 }
 
 @media (max-width: 900px) {

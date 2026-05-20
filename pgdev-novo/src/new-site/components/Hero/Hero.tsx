@@ -1,7 +1,7 @@
 import './Hero.css'
 import heroDevices from '../../assets/hero-devices.png'
 import logo from '../../assets/logo.png'
-import { ArrowRight, Calendar, MessageCircle, Layout, Headphones, Globe, Calendar as CalendarIcon, Settings2 } from 'lucide-react'
+import { ArrowRight, Calendar, MessageCircle, Layout, Headphones } from 'lucide-react'
 import type { Language } from '../../types'
 import ProjectPreview from '../ProjectPreview/ProjectPreview'
 
@@ -138,45 +138,6 @@ export default function Hero({ language }: HeroProps) {
               <ArrowRight size={16} />
             </a>
             <ProjectPreview language={language} />
-          </div>
-
-          {/* STATS MELHORADOS - CLEAN & DIRETO */}
-          <div className="hero-stats">
-            <div className="stat">
-              <Globe size={16} />
-              <div className="stat-info">
-                <strong>{language === 'pt' ? 'Sites' : 'Sitios'}</strong>
-                <p>
-                  {language === 'pt'
-                    ? 'Sem presença online → Mais autoridade'
-                    : 'Sin presencia online → Más autoridad'}
-                </p>
-              </div>
-            </div>
-
-            <div className="stat">
-              <CalendarIcon size={16} />
-              <div className="stat-info">
-                <strong>{language === 'pt' ? 'Agendamentos' : 'Reservas'}</strong>
-                <p>
-                  {language === 'pt'
-                    ? 'Horários bagunçados → Mais organização'
-                    : 'Horarios desorganizados → Más organización'}
-                </p>
-              </div>
-            </div>
-
-            <div className="stat">
-              <Settings2 size={16} />
-              <div className="stat-info">
-                <strong>{language === 'pt' ? 'Sistemas' : 'Sistemas'}</strong>
-                <p>
-                  {language === 'pt'
-                    ? 'Controle manual → Mais praticidade'
-                    : 'Control manual → Más practicidad'}
-                </p>
-              </div>
-            </div>
           </div>
         </div>
       </div>

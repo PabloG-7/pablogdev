@@ -232,48 +232,8 @@
   transform: translateY(-2px);
 }
 
-/* Stats - Clean & Direto */
-.hero-stats {
-  display: flex;
-  gap: 32px;
-  padding-top: 24px;
-  border-top: 1px solid rgba(255, 255, 255, 0.04);
-}
-
-.stat {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.stat svg {
-  color: #fec90f;
-  flex-shrink: 0;
-  opacity: 0.8;
-}
-
-.stat-info {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.stat-info strong {
-  color: #ffffff;
-  font-size: 0.85rem;
-  font-weight: 600;
-}
-
-.stat-info p {
-  margin: 0;
-  color: rgba(255, 255, 255, 0.5);
-  font-size: 0.75rem;
-  line-height: 1.4;
-  white-space: nowrap;
-}
-
 /* ============================================
-   RESPONSIVE - ESTRELAS APARECEM EM TODAS TELAS
+   RESPONSIVE
    ============================================ */
 
 @media (max-width: 1024px) {
@@ -324,14 +284,6 @@
 
   .hero-features {
     max-width: 100%;
-  }
-
-  .hero-stats {
-    gap: 24px;
-  }
-  
-  .stat-info p {
-    white-space: normal;
   }
 
   .hero::before {
@@ -393,11 +345,6 @@
   .hero-btn {
     width: 100%;
   }
-
-  .hero-stats {
-    flex-direction: column;
-    gap: 16px;
-  }
   
   /* ESTRELAS EM MOBILE */
   .hero__stars {
@@ -434,18 +381,6 @@
     font-size: 0.8125rem;
   }
 
-  .stat {
-    gap: 8px;
-  }
-  
-  .stat-info strong {
-    font-size: 0.8rem;
-  }
-  
-  .stat-info p {
-    font-size: 0.7rem;
-  }
-
   .hero::before,
   .hero::after {
     display: none;
@@ -478,10 +413,6 @@
 
   .hero-text {
     font-size: 0.875rem;
-  }
-
-  .hero-stats {
-    gap: 14px;
   }
   
   /* ESTRELAS EM TELAS MUITO PEQUENAS */
