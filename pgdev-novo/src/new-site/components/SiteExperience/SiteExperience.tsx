@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import {
-  MonitorSmartphone,
   LayoutTemplate,
   MessageCircle,
   Smartphone,
@@ -8,7 +7,6 @@ import {
   ArrowRight,
   Lock,
   Star,
-  MousePointerClick,
 } from 'lucide-react'
 import { FaWhatsapp } from 'react-icons/fa'
 import type { Language } from '../../types'
