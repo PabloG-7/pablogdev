@@ -1,15 +1,15 @@
 /* ============================================
-   EXPERIENCE - CLEAN VERSION
+   EXPERIENCE DEMO - COMPONENT SPECIFIC STYLES
+   TODAS AS CLASSES COM PREFIXO exp-demo PARA NÃO CONFLITAR
    ============================================ */
 
-.experience {
-  background:
-    radial-gradient(circle at bottom left, rgba(254, 201, 15, 0.08), transparent 34%),
+.exp-demo {
+  background: radial-gradient(circle at bottom left, rgba(254, 201, 15, 0.08), transparent 34%),
     #000c24;
   padding: 80px 0;
 }
 
-.experience-container {
+.exp-demo-container {
   width: min(1100px, calc(100% - 48px));
   margin: 0 auto;
   display: grid;
@@ -18,8 +18,7 @@
   align-items: center;
 }
 
-/* Left side */
-.experience-label {
+.exp-demo-label {
   display: inline-block;
   color: #fec90f;
   font-size: 0.7rem;
@@ -29,7 +28,7 @@
   margin-bottom: 20px;
 }
 
-.experience-copy h2 {
+.exp-demo-copy h2 {
   color: #ffffff;
   font-size: clamp(1.8rem, 4vw, 3rem);
   line-height: 1.2;
@@ -38,18 +37,18 @@
   letter-spacing: -0.02em;
 }
 
-.experience-highlight {
+.exp-demo-highlight {
   color: #fec90f;
 }
 
-.experience-copy p {
+.exp-demo-copy p {
   color: rgba(255, 255, 255, 0.55);
   font-size: 0.95rem;
   line-height: 1.6;
   margin: 0 0 28px;
 }
 
-.experience-strong-text {
+.exp-demo-strong-text {
   color: #fec90f !important;
   font-size: 1rem !important;
   font-weight: 600 !important;
@@ -57,8 +56,7 @@
   margin-bottom: 28px !important;
 }
 
-/* Experience interaction hint */
-.experience-interaction-hint {
+.exp-demo-interaction-hint {
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -69,33 +67,26 @@
   white-space: nowrap;
 }
 
-.hint-arrow {
+.exp-demo-hint-arrow {
   transition: transform 0.2s ease;
   flex-shrink: 0;
 }
 
-/* Hide old button */
-.experience-btn {
-  display: none;
-}
-
-/* Panel */
-.experience-panel {
+.exp-demo-panel {
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 24px;
   padding: 16px;
 }
 
-/* Tabs */
-.experience-tabs {
+.exp-demo-tabs {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 6px;
   margin-bottom: 16px;
 }
 
-.experience-tabs button {
+.exp-demo-tab {
   border: none;
   background: rgba(255, 255, 255, 0.03);
   color: rgba(255, 255, 255, 0.55);
@@ -112,143 +103,173 @@
   position: relative;
 }
 
-.experience-tabs button.active {
+.exp-demo-tab.active {
   background: #fec90f;
   color: #000c24;
 }
 
-.experience-tabs button.disabled {
+.exp-demo-tab.disabled {
   opacity: 0.5;
   cursor: not-allowed;
   pointer-events: none;
 }
 
-.lock-icon {
+.exp-demo-lock-icon {
   opacity: 0.7;
   margin-left: 2px;
 }
 
-/* Screen - PADRÃO FIXO */
-.experience-screen {
-  background: #ffffff;
+.exp-demo-screen {
+  background: linear-gradient(135deg, #ffffff 0%, #fafafc 100%);
   border-radius: 16px;
   padding: 20px;
   min-height: 380px;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
-.preview-content {
+.exp-demo-preview-content {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 12px;
 }
 
-/* Business Header - padrão */
-.business-header {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid #e5e7eb;
-  font-size: 0.7rem;
-  color: rgba(0, 12, 36, .55);
-}
-
-.business-header span:first-of-type {
-  font-weight: 600;
-  color: #000c24;
-}
-
-.rating, .date-badge, .auto-badge, .client-badge {
-  margin-left: auto;
-  background: #f8f9fa;
-  padding: 2px 6px;
-  border-radius: 10px;
-  font-size: 0.6rem;
-  font-weight: 600;
-}
-
-.rating {
-  color: #fec90f;
-  background: rgba(254, 201, 15, 0.1);
-}
-
-.date-badge {
-  background: #fec90f;
-  color: #000c24;
-}
-
-.auto-badge {
-  background: rgba(37, 211, 102, 0.1);
-  color: #25d366;
-}
-
-.client-badge {
-  background: rgba(0, 12, 36, .05);
-}
-
-/* ============================================
-   BOOKING PREVIEW
-   ============================================ */
-
-.services-list {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.mini-service {
+.exp-demo-business-header {
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #f0f2f5;
+}
+
+.exp-demo-business-info {
+  display: flex;
+  gap: 12px;
+}
+
+.exp-demo-business-avatar {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #fec90f, #e6b400);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000c24;
+}
+
+.exp-demo-business-info h4 {
+  margin: 0 0 4px 0;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #000c24;
+}
+
+.exp-demo-business-rating {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.exp-demo-business-rating span {
+  font-size: 0.6rem;
+  color: #8a9;
+  margin-left: 4px;
+}
+
+.exp-demo-more-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #8a9;
+  padding: 4px;
+}
+
+.exp-demo-service-section label,
+.exp-demo-time-section label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #000c24;
+  display: block;
+  margin-bottom: 8px;
+  letter-spacing: 0.02em;
+}
+
+.exp-demo-services-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.exp-demo-service-card {
+  display: flex;
+  align-items: center;
   gap: 12px;
   padding: 12px;
   border-radius: 12px;
-  border: 1px solid #e5e7eb;
-  background: #f8f9fa;
+  background: #ffffff;
+  border: 1.5px solid #eef2f6;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
-.mini-service:hover {
-  transform: translateX(4px);
+.exp-demo-service-card:hover {
+  border-color: #fec90f;
+  transform: translateX(2px);
 }
 
-.mini-service.selected {
-  border: 2px solid #000c24;
+.exp-demo-service-card.selected {
+  border-color: #fec90f;
+  background: rgba(254, 201, 15, 0.05);
+  box-shadow: 0 2px 8px rgba(254, 201, 15, 0.1);
 }
 
-.mini-service strong {
+.exp-demo-service-icon {
+  width: 32px;
+  height: 32px;
+  background: #f8f9fa;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: #000c24;
-  font-size: 0.85rem;
 }
 
-.mini-service span {
+.exp-demo-service-info {
+  flex: 1;
+}
+
+.exp-demo-service-info strong {
   display: block;
-  margin-top: 4px;
-  color: rgba(0, 12, 36, .55);
-  font-size: 0.65rem;
-}
-
-.mini-service small {
-  color: #000c24;
-  font-weight: 800;
   font-size: 0.8rem;
+  color: #000c24;
+  margin-bottom: 2px;
 }
 
-/* Time slots */
-.mini-times {
+.exp-demo-service-info span {
+  font-size: 0.65rem;
+  color: #8a9;
+}
+
+.exp-demo-service-price {
+  font-weight: 800;
+  font-size: 0.85rem;
+  color: #000c24;
+}
+
+.exp-demo-mini-times {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 8px;
 }
 
-.mini-times button {
+.exp-demo-mini-times button {
   height: 40px;
   border-radius: 10px;
-  border: 1px solid #e5e7eb;
-  background: #fff;
+  border: 1.5px solid #eef2f6;
+  background: #ffffff;
   color: #000c24;
   font-weight: 600;
   font-size: 0.75rem;
@@ -256,17 +277,47 @@
   transition: all 0.2s ease;
 }
 
-.mini-times button:hover {
-  background: #f0f2f5;
+.exp-demo-mini-times button:hover {
+  border-color: #fec90f;
+  background: rgba(254, 201, 15, 0.05);
 }
 
-.mini-times button.active {
+.exp-demo-mini-times button.active {
   background: #000c24;
   color: #fec90f;
+  border-color: #000c24;
 }
 
-/* Confirm button */
-.mini-confirm {
+.exp-demo-client-data {
+  display: flex;
+  gap: 8px;
+}
+
+.exp-demo-data-field {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 10px;
+  background: #f8f9fa;
+  border-radius: 10px;
+  border: 1px solid #eef2f6;
+}
+
+.exp-demo-data-field input {
+  border: none;
+  background: none;
+  font-size: 0.7rem;
+  width: 100%;
+  outline: none;
+  color: #000c24;
+}
+
+.exp-demo-data-field input::placeholder {
+  color: #b8c5d0;
+}
+
+.exp-demo-mini-confirm {
   height: 44px;
   border-radius: 12px;
   background: #000c24;
@@ -283,322 +334,502 @@
   font-size: 0.85rem;
 }
 
-.mini-confirm:hover {
+.exp-demo-mini-confirm:hover {
   background: #001a3d;
+  transform: translateY(-1px);
 }
 
-/* ============================================
-   MINI NEXT BUTTON
-   ============================================ */
-
-.mini-next {
-  width: 100%;
-  height: 44px;
-  border: 1px solid rgba(0, 12, 36, .12);
-  border-radius: 999px;
-  background: rgba(0, 12, 36, .05);
-  color: #000c24;
-  font-weight: 700;
-  cursor: pointer;
-  margin-top: auto;
-  transition: all 0.2s ease;
-  font-size: 0.8rem;
-}
-
-.mini-next:hover {
-  background: rgba(0, 12, 36, .1);
-}
-
-.mini-next.calendar {
-  background: #000c24;
-  color: #fec90f;
-  border: none;
-}
-
-.mini-next.calendar:hover {
-  background: #001a3d;
-}
-
-.mini-next.whatsapp {
-  background: #25d366;
-  color: #073b1a;
-  border: none;
-}
-
-.mini-next.whatsapp:hover {
-  background: #20bd5a;
-}
-
-.mini-next.client {
-  background: rgba(0, 12, 36, .08);
-  color: #000c24;
-  border: 1px solid rgba(0, 12, 36, .15);
-}
-
-.mini-next.result {
-  background: #fec90f;
-  color: #000c24;
-  border: none;
-  text-decoration: none;
-  display: inline-flex;
+.exp-demo-calendar-header {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  text-align: center;
-  margin-top: auto;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #f0f2f5;
 }
 
-.mini-next.result:hover {
-  background: #ffd43b;
+.exp-demo-calendar-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-/* ============================================
-   AGENDA / SCHEDULE
-   ============================================ */
+.exp-demo-calendar-title h4 {
+  margin: 0;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #000c24;
+}
 
-.schedule-list {
+.exp-demo-date-selector {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.7rem;
+  color: #fec90f;
+  background: rgba(254, 201, 15, 0.1);
+  padding: 4px 10px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.exp-demo-schedule-list {
   display: flex;
   flex-direction: column;
   gap: 8px;
   flex: 1;
+  max-height: none;
+  overflow: visible;
 }
 
-.schedule-item {
+.exp-demo-schedule-item {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 8px 0;
-  border-bottom: 1px solid #f0f2f5;
+  gap: 12px;
+  padding: 9px 10px;
+  min-height: 52px;
+  background: #f8f9fa;
+  border-radius: 10px;
+  transition: all 0.2s ease;
 }
 
-.schedule-item div {
+.exp-demo-schedule-item:hover {
+  background: #f0f2f5;
+  transform: translateX(2px);
+}
+
+.exp-demo-schedule-time {
+  min-width: 70px;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
+}
+
+.exp-demo-schedule-time strong {
+  font-size: 0.8rem;
   color: #000c24;
 }
 
-.schedule-item div strong {
-  font-size: 0.8rem;
-}
-
-.schedule-item span {
-  color: #000c24;
-  font-size: 0.8rem;
+.exp-demo-schedule-details {
   flex: 1;
-  margin-left: 12px;
 }
 
-.schedule-item small {
-  font-size: 0.7rem;
-  display: flex;
-  align-items: center;
-  gap: 4px;
+.exp-demo-service-name {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #000c24;
+}
+
+.exp-demo-client-name {
+  display: block;
+  font-size: 0.65rem;
+  color: #8a9;
+}
+
+.exp-demo-status-badge {
+  font-size: 0.65rem;
   padding: 4px 8px;
   border-radius: 20px;
   font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
 
-.schedule-item small.confirmed {
+.exp-demo-status-badge.confirmed {
   background: rgba(76, 175, 80, 0.12);
   color: #4caf50;
 }
 
-.schedule-item small.pending {
+.exp-demo-status-badge.pending {
   background: rgba(255, 152, 0, 0.12);
   color: #ff9800;
 }
 
-/* ============================================
-   WHATSAPP PREVIEW
-   ============================================ */
-
-.whatsapp-message {
-  flex: 1;
-}
-
-.experience-message {
-  background: #dcf8c5;
-  border-radius: 14px;
-  padding: 12px;
-  display: flex;
-  gap: 10px;
-  align-items: flex-start;
-}
-
-.experience-message p {
-  color: #000c24;
-  font-size: 0.75rem;
-  line-height: 1.4;
-  margin: 0;
-}
-
-.features {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-
-.features div {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.65rem;
-  color: #000c24;
-  background: #f8f9fa;
-  padding: 6px 10px;
-  border-radius: 20px;
-}
-
-/* ============================================
-   CLIENT PREVIEW
-   ============================================ */
-
-.client-preview {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  flex: 1;
-}
-
-.client-header {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.experience-avatar {
-  width: 40px;
+.exp-demo-mini-next-calendar {
+  width: 100%;
   height: 40px;
-  background: linear-gradient(135deg, #fec90f, #d4a800);
-  border-radius: 12px;
+  border: none;
+  border-radius: 10px;
+  background: #25d366;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.exp-demo-mini-next-calendar:hover {
+  background: #20bd5a;
+  transform: translateY(-1px);
+}
+
+.exp-demo-whatsapp-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #f0f2f5;
+}
+
+.exp-demo-whatsapp-header span {
   font-weight: 700;
+  font-size: 0.85rem;
+  color: #000c24;
+}
+
+.exp-demo-auto-badge {
+  margin-left: auto;
+  background: rgba(37, 211, 102, 0.1);
+  color: #25d366;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.6rem;
+  font-weight: 600;
+}
+
+.exp-demo-whatsapp-conversation {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-height: 150px;
+  overflow-y: auto;
+  padding: 4px;
+}
+
+.exp-demo-message-row {
+  display: flex;
+}
+
+.exp-demo-message-row.received {
+  justify-content: flex-start;
+}
+
+.exp-demo-message-bubble {
+  max-width: 85%;
+  background: #dcf8c5;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border-bottom-left-radius: 4px;
+  position: relative;
+}
+
+.exp-demo-message-bubble.reminder {
+  background: #fff3e0;
+}
+
+.exp-demo-message-bubble p {
+  margin: 0;
+  font-size: 0.7rem;
+  color: #000c24;
+  line-height: 1.4;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.exp-demo-message-time {
+  font-size: 0.55rem;
+  color: rgba(0, 12, 36, 0.45);
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.exp-demo-whatsapp-features {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.exp-demo-feature-item {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 6px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  font-size: 0.6rem;
+  font-weight: 600;
+  color: #000c24;
+}
+
+.exp-demo-mini-next-whatsapp {
+  width: 100%;
+  height: 40px;
+  border: 1px solid #eef2f6;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #000c24;
+  font-weight: 600;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.exp-demo-mini-next-whatsapp:hover {
+  background: #f8f9fa;
+  border-color: #fec90f;
+}
+
+.exp-demo-client-profile-header {
+  display: flex;
+  gap: 14px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #f0f2f5;
+}
+
+.exp-demo-client-avatar-large {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, #fec90f, #e6b400);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
   font-size: 1rem;
   color: #000c24;
 }
 
-.client-header strong {
-  display: block;
+.exp-demo-client-info h4 {
+  margin: 0 0 4px 0;
+  font-size: 0.9rem;
+  font-weight: 800;
   color: #000c24;
-  font-size: 0.85rem;
 }
 
-.client-header span {
+.exp-demo-client-meta {
+  display: flex;
+  gap: 12px;
+}
+
+.exp-demo-client-meta span {
+  font-size: 0.6rem;
   color: #8a9;
-  font-size: 0.65rem;
-}
-
-.client-details {
   display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.client-details > div {
-  display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 6px 0;
-  border-bottom: 1px solid #f0f2f5;
+  gap: 4px;
 }
 
-.client-details span {
-  color: #8a9;
-  font-size: 0.65rem;
+.exp-demo-client-info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
 }
 
-.client-details strong {
-  color: #000c24;
-  font-size: 0.8rem;
-  font-weight: 600;
-}
-
-.client-details .confirmed {
-  color: #4caf50;
-}
-
-/* ============================================
-   RESULT PREVIEW
-   ============================================ */
-
-.result-preview {
+.exp-demo-info-card {
   display: flex;
-  flex-direction: column;
-  gap: 10px;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  background: #f8f9fa;
+  border-radius: 10px;
+}
+
+.exp-demo-info-card div {
   flex: 1;
 }
 
-.result-preview > div {
+.exp-demo-info-card span {
+  display: block;
+  font-size: 0.55rem;
+  color: #8a9;
+  margin-bottom: 2px;
+}
+
+.exp-demo-info-card strong {
+  font-size: 0.7rem;
+  color: #000c24;
+}
+
+.exp-demo-client-history {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.exp-demo-history-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  font-size: 0.7rem;
+}
+
+.exp-demo-history-item span:nth-child(2) {
+  flex: 1;
+  color: #000c24;
+}
+
+.exp-demo-history-item span:nth-child(3) {
+  color: #8a9;
+}
+
+.exp-demo-mini-next-client {
+  width: 100%;
+  height: 40px;
+  border: 1px solid #eef2f6;
+  border-radius: 10px;
+  background: #000c24;
+  color: #fec90f;
+  font-weight: 700;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.exp-demo-mini-next-client:hover {
+  background: #001a3d;
+}
+
+.exp-demo-result-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.exp-demo-stat-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
   background: #f8f9fa;
   border-radius: 12px;
-  padding: 12px;
+  transition: all 0.2s ease;
 }
 
-.result-preview span {
-  display: block;
-  color: rgba(0, 12, 36, .55);
-  font-size: 0.65rem;
-  margin-bottom: 4px;
+.exp-demo-stat-card:hover {
+  transform: translateX(4px);
+  background: #f0f2f5;
 }
 
-.result-preview strong {
+.exp-demo-stat-icon {
+  width: 36px;
+  height: 36px;
+  background: #ffffff;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: #000c24;
-  font-size: 0.85rem;
+}
+
+.exp-demo-stat-icon svg {
+  color: #000c24;
+  stroke: #000c24;
+}
+
+.exp-demo-stat-content {
+  flex: 1;
+}
+
+.exp-demo-stat-content span {
+  display: block;
+  font-size: 0.6rem;
+  color: #8a9;
+  margin-bottom: 2px;
+}
+
+.exp-demo-stat-content strong {
+  font-size: 0.8rem;
+  color: #000c24;
   font-weight: 700;
 }
 
-/* ============================================
-   RESPONSIVE
-   ============================================ */
+.exp-demo-result-highlight {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px;
+  background: rgba(254, 201, 15, 0.08);
+  border-radius: 10px;
+  border: 1px solid rgba(254, 201, 15, 0.2);
+}
+
+.exp-demo-result-highlight p {
+  margin: 0;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #fec90f;
+}
+
+.exp-demo-mini-next-result {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  height: 44px;
+  background: #fec90f;
+  color: #000c24;
+  text-decoration: none;
+  border-radius: 12px;
+  font-weight: 800;
+  font-size: 0.85rem;
+  transition: all 0.2s ease;
+}
+
+.exp-demo-mini-next-result:hover {
+  background: #ffd43b;
+  transform: translateY(-2px);
+}
 
 @media (max-width: 900px) {
-  .experience {
+  .exp-demo {
     padding: 60px 0;
   }
   
-  .experience-container {
+  .exp-demo-container {
     grid-template-columns: 1fr;
     gap: 40px;
   }
   
-  .hint-arrow {
+  .exp-demo-hint-arrow {
     transform: rotate(90deg);
   }
 }
 
 @media (max-width: 600px) {
-  .experience-container {
+  .exp-demo-container {
     width: calc(100% - 32px);
   }
   
-  .experience-tabs {
+  .exp-demo-tabs {
     grid-template-columns: repeat(2, 1fr);
   }
   
-  .features {
-    flex-direction: column;
-  }
-  
-  .mini-times {
+  .exp-demo-mini-times {
     gap: 6px;
   }
   
-  .mini-times button {
+  .exp-demo-mini-times button {
     height: 36px;
     font-size: 0.7rem;
   }
   
-  .mini-service {
-    padding: 10px;
+  .exp-demo-client-info-grid {
+    grid-template-columns: 1fr;
   }
   
-  .services-list {
-    gap: 8px;
-  }
-  
-  .experience-interaction-hint {
+  .exp-demo-interaction-hint {
     font-size: 0.75rem;
     gap: 6px;
     white-space: nowrap;

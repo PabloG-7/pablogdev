@@ -100,51 +100,30 @@ export default function SiteExperience({ language }: Props) {
 
           <div className="site-screen">
             {activeTab === 'hero' && (
-              <div className="site-preview">
-                <div className="site-browser-bar">
-                  <span />
-                  <span />
-                  <span />
-                  <small>seudominio.com.br</small>
-                </div>
+              <div className="site-preview site-preview-image-only">
+                <picture>
+                  <source
+                    media="(max-width: 600px)"
+                    srcSet="/preview-site-clinica-mobile.png"
+                  />
 
-                <div className="site-hero-preview">
-                  <div>
-                    <div className="site-mini-navbar">
-                      <strong>Clínica Marina</strong>
-                      <nav>
-                        <span>Início</span>
-                        <span>Serviços</span>
-                        <span>Contato</span>
-                      </nav>
-                    </div>
+                  <img
+                    src="/preview-site-clinica.png"
+                    alt="Prévia de site profissional"
+                    className="site-preview-full-image"
+                  />
+                </picture>
 
-                    <span className="site-mini-label">Clínica Marina</span>
-                    <h3>Atendimento moderno para cuidar melhor de você.</h3>
-                    <p>Consultas, retornos e orientação profissional em um só lugar.</p>
-
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setStep(2)
-                        setActiveTab('servicos')
-                      }}
-                    >
-                      <MousePointerClick size={14} />
-                      Ver serviços
-                    </button>
-                  </div>
-
-                  <div className="site-hero-card">
-                    <MonitorSmartphone size={28} />
-                  </div>
-                </div>
-
-                <div className="site-page-sections">
-                  <div />
-                  <div />
-                  <div />
-                </div>
+                <button
+                  type="button"
+                  className="site-preview-hotspot"
+                  onClick={() => {
+                    setStep(2)
+                    setActiveTab('servicos')
+                  }}
+                >
+                  Ver serviços
+                </button>
               </div>
             )}
 
