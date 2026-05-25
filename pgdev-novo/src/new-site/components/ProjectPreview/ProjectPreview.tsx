@@ -754,7 +754,19 @@ function ProjectPreview({ language }: Props) {
 
   return (
     <>
-      <button type="button" className="preview-button" onClick={() => setOpen(true)}>
+      <button
+        type="button"
+        className="preview-button"
+        onClick={() => {
+          setOpen(true)
+
+          // Versão mais robusta para Safari
+          setTimeout(() => {
+            const content = document.querySelector('.preview__content')
+            if (content) content.scrollTop = 0
+          }, 0)
+        }}
+      >
         <Eye size={18} />
         {isPt ? 'Ver como pode ficar' : 'Ver cómo puede quedar'}
       </button>
