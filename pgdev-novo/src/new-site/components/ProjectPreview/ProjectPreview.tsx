@@ -760,11 +760,10 @@ function ProjectPreview({ language }: Props) {
         onClick={() => {
           setOpen(true)
 
-          // Versão mais robusta para Safari
           setTimeout(() => {
             const content = document.querySelector('.preview__content')
             if (content) content.scrollTop = 0
-          }, 0)
+          }, 50)
         }}
       >
         <Eye size={18} />
