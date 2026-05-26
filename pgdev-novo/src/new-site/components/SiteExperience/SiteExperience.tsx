@@ -1,15 +1,4 @@
-import { useState } from 'react'
-import {
-  MonitorSmartphone,
-  LayoutTemplate,
-  MessageCircle,
-  Smartphone,
-  CheckCircle,
-  ArrowRight,
-  Lock,
-  Star,
-  MousePointerClick,
-} from 'lucide-react'
+import { ArrowRight, BadgeCheck, Globe2, ShieldCheck, Smartphone, Sparkles, TrendingUp, Zap } from 'lucide-react'
 import { FaWhatsapp } from 'react-icons/fa'
 import type { Language } from '../../types'
 import './SiteExperience.css'
@@ -18,274 +7,135 @@ type Props = {
   language: Language
 }
 
-type Tab = 'hero' | 'servicos' | 'contato' | 'mobile' | 'resultado'
-
 export default function SiteExperience({ language }: Props) {
   const isPt = language === 'pt'
-  const [activeTab, setActiveTab] = useState<Tab>('hero')
-  const [step, setStep] = useState(1)
-
-  const canServices = step >= 2
-  const canContact = step >= 3
-  const canMobile = step >= 4
-  const canResult = step >= 5
-
-  const handleTabClick = (tab: Tab) => {
-    if (tab === 'servicos' && !canServices) return
-    if (tab === 'contato' && !canContact) return
-    if (tab === 'mobile' && !canMobile) return
-    if (tab === 'resultado' && !canResult) return
-    setActiveTab(tab)
-  }
 
   return (
-    <section className="site-exp" id="site-profissional">
+    <section className="site-experience" id="site-profissional">
       <div className="site-exp-container">
-        <div className="site-exp-copy">
+        {/* LEFT SIDE */}
+        <div className="site-exp-content">
           <span className="site-exp-label">
-            {isPt ? 'Site profissional' : 'Sitio profesional'}
+            <Sparkles size={14} />
+            {isPt ? 'PRESENÇA PROFISSIONAL' : 'PRESENCIA PROFESIONAL'}
           </span>
 
           <h2>
             {isPt
-              ? 'Seu negócio com presença profissional'
-              : 'Tu negocio con presencia profesional'}
-            <span>.</span>
+              ? 'Seu negócio precisa parecer premium.'
+              : 'Tu negocio necesita parecer premium.'}
           </h2>
 
           <p>
             {isPt
-              ? 'Um site moderno apresenta seus serviços, passa confiança e facilita o contato com clientes pelo WhatsApp.'
-              : 'Un sitio moderno presenta tus servicios, transmite confianza y facilita el contacto por WhatsApp.'}
+              ? 'Hoje as pessoas julgam sua empresa em segundos. Um site profissional aumenta confiança, melhora sua imagem e faz o cliente sentir que está falando com um negócio sério.'
+              : 'Hoy las personas juzgan tu empresa en segundos. Un sitio profesional aumenta la confianza y hace que tu negocio se vea serio.'}
           </p>
 
-          <strong>
-            {isPt
-              ? 'Mais autoridade, mais clareza e mais chances de receber contatos.'
-              : 'Más autoridad, más claridad y más oportunidades de contacto.'}
-          </strong>
-
-          <div className="site-exp-hint">
-            {isPt ? 'Interaja com a prévia ao lado' : 'Interactúa con la vista previa'}
-            <ArrowRight size={16} />
+          <div className="site-exp-benefits">
+            <div>
+              <ShieldCheck size={16} />
+              <span>{isPt ? 'Mais credibilidade' : 'Más credibilidad'}</span>
+            </div>
+            <div>
+              <TrendingUp size={16} />
+              <span>{isPt ? 'Mais conversão' : 'Más conversión'}</span>
+            </div>
+            <div>
+              <FaWhatsapp size={14} />
+              <span>{isPt ? 'WhatsApp integrado' : 'WhatsApp integrado'}</span>
+            </div>
           </div>
+
+          <a href="#contato" className="site-exp-button">
+            {isPt ? 'QUERO UM SITE PROFISSIONAL' : 'QUIERO UN SITIO PROFESIONAL'}
+            <ArrowRight size={16} />
+          </a>
         </div>
 
-        <div className="site-panel">
-          <div className="site-tabs">
-            {[
-              { id: 'hero', icon: LayoutTemplate, label: 'Home', locked: false },
-              { id: 'servicos', icon: Star, label: isPt ? 'Serviços' : 'Servicios', locked: !canServices },
-              { id: 'contato', icon: MessageCircle, label: 'WhatsApp', locked: !canContact },
-              { id: 'mobile', icon: Smartphone, label: 'Mobile', locked: !canMobile },
-              { id: 'resultado', icon: CheckCircle, label: isPt ? 'Resultado' : 'Resultado', locked: !canResult },
-            ].map((tab) => {
-              const Icon = tab.icon
+        {/* RIGHT SIDE - MOCKUP */}
+        <div className="site-exp-mockup">
+          {/* Browser Mockup */}
+          <div className="browser-mockup">
+            <div className="browser-bar">
+              <div className="browser-dots">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+              <p>www.seusite.com.br</p>
+            </div>
 
-              return (
-                <button
-                  key={tab.id}
-                  type="button"
-                  className={`${activeTab === tab.id ? 'active' : ''} ${tab.locked ? 'locked' : ''}`}
-                  disabled={tab.locked}
-                  onClick={() => handleTabClick(tab.id as Tab)}
-                >
-                  <Icon size={14} />
-                  {tab.label}
-                  {tab.locked && <Lock size={10} />}
-                </button>
-              )
-            })}
+            <div className="browser-content">
+              <div className="browser-header">
+                <strong>PabloG.Dev</strong>
+                <nav>
+                  <span>{isPt ? 'Início' : 'Inicio'}</span>
+                  <span>{isPt ? 'Serviços' : 'Servicios'}</span>
+                  <span>{isPt ? 'Contato' : 'Contacto'}</span>
+                </nav>
+              </div>
+
+              <div className="browser-hero">
+                <div className="browser-hero-left">
+                  <span className="hero-tag">
+                    <BadgeCheck size={10} />
+                    {isPt ? 'SITE PROFISSIONAL' : 'SITIO PROFESIONAL'}
+                  </span>
+                  <h3>
+                    {isPt
+                      ? 'Transforme visitantes em clientes'
+                      : 'Transforma visitantes en clientes'}
+                  </h3>
+                  <p>
+                    {isPt
+                      ? 'Sites modernos, rápidos e preparados para vender.'
+                      : 'Sitios modernos, rápidos y preparados para vender.'}
+                  </p>
+                  <button className="whatsapp-btn">
+                    <FaWhatsapp size={14} />
+                    WhatsApp
+                  </button>
+                </div>
+                <div className="browser-hero-right">
+                  <div className="globe-icon">
+                    <Globe2 size={28} />
+                  </div>
+                </div>
+              </div>
+
+              <div className="browser-stats">
+                <div>
+                  <strong>24h</strong>
+                  <span>{isPt ? 'Contato rápido' : 'Contacto rápido'}</span>
+                </div>
+                <div>
+                  <strong>100%</strong>
+                  <span>{isPt ? 'Responsivo' : 'Responsivo'}</span>
+                </div>
+                <div>
+                  <strong>+Visual</strong>
+                  <span>{isPt ? 'Premium' : 'Premium'}</span>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <div className="site-screen">
-            {activeTab === 'hero' && (
-              <div className="site-preview">
-                <div className="site-browser-bar">
-                  <span />
-                  <span />
-                  <span />
-                  <small>seudominio.com.br</small>
-                </div>
-
-                <div className="site-hero-preview">
-                  <div>
-                    <div className="site-mini-navbar">
-                      <strong>Clínica Marina</strong>
-                      <nav>
-                        <span>Início</span>
-                        <span>Serviços</span>
-                        <span>Contato</span>
-                      </nav>
-                    </div>
-
-                    <span className="site-mini-label">Clínica Marina</span>
-                    <h3>Atendimento moderno para cuidar melhor de você.</h3>
-                    <p>Consultas, retornos e orientação profissional em um só lugar.</p>
-
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setStep(2)
-                        setActiveTab('servicos')
-                      }}
-                    >
-                      <MousePointerClick size={14} />
-                      Ver serviços
-                    </button>
-                  </div>
-
-                  <div className="site-hero-card">
-                    <MonitorSmartphone size={28} />
-                  </div>
-                </div>
-
-                <div className="site-page-sections">
-                  <div />
-                  <div />
-                  <div />
+          {/* Phone Mockup */}
+          <div className="phone-mockup">
+            <div className="phone-inner">
+              <div className="phone-header">
+                <Smartphone size={14} />
+                <span>Mobile</span>
+              </div>
+              <div className="phone-chat">
+                <div className="chat-message">
+                  {isPt
+                    ? 'Olá, gostaria de um orçamento.'
+                    : 'Hola, quiero un presupuesto.'}
                 </div>
               </div>
-            )}
-
-            {activeTab === 'servicos' && (
-              <div className="site-preview">
-                <div className="site-browser-bar">
-                  <span />
-                  <span />
-                  <span />
-                  <small>Seus serviços</small>
-                </div>
-
-                <div className="site-services-grid">
-                  <div>
-                    <Star size={16} />
-                    <strong>Consulta</strong>
-                    <p>Atendimento personalizado.</p>
-                  </div>
-
-                  <div>
-                    <Star size={16} />
-                    <strong>Retorno</strong>
-                    <p>Acompanhamento simples.</p>
-                  </div>
-
-                  <div>
-                    <Star size={16} />
-                    <strong>Premium</strong>
-                    <p>Experiência completa.</p>
-                  </div>
-                </div>
-
-                <button
-                  type="button"
-                  className="site-next whatsapp"
-                  onClick={() => {
-                    setStep(3)
-                    setActiveTab('contato')
-                  }}
-                >
-                  Ver contato pelo WhatsApp
-                </button>
-              </div>
-            )}
-
-            {activeTab === 'contato' && (
-              <div className="site-preview">
-                <div className="site-browser-bar">
-                  <span />
-                  <span />
-                  <span />
-                  <small>Contato rápido</small>
-                </div>
-
-                <div className="site-contact-preview">
-                  <div className="site-whatsapp-card">
-                    <FaWhatsapp size={28} />
-                    <div>
-                      <strong>Fale pelo WhatsApp</strong>
-                      <p>Cliente tira dúvidas e chama direto pelo botão do site.</p>
-                    </div>
-                  </div>
-
-                  <div className="site-contact-line">
-                    <span>Nome</span>
-                    <strong>Ana Souza</strong>
-                  </div>
-
-                  <div className="site-contact-line">
-                    <span>Interesse</span>
-                    <strong>Consulta</strong>
-                  </div>
-                </div>
-
-                <button
-                  type="button"
-                  className="site-next mobile"
-                  onClick={() => {
-                    setStep(4)
-                    setActiveTab('mobile')
-                  }}
-                >
-                  Ver versão mobile
-                </button>
-              </div>
-            )}
-
-            {activeTab === 'mobile' && (
-              <div className="site-preview mobile-preview-wrap">
-                <div className="site-phone">
-                  <div className="site-phone-top" />
-                  <div className="site-phone-hero">
-                    <span>Clínica Marina</span>
-                    <strong>Atendimento moderno</strong>
-                    <p>Agende ou fale pelo WhatsApp.</p>
-                  </div>
-
-                  <div className="site-phone-card" />
-                  <div className="site-phone-card small" />
-                  <div className="site-phone-button">
-                    WhatsApp
-                  </div>
-                </div>
-
-                <button
-                  type="button"
-                  className="site-next result"
-                  onClick={() => {
-                    setStep(5)
-                    setActiveTab('resultado')
-                  }}
-                >
-                  Ver resultado final
-                </button>
-              </div>
-            )}
-
-            {activeTab === 'resultado' && (
-              <div className="site-preview">
-                <div className="site-result">
-                  <div>
-                    <span>Presença</span>
-                    <strong>Negócio mais profissional</strong>
-                  </div>
-
-                  <div>
-                    <span>Contato</span>
-                    <strong>WhatsApp sempre visível</strong>
-                  </div>
-
-                  <div>
-                    <span>Confiança</span>
-                    <strong>Serviços apresentados com clareza</strong>
-                  </div>
-                </div>
-
-                <a href="#contato" className="site-final-cta">
-                  {isPt ? 'Quero um site assim' : 'Quiero un sitio así'}
-                </a>
-              </div>
-            )}
+            </div>
           </div>
         </div>
       </div>

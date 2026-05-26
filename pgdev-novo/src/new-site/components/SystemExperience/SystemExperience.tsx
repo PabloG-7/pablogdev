@@ -1,14 +1,18 @@
-import { useState } from 'react'
 import {
-  LayoutDashboard,
-  Users,
-  DollarSign,
-  BarChart3,
-  CheckCircle,
   ArrowRight,
-  Lock,
-  TrendingUp,
+  BarChart3,
+  CalendarCheck,
+  CheckCircle,
+  Database,
   FileText,
+  LineChart,
+  Lock,
+  Settings2,
+  ShieldCheck,
+  Sparkles,
+  Users,
+  Wallet,
+  Zap,
 } from 'lucide-react'
 import type { Language } from '../../types'
 import './SystemExperience.css'
@@ -17,316 +21,169 @@ type Props = {
   language: Language
 }
 
-type Tab = 'dashboard' | 'clientes' | 'financeiro' | 'relatorios' | 'resultado'
-
 export default function SystemExperience({ language }: Props) {
   const isPt = language === 'pt'
 
-  const [activeTab, setActiveTab] = useState<Tab>('dashboard')
-  const [tutorialStep, setTutorialStep] = useState(1)
-
-  const canOpenClients = tutorialStep >= 2
-  const canOpenFinance = tutorialStep >= 3
-  const canOpenReports = tutorialStep >= 4
-  const canOpenResult = tutorialStep >= 5
-
-  const handleTabClick = (tab: Tab) => {
-    if (tab === 'clientes' && !canOpenClients) return
-    if (tab === 'financeiro' && !canOpenFinance) return
-    if (tab === 'relatorios' && !canOpenReports) return
-    if (tab === 'resultado' && !canOpenResult) return
-    setActiveTab(tab)
-  }
-
   return (
-    <section className="system-exp" id="sistema">
+    <section className="system-experience" id="sistema">
+      {/* Elementos decorativos minimalistas */}
+      <div className="system-exp__dot-top"></div>
+      <div className="system-exp__dot-bottom"></div>
+      <div className="system-exp__ring"></div>
+      <div className="system-exp__line"></div>
+
       <div className="system-exp-container">
+        {/* LEFT SIDE - COPY */}
         <div className="system-exp-copy">
           <span className="system-exp-label">
-            {isPt ? 'Sistema web' : 'Sistema web'}
+            <Sparkles size={14} />
+            {isPt ? 'SISTEMA SOB MEDIDA' : 'SISTEMA A MEDIDA'}
           </span>
 
           <h2>
             {isPt
-              ? 'Tudo organizado em um só sistema'
-              : 'Todo organizado en un solo sistema'}
-            <span>.</span>
+              ? 'Seu negócio organizado em um painel profissional.'
+              : 'Tu negocio organizado en un panel profesional.'}
           </h2>
 
           <p>
             {isPt
-              ? 'Controle clientes, atendimentos, financeiro e informações importantes do negócio em um painel simples.'
-              : 'Controla clientes, atenciones, finanzas e información importante del negocio en un panel simple.'}
+              ? 'Chega de planilhas confusas, anotações perdidas e processos manuais. Eu desenvolvo sistemas web personalizados para você controlar clientes, agendamentos, financeiro, relatórios e operações em um só lugar.'
+              : 'Basta de hojas de cálculo confusas y procesos manuales. Desarrollo sistemas web personalizados para controlar clientes, agenda, finanzas, reportes y operaciones en un solo lugar.'}
           </p>
 
-          <strong>
-            {isPt
-              ? 'Menos planilhas. Mais controle e clareza.'
-              : 'Menos hojas de cálculo. Más control y claridad.'}
-          </strong>
-
-          <div className="system-exp-hint">
-            {isPt ? 'Interaja com o painel ao lado' : 'Interactúa con el panel al lado'}
-            <ArrowRight size={16} />
+          <div className="system-exp-pills">
+            <div>
+              <Database size={16} />
+              <span>{isPt ? 'Dados centralizados' : 'Datos centralizados'}</span>
+            </div>
+            <div>
+              <Zap size={16} />
+              <span>{isPt ? 'Processos rápidos' : 'Procesos rápidos'}</span>
+            </div>
+            <div>
+              <ShieldCheck size={16} />
+              <span>{isPt ? 'Mais controle' : 'Más control'}</span>
+            </div>
           </div>
+
+          <a href="#contato" className="system-exp-cta">
+            {isPt ? 'QUERO UM SISTEMA PARA MEU NEGÓCIO' : 'QUIERO UN SISTEMA PARA MI NEGOCIO'}
+            <ArrowRight size={16} />
+          </a>
         </div>
 
-        <div className="system-panel">
-          <div className="system-tabs">
-            {[
-              { id: 'dashboard', icon: LayoutDashboard, label: isPt ? 'Painel' : 'Panel', locked: false },
-              { id: 'clientes', icon: Users, label: isPt ? 'Clientes' : 'Clientes', locked: !canOpenClients },
-              { id: 'financeiro', icon: DollarSign, label: isPt ? 'Financeiro' : 'Finanzas', locked: !canOpenFinance },
-              { id: 'relatorios', icon: BarChart3, label: isPt ? 'Relatórios' : 'Reportes', locked: !canOpenReports },
-              { id: 'resultado', icon: CheckCircle, label: isPt ? 'Resultado' : 'Resultado', locked: !canOpenResult },
-            ].map((tab) => {
-              const Icon = tab.icon
-
-              return (
-                <button
-                  key={tab.id}
-                  type="button"
-                  className={`${activeTab === tab.id ? 'active' : ''} ${tab.locked ? 'locked' : ''}`}
-                  onClick={() => handleTabClick(tab.id as Tab)}
-                  disabled={tab.locked}
-                >
-                  <Icon size={14} />
-                  {tab.label}
-                  {tab.locked && <Lock size={10} />}
-                </button>
-              )
-            })}
-          </div>
-
-          <div className="system-layout">
-            <aside className="system-sidebar">
-              <div className="system-sidebar-logo">
-                PG
+        {/* RIGHT SIDE - PANEL MOCKUP */}
+        <div className="system-exp-visual">
+          <div className="system-panel">
+            <div className="system-panel-sidebar">
+              <div className="system-logo-mini">
+                <Settings2 size={18} />
               </div>
+              <span className="active" />
+              <span />
+              <span />
+              <span />
+            </div>
 
-              <nav className="system-sidebar-nav">
-                <div className="active">
-                  <LayoutDashboard size={16} />
-                  <span>Painel</span>
-                </div>
-
+            <div className="system-panel-main">
+              <div className="system-panel-top">
                 <div>
-                  <Users size={16} />
-                  <span>Clientes</span>
+                  <small>{isPt ? 'Sistema de gestão' : 'Sistema de gestión'}</small>
+                  <strong>{isPt ? 'Painel principal' : 'Panel principal'}</strong>
                 </div>
-
-                <div>
-                  <DollarSign size={16} />
-                  <span>Financeiro</span>
-                </div>
-
-                <div>
-                  <BarChart3 size={16} />
-                  <span>Relatórios</span>
-                </div>
-              </nav>
-            </aside>
-
-            <div className="system-screen">
-              <div className="system-topbar">
-                <div className="system-search" />
-                <div className="system-user">
-                  <div />
+                <div className="system-secure">
+                  <Lock size={12} />
+                  {isPt ? 'Seguro' : 'Seguro'}
                 </div>
               </div>
 
-              {activeTab === 'dashboard' && (
-                <div className="system-content">
-                  <div className="system-header-mini">
-                    <span>Painel principal</span>
-                    <small>Hoje</small>
-                  </div>
-
-                  <div className="system-metrics">
-                    <div>
-                      <span>Atendimentos</span>
-                      <strong>24</strong>
-                    </div>
-
-                    <div>
-                      <span>Clientes</span>
-                      <strong>128</strong>
-                    </div>
-
-                    <div>
-                      <span>Receita</span>
-                      <strong>R$ 4.280</strong>
-                    </div>
-                  </div>
-
-                  <div className="system-mini-list">
-                    <div>
-                      <span>09:00</span>
-                      <strong>Ana Souza</strong>
-                      <small>Confirmado</small>
-                    </div>
-
-                    <div>
-                      <span>10:30</span>
-                      <strong>Carlos Lima</strong>
-                      <small>Pendente</small>
-                    </div>
-                  </div>
-
-                  <button
-                    type="button"
-                    className="system-next"
-                    onClick={() => {
-                      setTutorialStep(2)
-                      setActiveTab('clientes')
-                    }}
-                  >
-                    {isPt ? 'Ver clientes organizados' : 'Ver clientes organizados'}
-                  </button>
+              {/* KPIs */}
+              <div className="system-kpis">
+                <div>
+                  <Users size={18} />
+                  <strong>248</strong>
+                  <span>{isPt ? 'clientes' : 'clientes'}</span>
                 </div>
-              )}
-
-              {activeTab === 'clientes' && (
-                <div className="system-content">
-                  <div className="system-header-mini">
-                    <span>{isPt ? 'Clientes cadastrados' : 'Clientes registrados'}</span>
-                    <small>128</small>
-                  </div>
-
-                  <div className="system-clients-list">
-                    {[
-                      ['A', 'Ana Souza', '12 atendimentos'],
-                      ['C', 'Carlos Lima', '8 atendimentos'],
-                      ['F', 'Fernanda Costa', '15 atendimentos'],
-                    ].map((client) => (
-                      <div className="system-client" key={client[1]}>
-                        <div>{client[0]}</div>
-                        <section>
-                          <strong>{client[1]}</strong>
-                          <span>{client[2]}</span>
-                        </section>
-                      </div>
-                    ))}
-                  </div>
-
-                  <button
-                    type="button"
-                    className="system-next finance"
-                    onClick={() => {
-                      setTutorialStep(3)
-                      setActiveTab('financeiro')
-                    }}
-                  >
-                    {isPt ? 'Ver controle financeiro' : 'Ver control financiero'}
-                  </button>
+                <div>
+                  <CalendarCheck size={18} />
+                  <strong>86</strong>
+                  <span>{isPt ? 'agendamentos' : 'reservas'}</span>
                 </div>
-              )}
-
-              {activeTab === 'financeiro' && (
-                <div className="system-content">
-                  <div className="system-header-mini">
-                    <span>{isPt ? 'Resumo financeiro' : 'Resumen financiero'}</span>
-                    <small>Este mês</small>
-                  </div>
-
-                  <div className="system-finance-card">
-                    <span>{isPt ? 'Recebido' : 'Recibido'}</span>
-                    <strong>R$ 12.480</strong>
-                    <small>
-                      <TrendingUp size={13} />
-                      +18% {isPt ? 'comparado ao mês anterior' : 'comparado al mes anterior'}
-                    </small>
-                  </div>
-
-                  <div className="system-transactions">
-                    <div>
-                      <span>Consulta</span>
-                      <strong>+ R$ 120</strong>
-                    </div>
-
-                    <div>
-                      <span>Banho e Tosa</span>
-                      <strong>+ R$ 85</strong>
-                    </div>
-                  </div>
-
-                  <button
-                    type="button"
-                    className="system-next reports"
-                    onClick={() => {
-                      setTutorialStep(4)
-                      setActiveTab('relatorios')
-                    }}
-                  >
-                    {isPt ? 'Ver relatórios' : 'Ver reportes'}
-                  </button>
+                <div>
+                  <Wallet size={18} />
+                  <strong>R$ 18k</strong>
+                  <span>{isPt ? 'receita' : 'ingresos'}</span>
                 </div>
-              )}
+              </div>
 
-              {activeTab === 'relatorios' && (
-                <div className="system-content">
-                  <div className="system-header-mini">
-                    <span>{isPt ? 'Relatórios simples' : 'Reportes simples'}</span>
-                    <small>
-                      <FileText size={12} />
-                    </small>
+              {/* Dashboard Grid */}
+              <div className="system-dashboard-grid">
+                <div className="system-chart-box">
+                  <div className="system-box-title">
+                    <span>{isPt ? 'Crescimento mensal' : 'Crecimiento mensual'}</span>
+                    <LineChart size={14} />
                   </div>
-
-                  <div className="system-chart">
-                    {[45, 70, 55, 88, 64, 92].map((height, index) => (
-                      <div key={index} style={{ height: `${height}%` }} />
-                    ))}
+                  <div className="system-bars">
+                    <i style={{ height: '45%' }} />
+                    <i style={{ height: '58%' }} />
+                    <i style={{ height: '50%' }} />
+                    <i style={{ height: '72%' }} />
+                    <i style={{ height: '64%' }} />
+                    <i style={{ height: '88%' }} />
+                    <i style={{ height: '78%' }} />
+                    <i style={{ height: '96%' }} />
                   </div>
-
-                  <div className="system-report-summary">
-                    <div>
-                      <span>{isPt ? 'Melhor dia' : 'Mejor día'}</span>
-                      <strong>Sexta-feira</strong>
-                    </div>
-
-                    <div>
-                      <span>{isPt ? 'Serviço mais vendido' : 'Servicio más vendido'}</span>
-                      <strong>Consulta</strong>
-                    </div>
-                  </div>
-
-                  <button
-                    type="button"
-                    className="system-next result"
-                    onClick={() => {
-                      setTutorialStep(5)
-                      setActiveTab('resultado')
-                    }}
-                  >
-                    {isPt ? 'Ver resultado final' : 'Ver resultado final'}
-                  </button>
                 </div>
-              )}
 
-              {activeTab === 'resultado' && (
-                <div className="system-content">
-                  <div className="system-result">
+                <div className="system-list-box">
+                  <div className="system-box-title">
+                    <span>{isPt ? 'Atividades recentes' : 'Actividades recientes'}</span>
+                    <FileText size={14} />
+                  </div>
+                  <div className="system-activity">
+                    <CheckCircle size={13} />
                     <div>
-                      <span>{isPt ? 'Controle' : 'Control'}</span>
-                      <strong>{isPt ? 'Tudo em um só lugar' : 'Todo en un solo lugar'}</strong>
-                    </div>
-
-                    <div>
-                      <span>{isPt ? 'Organização' : 'Organización'}</span>
-                      <strong>{isPt ? 'Menos planilhas e bagunça' : 'Menos hojas y desorden'}</strong>
-                    </div>
-
-                    <div>
-                      <span>{isPt ? 'Decisão' : 'Decisión'}</span>
-                      <strong>{isPt ? 'Dados claros para crescer' : 'Datos claros para crecer'}</strong>
+                      <strong>{isPt ? 'Novo cliente cadastrado' : 'Nuevo cliente registrado'}</strong>
+                      <span>{isPt ? 'há 8 minutos' : 'hace 8 minutos'}</span>
                     </div>
                   </div>
-
-                  <a href="#contato" className="system-final-cta">
-                    {isPt ? 'Quero um sistema assim' : 'Quiero un sistema así'}
-                  </a>
+                  <div className="system-activity">
+                    <CheckCircle size={13} />
+                    <div>
+                      <strong>{isPt ? 'Pagamento confirmado' : 'Pago confirmado'}</strong>
+                      <span>{isPt ? 'há 22 minutos' : 'hace 22 minutos'}</span>
+                    </div>
+                  </div>
+                  <div className="system-activity">
+                    <CheckCircle size={13} />
+                    <div>
+                      <strong>{isPt ? 'Relatório atualizado' : 'Reporte actualizado'}</strong>
+                      <span>{isPt ? 'hoje' : 'hoy'}</span>
+                    </div>
+                  </div>
                 </div>
-              )}
+              </div>
+
+              {/* Modules */}
+              <div className="system-modules">
+                <div>
+                  <BarChart3 size={14} />
+                  <span>{isPt ? 'Relatórios' : 'Reportes'}</span>
+                </div>
+                <div>
+                  <Users size={14} />
+                  <span>{isPt ? 'Clientes' : 'Clientes'}</span>
+                </div>
+                <div>
+                  <CalendarCheck size={14} />
+                  <span>{isPt ? 'Agenda' : 'Agenda'}</span>
+                </div>
+                <div>
+                  <Wallet size={14} />
+                  <span>{isPt ? 'Financeiro' : 'Finanzas'}</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
