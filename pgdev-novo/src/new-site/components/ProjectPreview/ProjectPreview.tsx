@@ -1,6 +1,5 @@
 import './ProjectPreview.css'
 import { useCallback, useEffect, useMemo, useState } from 'react'
-import { createPortal } from 'react-dom'
 import {
   ArrowRight,
   BarChart3,
@@ -761,330 +760,329 @@ function ProjectPreview({ language }: Props) {
         onClick={() => {
           setOpen(true)
 
+          // Versão mais robusta para Safari
           setTimeout(() => {
             const content = document.querySelector('.preview__content')
             if (content) content.scrollTop = 0
-          }, 50)
+          }, 0)
         }}
       >
         <Eye size={18} />
         {isPt ? 'Ver como pode ficar' : 'Ver cómo puede quedar'}
       </button>
 
-      {open &&
-        createPortal(
-          <div className="preview" role="dialog" aria-modal="true" aria-labelledby="project-preview-title">
+      {open && (
+        <div className="preview" role="dialog" aria-modal="true" aria-labelledby="project-preview-title">
+          <button
+            type="button"
+            className="preview__overlay"
+            onClick={() => setOpen(false)}
+            aria-label={isPt ? 'Fechar simulador' : 'Cerrar simulador'}
+          />
+
+         <div className="preview__modal" onClick={(e) => e.stopPropagation()}>
+            <div className="preview__logo-top">
+              <img src={logoPng} alt="Logo" />
+              <span>{isPt ? 'Simulador de Projetos' : 'Simulador de Proyectos'}</span>
+            </div>
+
             <button
               type="button"
-              className="preview__overlay"
+              className="preview__close"
               onClick={() => setOpen(false)}
-              aria-label={isPt ? 'Fechar simulador' : 'Cerrar simulador'}
-            />
+              aria-label={isPt ? 'Fechar' : 'Cerrar'}
+            >
+              <X size={16} />
+            </button>
 
-            <div className="preview__modal" onClick={(e) => e.stopPropagation()}>
-              <div className="preview__logo-top">
-                <img src={logoPng} alt="Logo" />
-                <span>{isPt ? 'Simulador de Projetos' : 'Simulador de Proyectos'}</span>
+            <div className="preview__content">
+              <div className="preview__header">
+                <span className="preview__badge">
+                  {isPt ? 'Preview ao vivo' : 'Preview en vivo'}
+                </span>
+                <h2 id="project-preview-title" className="preview__title">
+                  {isPt ? 'Monte uma prévia do seu projeto em segundos' : 'Monta una previa de tu proyecto en segundos'}
+                </h2>
+                <p className="preview__text">
+                  {isPt
+                    ? 'Personalize nome, segmento, estilo e cores para visualizar uma direção inicial antes de pedir o orçamento.'
+                    : 'Personaliza nombre, segmento, estilo y colores para visualizar una dirección inicial antes de pedir presupuesto.'}
+                </p>
               </div>
 
-              <button
-                type="button"
-                className="preview__close"
-                onClick={() => setOpen(false)}
-                aria-label={isPt ? 'Fechar' : 'Cerrar'}
-              >
-                <X size={16} />
-              </button>
+              <div className="preview__grid">
+                <aside className="preview__panel" aria-label={isPt ? 'Controles do preview' : 'Controles del preview'}>
+                  <div className="preview__field">
+                    <label htmlFor="preview-business-name">{isPt ? 'Nome do negócio' : 'Nombre del negocio'}</label>
+                    <input
+                      id="preview-business-name"
+                      type="text"
+                      value={businessName}
+                      onChange={(e) => setBusinessName(e.target.value)}
+                      placeholder={isPt ? 'Ex: Clínica Vida' : 'Ej: Clínica Vida'}
+                      maxLength={34}
+                    />
+                  </div>
 
-              <div className="preview__content">
-                <div className="preview__header">
-                  <span className="preview__badge">
-                    {isPt ? 'Preview ao vivo' : 'Preview en vivo'}
-                  </span>
-                  <h2 id="project-preview-title" className="preview__title">
-                    {isPt ? 'Monte uma prévia do seu projeto em segundos' : 'Monta una previa de tu proyecto en segundos'}
-                  </h2>
-                  <p className="preview__text">
-                    {isPt
-                      ? 'Personalize nome, segmento, estilo e cores para visualizar uma direção inicial antes de pedir o orçamento.'
-                      : 'Personaliza nombre, segmento, estilo y colores para visualizar una dirección inicial antes de pedir presupuesto.'}
-                  </p>
-                </div>
-
-                <div className="preview__grid">
-                  <aside className="preview__panel" aria-label={isPt ? 'Controles do preview' : 'Controles del preview'}>
-                    <div className="preview__field">
-                      <label htmlFor="preview-business-name">{isPt ? 'Nome do negócio' : 'Nombre del negocio'}</label>
-                      <input
-                        id="preview-business-name"
-                        type="text"
-                        value={businessName}
-                        onChange={(e) => setBusinessName(e.target.value)}
-                        placeholder={isPt ? 'Ex: Clínica Vida' : 'Ej: Clínica Vida'}
-                        maxLength={34}
-                      />
+                  <div className="preview__group">
+                    <span>
+                      <LayoutTemplate size={13} />
+                      {isPt ? 'Tipo de projeto' : 'Tipo de proyecto'}
+                    </span>
+                    <div className="preview__chips" role="group">
+                      <button
+                        type="button"
+                        className={projectType === 'website' ? 'is-active' : ''}
+                        onClick={() => setProjectType('website')}
+                      >
+                        <Globe2 size={13} />
+                        {isPt ? 'Site' : 'Sitio'}
+                      </button>
+                      <button
+                        type="button"
+                        className={projectType === 'landing' ? 'is-active' : ''}
+                        onClick={() => setProjectType('landing')}
+                      >
+                        <MousePointerClick size={13} />
+                        Landing
+                      </button>
+                      <button
+                        type="button"
+                        className={projectType === 'system' ? 'is-active' : ''}
+                        onClick={() => setProjectType('system')}
+                      >
+                        <BarChart3 size={13} />
+                        Sistema
+                      </button>
                     </div>
+                  </div>
 
-                    <div className="preview__group">
-                      <span>
+                  <div className="preview__group">
+                    <span>
+                      <Layers size={13} />
+                      {isPt ? 'Layout visual' : 'Diseño visual'}
+                    </span>
+                    <div className="preview__chips" role="group">
+                      <button
+                        type="button"
+                        className={layoutVariant === 'variant1' ? 'is-active' : ''}
+                        onClick={() => setLayoutVariant('variant1')}
+                      >
                         <LayoutTemplate size={13} />
-                        {isPt ? 'Tipo de projeto' : 'Tipo de proyecto'}
-                      </span>
-                      <div className="preview__chips" role="group">
-                        <button
-                          type="button"
-                          className={projectType === 'website' ? 'is-active' : ''}
-                          onClick={() => setProjectType('website')}
-                        >
-                          <Globe2 size={13} />
-                          {isPt ? 'Site' : 'Sitio'}
-                        </button>
-                        <button
-                          type="button"
-                          className={projectType === 'landing' ? 'is-active' : ''}
-                          onClick={() => setProjectType('landing')}
-                        >
-                          <MousePointerClick size={13} />
-                          Landing
-                        </button>
-                        <button
-                          type="button"
-                          className={projectType === 'system' ? 'is-active' : ''}
-                          onClick={() => setProjectType('system')}
-                        >
-                          <BarChart3 size={13} />
-                          Sistema
-                        </button>
-                      </div>
+                        Layout 1
+                      </button>
+                      <button
+                        type="button"
+                        className={layoutVariant === 'variant2' ? 'is-active' : ''}
+                        onClick={() => setLayoutVariant('variant2')}
+                      >
+                        <Grid3x3 size={13} />
+                        Layout 2
+                      </button>
+                      <button
+                        type="button"
+                        className={layoutVariant === 'variant3' ? 'is-active' : ''}
+                        onClick={() => setLayoutVariant('variant3')}
+                      >
+                        <LayoutGrid size={13} />
+                        Layout 3
+                      </button>
                     </div>
+                  </div>
 
-                    <div className="preview__group">
-                      <span>
-                        <Layers size={13} />
-                        {isPt ? 'Layout visual' : 'Diseño visual'}
-                      </span>
-                      <div className="preview__chips" role="group">
+                  <div className="preview__group">
+                    <span>
+                      <BriefcaseBusiness size={13} />
+                      {isPt ? 'Segmento' : 'Segmento'}
+                    </span>
+                    <div className="preview__chips preview__chips--compact" role="group">
+                      {(['service', 'health', 'food', 'store'] as Industry[]).map((item) => (
                         <button
                           type="button"
-                          className={layoutVariant === 'variant1' ? 'is-active' : ''}
-                          onClick={() => setLayoutVariant('variant1')}
+                          key={item}
+                          className={industry === item ? 'is-active' : ''}
+                          onClick={() => setIndustry(item)}
                         >
-                          <LayoutTemplate size={13} />
-                          Layout 1
+                          {{
+                            service: isPt ? 'Serviços' : 'Servicios',
+                            health: isPt ? 'Saúde' : 'Salud',
+                            food: isPt ? 'Food' : 'Food',
+                            store: isPt ? 'Loja' : 'Tienda',
+                          }[item]}
                         </button>
-                        <button
-                          type="button"
-                          className={layoutVariant === 'variant2' ? 'is-active' : ''}
-                          onClick={() => setLayoutVariant('variant2')}
-                        >
-                          <Grid3x3 size={13} />
-                          Layout 2
-                        </button>
-                        <button
-                          type="button"
-                          className={layoutVariant === 'variant3' ? 'is-active' : ''}
-                          onClick={() => setLayoutVariant('variant3')}
-                        >
-                          <LayoutGrid size={13} />
-                          Layout 3
-                        </button>
-                      </div>
-                    </div>
-
-                    <div className="preview__group">
-                      <span>
-                        <BriefcaseBusiness size={13} />
-                        {isPt ? 'Segmento' : 'Segmento'}
-                      </span>
-                      <div className="preview__chips preview__chips--compact" role="group">
-                        {(['service', 'health', 'food', 'store'] as Industry[]).map((item) => (
-                          <button
-                            type="button"
-                            key={item}
-                            className={industry === item ? 'is-active' : ''}
-                            onClick={() => setIndustry(item)}
-                          >
-                            {{
-                              service: isPt ? 'Serviços' : 'Servicios',
-                              health: isPt ? 'Saúde' : 'Salud',
-                              food: isPt ? 'Food' : 'Food',
-                              store: isPt ? 'Loja' : 'Tienda',
-                            }[item]}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div className="preview__group">
-                      <span>
-                        <MonitorSmartphone size={13} />
-                        {isPt ? 'Visualização' : 'Visualización'}
-                      </span>
-                      <div className="preview__segmented" role="group">
-                        <button
-                          type="button"
-                          className={deviceMode === 'desktop' ? 'is-active' : ''}
-                          onClick={() => setDeviceMode('desktop')}
-                          aria-label="Desktop"
-                        >
-                          <MonitorSmartphone size={15} />
-                        </button>
-                        <button
-                          type="button"
-                          className={deviceMode === 'mobile' ? 'is-active' : ''}
-                          onClick={() => setDeviceMode('mobile')}
-                          aria-label="Mobile"
-                        >
-                          <Smartphone size={15} />
-                        </button>
-                      </div>
-                    </div>
-
-                    <div className="preview__group">
-                      <span>
-                        <Sparkles size={13} />
-                        {isPt ? 'Estilo' : 'Estilo'}
-                      </span>
-                      <div className="preview__chips preview__chips--compact" role="group">
-                        {(['premium', 'clean', 'bold'] as StylePreset[]).map((item) => (
-                          <button
-                            type="button"
-                            key={item}
-                            className={stylePreset === item ? 'is-active' : ''}
-                            onClick={() => setStylePreset(item)}
-                          >
-                            {{
-                              premium: 'Premium',
-                              clean: 'Clean',
-                              bold: isPt ? 'Impacto' : 'Impacto',
-                            }[item]}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div className="preview__group">
-                      <span>
-                        <Palette size={13} />
-                        {isPt ? 'Cores rápidas' : 'Colores rápidos'}
-                      </span>
-                      <div className="preview__swatches">
-                        {colorPresets.map((preset) => (
-                          <button
-                            type="button"
-                            key={preset.id}
-                            onClick={() => applyPreset(preset)}
-                            className="preview__swatch"
-                            aria-label={`${isPt ? 'Aplicar paleta' : 'Aplicar paleta'} ${preset.label}`}
-                          >
-                            <span style={{ background: preset.primary }} />
-                            <span style={{ background: preset.secondary }} />
-                            <span style={{ background: preset.accent }} />
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div className="preview__colors">
-                      {[
-                        {
-                          label: isPt ? 'Principal' : 'Principal',
-                          value: primaryColor,
-                          setter: setPrimaryColor,
-                        },
-                        {
-                          label: isPt ? 'Base' : 'Base',
-                          value: secondaryColor,
-                          setter: setSecondaryColor,
-                        },
-                        {
-                          label: isPt ? 'Destaque' : 'Acento',
-                          value: accentColor,
-                          setter: setAccentColor,
-                        },
-                      ].map((color) => (
-                        <div className="preview__color-field" key={color.label}>
-                          <label>{color.label}</label>
-                          <div className="preview__color-row">
-                            <input
-                              type="color"
-                              value={isHexColor(color.value) ? color.value : '#000000'}
-                              onChange={(e) => color.setter(e.target.value)}
-                            />
-                            <input
-                              type="text"
-                              value={color.value}
-                              onChange={(e) => updateColor(color.setter, e.target.value)}
-                              maxLength={7}
-                              spellCheck={false}
-                            />
-                          </div>
-                        </div>
                       ))}
                     </div>
+                  </div>
 
-                    <button type="button" className="preview__reset" onClick={resetPreview}>
-                      <RotateCcw size={14} />
-                      {isPt ? 'Resetar preview' : 'Reiniciar preview'}
-                    </button>
-                  </aside>
-
-                  <section
-                    className={`preview__stage preview__stage--${deviceMode}`}
-                    style={deviceStyle}
-                    aria-label={isPt ? 'Prévia do projeto' : 'Previa del proyecto'}
-                  >
-                    <div className={`preview__device preview__device--${stylePreset}`}>
-                      <div className="preview__topbar">
-                        <span />
-                        <span />
-                        <span />
-                        <strong>{name}</strong>
-                      </div>
-
-                      {projectType === 'system' && renderSystemPreview()}
-                      {projectType === 'website' && renderWebsitePreview()}
-                      {projectType === 'landing' && renderLandingPreview()}
+                  <div className="preview__group">
+                    <span>
+                      <MonitorSmartphone size={13} />
+                      {isPt ? 'Visualização' : 'Visualización'}
+                    </span>
+                    <div className="preview__segmented" role="group">
+                      <button
+                        type="button"
+                        className={deviceMode === 'desktop' ? 'is-active' : ''}
+                        onClick={() => setDeviceMode('desktop')}
+                        aria-label="Desktop"
+                      >
+                        <MonitorSmartphone size={15} />
+                      </button>
+                      <button
+                        type="button"
+                        className={deviceMode === 'mobile' ? 'is-active' : ''}
+                        onClick={() => setDeviceMode('mobile')}
+                        aria-label="Mobile"
+                      >
+                        <Smartphone size={15} />
+                      </button>
                     </div>
+                  </div>
 
-                    <div className="preview__insights">
-                      <div>
-                        <ShoppingBag size={15} />
-                        <span>{isPt ? 'Pensado para vender' : 'Pensado para vender'}</span>
-                      </div>
-                      <div>
-                        <CalendarDays size={15} />
-                        <span>{isPt ? 'Pronto para agendar' : 'Listo para agendar'}</span>
-                      </div>
-                      <div>
-                        <CheckCircle size={15} />
-                        <span>{isPt ? 'Responsivo' : 'Responsivo'}</span>
-                      </div>
+                  <div className="preview__group">
+                    <span>
+                      <Sparkles size={13} />
+                      {isPt ? 'Estilo' : 'Estilo'}
+                    </span>
+                    <div className="preview__chips preview__chips--compact" role="group">
+                      {(['premium', 'clean', 'bold'] as StylePreset[]).map((item) => (
+                        <button
+                          type="button"
+                          key={item}
+                          className={stylePreset === item ? 'is-active' : ''}
+                          onClick={() => setStylePreset(item)}
+                        >
+                          {{
+                            premium: 'Premium',
+                            clean: 'Clean',
+                            bold: isPt ? 'Impacto' : 'Impacto',
+                          }[item]}
+                        </button>
+                      ))}
                     </div>
-                  </section>
-                </div>
-              </div>
+                  </div>
 
-              <div className="preview__footer">
-                <p>
-                  {isPt
-                    ? 'Essa é uma simulação visual. O projeto final é desenhado sob medida para o seu negócio.'
-                    : 'Esta es una simulación visual. El proyecto final se diseña a medida para tu negocio.'}
-                </p>
-                <a
-                  href={`https://wa.me/5511961111894?text=${encodeURIComponent(whatsappMessage)}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="preview__cta"
+                  <div className="preview__group">
+                    <span>
+                      <Palette size={13} />
+                      {isPt ? 'Cores rápidas' : 'Colores rápidos'}
+                    </span>
+                    <div className="preview__swatches">
+                      {colorPresets.map((preset) => (
+                        <button
+                          type="button"
+                          key={preset.id}
+                          onClick={() => applyPreset(preset)}
+                          className="preview__swatch"
+                          aria-label={`${isPt ? 'Aplicar paleta' : 'Aplicar paleta'} ${preset.label}`}
+                        >
+                          <span style={{ background: preset.primary }} />
+                          <span style={{ background: preset.secondary }} />
+                          <span style={{ background: preset.accent }} />
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="preview__colors">
+                    {[
+                      {
+                        label: isPt ? 'Principal' : 'Principal',
+                        value: primaryColor,
+                        setter: setPrimaryColor,
+                      },
+                      {
+                        label: isPt ? 'Base' : 'Base',
+                        value: secondaryColor,
+                        setter: setSecondaryColor,
+                      },
+                      {
+                        label: isPt ? 'Destaque' : 'Acento',
+                        value: accentColor,
+                        setter: setAccentColor,
+                      },
+                    ].map((color) => (
+                      <div className="preview__color-field" key={color.label}>
+                        <label>{color.label}</label>
+                        <div className="preview__color-row">
+                          <input
+                            type="color"
+                            value={isHexColor(color.value) ? color.value : '#000000'}
+                            onChange={(e) => color.setter(e.target.value)}
+                          />
+                          <input
+                            type="text"
+                            value={color.value}
+                            onChange={(e) => updateColor(color.setter, e.target.value)}
+                            maxLength={7}
+                            spellCheck={false}
+                          />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  <button type="button" className="preview__reset" onClick={resetPreview}>
+                    <RotateCcw size={14} />
+                    {isPt ? 'Resetar preview' : 'Reiniciar preview'}
+                  </button>
+                </aside>
+
+                <section
+                  className={`preview__stage preview__stage--${deviceMode}`}
+                  style={deviceStyle}
+                  aria-label={isPt ? 'Prévia do projeto' : 'Previa del proyecto'}
                 >
-                  {isPt ? 'Quero um preview assim' : 'Quiero una previa así'}
-                  <ArrowRight size={14} />
-                </a>
+                  <div className={`preview__device preview__device--${stylePreset}`}>
+                    <div className="preview__topbar">
+                      <span />
+                      <span />
+                      <span />
+                      <strong>{name}</strong>
+                    </div>
+
+                    {projectType === 'system' && renderSystemPreview()}
+                    {projectType === 'website' && renderWebsitePreview()}
+                    {projectType === 'landing' && renderLandingPreview()}
+                  </div>
+
+                  <div className="preview__insights">
+                    <div>
+                      <ShoppingBag size={15} />
+                      <span>{isPt ? 'Pensado para vender' : 'Pensado para vender'}</span>
+                    </div>
+                    <div>
+                      <CalendarDays size={15} />
+                      <span>{isPt ? 'Pronto para agendar' : 'Listo para agendar'}</span>
+                    </div>
+                    <div>
+                      <CheckCircle size={15} />
+                      <span>{isPt ? 'Responsivo' : 'Responsivo'}</span>
+                    </div>
+                  </div>
+                </section>
               </div>
             </div>
-          </div>,
-          document.body
-        )}
+
+            <div className="preview__footer">
+              <p>
+                {isPt
+                  ? 'Essa é uma simulação visual. O projeto final é desenhado sob medida para o seu negócio.'
+                  : 'Esta es una simulación visual. El proyecto final se diseña a medida para tu negocio.'}
+              </p>
+              <a
+                href={`https://wa.me/5511961111894?text=${encodeURIComponent(whatsappMessage)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="preview__cta"
+              >
+                {isPt ? 'Quero um preview assim' : 'Quiero una previa así'}
+                <ArrowRight size={14} />
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   )
 }
