@@ -5,11 +5,8 @@ import {
   CalendarDays,
   CheckCircle,
   Clock,
-  MessageCircle,
-  ShieldCheck,
   Sparkles,
-  Users,
-  Zap,
+  Users
 } from 'lucide-react'
 import { FaWhatsapp } from 'react-icons/fa'
 import type { Language } from '../../types'

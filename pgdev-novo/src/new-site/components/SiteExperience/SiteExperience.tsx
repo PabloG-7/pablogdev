@@ -1,4 +1,4 @@
-import { ArrowRight, BadgeCheck, Globe2, ShieldCheck, Smartphone, Sparkles, TrendingUp, Zap } from 'lucide-react'
+import { ArrowRight, BadgeCheck, Globe2, ShieldCheck, Smartphone, Sparkles, TrendingUp } from 'lucide-react'
 import { FaWhatsapp } from 'react-icons/fa'
 import type { Language } from '../../types'
 import './SiteExperience.css'
