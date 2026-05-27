@@ -1,6 +1,6 @@
 import './ProjectGuide.css'
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { motion } from 'framer-motion'
+
 import {
   ArrowLeft,
   ArrowRight,
@@ -23,6 +23,8 @@ import type { Language } from '../../types'
 
 type ProjectGuideProps = {
   language: Language
+  open: boolean
+  onClose: () => void
 }
 
 type BusinessType =
@@ -62,11 +64,10 @@ type MultiOption = {
   label: string
 }
 
-function ProjectGuide({ language }: ProjectGuideProps) {
+function ProjectGuide({ language, open, onClose }: ProjectGuideProps) {
   const isPt = language === 'pt'
   const whatsappNumber = '5511961111894'
 
-  const [open, setOpen] = useState(false)
   const [step, setStep] = useState<Step>(1)
 
   const [businessType, setBusinessType] = useState<BusinessType>('')
@@ -79,7 +80,6 @@ function ProjectGuide({ language }: ProjectGuideProps) {
   const [projectIdea, setProjectIdea] = useState('')
 
   const closeButtonRef = useRef<HTMLButtonElement>(null)
-  const floatButtonRef = useRef<HTMLButtonElement>(null)
 
   const businessOptions = useMemo<Array<Option<BusinessType>>>(() => [
     {
@@ -165,7 +165,6 @@ function ProjectGuide({ language }: ProjectGuideProps) {
     },
   ], [isPt])
 
-  // Problemas adaptados por necessidade
   const problemOptions = useMemo<MultiOption[]>(() => {
     if (mainNeed === 'website') {
       return [
@@ -207,7 +206,6 @@ function ProjectGuide({ language }: ProjectGuideProps) {
       ]
     }
 
-    // notSure ou vazio
     return [
       { key: 'notSureProblem', label: isPt ? 'Não sei exatamente qual é o problema' : 'No sé exactamente cuál es el problema' },
       { key: 'needHelp', label: isPt ? 'Preciso de ajuda para identificar o ideal' : 'Necesito ayuda para identificar lo ideal' },
@@ -215,7 +213,6 @@ function ProjectGuide({ language }: ProjectGuideProps) {
     ]
   }, [isPt, mainNeed])
 
-  // Recursos adaptados por necessidade (SEM base genérico)
   const featureOptions = useMemo<MultiOption[]>(() => {
     if (mainNeed === 'website') {
       return [
@@ -261,7 +258,6 @@ function ProjectGuide({ language }: ProjectGuideProps) {
       ]
     }
 
-    // notSure
     return [
       { key: 'diagnosis', label: isPt ? 'Diagnóstico completo do meu negócio' : 'Diagnóstico completo de mi negocio' },
       { key: 'plan', label: isPt ? 'Plano dividido por prioridades' : 'Plan dividido por prioridades' },
@@ -327,11 +323,9 @@ function ProjectGuide({ language }: ProjectGuideProps) {
 
   const progress = `${Math.round((step / 5) * 100)}%`
 
-  // Recomendação priorizando mainNeed
   const recommendedPlan = useMemo(() => {
     const items: string[] = []
 
-    // Prioridade 1: baseado na necessidade principal
     if (mainNeed === 'website') {
       items.push(isPt ? 'Site profissional com visual premium' : 'Sitio profesional con visual premium')
       items.push(isPt ? 'SEO para aparecer melhor no Google' : 'SEO para aparecer mejor en Google')
@@ -362,7 +356,6 @@ function ProjectGuide({ language }: ProjectGuideProps) {
       items.push(isPt ? 'Recomendação do melhor caminho digital' : 'Recomendación del mejor camino digital')
     }
 
-    // Prioridade 2: extras baseados em problemas/recursos marcados
     const has = (key: string) => problems.includes(key) || features.includes(key)
 
     if (mainNeed !== 'website' && (has('noWebsite') || has('lowTrust') || has('badImage'))) {
@@ -384,7 +377,6 @@ function ProjectGuide({ language }: ProjectGuideProps) {
     return Array.from(new Set(items))
   }, [features, isPt, mainNeed, problems])
 
-  // Prioridade mais específica
   const priorityText = useMemo(() => {
     if (mainNeed === 'website') {
       return isPt
@@ -451,9 +443,8 @@ function ProjectGuide({ language }: ProjectGuideProps) {
   }
 
   function closeGuide() {
-    setOpen(false)
-    resetGuide()
-    setTimeout(() => floatButtonRef.current?.focus(), 100)
+    onClose()
+    setTimeout(() => resetGuide(), 300)
   }
 
   function goNext() {
@@ -559,7 +550,6 @@ function ProjectGuide({ language }: ProjectGuideProps) {
     closeGuide()
   }
 
-  // Pré-carregar a imagem do assistente
   useEffect(() => {
     const img = new Image()
     img.src = '/dog-assistant.webp'
@@ -573,7 +563,6 @@ function ProjectGuide({ language }: ProjectGuideProps) {
       return
     }
 
-    // Bloqueia scroll do fundo
     const scrollY = window.scrollY
     document.body.style.overflow = 'hidden'
     document.body.style.position = 'fixed'
@@ -598,398 +587,341 @@ function ProjectGuide({ language }: ProjectGuideProps) {
     }
   }, [open])
 
+  if (!open) return null
+
   return (
-    <>
-      {!open && (
-        <motion.button
-          ref={floatButtonRef}
+    <div
+      className="project-guide"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="project-guide-title"
+    >
+      <button
+        type="button"
+        className="project-guide__overlay"
+        onClick={closeGuide}
+        aria-label={isPt ? 'Fechar assistente' : 'Cerrar asistente'}
+      />
+
+      <div className="project-guide__modal project-guide__modal--smart">
+        <button
+          ref={closeButtonRef}
           type="button"
-          className="project-guide-float"
-          onClick={() => setOpen(true)}
-          aria-label={isPt ? 'Abrir diagnóstico inteligente' : 'Abrir diagnóstico inteligente'}
-          initial={{ opacity: 0, scale: 0.8, y: 20 }}
-          animate={{
-            opacity: 1,
-            scale: [1, 1.03, 1],
-            y: [0, -4, 0],
-          }}
-          transition={{
-            opacity: { duration: 0.4 },
-            scale: {
-              duration: 4,
-              repeat: Infinity,
-              ease: 'easeInOut',
-            },
-            y: {
-              duration: 4,
-              repeat: Infinity,
-              ease: 'easeInOut',
-            },
-          }}
-          whileHover={{
-            scale: 1.08,
-            y: -6,
-          }}
-          whileTap={{
-            scale: 0.96,
-          }}
+          className="project-guide__close"
+          onClick={closeGuide}
+          aria-label={isPt ? 'Fechar assistente' : 'Cerrar asistente'}
         >
-          <motion.img
-            src="/dog-assistant.webp"
-            alt={isPt ? 'Assistente PabloG' : 'Asistente PabloG'}
-            className="project-guide__float-image"
-            width="70"
-            height="70"
-            loading="eager"
-            fetchPriority="high"
-            decoding="async"
-            animate={{
-              rotate: [0, -2, 2, 0],
-            }}
-            transition={{
-              duration: 5,
-              repeat: Infinity,
-              ease: 'easeInOut',
-            }}
-          />
-        </motion.button>
-      )}
+          <X size={18} />
+        </button>
 
-      {open && (
-        <div
-          className="project-guide"
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby="project-guide-title"
-        >
-          <button
-            type="button"
-            className="project-guide__overlay"
-            onClick={closeGuide}
-            aria-label={isPt ? 'Fechar assistente' : 'Cerrar asistente'}
-          />
+        <div className="project-guide__header">
+          <div className="project-guide__assistant-icon">
+            <img
+              src="/dog-assistant.webp"
+              alt={isPt ? 'Assistente PabloG' : 'Asistente PabloG'}
+              className="project-guide__assistant-image"
+              width="44"
+              height="44"
+              loading="eager"
+              fetchPriority="high"
+              decoding="async"
+            />
+          </div>
 
-          <div className="project-guide__modal project-guide__modal--smart">
-            <button
-              ref={closeButtonRef}
-              type="button"
-              className="project-guide__close"
-              onClick={closeGuide}
-              aria-label={isPt ? 'Fechar assistente' : 'Cerrar asistente'}
-            >
-              <X size={18} />
-            </button>
+          <div>
+            <span className="project-guide__badge">
+              {isPt ? 'PabloG Assist' : 'PabloG Assist'}
+            </span>
 
-            <div className="project-guide__header">
-              <div className="project-guide__assistant-icon">
-                <img
-                  src="/dog-assistant.webp"
-                  alt={isPt ? 'Assistente PabloG' : 'Asistente PabloG'}
-                  className="project-guide__assistant-image"
-                  width="44"
-                  height="44"
-                  loading="eager"
-                  fetchPriority="high"
-                  decoding="async"
-                />
-              </div>
+            <h2 id="project-guide-title" className="project-guide__title">
+              {isPt
+                ? 'Diagnóstico inteligente do seu projeto'
+                : 'Diagnóstico inteligente de tu proyecto'}
+            </h2>
+          </div>
+        </div>
 
-              <div>
-                <span className="project-guide__badge">
-                  {isPt ? 'PabloG Assist' : 'PabloG Assist'}
-                </span>
+        <div className="project-guide__progress" role="progressbar" aria-valuenow={step} aria-valuemin={1} aria-valuemax={5} aria-label={isPt ? `Etapa ${step} de 5` : `Paso ${step} de 5`}>
+          <span style={{ width: progress }} />
+        </div>
 
-                <h2 id="project-guide-title" className="project-guide__title">
-                  {isPt
-                    ? 'Diagnóstico inteligente do seu projeto'
-                    : 'Diagnóstico inteligente de tu proyecto'}
-                </h2>
-              </div>
+        <p className="project-guide__helper">
+          {isPt
+            ? 'Responda algumas perguntas e receba uma recomendação personalizada para site, agendamento ou sistema.'
+            : 'Responde algunas preguntas y recibe una recomendación personalizada para sitio, reservas o sistemas.'}
+        </p>
+
+        {step === 1 && (
+          <div className="project-guide__step">
+            <h3 className="project-guide__question">
+              {isPt ? 'Qual é o tipo do seu negócio?' : '¿Cuál es el tipo de tu negocio?'}
+            </h3>
+
+            <div className="project-guide__options project-guide__options--grid">
+              {businessOptions.map((item) => {
+                const Icon = item.icon
+
+                return (
+                  <button
+                    key={item.key}
+                    type="button"
+                    className={`project-guide__option ${businessType === item.key ? 'is-selected' : ''}`}
+                    onClick={() => setBusinessType(item.key)}
+                  >
+                    <Icon size={20} />
+                    <span>
+                      <strong>{item.title}</strong>
+                      <small>{item.description}</small>
+                    </span>
+                  </button>
+                )
+              })}
             </div>
+          </div>
+        )}
 
-            <div className="project-guide__progress" role="progressbar" aria-valuenow={step} aria-valuemin={1} aria-valuemax={5} aria-label={isPt ? `Etapa ${step} de 5` : `Paso ${step} de 5`}>
-              <span style={{ width: progress }} />
+        {step === 2 && (
+          <div className="project-guide__step">
+            <h3 className="project-guide__question">
+              {isPt ? 'O que você mais precisa agora?' : '¿Qué necesitas más ahora?'}
+            </h3>
+
+            <div className="project-guide__options">
+              {needOptions.map((item) => {
+                const Icon = item.icon
+
+                return (
+                  <button
+                    key={item.key}
+                    type="button"
+                    className={`project-guide__option ${mainNeed === item.key ? 'is-selected' : ''}`}
+                    onClick={() => {
+                      setMainNeed(item.key)
+                      setProblems([])
+                      setFeatures([])
+                    }}
+                  >
+                    <Icon size={20} />
+                    <span>
+                      <strong>{item.title}</strong>
+                      <small>{item.description}</small>
+                    </span>
+                  </button>
+                )
+              })}
             </div>
+          </div>
+        )}
+
+        {step === 3 && (
+          <div className="project-guide__step">
+            <h3 className="project-guide__question">
+              {isPt ? 'Quais problemas você quer resolver?' : '¿Qué problemas quieres resolver?'}
+            </h3>
+
+            <p className="project-guide__helper">
+              {isPt ? 'Pode escolher mais de uma opção.' : 'Puedes elegir más de una opción.'}
+            </p>
+
+            <div className="project-guide__chips" role="group" aria-label={isPt ? 'Lista de problemas' : 'Lista de problemas'}>
+              {problemOptions.map((item) => {
+                const isSelected = problems.includes(item.key)
+
+                return (
+                  <button
+                    key={item.key}
+                    type="button"
+                    role="checkbox"
+                    aria-checked={isSelected}
+                    className={isSelected ? 'is-selected' : ''}
+                    onClick={() => toggleList(item.key, setProblems)}
+                  >
+                    {isSelected && <CheckCircle2 size={14} />}
+                    {item.label}
+                  </button>
+                )
+              })}
+            </div>
+          </div>
+        )}
+
+        {step === 4 && (
+          <div className="project-guide__step">
+            <h3 className="project-guide__question">
+              {isPt ? 'Quais recursos seriam importantes?' : '¿Qué recursos serían importantes?'}
+            </h3>
 
             <p className="project-guide__helper">
               {isPt
-                ? 'Responda algumas perguntas e receba uma recomendação personalizada para site, agendamento ou sistema.'
-                : 'Responde algunas preguntas y recibe una recomendación personalizada para sitio, reservas o sistemas.'}
+                ? 'A assistente adapta as opções conforme sua necessidade.'
+                : 'La asistente adapta las opciones según tu necesidad.'}
             </p>
 
-            {step === 1 && (
-              <div className="project-guide__step">
-                <h3 className="project-guide__question">
-                  {isPt ? 'Qual é o tipo do seu negócio?' : '¿Cuál es el tipo de tu negocio?'}
-                </h3>
+            <div className="project-guide__chips" role="group" aria-label={isPt ? 'Lista de recursos' : 'Lista de recursos'}>
+              {featureOptions.map((item) => {
+                const isSelected = features.includes(item.key)
 
-                <div className="project-guide__options project-guide__options--grid">
-                  {businessOptions.map((item) => {
-                    const Icon = item.icon
-
-                    return (
-                      <button
-                        key={item.key}
-                        type="button"
-                        className={`project-guide__option ${businessType === item.key ? 'is-selected' : ''}`}
-                        onClick={() => setBusinessType(item.key)}
-                      >
-                        <Icon size={20} />
-                        <span>
-                          <strong>{item.title}</strong>
-                          <small>{item.description}</small>
-                        </span>
-                      </button>
-                    )
-                  })}
-                </div>
-              </div>
-            )}
-
-            {step === 2 && (
-              <div className="project-guide__step">
-                <h3 className="project-guide__question">
-                  {isPt ? 'O que você mais precisa agora?' : '¿Qué necesitas más ahora?'}
-                </h3>
-
-                <div className="project-guide__options">
-                  {needOptions.map((item) => {
-                    const Icon = item.icon
-
-                    return (
-                      <button
-                        key={item.key}
-                        type="button"
-                        className={`project-guide__option ${mainNeed === item.key ? 'is-selected' : ''}`}
-                        onClick={() => {
-                          setMainNeed(item.key)
-                          setProblems([])
-                          setFeatures([])
-                        }}
-                      >
-                        <Icon size={20} />
-                        <span>
-                          <strong>{item.title}</strong>
-                          <small>{item.description}</small>
-                        </span>
-                      </button>
-                    )
-                  })}
-                </div>
-              </div>
-            )}
-
-            {step === 3 && (
-              <div className="project-guide__step">
-                <h3 className="project-guide__question">
-                  {isPt ? 'Quais problemas você quer resolver?' : '¿Qué problemas quieres resolver?'}
-                </h3>
-
-                <p className="project-guide__helper">
-                  {isPt ? 'Pode escolher mais de uma opção.' : 'Puedes elegir más de una opción.'}
-                </p>
-
-                <div className="project-guide__chips" role="group" aria-label={isPt ? 'Lista de problemas' : 'Lista de problemas'}>
-                  {problemOptions.map((item) => {
-                    const isSelected = problems.includes(item.key)
-
-                    return (
-                      <button
-                        key={item.key}
-                        type="button"
-                        role="checkbox"
-                        aria-checked={isSelected}
-                        className={isSelected ? 'is-selected' : ''}
-                        onClick={() => toggleList(item.key, setProblems)}
-                      >
-                        {isSelected && <CheckCircle2 size={14} />}
-                        {item.label}
-                      </button>
-                    )
-                  })}
-                </div>
-              </div>
-            )}
-
-            {step === 4 && (
-              <div className="project-guide__step">
-                <h3 className="project-guide__question">
-                  {isPt ? 'Quais recursos seriam importantes?' : '¿Qué recursos serían importantes?'}
-                </h3>
-
-                <p className="project-guide__helper">
-                  {isPt
-                    ? 'A assistente adapta as opções conforme sua necessidade.'
-                    : 'La asistente adapta las opciones según tu necesidad.'}
-                </p>
-
-                <div className="project-guide__chips" role="group" aria-label={isPt ? 'Lista de recursos' : 'Lista de recursos'}>
-                  {featureOptions.map((item) => {
-                    const isSelected = features.includes(item.key)
-
-                    return (
-                      <button
-                        key={item.key}
-                        type="button"
-                        role="checkbox"
-                        aria-checked={isSelected}
-                        className={isSelected ? 'is-selected' : ''}
-                        onClick={() => toggleList(item.key, setFeatures)}
-                      >
-                        {isSelected && <CheckCircle2 size={14} />}
-                        {item.label}
-                      </button>
-                    )
-                  })}
-                </div>
-              </div>
-            )}
-
-            {step === 5 && (
-              <div className="project-guide__step">
-                <h3 className="project-guide__question">
-                  {isPt ? 'Pra fechar o diagnóstico:' : 'Para cerrar el diagnóstico:'}
-                </h3>
-
-                <p className="project-guide__mini-title">
-                  {isPt ? 'Qual sua urgência?' : '¿Cuál es tu urgencia?'}
-                </p>
-
-                <div className="project-guide__options">
-                  {urgencyOptions.map((item) => {
-                    const Icon = item.icon
-
-                    return (
-                      <button
-                        key={item.key}
-                        type="button"
-                        className={`project-guide__option ${urgency === item.key ? 'is-selected' : ''}`}
-                        onClick={() => setUrgency(item.key)}
-                      >
-                        <Icon size={20} />
-                        <span>
-                          <strong>{item.title}</strong>
-                          <small>{item.description}</small>
-                        </span>
-                      </button>
-                    )
-                  })}
-                </div>
-
-                <p className="project-guide__mini-title">
-                  {isPt ? 'Qual estilo de projeto você imagina?' : '¿Qué estilo de proyecto imaginas?'}
-                </p>
-
-                <div className="project-guide__options">
-                  {budgetOptions.map((item) => {
-                    const Icon = item.icon
-
-                    return (
-                      <button
-                        key={item.key}
-                        type="button"
-                        className={`project-guide__option ${budget === item.key ? 'is-selected' : ''}`}
-                        onClick={() => setBudget(item.key)}
-                      >
-                        <Icon size={20} />
-                        <span>
-                          <strong>{item.title}</strong>
-                          <small>{item.description}</small>
-                        </span>
-                      </button>
-                    )
-                  })}
-                </div>
-
-                <div className="project-guide__custom">
-                  <label htmlFor="guide-business-name">
-                    {isPt ? 'Nome do negócio' : 'Nombre del negocio'}
-                  </label>
-
-                  <input
-                    id="guide-business-name"
-                    value={businessName}
-                    onChange={(event) => setBusinessName(event.target.value)}
-                    placeholder={isPt ? 'Ex: Clínica Bella Saúde' : 'Ej: Clínica Bella Salud'}
-                    maxLength={80}
-                  />
-
-                  <label htmlFor="guide-project-idea">
-                    {isPt ? 'Conte rapidamente sua ideia' : 'Cuéntame rápidamente tu idea'}
-                  </label>
-
-                  <textarea
-                    id="guide-project-idea"
-                    value={projectIdea}
-                    onChange={(event) => setProjectIdea(event.target.value)}
-                    placeholder={
-                      isPt
-                        ? 'Ex: Quero um site com agendamento para clientes marcarem pelo celular...'
-                        : 'Ej: Quiero un sitio con reservas para que mis clientes agenden por celular...'
-                    }
-                    maxLength={500}
-                  />
-                </div>
-
-                {urgency && budget && (
-                  <div className="project-guide__result" role="region" aria-label={isPt ? 'Recomendação gerada' : 'Recomendación generada'}>
-                    <span>
-                      <Sparkles size={16} />
-                      {isPt ? 'Recomendação gerada' : 'Recomendación generada'}
-                    </span>
-
-                    <strong>{projectName}</strong>
-                    
-                    <p className="project-guide__result-priority">{priorityText}</p>
-
-                    <ul>
-                      {recommendedPlan.map((item) => (
-                        <li key={item}>{item}</li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-              </div>
-            )}
-
-            <div className="project-guide__footer">
-              {step > 1 && (
-                <button
-                  type="button"
-                  className="project-guide__back"
-                  onClick={goBack}
-                >
-                  <ArrowLeft size={15} />
-                  {isPt ? 'Voltar' : 'Volver'}
-                </button>
-              )}
-
-              {step < 5 ? (
-                <button
-                  type="button"
-                  className="project-guide__submit"
-                  disabled={!canGoNext}
-                  onClick={goNext}
-                >
-                  <span>{isPt ? 'Continuar' : 'Continuar'}</span>
-                  <ArrowRight size={16} />
-                </button>
-              ) : (
-                <button
-                  type="button"
-                  className="project-guide__submit"
-                  disabled={!canGoNext}
-                  onClick={openWhatsApp}
-                >
-                  <span>{isPt ? 'Enviar diagnóstico no WhatsApp' : 'Enviar diagnóstico por WhatsApp'}</span>
-                  <ArrowRight size={16} />
-                </button>
-              )}
+                return (
+                  <button
+                    key={item.key}
+                    type="button"
+                    role="checkbox"
+                    aria-checked={isSelected}
+                    className={isSelected ? 'is-selected' : ''}
+                    onClick={() => toggleList(item.key, setFeatures)}
+                  >
+                    {isSelected && <CheckCircle2 size={14} />}
+                    {item.label}
+                  </button>
+                )
+              })}
             </div>
           </div>
+        )}
+
+        {step === 5 && (
+          <div className="project-guide__step">
+            <h3 className="project-guide__question">
+              {isPt ? 'Pra fechar o diagnóstico:' : 'Para cerrar el diagnóstico:'}
+            </h3>
+
+            <p className="project-guide__mini-title">
+              {isPt ? 'Qual sua urgência?' : '¿Cuál es tu urgencia?'}
+            </p>
+
+            <div className="project-guide__options">
+              {urgencyOptions.map((item) => {
+                const Icon = item.icon
+
+                return (
+                  <button
+                    key={item.key}
+                    type="button"
+                    className={`project-guide__option ${urgency === item.key ? 'is-selected' : ''}`}
+                    onClick={() => setUrgency(item.key)}
+                  >
+                    <Icon size={20} />
+                    <span>
+                      <strong>{item.title}</strong>
+                      <small>{item.description}</small>
+                    </span>
+                  </button>
+                )
+              })}
+            </div>
+
+            <p className="project-guide__mini-title">
+              {isPt ? 'Qual estilo de projeto você imagina?' : '¿Qué estilo de proyecto imaginas?'}
+            </p>
+
+            <div className="project-guide__options">
+              {budgetOptions.map((item) => {
+                const Icon = item.icon
+
+                return (
+                  <button
+                    key={item.key}
+                    type="button"
+                    className={`project-guide__option ${budget === item.key ? 'is-selected' : ''}`}
+                    onClick={() => setBudget(item.key)}
+                  >
+                    <Icon size={20} />
+                    <span>
+                      <strong>{item.title}</strong>
+                      <small>{item.description}</small>
+                    </span>
+                  </button>
+                )
+              })}
+            </div>
+
+            <div className="project-guide__custom">
+              <label htmlFor="guide-business-name">
+                {isPt ? 'Nome do negócio' : 'Nombre del negocio'}
+              </label>
+
+              <input
+                id="guide-business-name"
+                value={businessName}
+                onChange={(event) => setBusinessName(event.target.value)}
+                placeholder={isPt ? 'Ex: Clínica Bella Saúde' : 'Ej: Clínica Bella Salud'}
+                maxLength={80}
+              />
+
+              <label htmlFor="guide-project-idea">
+                {isPt ? 'Conte rapidamente sua ideia' : 'Cuéntame rápidamente tu idea'}
+              </label>
+
+              <textarea
+                id="guide-project-idea"
+                value={projectIdea}
+                onChange={(event) => setProjectIdea(event.target.value)}
+                placeholder={
+                  isPt
+                    ? 'Ex: Quero um site com agendamento para clientes marcarem pelo celular...'
+                    : 'Ej: Quiero un sitio con reservas para que mis clientes agenden por celular...'
+                }
+                maxLength={500}
+              />
+            </div>
+
+            {urgency && budget && (
+              <div className="project-guide__result" role="region" aria-label={isPt ? 'Recomendação gerada' : 'Recomendación generada'}>
+                <span>
+                  <Sparkles size={16} />
+                  {isPt ? 'Recomendação gerada' : 'Recomendación generada'}
+                </span>
+
+                <strong>{projectName}</strong>
+                
+                <p className="project-guide__result-priority">{priorityText}</p>
+
+                <ul>
+                  {recommendedPlan.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+        )}
+
+        <div className="project-guide__footer">
+          {step > 1 && (
+            <button
+              type="button"
+              className="project-guide__back"
+              onClick={goBack}
+            >
+              <ArrowLeft size={15} />
+              {isPt ? 'Voltar' : 'Volver'}
+            </button>
+          )}
+
+          {step < 5 ? (
+            <button
+              type="button"
+              className="project-guide__submit"
+              disabled={!canGoNext}
+              onClick={goNext}
+            >
+              <span>{isPt ? 'Continuar' : 'Continuar'}</span>
+              <ArrowRight size={16} />
+            </button>
+          ) : (
+            <button
+              type="button"
+              className="project-guide__submit"
+              disabled={!canGoNext}
+              onClick={openWhatsApp}
+            >
+              <span>{isPt ? 'Enviar diagnóstico no WhatsApp' : 'Enviar diagnóstico por WhatsApp'}</span>
+              <ArrowRight size={16} />
+            </button>
+          )}
         </div>
-      )}
-    </>
+      </div>
+    </div>
   )
 }
 

@@ -123,24 +123,40 @@
   text-decoration: none;
   transition: all 0.25s ease;
   white-space: nowrap;
+  cursor: pointer;
+  border: none;
 }
 
 .hero-btn.primary {
-  background: #fec90f;
-  color: #000c24;
+  background: #feca0fe5;
+  font-weight: 700;
+  color: #ffffff;
 }
 
 .hero-btn.primary:hover {
-  background: #ffd43b;
+  background: #20b859;
   transform: translateY(-2px);
-}
-
-.hero-btn.primary svg {
-  transition: transform 0.2s ease;
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.3);
 }
 
 .hero-btn.primary:hover svg {
   transform: translateX(4px);
+}
+
+.hero-btn.secondary {
+  background: #ffffff;
+  color: #000000;
+  border: 1px solid rgba(254, 201, 15, 0.4);
+}
+
+.hero-btn.secondary:hover {
+  border-color: #ffffffe5;
+  background: #fec90f;
+  transform: translateY(-2px);
+}
+
+.hero-btn svg {
+  transition: transform 0.2s ease;
 }
 
 /* ============================================

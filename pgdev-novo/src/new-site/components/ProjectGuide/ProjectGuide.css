@@ -8,105 +8,6 @@ body {
 }
 
 /* ============================================
-   PROJECT GUIDE - FLOAT BUTTON
-   ============================================ */
-
-.project-guide-float {
-  position: fixed;
-  right: max(24px, env(safe-area-inset-right));
-  bottom: max(24px, env(safe-area-inset-bottom));
-  z-index: 90;
-  width: 56px;
-  height: 56px;
-  border-radius: 28px;
-  background: #fec90f;
-  color: #000c24;
-  border: none;
-  cursor: pointer;
-  box-shadow: 0 4px 20px rgba(254, 201, 15, 0.2);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: visible;
-  padding: 0;
-}
-
-.project-guide-float:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 30px rgba(254, 201, 15, 0.3);
-}
-
-.project-guide__float-image {
-  width: 134%;
-  height: 134%;
-  object-fit: contain;
-  margin-bottom: 6px;
-}
-
-/* Tooltip texto */
-.project-guide-float::before {
-  content: 'Diagnóstico inteligente →';
-  position: absolute;
-  right: 64px;
-  top: 50%;
-  transform: translateY(-50%);
-  background: #fec90f;
-  color: #000c24;
-  font-size: 0.75rem;
-  font-weight: 700;
-  padding: 8px 16px;
-  border-radius: 12px;
-  white-space: nowrap;
-  box-shadow: 0 4px 16px rgba(254, 201, 15, 0.25);
-  opacity: 0;
-  pointer-events: none;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  z-index: 1;
-  letter-spacing: 0.3px;
-}
-
-/* Seta do tooltip */
-.project-guide-float::after {
-  content: '';
-  position: absolute;
-  right: 58px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 0;
-  height: 0;
-  border-top: 6px solid transparent;
-  border-bottom: 6px solid transparent;
-  border-left: 6px solid #fec90f;
-  opacity: 0;
-  pointer-events: none;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  z-index: 1;
-}
-
-.project-guide-float:hover::before {
-  opacity: 1;
-  right: 72px;
-}
-
-.project-guide-float:hover::after {
-  opacity: 1;
-  right: 66px;
-}
-
-/* Remove tooltip em dispositivos touch */
-@media (hover: none) and (pointer: coarse) {
-  .project-guide-float::before,
-  .project-guide-float::after {
-    display: none;
-  }
-
-  .project-guide-float:hover {
-    transform: none;
-  }
-}
-
-/* ============================================
    MODAL - SMART DIAGNOSTIC
    ============================================ */
 
@@ -114,20 +15,16 @@ body {
   position: fixed;
   inset: 0;
   z-index: 1000;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   padding:
     max(16px, env(safe-area-inset-top))
     max(16px, env(safe-area-inset-right))
     max(16px, env(safe-area-inset-bottom))
     max(16px, env(safe-area-inset-left));
-
   overflow-y: auto;
   overflow-x: hidden;
-
   -webkit-overflow-scrolling: touch;
 }
 
@@ -144,16 +41,11 @@ body {
 .project-guide__modal {
   position: relative;
   z-index: 1;
-
   width: min(100%, 560px);
-
   max-height: min(820px, calc(100dvh - 32px));
-
   overflow-y: auto;
   overflow-x: hidden;
-
   -webkit-overflow-scrolling: touch;
-
   padding: 28px 24px;
   border-radius: 20px;
   background: #000c24;
@@ -433,14 +325,10 @@ body {
 .project-guide__footer {
   position: sticky;
   bottom: 0;
-
   background: #000c24;
-
   padding-top: 16px;
   padding-bottom: max(4px, env(safe-area-inset-bottom));
-
   z-index: 5;
-
   display: flex;
   justify-content: space-between;
   gap: 12px;
@@ -499,10 +387,57 @@ body {
   cursor: not-allowed;
 }
 
-/* ============================================
-   RESPONSIVE
-   ============================================ */
+/* Custom Fields */
+.project-guide__custom {
+  display: grid;
+  gap: 10px;
+  margin: 20px 0;
+}
 
+.project-guide__custom label {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.project-guide__custom input,
+.project-guide__custom textarea {
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+  color: #ffffff;
+  padding: 12px 14px;
+  outline: none;
+  font-size: 0.85rem;
+  transition: all 0.2s ease;
+}
+
+.project-guide__custom input:focus,
+.project-guide__custom textarea:focus {
+  border-color: rgba(254, 201, 15, 0.4);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.project-guide__custom input::placeholder,
+.project-guide__custom textarea::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.project-guide__custom textarea {
+  min-height: 96px;
+  resize: vertical;
+  font-family: inherit;
+}
+
+.project-guide__result-priority {
+  margin: 0 0 12px;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+/* Responsive */
 @media (max-width: 640px) {
   .project-guide {
     padding-top: max(56px, env(safe-area-inset-top));
@@ -519,21 +454,6 @@ body {
 
   .project-guide__options--grid {
     grid-template-columns: 1fr;
-  }
-
-  .project-guide-float {
-    right: max(16px, env(safe-area-inset-right));
-    bottom: max(16px, env(safe-area-inset-bottom));
-    width: 50px;
-    height: 50px;
-  }
-
-  .project-guide-float::before {
-    display: none;
-  }
-
-  .project-guide-float::after {
-    display: none;
   }
 
   .project-guide__option {
@@ -630,88 +550,12 @@ body {
   }
 }
 
-@media (max-width: 360px) {
-  .project-guide__modal {
-    padding: 18px 14px;
-  }
-
-  .project-guide__option {
-    padding: 8px 10px;
-    gap: 8px;
-  }
-
-  .project-guide__chips button {
-    font-size: 0.7rem;
-    padding: 6px 12px;
-  }
-
-  .project-guide__back,
-  .project-guide__submit {
-    padding: 8px 14px;
-    font-size: 0.75rem;
-  }
-}
-
-/* Acessibilidade - foco */
+/* Acessibilidade */
 .project-guide__close:focus-visible,
 .project-guide__option:focus-visible,
 .project-guide__chips button:focus-visible,
 .project-guide__submit:focus-visible,
-.project-guide__back:focus-visible,
-.project-guide-float:focus-visible {
+.project-guide__back:focus-visible {
   outline: 2px solid #fec90f;
   outline-offset: 2px;
-}
-
-/* ============================================
-   CUSTOM FIELDS (NOME E IDEIA)
-   ============================================ */
-
-.project-guide__custom {
-  display: grid;
-  gap: 10px;
-  margin: 20px 0;
-}
-
-.project-guide__custom label {
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 0.78rem;
-  font-weight: 700;
-}
-
-.project-guide__custom input,
-.project-guide__custom textarea {
-  width: 100%;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(255, 255, 255, 0.03);
-  color: #ffffff;
-  padding: 12px 14px;
-  outline: none;
-  font-size: 0.85rem;
-  transition: all 0.2s ease;
-}
-
-.project-guide__custom input:focus,
-.project-guide__custom textarea:focus {
-  border-color: rgba(254, 201, 15, 0.4);
-  background: rgba(255, 255, 255, 0.05);
-}
-
-.project-guide__custom input::placeholder,
-.project-guide__custom textarea::placeholder {
-  color: rgba(255, 255, 255, 0.3);
-}
-
-.project-guide__custom textarea {
-  min-height: 96px;
-  resize: vertical;
-  font-family: inherit;
-}
-
-.project-guide__result-priority {
-  margin: 0 0 12px;
-  color: rgba(255, 255, 255, 0.65);
-  font-size: 0.8rem;
-  line-height: 1.5;
 }

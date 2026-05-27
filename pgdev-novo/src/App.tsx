@@ -15,6 +15,7 @@ import About from './new-site/components/About/About'
 import Contact from './new-site/components/Contact/Contact'
 import Footer from './new-site/components/Footer/Footer'
 import ProjectGuide from './new-site/components/ProjectGuide/ProjectGuide'
+import FloatingWhatsApp from './new-site/components/FloatingWhatsApp/FloatingWhatsApp'
 
 import BookingDemo from './new-site/components/BookingDemo/BookingDemo'
 import PabloGomesPage from './new-site/components/PabloGomesPage/PabloGomesPage'
@@ -45,6 +46,8 @@ function App() {
     isSpanishRoute ? 'es' : getInitialLanguage
   )
 
+  const [isGuideOpen, setIsGuideOpen] = useState(false)
+
   const currentLanguage: Language = isSpanishRoute ? 'es' : language
 
   useEffect(() => {
@@ -71,7 +74,7 @@ function App() {
     <>
       <Header language={currentLanguage} onChangeLanguage={setLanguage} />
       <main>
-        <Hero language={currentLanguage} />
+        <Hero language={currentLanguage} onOpenGuide={() => setIsGuideOpen(true)} />
         <ProcessBanner language={currentLanguage} />
         <Services language={currentLanguage} />
         <ExperienceDemo language={currentLanguage} />
@@ -82,7 +85,9 @@ function App() {
         <Contact language={currentLanguage} />
       </main>
       <Footer language={currentLanguage} />
-      <ProjectGuide language={currentLanguage} />
+      
+      <ProjectGuide language={currentLanguage} open={isGuideOpen} onClose={() => setIsGuideOpen(false)} />
+      <FloatingWhatsApp language={currentLanguage} />
     </>
   )
 }
