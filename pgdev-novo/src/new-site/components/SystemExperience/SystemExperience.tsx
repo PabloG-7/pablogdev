@@ -9,13 +9,13 @@ import {
   Lock,
   Settings2,
   ShieldCheck,
-  Sparkles,
   Users,
   Wallet,
   Zap,
 } from 'lucide-react'
 import type { Language } from '../../types'
 import './SystemExperience.css'
+import { Binary } from 'lucide-react'
 
 type Props = {
   language: Language
@@ -36,7 +36,7 @@ export default function SystemExperience({ language }: Props) {
         {/* LEFT SIDE - COPY */}
         <div className="system-exp-copy">
           <span className="system-exp-label">
-            <Sparkles size={14} />
+         <Binary size={14} />
             {isPt ? 'SISTEMA SOB MEDIDA' : 'SISTEMA A MEDIDA'}
           </span>
 

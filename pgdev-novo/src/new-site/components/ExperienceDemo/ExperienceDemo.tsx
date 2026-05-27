@@ -5,12 +5,12 @@ import {
   CalendarDays,
   CheckCircle,
   Clock,
-  Sparkles,
   Users
 } from 'lucide-react'
 import { FaWhatsapp } from 'react-icons/fa'
 import type { Language } from '../../types'
 import './ExperienceDemo.css'
+import { CalendarClock } from 'lucide-react'
 
 type Props = {
   language: Language
@@ -25,7 +25,7 @@ export default function ExperienceDemo({ language }: Props) {
         {/* LEFT SIDE - COPY */}
         <div className="booking-exp-copy">
           <span className="booking-exp-label">
-            <Sparkles size={14} />
+           <CalendarClock size={14} />
             {isPt ? 'AGENDAMENTO ONLINE' : 'AGENDAMIENTO ONLINE'}
           </span>
 

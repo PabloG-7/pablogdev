@@ -8,32 +8,47 @@ type ServicesProps = {
   language: Language
 }
 
-const services = [
+// Serviços com suporte a dois idiomas
+const getServices = (isPt: boolean) => [
   {
-    title: 'Sites profissionais',
-    description: 'Presença online moderna para apresentar seu negócio e facilitar o contato.',
+    title: isPt ? 'Sites profissionais' : 'Sitios profesionales',
+    description: isPt 
+      ? 'Presença online moderna para apresentar seu negócio e facilitar o contato.'
+      : 'Presencia online moderna para presentar tu negocio y facilitar el contacto.',
     href: '#site-profissional',
     icon: Globe,
-    points: ['Visual moderno', 'WhatsApp integrado', 'Responsivo']
+    points: isPt 
+      ? ['Visual moderno', 'WhatsApp integrado', 'Responsivo']
+      : ['Visual moderno', 'WhatsApp integrado', 'Responsivo']
   },
   {
-    title: 'Sistemas web',
-    description: 'Painéis e ferramentas para organizar clientes, processos e informações.',
+    title: isPt ? 'Sistemas web' : 'Sistemas web',
+    description: isPt 
+      ? 'Painéis e ferramentas para organizar clientes, processos e informações.'
+      : 'Paneles y herramientas para organizar clientes, procesos e información.',
     href: '#sistema',
     icon: Settings2,
-    points: ['Controle interno', 'Relatórios', 'Mais organização']
+    points: isPt 
+      ? ['Controle interno', 'Relatórios', 'Mais organização']
+      : ['Control interno', 'Reportes', 'Más organización']
   },
   {
-    title: 'Agendamentos online',
-    description: 'Seu cliente escolhe horário sozinho e recebe confirmação automática.',
+    title: isPt ? 'Agendamentos online' : 'Agendamientos online',
+    description: isPt 
+      ? 'Seu cliente escolhe horário sozinho e recebe confirmação automática.'
+      : 'Tu cliente elige horario solo y recibe confirmación automática.',
     href: '#experiencia',
     icon: CalendarCheck,
-    points: ['Horários online', 'Confirmação no WhatsApp', 'Cliente salvo']
+    points: isPt 
+      ? ['Horários online', 'Confirmação no WhatsApp', 'Cliente salvo']
+      : ['Horarios online', 'Confirmación por WhatsApp', 'Cliente guardado']
   }
 ]
 
 export default function Services({ language }: ServicesProps) {
-  const content = language === 'pt' ? pt : es
+  const isPt = language === 'pt'
+  const content = isPt ? pt : es
+  const services = getServices(isPt)
 
   return (
     <section className="services" id="servicos">
@@ -61,7 +76,7 @@ export default function Services({ language }: ServicesProps) {
                     ))}
                   </ul>
                   <a href={service.href}>
-                    Ver exemplo <ArrowRight size={14} />
+                    {isPt ? 'Ver exemplo' : 'Ver ejemplo'} <ArrowRight size={14} />
                   </a>
                 </div>
               </div>

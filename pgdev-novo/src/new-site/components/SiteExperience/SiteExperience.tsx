@@ -1,7 +1,9 @@
-import { ArrowRight, BadgeCheck, Globe2, ShieldCheck, Smartphone, Sparkles, TrendingUp } from 'lucide-react'
+import { ArrowRight, BadgeCheck, Globe2, ShieldCheck, Smartphone, TrendingUp } from 'lucide-react'
 import { FaWhatsapp } from 'react-icons/fa'
 import type { Language } from '../../types'
 import './SiteExperience.css'
+import { LayoutTemplate } from 'lucide-react'
+
 
 type Props = {
   language: Language
@@ -16,7 +18,7 @@ export default function SiteExperience({ language }: Props) {
         {/* LEFT SIDE */}
         <div className="site-exp-content">
           <span className="site-exp-label">
-            <Sparkles size={14} />
+            <LayoutTemplate size={14} />
             {isPt ? 'PRESENÇA PROFISSIONAL' : 'PRESENCIA PROFESIONAL'}
           </span>
 
