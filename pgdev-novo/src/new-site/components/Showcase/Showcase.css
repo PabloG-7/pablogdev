@@ -1,5 +1,5 @@
 /* ============================================
-   SHOWCASE - VISUAL COM ÍCONE CENTRAL
+   SHOWCASE - VISUAL COM BORDA
    ============================================ */
 
 .showcase {
@@ -61,11 +61,6 @@
   border: none;
   cursor: pointer;
   padding: 0;
-  transition: transform 0.3s ease;
-}
-
-.showcase-card:hover {
-  transform: translateY(-5px);
 }
 
 .card-image {
@@ -75,28 +70,32 @@
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.showcase-card:hover .card-image {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
 }
 
 .card-image img {
   width: 100%;
   height: auto;
   display: block;
-  transition: transform 0.4s ease;
+  transition: all 0.5s ease;
 }
 
 .showcase-card:hover .card-image img {
-  transform: scale(1.08);
+  transform: scale(1.05);
 }
 
 .card-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 12, 36, 0.85);
-  backdrop-filter: blur(4px);
+  background: rgba(0, 12, 36, 0.75);
   display: flex;
-  flex-direction: column;
+  align-items: center;
   justify-content: space-between;
-  padding: 24px;
+  padding: 28px;
   opacity: 0;
   transition: all 0.3s ease;
 }
@@ -105,61 +104,77 @@
   opacity: 1;
 }
 
-.card-center {
+.card-border {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-  color: #fec90f;
-  text-align: center;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+  border: 1px solid rgba(254, 201, 15, 0.5);
+  opacity: 0;
+  transition: all 0.3s ease 0.1s;
 }
 
-.card-center svg {
-  stroke-width: 1.5;
-  transition: transform 0.3s ease;
+.showcase-card:hover .card-border {
+  opacity: 1;
 }
 
-.card-center span {
-  font-size: 0.8rem;
-  font-weight: 500;
-  letter-spacing: 0.5px;
+.card-info {
+  position: relative;
+  z-index: 2;
+  text-align: left;
+  transform: translateX(-10px);
+  opacity: 0;
+  transition: all 0.3s ease 0.1s;
 }
 
-.showcase-card:hover .card-center svg {
-  transform: scale(1.1);
+.showcase-card:hover .card-info {
+  transform: translateX(0);
+  opacity: 1;
 }
 
-.card-bottom {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 20px 24px;
-  background: linear-gradient(to top, rgba(0, 12, 36, 0.95), transparent);
-  transform: translateY(100%);
-  transition: transform 0.3s ease;
-}
-
-.showcase-card:hover .card-bottom {
-  transform: translateY(0);
-}
-
-.card-bottom h3 {
-  margin: 0 0 4px;
-  font-size: 1rem;
+.card-info h3 {
+  margin: 0 0 6px;
+  font-size: 1.125rem;
   font-weight: 600;
   color: #ffffff;
 }
 
-.card-bottom p {
+.card-info p {
   margin: 0;
   font-size: 0.7rem;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.7);
   text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.card-icon {
+  position: relative;
+  z-index: 2;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #fec90f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000c24;
+  transform: translateX(10px) scale(0.8);
+  opacity: 0;
+  transition: all 0.3s ease 0.15s;
+}
+
+.showcase-card:hover .card-icon {
+  transform: translateX(0) scale(1);
+  opacity: 1;
+}
+
+.card-icon svg {
+  transition: transform 0.2s ease;
+}
+
+.card-icon:hover svg {
+  transform: translate(2px, -2px);
 }
 
 @media (max-width: 900px) {
@@ -167,12 +182,22 @@
     gap: 24px;
   }
   
-  .card-bottom {
-    padding: 16px 20px;
+  .card-overlay {
+    padding: 20px;
   }
   
-  .card-bottom h3 {
-    font-size: 0.9rem;
+  .card-info h3 {
+    font-size: 1rem;
+  }
+  
+  .card-icon {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .card-icon svg {
+    width: 20px;
+    height: 20px;
   }
 }
 
@@ -183,15 +208,6 @@
   
   .showcase-title span {
     font-size: 1.25rem;
-  }
-  
-  .card-center svg {
-    width: 28px;
-    height: 28px;
-  }
-  
-  .card-center span {
-    font-size: 0.75rem;
   }
 }
 
@@ -205,12 +221,12 @@
     gap: 24px;
   }
   
-  .card-bottom {
-    padding: 20px;
+  .card-overlay {
+    padding: 24px;
   }
   
-  .card-bottom h3 {
-    font-size: 1rem;
+  .card-info h3 {
+    font-size: 1.125rem;
   }
   
   .showcase-title {
@@ -236,19 +252,22 @@
   }
   
   .card-overlay {
-    padding: 16px;
+    padding: 20px;
   }
   
-  .card-center svg {
-    width: 24px;
-    height: 24px;
+  .card-info h3 {
+    font-size: 1rem;
   }
   
-  .card-center span {
-    font-size: 0.7rem;
+  .card-icon {
+    width: 36px;
+    height: 36px;
   }
   
-  .card-bottom h3 {
-    font-size: 0.9rem;
+  .card-border {
+    top: 12px;
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
   }
 }

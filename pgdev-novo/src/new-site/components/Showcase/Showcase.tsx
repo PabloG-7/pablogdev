@@ -1,5 +1,5 @@
 import './Showcase.css'
-import { Eye } from 'lucide-react'
+import { ArrowUpRight } from 'lucide-react'
 import type { Language } from '../../types'
 
 import exemplo1 from '../../assets/exemplo1.webp'
@@ -55,7 +55,6 @@ export default function Showcase({ language }: ShowcaseProps) {
     },
   ]
 
-  // Organizar exemplos em pares para o grid
   const projectPairs = [
     [projects[0], projects[1]],
     [projects[2], projects[3]],
@@ -97,13 +96,13 @@ export default function Showcase({ language }: ShowcaseProps) {
                   <div className="card-image">
                     <img src={project.image} alt={project.name} />
                     <div className="card-overlay">
-                      <div className="card-center">
-                        <Eye size={32} />
-                        <span>{isPt ? 'Visualizar projeto' : 'Ver proyecto'}</span>
-                      </div>
-                      <div className="card-bottom">
+                      <div className="card-border"></div>
+                      <div className="card-info">
                         <h3>{project.name}</h3>
                         <p>{project.category}</p>
+                      </div>
+                      <div className="card-icon">
+                        <ArrowUpRight size={24} />
                       </div>
                     </div>
                   </div>
