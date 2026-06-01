@@ -1,5 +1,5 @@
 import './Showcase.css'
-import { ArrowUpRight, Eye } from 'lucide-react'
+import { Eye } from 'lucide-react'
 import type { Language } from '../../types'
 
 import exemplo1 from '../../assets/exemplo1.webp'
