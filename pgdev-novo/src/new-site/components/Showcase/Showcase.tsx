@@ -72,7 +72,7 @@ export default function Showcase({ language }: ShowcaseProps) {
   }
 
   return (
-    <section className="showcase" id="showcase">
+    <section className="showcase" id="projetos">
       <div className="showcase-container">
         <div className="showcase-header">
           <span className="showcase-label">
@@ -94,7 +94,12 @@ export default function Showcase({ language }: ShowcaseProps) {
                   onClick={() => handleProjectClick(project.url)}
                 >
                   <div className="card">
-                    <img src={project.image} alt={project.name} />
+                    <img
+                      src={project.image}
+                      alt={project.name}
+                      loading="lazy"
+                      decoding="async"
+                    />
                     <div className="card-hover">
                       <div className="card-text">
                         <h3>{project.name}</h3>
