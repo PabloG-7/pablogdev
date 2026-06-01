@@ -7,16 +7,12 @@ import Header from './new-site/components/Header/Header'
 import Hero from './new-site/components/Hero/Hero'
 import ProcessBanner from './new-site/components/ProcessBanner/ProcessBanner'
 import Services from './new-site/components/Services/Services'
-import ExperienceDemo from './new-site/components/ExperienceDemo/ExperienceDemo'
-import SystemExperience from './new-site/components/SystemExperience/SystemExperience'
-import SiteExperience from './new-site/components/SiteExperience/SiteExperience'
-import Projects from './new-site/components/Projects/Projects'
+import Showcase from './new-site/components/Showcase/Showcase'
 import About from './new-site/components/About/About'
 import Contact from './new-site/components/Contact/Contact'
 import Footer from './new-site/components/Footer/Footer'
 import ProjectGuide from './new-site/components/ProjectGuide/ProjectGuide'
 import FloatingWhatsApp from './new-site/components/FloatingWhatsApp/FloatingWhatsApp'
-
 import BookingDemo from './new-site/components/BookingDemo/BookingDemo'
 import PabloGomesPage from './new-site/components/PabloGomesPage/PabloGomesPage'
 
@@ -29,23 +25,16 @@ function getInitialLanguage(): Language {
     return savedLanguage
   }
 
-  const browserLang = navigator.language.toLowerCase()
-
-  if (browserLang.startsWith('es')) {
-    return 'es'
-  }
-
-  return 'pt'
+  return navigator.language.toLowerCase().startsWith('es') ? 'es' : 'pt'
 }
 
 function App() {
   const path = window.location.pathname
+
   const isSpanishRoute = path === '/es' || path.startsWith('/es/')
-
   const [language, setLanguage] = useState<Language>(
-    isSpanishRoute ? 'es' : getInitialLanguage
+    isSpanishRoute ? 'es' : getInitialLanguage()
   )
-
   const [isGuideOpen, setIsGuideOpen] = useState(false)
 
   const currentLanguage: Language = isSpanishRoute ? 'es' : language
@@ -56,37 +45,46 @@ function App() {
   }, [currentLanguage])
 
   if (path === '/demo-barbearia') {
-    return <BookingDemo type="barbearia" language={language} />
+    return <BookingDemo type="barbearia" language={currentLanguage} />
   }
 
   if (path === '/demo-clinica') {
-    return <BookingDemo type="clinica" language={language} />
+    return <BookingDemo type="clinica" language={currentLanguage} />
   }
 
   if (path === '/demo-petshop') {
-    return <BookingDemo type="petshop" language={language} />
+    return <BookingDemo type="petshop" language={currentLanguage} />
   }
 
-  if (path === '/pablo-gomes') return <PabloGomesPage language="pt" />
-  if (path === '/es/pablo-gomes') return <PabloGomesPage language="es" />
+  if (path === '/pablo-gomes') {
+    return <PabloGomesPage language="pt" />
+  }
+
+  if (path === '/es/pablo-gomes') {
+    return <PabloGomesPage language="es" />
+  }
 
   return (
     <>
       <Header language={currentLanguage} onChangeLanguage={setLanguage} />
+
       <main>
         <Hero language={currentLanguage} onOpenGuide={() => setIsGuideOpen(true)} />
         <ProcessBanner language={currentLanguage} />
         <Services language={currentLanguage} />
-        <ExperienceDemo language={currentLanguage} />
-        <SystemExperience language={currentLanguage} />
-        <SiteExperience language={currentLanguage} />
-        <Projects language={currentLanguage} />
+        <Showcase language={currentLanguage} />
         <About language={currentLanguage} />
         <Contact language={currentLanguage} />
       </main>
+
       <Footer language={currentLanguage} />
-      
-      <ProjectGuide language={currentLanguage} open={isGuideOpen} onClose={() => setIsGuideOpen(false)} />
+
+      <ProjectGuide
+        language={currentLanguage}
+        open={isGuideOpen}
+        onClose={() => setIsGuideOpen(false)}
+      />
+
       <FloatingWhatsApp language={currentLanguage} />
     </>
   )

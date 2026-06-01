@@ -1,5 +1,5 @@
 import './Services.css'
-import { Globe, Settings2, CalendarCheck, ArrowRight } from 'lucide-react'
+import { Globe, Settings2, CalendarCheck } from 'lucide-react'
 import { pt } from '../../i18n/pt'
 import { es } from '../../i18n/es'
 import type { Language } from '../../types'
@@ -11,37 +11,34 @@ type ServicesProps = {
 // Serviços com suporte a dois idiomas
 const getServices = (isPt: boolean) => [
   {
-    title: isPt ? 'Sites profissionais' : 'Sitios profesionales',
-    description: isPt 
-      ? 'Presença online moderna para apresentar seu negócio e facilitar o contato.'
-      : 'Presencia online moderna para presentar tu negocio y facilitar el contacto.',
-    href: '#site-profissional',
+    title: isPt ? 'Sites que passam confiança' : 'Sitios que generan confianza',
+    description: isPt
+      ? 'Páginas modernas para apresentar seu negócio, mostrar seus serviços e levar o cliente direto para o WhatsApp.'
+      : 'Páginas modernas para presentar tu negocio, mostrar tus servicios y llevar al cliente directo a WhatsApp.',
     icon: Globe,
-    points: isPt 
-      ? ['Visual moderno', 'WhatsApp integrado', 'Responsivo']
-      : ['Visual moderno', 'WhatsApp integrado', 'Responsivo']
+    points: isPt
+      ? ['Visual profissional', 'Contato pelo WhatsApp', 'Funciona no celular']
+      : ['Visual profesional', 'Contacto por WhatsApp', 'Funciona en celular']
   },
   {
-    title: isPt ? 'Sistemas web' : 'Sistemas web',
-    description: isPt 
-      ? 'Painéis e ferramentas para organizar clientes, processos e informações.'
-      : 'Paneles y herramientas para organizar clientes, procesos e información.',
-    href: '#sistema',
+    title: isPt ? 'Sistemas para organizar seu negócio' : 'Sistemas para organizar tu negocio',
+    description: isPt
+      ? 'Painéis sob medida para controlar clientes, pedidos, reservas, serviços e informações importantes.'
+      : 'Paneles a medida para controlar clientes, pedidos, reservas, servicios e información importante.',
     icon: Settings2,
-    points: isPt 
-      ? ['Controle interno', 'Relatórios', 'Mais organização']
-      : ['Control interno', 'Reportes', 'Más organización']
+    points: isPt
+      ? ['Controle interno', 'Dados organizados', 'Mais produtividade']
+      : ['Control interno', 'Datos organizados', 'Más productividad']
   },
   {
     title: isPt ? 'Agendamentos online' : 'Agendamientos online',
-    description: isPt 
-      ? 'Seu cliente escolhe horário sozinho e recebe confirmação automática.'
-      : 'Tu cliente elige horario solo y recibe confirmación automática.',
-    href: '#experiencia',
+    description: isPt
+      ? 'Uma experiência simples para o cliente escolher horário, enviar os dados e chamar no WhatsApp.'
+      : 'Una experiencia simple para que el cliente elija horario, envíe sus datos y contacte por WhatsApp.',
     icon: CalendarCheck,
-    points: isPt 
-      ? ['Horários online', 'Confirmação no WhatsApp', 'Cliente salvo']
-      : ['Horarios online', 'Confirmación por WhatsApp', 'Cliente guardado']
+    points: isPt
+      ? ['Horários disponíveis', 'Envio para WhatsApp', 'Ideal para serviços']
+      : ['Horarios disponibles', 'Envío a WhatsApp', 'Ideal para servicios']
   }
 ]
 
@@ -75,13 +72,22 @@ export default function Services({ language }: ServicesProps) {
                       <li key={idx}>{point}</li>
                     ))}
                   </ul>
-                  <a href={service.href}>
-                    {isPt ? 'Ver exemplo' : 'Ver ejemplo'} <ArrowRight size={14} />
-                  </a>
                 </div>
               </div>
             )
           })}
+        </div>
+
+        {/* Seta estilizada */}
+        <div className="scroll-indicator">
+          <div className="mouse">
+            <div className="wheel"></div>
+          </div>
+          <div className="arrow-down">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
         </div>
       </div>
     </section>

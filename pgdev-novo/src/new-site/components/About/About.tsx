@@ -37,12 +37,6 @@ export default function About({ language }: AboutProps) {
         <source src="/about-video.mp4" type="video/mp4" />
       </video>
 
-      {/* Elementos minimalistas - VERSÃO PONTOS */}
-      <div className="about__dot-top"></div>
-      <div className="about__dot-bottom"></div>
-      <div className="about__ring"></div>
-      <div className="about__line-short"></div>
-
       <div className="about-container">
         <span className="about-label">{content.about.badge}</span>
         <h2 className="about-title">

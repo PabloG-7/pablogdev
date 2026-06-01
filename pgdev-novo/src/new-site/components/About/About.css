@@ -1,5 +1,5 @@
 /* ============================================
-   ABOUT - MINIMALISTA (VERSÃO PONTOS E ANEL)
+   ABOUT - VERSÃO SIMPLES
    ============================================ */
 
 .about {
@@ -7,61 +7,6 @@
   background: #000c24;
   position: relative;
   overflow: hidden;
-}
-
-/* PONTO NO CANTO SUPERIOR ESQUERDO */
-.about__dot-top {
-  position: absolute;
-  top: 80px;
-  left: 80px;
-  width: 6px;
-  height: 6px;
-  background: #fec90f;
-  border-radius: 50%;
-  opacity: 0.6;
-  pointer-events: none;
-  z-index: 1;
-}
-
-/* PONTO NO CANTO INFERIOR DIREITO */
-.about__dot-bottom {
-  position: absolute;
-  bottom: 80px;
-  right: 80px;
-  width: 6px;
-  height: 6px;
-  background: #fec90f;
-  border-radius: 50%;
-  opacity: 0.6;
-  pointer-events: none;
-  z-index: 1;
-}
-
-/* ANEL (CÍRCULO VAZADO) DECORATIVO */
-.about__ring {
-  position: absolute;
-  top: 50%;
-  left: 40px;
-  width: 60px;
-  height: 60px;
-  transform: translateY(-50%);
-  border: 1px solid rgba(254, 201, 15, 0.15);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 1;
-}
-
-/* LINHA CURTA HORIZONTAL NO CENTRO DIREITO */
-.about__line-short {
-  position: absolute;
-  top: 50%;
-  right: 40px;
-  width: 30px;
-  height: 1px;
-  background: rgba(254, 201, 15, 0.3);
-  transform: translateY(-50%);
-  pointer-events: none;
-  z-index: 1;
 }
 
 .about-container {
@@ -201,7 +146,7 @@
 }
 
 /* ============================================
-   RESPONSIVO - ELEMENTOS APARECEM EM TODAS TELAS
+   RESPONSIVO
    ============================================ */
 
 @media (max-width: 900px) {
@@ -238,31 +183,6 @@
     text-align: left;
     font-size: 0.95rem;
   }
-  
-  .about__dot-top {
-    top: 50px;
-    left: 50px;
-    width: 5px;
-    height: 5px;
-  }
-  
-  .about__dot-bottom {
-    bottom: 50px;
-    right: 50px;
-    width: 5px;
-    height: 5px;
-  }
-  
-  .about__ring {
-    left: 20px;
-    width: 45px;
-    height: 45px;
-  }
-  
-  .about__line-short {
-    right: 25px;
-    width: 25px;
-  }
 }
 
 @media (max-width: 768px) {
@@ -276,31 +196,6 @@
 
   .about-title {
     font-size: 1.8rem;
-  }
-  
-  .about__dot-top {
-    top: 40px;
-    left: 40px;
-    width: 5px;
-    height: 5px;
-  }
-  
-  .about__dot-bottom {
-    bottom: 40px;
-    right: 40px;
-    width: 5px;
-    height: 5px;
-  }
-  
-  .about__ring {
-    left: 15px;
-    width: 40px;
-    height: 40px;
-  }
-  
-  .about__line-short {
-    right: 20px;
-    width: 20px;
   }
 }
 
@@ -331,31 +226,6 @@
   .about-logo img {
     max-width: 150px;
   }
-  
-  .about__dot-top {
-    top: 30px;
-    left: 30px;
-    width: 4px;
-    height: 4px;
-  }
-  
-  .about__dot-bottom {
-    bottom: 30px;
-    right: 30px;
-    width: 4px;
-    height: 4px;
-  }
-  
-  .about__ring {
-    left: 12px;
-    width: 35px;
-    height: 35px;
-  }
-  
-  .about__line-short {
-    right: 15px;
-    width: 18px;
-  }
 }
 
 @media (max-width: 480px) {
@@ -373,33 +243,5 @@
 
   .about-text p {
     font-size: 0.85rem;
-  }
-  
-  .about__dot-top {
-    top: 20px;
-    left: 20px;
-    width: 4px;
-    height: 4px;
-    opacity: 0.4;
-  }
-  
-  .about__dot-bottom {
-    bottom: 20px;
-    right: 20px;
-    width: 4px;
-    height: 4px;
-    opacity: 0.4;
-  }
-  
-  .about__ring {
-    left: 10px;
-    width: 30px;
-    height: 30px;
-    border-width: 0.5px;
-  }
-  
-  .about__line-short {
-    right: 10px;
-    width: 15px;
   }
 }
