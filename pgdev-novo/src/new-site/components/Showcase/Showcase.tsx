@@ -93,16 +93,15 @@ export default function Showcase({ language }: ShowcaseProps) {
                   className="showcase-card"
                   onClick={() => handleProjectClick(project.url)}
                 >
-                  <div className="card-image">
+                  <div className="card">
                     <img src={project.image} alt={project.name} />
-                    <div className="card-overlay">
-                      <div className="card-border"></div>
-                      <div className="card-info">
+                    <div className="card-hover">
+                      <div className="card-text">
                         <h3>{project.name}</h3>
                         <p>{project.category}</p>
                       </div>
                       <div className="card-icon">
-                        <ArrowUpRight size={24} />
+                        <ArrowUpRight size={18} />
                       </div>
                     </div>
                   </div>
