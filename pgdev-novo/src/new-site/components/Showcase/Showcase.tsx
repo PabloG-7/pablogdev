@@ -2,13 +2,6 @@ import './Showcase.css'
 import { ArrowUpRight } from 'lucide-react'
 import type { Language } from '../../types'
 
-import exemplo1 from '../../assets/exemplo1.webp'
-import exemplo2 from '../../assets/exemplo2.webp'
-import exemplo3 from '../../assets/exemplo3.webp'
-import exemplo4 from '../../assets/exemplo4.webp'
-import exemplo5 from '../../assets/exemplo5.webp'
-import exemplo6 from '../../assets/exemplo6.webp'
-
 type ShowcaseProps = {
   language: Language
 }
@@ -20,37 +13,37 @@ export default function Showcase({ language }: ShowcaseProps) {
     {
       name: 'Dr. Bruno',
       category: isPt ? 'Site para profissional da saúde' : 'Sitio para profesional de salud',
-      image: exemplo1,
+      image: '/images/exemplo1.webp',
       url: 'https://pablog-7.github.io/projeto-drbruno/',
     },
     {
       name: 'Kushi',
       category: isPt ? 'Loja virtual de moda' : 'Tienda online de moda',
-      image: exemplo2,
+      image: '/images/exemplo2.webp',
       url: 'https://pablog-7.github.io/ecommerce-kushi/',
     },
     {
       name: 'Atelier',
       category: isPt ? 'Landing page de moda' : 'Landing page de moda',
-      image: exemplo3,
+      image: '/images/exemplo3.webp',
       url: 'https://roupas-ateller.vercel.app/',
     },
     {
       name: 'Barbearia',
       category: isPt ? 'Site com agendamento online' : 'Sitio con agenda online',
-      image: exemplo4,
+      image: '/images/exemplo4.webp',
       url: 'https://agendamento-de-barbearia-virid.vercel.app/',
     },
     {
       name: 'Saveur',
       category: isPt ? 'Site para restaurante' : 'Sitio para restaurante',
-      image: exemplo5,
+      image: '/images/exemplo5.webp',
       url: 'https://sistema-web-para-restaurante.vercel.app/',
     },
     {
       name: 'Habitat',
       category: isPt ? 'Site para imobiliária' : 'Sitio para inmobiliaria',
-      image: exemplo6,
+      image: '/images/exemplo6.webp',
       url: 'https://sistema-web-imobiliaria.vercel.app/',
     },
   ]
@@ -87,9 +80,9 @@ export default function Showcase({ language }: ShowcaseProps) {
                   alt={project.name}
                   width="900"
                   height="560"
-                  loading="lazy"
-                  fetchPriority="low"
-                  decoding="async"
+                  loading="eager"
+                  fetchPriority="high"
+                  decoding="sync"
                 />
 
                 <div className="card-hover">
