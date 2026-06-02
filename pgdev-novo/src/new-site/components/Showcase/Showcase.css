@@ -61,7 +61,7 @@
   position: relative;
   border-radius: 20px;
   overflow: hidden;
-  background: rgba(255, 255, 255, 0.04);
+  background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
   aspect-ratio: 16 / 10;
   transition: transform 0.3s ease;
 }
@@ -186,11 +186,8 @@
     font-size: 1.125rem;
   }
 
-  /* Desativa zoom da imagem no mobile para melhor performance no Safari */
-  .showcase-card:hover .card {
-    transform: none;
-  }
-
+  /* Desativa animações pesadas no mobile */
+  .showcase-card:hover .card,
   .showcase-card:hover .card img {
     transform: none;
   }
