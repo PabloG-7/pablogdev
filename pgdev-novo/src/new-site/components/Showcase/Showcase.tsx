@@ -87,8 +87,8 @@ export default function Showcase({ language }: ShowcaseProps) {
                   alt={project.name}
                   width="900"
                   height="560"
-                  loading={index < 2 ? 'eager' : 'lazy'}
-                  fetchPriority={index < 2 ? 'high' : 'low'}
+                  loading={index === 0 ? 'eager' : 'lazy'}
+                  fetchPriority={index === 0 ? 'high' : 'low'}
                   decoding="async"
                 />
 
