@@ -55,20 +55,8 @@ export default function Showcase({ language }: ShowcaseProps) {
     },
   ]
 
-  const projectPairs = [
-    [projects[0], projects[1]],
-    [projects[2], projects[3]],
-    [projects[4], projects[5]],
-  ]
-
   const handleProjectClick = (url: string) => {
-    if (url.startsWith('http')) {
-      window.open(url, '_blank')
-    } else if (url !== '#contato') {
-      window.location.href = url
-    } else {
-      document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' })
-    }
+    window.open(url, '_blank', 'noopener,noreferrer')
   }
 
   return (
@@ -78,41 +66,44 @@ export default function Showcase({ language }: ShowcaseProps) {
           <span className="showcase-label">
             {isPt ? 'EXEMPLOS DE SOLUÇÕES' : 'EJEMPLOS DE SOLUCIONES'}
           </span>
+
           <h2 className="showcase-title">
             {isPt ? 'Ideias visuais para' : 'Ideas visuales para'}
-            <span> {isPt ? 'vender mais online' : 'vender más online'}</span>
+            <span>{isPt ? ' vender mais online' : ' vender más online'}</span>
           </h2>
         </div>
 
-        <div className="showcase-grid-2x2">
-          {projectPairs.map((pair, pairIndex) => (
-            <div key={pairIndex} className="showcase-row">
-              {pair.map((project) => (
-                <button
-                  key={project.name}
-                  className="showcase-card"
-                  onClick={() => handleProjectClick(project.url)}
-                >
-                  <div className="card">
-                    <img
-                      src={project.image}
-                      alt={project.name}
-                      loading="lazy"
-                      decoding="async"
-                    />
-                    <div className="card-hover">
-                      <div className="card-text">
-                        <h3>{project.name}</h3>
-                        <p>{project.category}</p>
-                      </div>
-                      <div className="card-icon">
-                        <ArrowUpRight size={18} />
-                      </div>
-                    </div>
+        <div className="showcase-grid">
+          {projects.map((project, index) => (
+            <button
+              key={project.name}
+              className="showcase-card"
+              onClick={() => handleProjectClick(project.url)}
+              aria-label={`Abrir projeto ${project.name}`}
+            >
+              <div className="card">
+                <img
+                  src={project.image}
+                  alt={project.name}
+                  width="900"
+                  height="560"
+                  loading={index < 2 ? 'eager' : 'lazy'}
+                  fetchPriority={index < 2 ? 'high' : 'low'}
+                  decoding="async"
+                />
+
+                <div className="card-hover">
+                  <div className="card-text">
+                    <h3>{project.name}</h3>
+                    <p>{project.category}</p>
                   </div>
-                </button>
-              ))}
-            </div>
+
+                  <div className="card-icon">
+                    <ArrowUpRight size={18} />
+                  </div>
+                </div>
+              </div>
+            </button>
           ))}
         </div>
       </div>

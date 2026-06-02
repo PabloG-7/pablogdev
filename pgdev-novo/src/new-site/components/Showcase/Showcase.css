@@ -43,15 +43,9 @@
   margin-top: 4px;
 }
 
-.showcase-grid-2x2 {
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-}
-
-.showcase-row {
+.showcase-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 32px;
 }
 
@@ -67,18 +61,22 @@
   position: relative;
   border-radius: 20px;
   overflow: hidden;
+  background: rgba(255, 255, 255, 0.04);
+  aspect-ratio: 16 / 10;
   transition: transform 0.3s ease;
-}
-
-.showcase-card:hover .card {
-  transform: translateY(-6px);
 }
 
 .card img {
   width: 100%;
-  height: auto;
+  height: 100%;
   display: block;
+  object-fit: cover;
+  transform: translateZ(0);
   transition: transform 0.4s ease;
+}
+
+.showcase-card:hover .card {
+  transform: translateY(-6px);
 }
 
 .showcase-card:hover .card img {
@@ -87,11 +85,9 @@
 
 .card-hover {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  inset: auto 0 0 0;
   background: linear-gradient(to top, #000c24, #000c24dd, transparent);
-  padding: 24px 20px 20px;
+  padding: 70px 20px 20px;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
@@ -134,8 +130,8 @@
   align-items: center;
   justify-content: center;
   color: #000c24;
-  transition: all 0.2s ease;
   flex-shrink: 0;
+  transition: all 0.2s ease;
 }
 
 .showcase-card:hover .card-icon {
@@ -144,18 +140,18 @@
 }
 
 @media (max-width: 900px) {
-  .showcase-row {
+  .showcase-grid {
     gap: 24px;
   }
-  
+
   .card-hover {
     padding: 20px 16px 16px;
   }
-  
+
   .card-text h3 {
     font-size: 0.9rem;
   }
-  
+
   .card-icon {
     width: 30px;
     height: 30px;
@@ -166,7 +162,7 @@
   .showcase-title {
     font-size: 1.75rem;
   }
-  
+
   .showcase-title span {
     font-size: 1.25rem;
   }
@@ -176,18 +172,24 @@
   .showcase-container {
     padding: 0 20px;
   }
-  
-  .showcase-row {
+
+  .showcase-grid {
     grid-template-columns: 1fr;
     gap: 24px;
   }
-  
+
   .showcase-title {
     font-size: 1.5rem;
   }
-  
+
   .showcase-title span {
     font-size: 1.125rem;
+  }
+
+  /* Mantém escondido no mobile */
+  .card-hover {
+    opacity: 0;
+    padding: 20px 16px 16px;
   }
 }
 
@@ -195,23 +197,19 @@
   .showcase {
     padding: 50px 0;
   }
-  
+
   .showcase-container {
     padding: 0 16px;
   }
-  
+
   .showcase-header {
     margin-bottom: 32px;
   }
-  
-  .card-hover {
-    padding: 20px 16px 16px;
-  }
-  
+
   .card-text h3 {
     font-size: 0.9rem;
   }
-  
+
   .card-icon {
     width: 28px;
     height: 28px;
