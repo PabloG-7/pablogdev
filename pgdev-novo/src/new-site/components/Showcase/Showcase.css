@@ -59,7 +59,7 @@
 
 .card {
   position: relative;
-  border-radius: 20px;
+  
   overflow: hidden;
   background: rgba(255, 255, 255, 0.04);
   transition: transform 0.3s ease;
