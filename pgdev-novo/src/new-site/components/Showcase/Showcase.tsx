@@ -1,5 +1,4 @@
 import './Showcase.css'
-import { useEffect, useRef, useState } from 'react'
 import { ArrowUpRight } from 'lucide-react'
 import type { Language } from '../../types'
 
@@ -16,29 +15,6 @@ type ShowcaseProps = {
 
 export default function Showcase({ language }: ShowcaseProps) {
   const isPt = language === 'pt'
-  const sectionRef = useRef<HTMLElement | null>(null)
-  const [canLoadImages, setCanLoadImages] = useState(false)
-
-  useEffect(() => {
-    const section = sectionRef.current
-    if (!section) return
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setCanLoadImages(true)
-          observer.disconnect()
-        }
-      },
-      {
-        rootMargin: '300px', // Começa a carregar 300px antes de entrar na tela
-      }
-    )
-
-    observer.observe(section)
-
-    return () => observer.disconnect()
-  }, [])
 
   const projects = [
     {
@@ -84,7 +60,7 @@ export default function Showcase({ language }: ShowcaseProps) {
   }
 
   return (
-    <section ref={sectionRef} className="showcase" id="projetos">
+    <section className="showcase" id="projetos">
       <div className="showcase-container">
         <div className="showcase-header">
           <span className="showcase-label">
@@ -106,16 +82,15 @@ export default function Showcase({ language }: ShowcaseProps) {
               aria-label={`Abrir projeto ${project.name}`}
             >
               <div className="card">
-                {canLoadImages && (
-                  <img
-                    src={project.image}
-                    alt={project.name}
-                    width="900"
-                    height="560"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                )}
+                <img
+                  src={project.image}
+                  alt={project.name}
+                  width="900"
+                  height="560"
+                  loading="lazy"
+                  fetchPriority="low"
+                  decoding="async"
+                />
 
                 <div className="card-hover">
                   <div className="card-text">
