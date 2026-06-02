@@ -73,7 +73,6 @@
   object-fit: cover;
   transform: translateZ(0);
   transition: transform 0.4s ease;
-  content-visibility: auto;
 }
 
 .showcase-card:hover .card {
@@ -185,6 +184,15 @@
 
   .showcase-title span {
     font-size: 1.125rem;
+  }
+
+  /* Desativa zoom da imagem no mobile para melhor performance no Safari */
+  .showcase-card:hover .card {
+    transform: none;
+  }
+
+  .showcase-card:hover .card img {
+    transform: none;
   }
 
   /* Mantém escondido no mobile */

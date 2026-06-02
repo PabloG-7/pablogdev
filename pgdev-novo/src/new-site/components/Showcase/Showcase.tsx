@@ -74,7 +74,7 @@ export default function Showcase({ language }: ShowcaseProps) {
         </div>
 
         <div className="showcase-grid">
-          {projects.map((project, index) => (
+          {projects.map((project) => (
             <button
               key={project.name}
               className="showcase-card"
@@ -87,8 +87,8 @@ export default function Showcase({ language }: ShowcaseProps) {
                   alt={project.name}
                   width="900"
                   height="560"
-                  loading={index === 0 ? 'eager' : 'lazy'}
-                  fetchPriority={index === 0 ? 'high' : 'low'}
+                  loading="lazy"
+                  fetchPriority="low"
                   decoding="async"
                 />
 
