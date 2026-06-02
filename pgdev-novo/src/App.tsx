@@ -13,7 +13,6 @@ import Contact from './new-site/components/Contact/Contact'
 import Footer from './new-site/components/Footer/Footer'
 import ProjectGuide from './new-site/components/ProjectGuide/ProjectGuide'
 import FloatingWhatsApp from './new-site/components/FloatingWhatsApp/FloatingWhatsApp'
-import BookingDemo from './new-site/components/BookingDemo/BookingDemo'
 import PabloGomesPage from './new-site/components/PabloGomesPage/PabloGomesPage'
 
 import type { Language } from './new-site/types'
@@ -32,9 +31,11 @@ function App() {
   const path = window.location.pathname
 
   const isSpanishRoute = path === '/es' || path.startsWith('/es/')
+
   const [language, setLanguage] = useState<Language>(
     isSpanishRoute ? 'es' : getInitialLanguage()
   )
+
   const [isGuideOpen, setIsGuideOpen] = useState(false)
 
   const currentLanguage: Language = isSpanishRoute ? 'es' : language
@@ -43,18 +44,6 @@ function App() {
     localStorage.setItem('pgdev-language', currentLanguage)
     document.documentElement.lang = currentLanguage === 'pt' ? 'pt-BR' : 'es'
   }, [currentLanguage])
-
-  if (path === '/demo-barbearia') {
-    return <BookingDemo type="barbearia" language={currentLanguage} />
-  }
-
-  if (path === '/demo-clinica') {
-    return <BookingDemo type="clinica" language={currentLanguage} />
-  }
-
-  if (path === '/demo-petshop') {
-    return <BookingDemo type="petshop" language={currentLanguage} />
-  }
 
   if (path === '/pablo-gomes') {
     return <PabloGomesPage language="pt" />
