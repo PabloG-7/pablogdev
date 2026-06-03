@@ -1,6 +1,5 @@
 import './Hero.css'
 import heroDevices from '../../assets/hero-devices.png'
-import logo from '../../assets/hero-devices.png'
 import { ArrowRight, MessageCircle, Calendar, Layout, Zap } from 'lucide-react'
 import type { Language } from '../../types'
 import { ClipboardList } from 'lucide-react'
@@ -26,7 +25,7 @@ export default function Hero({ language, onOpenGuide }: HeroProps) {
         aria-hidden="true" 
       />
       <img 
-        src={logo}
+        src={heroDevices}
         alt="" 
         className="hero-bg-logo hero-bg-logo--mobile" 
         aria-hidden="true" 
@@ -88,7 +87,7 @@ export default function Hero({ language, onOpenGuide }: HeroProps) {
               onClick={onOpenGuide}
               className="hero-btn secondary"
             >
-        <ClipboardList size={16} />
+              <ClipboardList size={16} />
               {language === 'pt' ? 'DIAGNÓSTICO GRÁTIS' : 'DIAGNÓSTICO GRATIS'}
             </button>
           </div>
