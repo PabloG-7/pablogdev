@@ -215,6 +215,11 @@
   .hero {
     padding-top: 50px;
   }
+  .hero-bg-logo {
+    opacity: 1.0;
+    top: 53%;
+    left: 26%;
+  }
 
   .hero-container {
     padding: 40px 24px;
