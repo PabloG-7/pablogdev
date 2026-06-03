@@ -22,7 +22,7 @@
   width: min(45vw, 680px);
   pointer-events: none;
   z-index: 0;
-  opacity: 0.85;
+
 }
 
 .hero-container {
@@ -250,7 +250,7 @@
     width: 50vw;
     max-width: 160px;
     top: 58%;
-    opacity: 0.18;
+    opacity: 2.68;
   }
 
   .hero-container {
