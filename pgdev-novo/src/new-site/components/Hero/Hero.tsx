@@ -1,6 +1,6 @@
 import './Hero.css'
 import heroDevices from '../../assets/hero-devices.png'
-import logo from '../../assets/logo.png'
+import logo from '../../assets/hero-devices.png'
 import { ArrowRight, MessageCircle, Calendar, Layout, Zap } from 'lucide-react'
 import type { Language } from '../../types'
 import { ClipboardList } from 'lucide-react'
