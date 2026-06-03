@@ -1,5 +1,5 @@
 import './Hero.css'
-import heroDevices from '../../assets/hero-devices.png'
+import heroDevices from '../../assets/hero-devices.webp'
 import { ArrowRight, MessageCircle, Calendar, Layout, Zap } from 'lucide-react'
 import type { Language } from '../../types'
 import { ClipboardList } from 'lucide-react'
@@ -22,13 +22,19 @@ export default function Hero({ language, onOpenGuide }: HeroProps) {
         src={heroDevices}
         alt="" 
         className="hero-bg-logo hero-bg-logo--desktop" 
-        aria-hidden="true" 
+        aria-hidden="true"
+        loading="eager"
+        decoding="async"
+        fetchPriority="high"
       />
       <img 
         src={heroDevices}
         alt="" 
         className="hero-bg-logo hero-bg-logo--mobile" 
-        aria-hidden="true" 
+        aria-hidden="true"
+        loading="eager"
+        decoding="async"
+        fetchPriority="high"
       />
       
       <div className="hero-container">
