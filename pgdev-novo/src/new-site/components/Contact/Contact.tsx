@@ -1,5 +1,5 @@
 import './Contact.css'
-import { Mail, ArrowRight } from 'lucide-react'
+import { Mail } from 'lucide-react'
 import { FaWhatsapp, FaInstagram, FaFacebook } from 'react-icons/fa'
 import { pt } from '../../i18n/pt'
 import { es } from '../../i18n/es'
