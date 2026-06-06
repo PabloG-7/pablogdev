@@ -5,7 +5,6 @@ import './new-site/styles/global.css'
 
 import Header from './new-site/components/Header/Header'
 import Hero from './new-site/components/Hero/Hero'
-import ProcessBanner from './new-site/components/ProcessBanner/ProcessBanner'
 import Services from './new-site/components/Services/Services'
 import Showcase from './new-site/components/Showcase/Showcase'
 import About from './new-site/components/About/About'
@@ -59,7 +58,7 @@ function App() {
 
       <main>
         <Hero language={currentLanguage} onOpenGuide={() => setIsGuideOpen(true)} />
-        <ProcessBanner language={currentLanguage} />
+        {/* ProcessBanner REMOVIDO conforme solicitado */}
         <Services language={currentLanguage} />
         <Showcase language={currentLanguage} />
         <About language={currentLanguage} />

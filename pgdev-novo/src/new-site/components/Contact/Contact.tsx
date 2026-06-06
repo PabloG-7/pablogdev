@@ -12,63 +12,71 @@ type ContactProps = {
 export default function Contact({ language }: ContactProps) {
   const content = language === 'pt' ? pt : es
 
+  const whatsappLink = `https://wa.me/5511961111894?text=${encodeURIComponent(content.contact.cardMessage)}`
+
   return (
     <section className="contact" id="contato">
       <div className="contact-container">
-        <span className="contact-label">{content.contact.badge || 'CONTATO'}</span>
-        <h2 className="contact-title">
-          {content.contact.title}{' '}
-          <span>{content.contact.highlight || 'disponível'}</span>
-        </h2>
+        <div className="contact-header">
+          <span className="contact-badge">
+            {language === 'pt' ? 'CONTATO' : 'CONTACTO'}
+          </span>
+          <h2 className="contact-title">
+            {language === 'pt' ? (
+              <>Vamos <span>conversar?</span></>
+            ) : (
+              <>¿Vamos <span>conversar?</span></>
+            )}
+          </h2>
+          <p className="contact-description">
+            {language === 'pt'
+              ? 'Escolha o melhor canal e fale comigo agora mesmo.'
+              : 'Elige el mejor canal y háblame ahora mismo.'}
+          </p>
+        </div>
 
-        <p className="contact-text">{content.contact.text}</p>
-
-        <div className="contact-info">
+        <div className="contact-grid">
           <a
-            href="https://wa.me/5511961111894"
+            href={whatsappLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="contact-item"
+            className="contact-card"
           >
-            <FaWhatsapp size={18} color="#25D366" />
-            <span>+55 11 96111-1894</span>
-          </a>
-
-          <a href="mailto:pgdevsoftware@gmail.com" className="contact-item">
-            <Mail size={18} color="#EA4335" />
-            <span>pgdevsoftware@gmail.com</span>
-          </a>
-
-          <a
-            href="https://www.instagram.com/pablog.dev/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="contact-item"
-          >
-            <FaInstagram size={18} color="#E4405F" />
-            <span>@pablog.dev</span>
+            <div className="contact-card-icon">
+              <FaWhatsapp size={24} />
+            </div>
+            <h3>WhatsApp</h3>
+            <p>+55 11 96111-1894</p>
+            <span className="contact-arrow">→</span>
           </a>
 
           <a
-            href="https://www.facebook.com/profile.php?id=61579501306846"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="contact-item"
+            href="mailto:pgdevsoftware@gmail.com"
+            className="contact-card"
           >
-            <FaFacebook size={18} color="#1877F2" />
-            <span>Facebook</span>
+            <div className="contact-card-icon">
+              <Mail size={24} />
+            </div>
+            <h3>Email</h3>
+            <p>pgdevsoftware@gmail.com</p>
+            <span className="contact-arrow">→</span>
           </a>
         </div>
 
-        <a
-          href={`https://wa.me/5511961111894?text=${encodeURIComponent(content.contact.cardMessage)}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="contact-button"
-        >
-          {content.contact.cardButton}
-          <ArrowRight size={16} />
-        </a>
+        <div className="contact-social">
+          <span>Redes sociais</span>
+          <div className="social-links">
+            <a href="https://www.instagram.com/pablog.dev/" target="_blank" rel="noopener noreferrer">
+              <FaInstagram size={18} />
+            </a>
+            <a href="https://www.facebook.com/profile.php?id=61579501306846" target="_blank" rel="noopener noreferrer">
+              <FaFacebook size={18} />
+            </a>
+            <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
+              <FaWhatsapp size={18} />
+            </a>
+          </div>
+        </div>
       </div>
     </section>
   )

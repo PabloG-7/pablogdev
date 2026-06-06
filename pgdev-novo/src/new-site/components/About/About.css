@@ -1,247 +1,65 @@
-/* ============================================
-   ABOUT - VERSÃO SIMPLES
-   ============================================ */
-
+/* About.css - Clean */
 .about {
   padding: 80px 0;
   background: #000c24;
   position: relative;
-  overflow: hidden;
 }
 
 .about-container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 24px;
-  position: relative;
-  z-index: 2;
 }
 
 .about-label {
-  display: inline-block;
-  margin-bottom: 16px;
   color: #fec90f;
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  padding: 4px 12px;
-  border-radius: 20px;
 }
 
 .about-title {
   font-size: 2.5rem;
   font-weight: 700;
-  color: #ffffff;
-  margin: 0 0 48px;
-  line-height: 1.2;
+  color: #fff;
+  margin: 12px 0 32px;
 }
 
 .about-title span {
   color: #fec90f;
-  position: relative;
-  display: inline-block;
 }
 
-.about-title span::before {
-  content: '';
-  position: absolute;
-  bottom: -4px;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background: #fec90f;
-  transform: scaleX(0);
-  transform-origin: right;
-  transition: transform 0.3s ease;
+.about-content {
+  max-width: 800px;
 }
 
-.about-title:hover span::before {
-  transform: scaleX(1);
-  transform-origin: left;
-}
-
-.about-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
-  align-items: center;
-}
-
-.about-text p {
+.about-content p {
   color: rgba(255, 255, 255, 0.7);
   font-size: 1rem;
-  line-height: 1.7;
-  margin: 0 0 20px;
-  transition: color 0.3s ease;
-}
-
-.about-text p:last-child {
-  margin-bottom: 0;
-}
-
-.about-text p:hover {
-  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.6;
+  margin-bottom: 20px;
 }
 
 .about-logo {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  margin-top: 40px;
 }
 
 .about-logo img {
-  width: 100%;
-  max-width: 260px;
-  opacity: 0.9;
-  transition: all 0.3s ease;
-  filter: brightness(1);
-}
-
-.about-logo img:hover {
-  opacity: 1;
-  transform: scale(1.02);
-  filter: brightness(1.05);
-}
-
-/* ============================================
-   VÍDEO DE FUNDO PREMIUM - ESTILOS GLOBAIS
-   ============================================ */
-
-.about-video {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0.14;
-  filter: blur(1px) brightness(0.45);
-  pointer-events: none;
-  z-index: 0;
-}
-
-/* Vídeo Desktop - visível por padrão */
-.about-video-desktop {
-  display: block;
-}
-
-/* Vídeo Mobile - escondido por padrão */
-.about-video-mobile {
-  display: none;
-}
-
-/* ============================================
-   RESPONSIVO - TROCA DE VÍDEOS
-   ============================================ */
-
-@media (max-width: 1023px) {
-  .about-video-desktop {
-    display: none;
-  }
-
-  .about-video-mobile {
-    display: block;
-    object-fit: cover;
-  }
-}
-
-/* ============================================
-   RESPONSIVO
-   ============================================ */
-
-@media (max-width: 900px) {
-  .about {
-    padding: 60px 0;
-  }
-
-  .about-grid {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
-
-  .about-logo {
-    order: -1;
-  }
-
-  .about-logo img {
-    max-width: 200px;
-  }
-
-  .about-title {
-    font-size: 2rem;
-    margin-bottom: 36px;
-    text-align: left;
-  }
-
-  .about-label {
-    display: inline-block;
-    margin-left: 0;
-    margin-right: auto;
-  }
-
-  .about-text p {
-    text-align: left;
-    font-size: 0.95rem;
-  }
+  max-width: 120px;
+  opacity: 0.8;
 }
 
 @media (max-width: 768px) {
   .about {
-    padding: 50px 0;
-  }
-  
-  .about-container {
-    padding: 0 20px;
-  }
-
-  .about-title {
-    font-size: 1.8rem;
-  }
-}
-
-@media (max-width: 600px) {
-  .about {
-    padding: 50px 0;
-  }
-
-  .about-title {
-    font-size: 1.6rem;
-    margin-bottom: 32px;
-  }
-
-  .about-label {
-    font-size: 0.7rem;
-    padding: 3px 10px;
-  }
-
-  .about-grid {
-    gap: 32px;
-  }
-
-  .about-text p {
-    font-size: 0.9rem;
-    line-height: 1.6;
-  }
-
-  .about-logo img {
-    max-width: 150px;
-  }
-}
-
-@media (max-width: 480px) {
-  .about {
-    padding: 40px 0;
+    padding: 60px 0;
   }
   
   .about-title {
-    font-size: 1.4rem;
+    font-size: 2rem;
   }
-
-  .about-label {
-    font-size: 0.65rem;
-  }
-
-  .about-text p {
-    font-size: 0.85rem;
+  
+  .about-content p {
+    font-size: 0.9375rem;
   }
 }
