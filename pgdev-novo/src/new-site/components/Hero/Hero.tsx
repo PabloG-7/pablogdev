@@ -1,5 +1,6 @@
 import './Hero.css'
-import heroDevices from '../../assets/hero-devices.webp'
+
+import heroBackground from '../../assets/hero-background.webp'
 import { ArrowRight, MessageCircle, Calendar, Layout, Zap } from 'lucide-react'
 import type { Language } from '../../types'
 import { ClipboardList } from 'lucide-react'
@@ -18,24 +19,23 @@ export default function Hero({ language, onOpenGuide }: HeroProps) {
 
   return (
     <section className="hero" id="inicio">
-      <img 
-        src={heroDevices}
-        alt="" 
-        className="hero-bg-logo hero-bg-logo--desktop" 
-        aria-hidden="true"
-        loading="eager"
-        decoding="async"
-        fetchPriority="high"
+      {/* Camada de fundo cinematográfica - com estilo inline para funcionar no Vite */}
+      <div 
+        className="hero-background"
+        style={{
+          backgroundImage: `
+            linear-gradient(
+              90deg,
+              rgba(0, 12, 36, 0.55) 0%,
+              rgba(0, 12, 36, 0.45) 50%,
+              rgba(0, 12, 36, 0.35) 100%
+            ),
+            url(${heroBackground})
+          `
+        }}
       />
-      <img 
-        src={heroDevices}
-        alt="" 
-        className="hero-bg-logo hero-bg-logo--mobile" 
-        aria-hidden="true"
-        loading="eager"
-        decoding="async"
-        fetchPriority="high"
-      />
+      
+    
       
       <div className="hero-container">
         <div className="hero-content">
@@ -99,6 +99,8 @@ export default function Hero({ language, onOpenGuide }: HeroProps) {
           </div>
         </div>
       </div>
+
+      
     </section>
   )
 }
