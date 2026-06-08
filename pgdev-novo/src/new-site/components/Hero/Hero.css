@@ -256,6 +256,11 @@
     right: 14px;
     opacity: 0.8;
   }
+
+  /* Move a imagem de fundo para a esquerda */
+  .hero-background {
+    background-position: 53% center;
+  }
 }
 
 @media (max-width: 380px) {
@@ -267,5 +272,10 @@
     width: 150px;
     top: 265px;
     right: 10px;
+  }
+
+  /* Ajuste adicional para telas muito pequenas */
+  .hero-background {
+    background-position: 30% center;
   }
 }
