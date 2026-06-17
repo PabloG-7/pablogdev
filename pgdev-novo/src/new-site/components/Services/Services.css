@@ -1,6 +1,7 @@
 .services {
   padding: 80px 0;
   background: #000c24;
+  position: relative;
 }
 
 .services-container {
@@ -17,8 +18,8 @@
   display: block;
   margin-bottom: 12px;
   color: #fec90f;
-  font-size: 0.75rem;
-  font-weight: 600;
+  font-size: 0.8125rem; /* IGUAL AO HERO-LABEL */
+  font-weight: 600; /* IGUAL AO HERO-LABEL */
   letter-spacing: 0.15em;
   text-transform: uppercase;
 }
@@ -26,15 +27,17 @@
 .services-title {
   margin: 0;
   font-size: 2rem;
-  font-weight: 600;
+  font-weight: 300; /* IGUAL AO HERO-TITLE */
   color: #ffffff;
+  line-height: 1.1; /* IGUAL AO HERO-TITLE */
+  letter-spacing: -0.02em; /* IGUAL AO HERO-TITLE */
 }
 
 .services-title span {
   display: block;
   color: #fec90f;
   font-size: 1.5rem;
-  font-weight: 500;
+  font-weight: 600; /* IGUAL AO SPAN DA HERO */
   margin-top: 4px;
 }
 
@@ -49,12 +52,22 @@
   display: flex;
   align-items: flex-start;
   gap: 16px;
+  transition: transform 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-4px);
 }
 
 .service-card svg {
   color: #fec90f;
   flex-shrink: 0;
   margin-top: 2px;
+  transition: transform 0.3s ease;
+}
+
+.service-card:hover svg {
+  transform: scale(1.1);
 }
 
 .service-info {
@@ -64,15 +77,16 @@
 .service-info h3 {
   margin: 0 0 6px;
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 400; /* IGUAL AO HERO-FEATURE */
   color: #ffffff;
 }
 
 .service-info p {
   margin: 0 0 12px;
-  font-size: 0.8125rem;
+  font-size: 0.8125rem; /* IGUAL AO HERO-FEATURE E HERO-LABEL */
   color: rgba(255, 255, 255, 0.5);
-  line-height: 1.4;
+  line-height: 1.6; /* IGUAL AO HERO-TEXT */
+  font-weight: 300; /* IGUAL AO HERO-TEXT */
 }
 
 .service-points {
@@ -87,6 +101,7 @@
   margin-bottom: 6px;
   padding-left: 12px;
   position: relative;
+  font-weight: 300; /* IGUAL AO HERO-TEXT */
 }
 
 .service-points li::before {
@@ -96,7 +111,7 @@
   left: 0;
 }
 
-/* Scroll indicator estilizado */
+/* Scroll indicator */
 .scroll-indicator {
   display: flex;
   flex-direction: column;
@@ -110,7 +125,6 @@
   opacity: 1;
 }
 
-/* Mouse */
 .mouse {
   width: 26px;
   height: 42px;
@@ -142,7 +156,6 @@
   }
 }
 
-/* Setas */
 .arrow-down {
   display: flex;
   flex-direction: column;
@@ -240,5 +253,9 @@
   
   .services-title span {
     font-size: 1.125rem;
+  }
+  
+  .services-label {
+    font-size: 0.75rem;
   }
 }

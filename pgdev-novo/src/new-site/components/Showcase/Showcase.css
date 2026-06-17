@@ -1,5 +1,5 @@
 /* ============================================
-   SHOWCASE - HOVER LIMPO E LEGÍVEL
+   SHOWCASE - COM FONTES IGUAIS A HERO E SERVICES
    ============================================ */
 
 .showcase {
@@ -22,8 +22,8 @@
   display: block;
   margin-bottom: 12px;
   color: #fec90f;
-  font-size: 0.75rem;
-  font-weight: 600;
+  font-size: 0.8125rem; /* IGUAL AO HERO-LABEL E SERVICES-LABEL */
+  font-weight: 600; /* IGUAL AO HERO-LABEL E SERVICES-LABEL */
   letter-spacing: 0.15em;
   text-transform: uppercase;
 }
@@ -31,15 +31,17 @@
 .showcase-title {
   margin: 0;
   font-size: 2rem;
-  font-weight: 600;
+  font-weight: 300; /* IGUAL AO HERO-TITLE E SERVICES-TITLE */
   color: #ffffff;
+  line-height: 1.1; /* IGUAL AO HERO-TITLE E SERVICES-TITLE */
+  letter-spacing: -0.02em; /* IGUAL AO HERO-TITLE E SERVICES-TITLE */
 }
 
 .showcase-title span {
   display: block;
   color: #fec90f;
   font-size: 1.5rem;
-  font-weight: 500;
+  font-weight: 600; /* IGUAL AO SPAN DA HERO E SERVICES */
   margin-top: 4px;
 }
 
@@ -59,7 +61,6 @@
 
 .card {
   position: relative;
-  
   overflow: hidden;
   background: rgba(255, 255, 255, 0.04);
   transition: transform 0.3s ease;
@@ -110,17 +111,17 @@
 .card-text h3 {
   margin: 0 0 6px;
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 400; /* IGUAL AO HERO-FEATURE E SERVICE-INFO H3 */
   color: #ffffff;
 }
 
 .card-text p {
   margin: 0;
-  font-size: 0.7rem;
+  font-size: 0.8125rem; /* IGUAL AO HERO-FEATURE E SERVICES-LABEL */
   color: #fec90f;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  font-weight: 500;
+  font-weight: 300; /* IGUAL AO HERO-TEXT E SERVICE-INFO P */
 }
 
 .card-icon {
@@ -203,6 +204,10 @@
     opacity: 0;
     padding: 20px 16px 16px;
   }
+
+  .card-text p {
+    font-size: 0.75rem;
+  }
 }
 
 /* Mobile pequeno */
@@ -219,8 +224,24 @@
     margin-bottom: 32px;
   }
 
+  .showcase-title {
+    font-size: 1.3rem;
+  }
+
+  .showcase-title span {
+    font-size: 1.125rem;
+  }
+
+  .showcase-label {
+    font-size: 0.75rem;
+  }
+
   .card-text h3 {
     font-size: 0.9rem;
+  }
+
+  .card-text p {
+    font-size: 0.7rem;
   }
 
   .card-icon {
