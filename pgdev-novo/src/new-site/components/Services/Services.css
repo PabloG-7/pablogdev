@@ -3,60 +3,29 @@
   background: #000c24;
   position: relative;
   overflow: hidden;
+  min-height: 100vh;
 }
 
-/* ============================================
-   PESSOA AO FUNDO APRESENTANDO
-   ============================================ */
-
-.services-person-bg {
+/* ===== IMAGEM DE FUNDO - 100% VISÍVEL ===== */
+.services-background {
   position: absolute;
   inset: 0;
-  z-index: 0;
-  opacity: 0.15;
-  pointer-events: none;
-}
-
-.person-bg-image {
-  position: absolute;
-  inset: 0;
-  background-size: cover;
-  background-position: center 30%;
+  background-size: 45% 100%;
+  background-position: 10% center;
   background-repeat: no-repeat;
+  z-index: 0;
+  opacity: 1;
 }
 
-.person-bg-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 30%;
-  opacity: 0.4;
-}
-
-.person-bg-overlay {
+/* OVERLAY SÓ NA DIREITA PRA DAR CONTRASTE */
+.services-background::after {
+  content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at 70% 50%, transparent 30%, #000c24 70%);
+  z-index: 1;
 }
-
-.person-bg-glow {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse at 70% 40%, rgba(254, 201, 15, 0.06), transparent 60%);
-  animation: glowPulse 4s ease-in-out infinite;
-}
-
-@keyframes glowPulse {
-  0%, 100% {
-    opacity: 0.5;
-  }
-  50% {
-    opacity: 1;
-  }
-}
-
 /* ============================================
-   CONTAINER - FICA POR CIMA DA PESSOA
+   CONTAINER
    ============================================ */
 
 .services-container {
@@ -64,39 +33,63 @@
   margin: 0 auto;
   padding: 0 24px;
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
+
+/* ============================================
+   HEADER - TÍTULO CENTRALIZADO COM ESCADA FORTE
+   ============================================ */
 
 .services-header {
+  width: 100%;
   margin-bottom: 48px;
-  position: relative;
-}
-
-.services-label {
-  display: block;
-  margin-bottom: 12px;
-  color: #fec90f;
-  font-size: 0.8125rem;
-  font-weight: 600;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .services-title {
-  margin: 0;
-  font-size: 2rem;
-  font-weight: 300;
-  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   line-height: 1.1;
-  letter-spacing: -0.02em;
+  margin: 0;
+  width: 100%;
 }
 
-.services-title span {
-  display: block;
+.services-title .line-1 {
+  font-size: 2.8rem;
+  font-weight: 300;
+  color: #fff;
+  letter-spacing: -0.02em;
+  text-align: center;
+  
+  /* ESCADA - PRIMEIRO DEGRAU BEM PRA ESQUERDA */
+  transform: translateX(-0px);
+}
+
+.services-title .line-2 {
+  margin-top: 8px;
+  font-size: 2.8rem;
+  font-weight: 700;
   color: #fec90f;
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin-top: 4px;
+  letter-spacing: -0.02em;
+  text-align: center;
+  
+  /* ESCADA - SEGUNDO DEGRAU MENOS PRA ESQUERDA */
+  transform: translateX(170px);
+}
+
+.services-title .line-3 {
+  margin-top: 8px;
+  font-size: 2.8rem;
+  font-weight: 500;
+  color: #fff;
+  letter-spacing: -0.02em;
+  text-align: center;
+  
+  /* ESCADA - TERCEIRO DEGRAU QUASE CENTRALIZADO */
+  transform: translateX(20px);
 }
 
 .services-grid {
@@ -108,27 +101,25 @@
 }
 
 /* ============================================
-   CARDS COM FUNDO - PARA DESTACAR DA PESSOA
+   CARDS
    ============================================ */
 
 .service-card {
   display: flex;
   align-items: flex-start;
   gap: 16px;
-  padding: 20px 24px;
+  padding: 24px 28px;
   border-radius: 12px;
   background: rgba(0, 12, 36, 0.6);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
   transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
 }
 
 .service-card:hover {
   transform: translateY(-6px);
-  background: rgba(0, 12, 36, 0.8);
-  border-color: rgba(254, 201, 15, 0.12);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+  background: rgb(0, 12, 36);
+  border-color: rgba(254, 201, 15, 0.15);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
 }
 
 .service-card svg {
@@ -156,7 +147,7 @@
 .service-info p {
   margin: 0 0 12px;
   font-size: 0.8125rem;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.6);
   line-height: 1.6;
   font-weight: 300;
 }
@@ -168,7 +159,7 @@
 }
 
 .service-points li {
-  color: rgba(255, 255, 255, 0.65);
+  color: rgba(255, 255, 255, 0.7);
   font-size: 0.75rem;
   margin-bottom: 6px;
   padding-left: 12px;
@@ -184,7 +175,7 @@
 }
 
 /* ============================================
-   SCROLL INDICATOR - SETAS BEM VISÍVEIS
+   SCROLL INDICATOR
    ============================================ */
 
 .scroll-indicator {
@@ -192,7 +183,7 @@
   flex-direction: column;
   align-items: center;
   gap: 12px;
-  opacity: 1; /* TOTALMENTE VISÍVEL */
+  opacity: 1;
   transition: opacity 0.3s ease;
   position: relative;
   z-index: 2;
@@ -202,7 +193,6 @@
   opacity: 1;
 }
 
-/* SETAS ANIMADAS */
 .scroll-arrows {
   display: flex;
   flex-direction: column;
@@ -214,8 +204,8 @@
   display: block;
   width: 16px;
   height: 16px;
-  border-right: 2.5px solid #fec90f; /* COR TOTAL */
-  border-bottom: 2.5px solid #fec90f; /* COR TOTAL */
+  border-right: 2.5px solid #fec90f;
+  border-bottom: 2.5px solid #fec90f;
   transform: rotate(45deg);
   animation: arrowDown 2s ease-in-out infinite;
   transition: all 0.3s ease;
@@ -251,7 +241,6 @@
   }
 }
 
-/* TEXTO */
 .scroll-text {
   color: rgba(255, 255, 255, 0.5);
   font-size: 0.65rem;
@@ -270,38 +259,101 @@
    RESPONSIVO
    ============================================ */
 
+/* Desktop Grande */
+@media (max-width: 1400px) {
+  .services-background {
+    background-size: 45% 100%;
+    background-position: 14% center;
+    opacity: 1;
+  }
+}
+
+/* Desktop */
+@media (max-width: 1200px) {
+  .services-background {
+    background-size: 50% 100%;
+    background-position: 8% center;
+    opacity: 1;
+  }
+  
+  .services-title .line-1 {
+    transform: translateX(-60px);
+  }
+
+  .services-title .line-2 {
+    transform: translateX(-15px);
+  }
+  
+  .services-title .line-3 {
+    transform: translateX(15px);
+  }
+}
+
+/* Desktop pequeno */
 @media (max-width: 1024px) {
   .services-grid {
     gap: 24px;
   }
   
   .service-card {
-    padding: 16px 20px;
+    padding: 20px 24px;
   }
   
-  .person-bg-image {
-    background-position: center 40%;
+  .services-background {
+    background-size: 55% 100%;
+    background-position: 5% center;
+    opacity: 1;
   }
   
-  .person-bg-image img {
-    object-position: center 40%;
+ 
+  
+  .services-title .line-1 {
+    font-size: 2.4rem;
+    transform: translateX(-50px);
+  }
+
+  .services-title .line-2 {
+    font-size: 2.4rem;
+    transform: translateX(-10px);
+  }
+  
+  .services-title .line-3 {
+    font-size: 2.4rem;
+    transform: translateX(10px);
   }
 }
 
+/* Tablet */
 @media (max-width: 900px) {
   .services-grid {
     grid-template-columns: repeat(2, 1fr);
   }
   
-  .services-person-bg {
-    opacity: 0.1;
+  .services-background {
+    background-size: 60% 100%;
+    background-position: 0% center;
+    opacity: 1;
   }
   
-  .person-bg-overlay {
-    background: radial-gradient(ellipse at 50% 50%, transparent 20%, #000c24 70%);
+
+  
+  .services-title .line-1 {
+    font-size: 2.2rem;
+    transform: translateX(-40px);
+  }
+
+  .services-title .line-2 {
+    font-size: 2.2rem;
+    transform: translateX(-8px);
+  }
+  
+  .services-title .line-3 {
+    font-size: 2.2rem;
+    transform: translateX(8px);
   }
 }
 
+/* Tablet pequeno */
 @media (max-width: 768px) {
   .services {
     padding: 60px 0;
@@ -309,47 +361,82 @@
 
   .services-grid {
     margin-bottom: 60px;
+    gap: 20px;
   }
   
   .service-card {
-    padding: 14px 16px;
+    padding: 16px 20px;
   }
   
-  .services-person-bg {
-    opacity: 0.08;
+  .services-background {
+    background-size: cover;
+    background-position: center;
+    opacity: 0.6;
+  }
+  
+
+  
+  .services-title .line-1 {
+    font-size: 2rem;
+    transform: translateX(-30px);
+  }
+
+  .services-title .line-2 {
+    font-size: 2rem;
+    transform: translateX(-5px);
+  }
+  
+  .services-title .line-3 {
+    font-size: 2rem;
+    transform: translateX(5px);
   }
 }
 
+/* Mobile grande */
 @media (max-width: 640px) {
   .services {
-    padding: 60px 0;
+    padding: 50px 0;
   }
 
   .services-container {
     padding: 0 20px;
   }
 
-  .services-title {
-    font-size: 1.75rem;
-  }
-
-  .services-title span {
-    font-size: 1.25rem;
-  }
-
   .services-grid {
     grid-template-columns: 1fr;
-    gap: 20px;
-    margin-bottom: 50px;
+    gap: 16px;
+    margin-bottom: 40px;
   }
   
   .service-card {
     padding: 16px 18px;
-    background: rgba(0, 12, 36, 0.7);
   }
   
-  .services-person-bg {
-    opacity: 0.06;
+  .services-background {
+    background-size: cover;
+    background-position: center;
+    opacity: 0.6;
+  }
+  
+
+  
+  .services-header {
+    margin-bottom: 32px;
+  }
+  
+  .services-title .line-1 {
+    font-size: 1.8rem;
+    transform: translateX(-25px);
+  }
+
+  .services-title .line-2 {
+    font-size: 1.8rem;
+    transform: translateX(-5px);
+  }
+  
+  .services-title .line-3 {
+    font-size: 1.8rem;
+    transform: translateX(5px);
   }
   
   .scroll-arrows span {
@@ -358,33 +445,36 @@
   }
 }
 
+/* Mobile pequeno */
 @media (max-width: 480px) {
   .services {
-    padding: 50px 0;
+    padding: 40px 0;
   }
   
   .services-container {
     padding: 0 16px;
   }
   
-  .services-title {
-    font-size: 1.5rem;
-  }
-  
-  .services-title span {
-    font-size: 1.125rem;
-  }
-  
-  .services-label {
-    font-size: 0.75rem;
-  }
-  
   .service-card {
-    padding: 14px 14px;
+    padding: 14px 16px;
   }
   
-  .services-person-bg {
-    opacity: 0.04;
+  .services-background {
+    background-size: 500px;
+    background-position: -130px 0%;
+    opacity: 0.6;
+  }
+  
+ 
+  .services-title .line-1 {
+    font-size: 1.5rem;
+    transform: translateX(-2px);
+  }
+
+  .services-title .line-2 {
+    font-size: 1.5rem;
+    transform: translateX(30px);
+    margin-top: 4px;
   }
   
   .scroll-arrows span {
@@ -394,5 +484,45 @@
   
   .scroll-text {
     font-size: 0.5rem;
+  }
+}
+
+/* Mobile muito pequeno */
+@media (max-width: 380px) {
+  .services-title .line-1 {
+    font-size: 1.2rem;
+    transform: translateX(-15px);
+  }
+
+  .services-title .line-2 {
+    font-size: 1.2rem;
+    transform: translateX(-2px);
+  }
+  
+  .services-title .line-3 {
+    font-size: 1.2rem;
+    transform: translateX(2px);
+  }
+  
+  .service-card {
+    padding: 12px 14px;
+    gap: 12px;
+  }
+  
+  .service-card svg {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .service-info h3 {
+    font-size: 0.875rem;
+  }
+  
+  .service-info p {
+    font-size: 0.7rem;
+  }
+  
+  .service-points li {
+    font-size: 0.65rem;
   }
 }

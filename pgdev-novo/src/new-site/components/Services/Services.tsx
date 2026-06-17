@@ -3,7 +3,7 @@ import { Globe, Settings2, CalendarCheck } from 'lucide-react'
 import { pt } from '../../i18n/pt'
 import { es } from '../../i18n/es'
 import type { Language } from '../../types'
-import heroBackground from '../../assets/apenas-logo.png'
+import serviceImage from '../../assets/service-background.webp'
 
 type ServicesProps = {
   language: Language
@@ -50,25 +50,17 @@ export default function Services({ language }: ServicesProps) {
 
   return (
     <section className="services" id="servicos">
-      {/* PESSOA AO FUNDO */}
-      <div className="services-person-bg">
-        <div className="person-bg-image">
-          <img 
-            src={heroBackground} 
-            alt={isPt ? 'Profissional apresentando soluções' : 'Profesional presentando soluciones'} 
-            loading="lazy"
-          />
-        </div>
-        <div className="person-bg-overlay"></div>
-        <div className="person-bg-glow"></div>
-      </div>
-
+      {/* IMAGEM DE FUNDO NA ESQUERDA */}
+      <div 
+        className="services-background"
+        style={{ backgroundImage: `url(${serviceImage})` }}
+      />
+      
       <div className="services-container">
         <div className="services-header">
-          <span className="services-label">{content.services.badge}</span>
           <h2 className="services-title">
-            {content.services.title}
-            <span> {content.services.highlight}</span>
+            <span className="line-1">Soluções digitais</span>
+            <span className="line-2">para seu negócio</span>
           </h2>
         </div>
 
@@ -92,7 +84,7 @@ export default function Services({ language }: ServicesProps) {
           })}
         </div>
 
-        {/* SCROLL INDICATOR - SETAS */}
+        {/* SCROLL INDICATOR */}
         <div className="scroll-indicator">
           <div className="scroll-arrows">
             <span></span>
