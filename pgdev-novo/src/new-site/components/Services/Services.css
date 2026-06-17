@@ -2,24 +2,82 @@
   padding: 80px 0;
   background: #000c24;
   position: relative;
+  overflow: hidden;
 }
+
+/* ============================================
+   PESSOA AO FUNDO APRESENTANDO
+   ============================================ */
+
+.services-person-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+.person-bg-image {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center 30%;
+  background-repeat: no-repeat;
+}
+
+.person-bg-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  opacity: 0.4;
+}
+
+.person-bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 70% 50%, transparent 30%, #000c24 70%);
+}
+
+.person-bg-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 70% 40%, rgba(254, 201, 15, 0.06), transparent 60%);
+  animation: glowPulse 4s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* ============================================
+   CONTAINER - FICA POR CIMA DA PESSOA
+   ============================================ */
 
 .services-container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 24px;
+  position: relative;
+  z-index: 1;
 }
 
 .services-header {
   margin-bottom: 48px;
+  position: relative;
 }
 
 .services-label {
   display: block;
   margin-bottom: 12px;
   color: #fec90f;
-  font-size: 0.8125rem; /* IGUAL AO HERO-LABEL */
-  font-weight: 600; /* IGUAL AO HERO-LABEL */
+  font-size: 0.8125rem;
+  font-weight: 600;
   letter-spacing: 0.15em;
   text-transform: uppercase;
 }
@@ -27,17 +85,17 @@
 .services-title {
   margin: 0;
   font-size: 2rem;
-  font-weight: 300; /* IGUAL AO HERO-TITLE */
+  font-weight: 300;
   color: #ffffff;
-  line-height: 1.1; /* IGUAL AO HERO-TITLE */
-  letter-spacing: -0.02em; /* IGUAL AO HERO-TITLE */
+  line-height: 1.1;
+  letter-spacing: -0.02em;
 }
 
 .services-title span {
   display: block;
   color: #fec90f;
   font-size: 1.5rem;
-  font-weight: 600; /* IGUAL AO SPAN DA HERO */
+  font-weight: 600;
   margin-top: 4px;
 }
 
@@ -46,17 +104,31 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 40px 30px;
   margin-bottom: 80px;
+  position: relative;
 }
+
+/* ============================================
+   CARDS COM FUNDO - PARA DESTACAR DA PESSOA
+   ============================================ */
 
 .service-card {
   display: flex;
   align-items: flex-start;
   gap: 16px;
-  transition: transform 0.3s ease;
+  padding: 20px 24px;
+  border-radius: 12px;
+  background: rgba(0, 12, 36, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
 }
 
 .service-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-6px);
+  background: rgba(0, 12, 36, 0.8);
+  border-color: rgba(254, 201, 15, 0.12);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
 }
 
 .service-card svg {
@@ -67,7 +139,7 @@
 }
 
 .service-card:hover svg {
-  transform: scale(1.1);
+  transform: scale(1.15);
 }
 
 .service-info {
@@ -77,16 +149,16 @@
 .service-info h3 {
   margin: 0 0 6px;
   font-size: 1rem;
-  font-weight: 400; /* IGUAL AO HERO-FEATURE */
+  font-weight: 400;
   color: #ffffff;
 }
 
 .service-info p {
   margin: 0 0 12px;
-  font-size: 0.8125rem; /* IGUAL AO HERO-FEATURE E HERO-LABEL */
+  font-size: 0.8125rem;
   color: rgba(255, 255, 255, 0.5);
-  line-height: 1.6; /* IGUAL AO HERO-TEXT */
-  font-weight: 300; /* IGUAL AO HERO-TEXT */
+  line-height: 1.6;
+  font-weight: 300;
 }
 
 .service-points {
@@ -101,7 +173,7 @@
   margin-bottom: 6px;
   padding-left: 12px;
   position: relative;
-  font-weight: 300; /* IGUAL AO HERO-TEXT */
+  font-weight: 300;
 }
 
 .service-points li::before {
@@ -111,88 +183,108 @@
   left: 0;
 }
 
-/* Scroll indicator */
+/* ============================================
+   SCROLL INDICATOR - SETAS BEM VISÍVEIS
+   ============================================ */
+
 .scroll-indicator {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
-  opacity: 0.5;
+  gap: 12px;
+  opacity: 1; /* TOTALMENTE VISÍVEL */
   transition: opacity 0.3s ease;
+  position: relative;
+  z-index: 2;
 }
 
 .scroll-indicator:hover {
   opacity: 1;
 }
 
-.mouse {
-  width: 26px;
-  height: 42px;
-  border: 2px solid #fec90f;
-  border-radius: 20px;
-  position: relative;
-}
-
-.wheel {
-  width: 4px;
-  height: 8px;
-  background: #fec90f;
-  border-radius: 2px;
-  position: absolute;
-  top: 8px;
-  left: 50%;
-  transform: translateX(-50%);
-  animation: scroll 2s ease-in-out infinite;
-}
-
-@keyframes scroll {
-  0% {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-  }
-  100% {
-    opacity: 0;
-    transform: translateX(-50%) translateY(15px);
-  }
-}
-
-.arrow-down {
+/* SETAS ANIMADAS */
+.scroll-arrows {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
+  gap: 2px;
 }
 
-.arrow-down span {
+.scroll-arrows span {
   display: block;
-  width: 10px;
-  height: 10px;
-  border-right: 2px solid #fec90f;
-  border-bottom: 2px solid #fec90f;
+  width: 16px;
+  height: 16px;
+  border-right: 2.5px solid #fec90f; /* COR TOTAL */
+  border-bottom: 2.5px solid #fec90f; /* COR TOTAL */
   transform: rotate(45deg);
-  animation: arrow 2s ease-in-out infinite;
+  animation: arrowDown 2s ease-in-out infinite;
+  transition: all 0.3s ease;
 }
 
-.arrow-down span:nth-child(1) {
+.scroll-indicator:hover .scroll-arrows span {
+  border-color: #ffd43b;
+  transform: rotate(45deg) scale(1.1);
+}
+
+.scroll-arrows span:nth-child(1) {
   animation-delay: 0s;
+  margin-bottom: -4px;
 }
 
-.arrow-down span:nth-child(2) {
+.scroll-arrows span:nth-child(2) {
   animation-delay: 0.2s;
+  margin-bottom: -4px;
 }
 
-.arrow-down span:nth-child(3) {
+.scroll-arrows span:nth-child(3) {
   animation-delay: 0.4s;
 }
 
-@keyframes arrow {
+@keyframes arrowDown {
   0%, 100% {
-    opacity: 0.2;
+    opacity: 0.4;
     transform: rotate(45deg) translate(0, 0);
   }
   50% {
     opacity: 1;
-    transform: rotate(45deg) translate(4px, 4px);
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+}
+
+/* TEXTO */
+.scroll-text {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  transition: color 0.3s ease;
+}
+
+.scroll-indicator:hover .scroll-text {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* ============================================
+   RESPONSIVO
+   ============================================ */
+
+@media (max-width: 1024px) {
+  .services-grid {
+    gap: 24px;
+  }
+  
+  .service-card {
+    padding: 16px 20px;
+  }
+  
+  .person-bg-image {
+    background-position: center 40%;
+  }
+  
+  .person-bg-image img {
+    object-position: center 40%;
   }
 }
 
@@ -200,11 +292,31 @@
   .services-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+  
+  .services-person-bg {
+    opacity: 0.1;
+  }
+  
+  .person-bg-overlay {
+    background: radial-gradient(ellipse at 50% 50%, transparent 20%, #000c24 70%);
+  }
 }
 
 @media (max-width: 768px) {
+  .services {
+    padding: 60px 0;
+  }
+
   .services-grid {
     margin-bottom: 60px;
+  }
+  
+  .service-card {
+    padding: 14px 16px;
+  }
+  
+  .services-person-bg {
+    opacity: 0.08;
   }
 }
 
@@ -227,24 +339,32 @@
 
   .services-grid {
     grid-template-columns: 1fr;
-    gap: 24px;
+    gap: 20px;
     margin-bottom: 50px;
   }
   
-  .mouse {
-    width: 22px;
-    height: 36px;
+  .service-card {
+    padding: 16px 18px;
+    background: rgba(0, 12, 36, 0.7);
   }
   
-  .arrow-down span {
-    width: 8px;
-    height: 8px;
+  .services-person-bg {
+    opacity: 0.06;
+  }
+  
+  .scroll-arrows span {
+    width: 12px;
+    height: 12px;
   }
 }
 
 @media (max-width: 480px) {
   .services {
     padding: 50px 0;
+  }
+  
+  .services-container {
+    padding: 0 16px;
   }
   
   .services-title {
@@ -257,5 +377,22 @@
   
   .services-label {
     font-size: 0.75rem;
+  }
+  
+  .service-card {
+    padding: 14px 14px;
+  }
+  
+  .services-person-bg {
+    opacity: 0.04;
+  }
+  
+  .scroll-arrows span {
+    width: 10px;
+    height: 10px;
+  }
+  
+  .scroll-text {
+    font-size: 0.5rem;
   }
 }

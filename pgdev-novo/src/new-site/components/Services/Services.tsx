@@ -3,6 +3,7 @@ import { Globe, Settings2, CalendarCheck } from 'lucide-react'
 import { pt } from '../../i18n/pt'
 import { es } from '../../i18n/es'
 import type { Language } from '../../types'
+import heroBackground from '../../assets/apenas-logo.png'
 
 type ServicesProps = {
   language: Language
@@ -49,6 +50,19 @@ export default function Services({ language }: ServicesProps) {
 
   return (
     <section className="services" id="servicos">
+      {/* PESSOA AO FUNDO */}
+      <div className="services-person-bg">
+        <div className="person-bg-image">
+          <img 
+            src={heroBackground} 
+            alt={isPt ? 'Profissional apresentando soluções' : 'Profesional presentando soluciones'} 
+            loading="lazy"
+          />
+        </div>
+        <div className="person-bg-overlay"></div>
+        <div className="person-bg-glow"></div>
+      </div>
+
       <div className="services-container">
         <div className="services-header">
           <span className="services-label">{content.services.badge}</span>
@@ -78,16 +92,16 @@ export default function Services({ language }: ServicesProps) {
           })}
         </div>
 
-        {/* Seta estilizada */}
+        {/* SCROLL INDICATOR - SETAS */}
         <div className="scroll-indicator">
-          <div className="mouse">
-            <div className="wheel"></div>
-          </div>
-          <div className="arrow-down">
+          <div className="scroll-arrows">
             <span></span>
             <span></span>
             <span></span>
           </div>
+          <span className="scroll-text">
+            {isPt ? 'Role para explorar' : 'Desliza para explorar'}
+          </span>
         </div>
       </div>
     </section>
