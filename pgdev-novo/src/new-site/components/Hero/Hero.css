@@ -420,6 +420,11 @@
   .hero-btn:hover {
     transform: translateY(-2px) !important;
   }
+  
+  /* ===== OPACIDADE DA IMAGEM EM TABLETS ===== */
+  .hero-background {
+    opacity: 0.6;
+  }
 }
 
 @media (max-width: 480px) {
@@ -450,6 +455,7 @@
 
   .hero-background {
     background-position: 65% center;
+    opacity: 0.6; /* MAIS TRANSPARENTE EM CELULARES PEQUENOS */
   }
 }
 
@@ -460,5 +466,6 @@
 
   .hero-background {
     background-position: 30% center;
+    opacity: 0.3; /* AINDA MAIS TRANSPARENTE EM CELULARES MUITO PEQUENOS */
   }
 }

@@ -42,8 +42,8 @@ export default function Hero({ language, onOpenGuide }: HeroProps) {
           
           <p className="hero-text">
             {language === 'pt'
-              ? 'Organize atendimentos, integre WhatsApp e profissionalize sua empresa.'
-              : 'Organiza atenciones, integra WhatsApp y profesionaliza tu empresa.'}
+              ? 'Organize atendimentos, integre WhatsApp e profissionalize seu negócio.'
+              : 'Organiza atenciones, integra WhatsApp y profesionaliza tu negocio.'}
           </p>
 
           <div className="hero-features">
