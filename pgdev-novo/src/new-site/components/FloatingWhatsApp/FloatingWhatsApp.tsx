@@ -14,7 +14,6 @@ function FloatingWhatsApp({ language }: Props) {
   const [isVisible, setIsVisible] = useState(true)
   const [lastScrollY, setLastScrollY] = useState(0)
 
-  // Botão inteligente: some ao descer, aparece ao subir
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY
@@ -47,29 +46,34 @@ function FloatingWhatsApp({ language }: Props) {
       {isVisible && (
         <motion.div
           className="floating-wpp-container"
-          initial={{ opacity: 0, x: 100, scale: 0.8 }}
-          animate={{ opacity: 1, x: 0, scale: 1 }}
-          exit={{ opacity: 0, x: 100, scale: 0.8 }}
-          transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+          initial={{ opacity: 0, y: 60, scale: 0.6 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          exit={{ opacity: 0, y: 60, scale: 0.6 }}
+          transition={{ 
+            type: 'spring', 
+            stiffness: 500, 
+            damping: 35,
+            mass: 0.8
+          }}
         >
-          {/* Botão principal com efeito glass */}
-          <motion.button
+          <button
             className="floating-wpp"
             onClick={openWhatsApp}
-            whileHover={{ scale: 1.08 }}
-            whileTap={{ scale: 0.96 }}
             aria-label={isPt ? 'WhatsApp' : 'WhatsApp'}
           >
-            {/* Efeito de brilho */}
+            {/* Efeito de brilho giratório */}
             <div className="floating-wpp-glow"></div>
             
             {/* Ícone */}
             <FaWhatsapp />
             
-            {/* Partículas (opcional) */}
+            {/* Partículas mágicas */}
             <div className="particle particle-1"></div>
             <div className="particle particle-2"></div>
-          </motion.button>
+            <div className="particle particle-3"></div>
+            <div className="particle particle-4"></div>
+            <div className="particle particle-5"></div>
+          </button>
         </motion.div>
       )}
     </AnimatePresence>
