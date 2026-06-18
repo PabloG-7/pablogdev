@@ -1,7 +1,6 @@
 import './Services.css'
 import { Globe, Settings2, CalendarCheck } from 'lucide-react'
-import { pt } from '../../i18n/pt'
-import { es } from '../../i18n/es'
+
 import type { Language } from '../../types'
 import serviceImage from '../../assets/service-background.webp'
 
@@ -45,7 +44,7 @@ const getServices = (isPt: boolean) => [
 
 export default function Services({ language }: ServicesProps) {
   const isPt = language === 'pt'
-  const content = isPt ? pt : es
+ 
   const services = getServices(isPt)
 
   return (
