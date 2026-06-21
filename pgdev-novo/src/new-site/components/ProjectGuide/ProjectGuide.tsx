@@ -66,6 +66,9 @@ type MultiOption = {
 
 function ProjectGuide({ language, open, onClose }: ProjectGuideProps) {
   const isPt = language === 'pt'
+  const isEs = language === 'es'
+  const isEn = language === 'en'
+  
   const whatsappNumber = '5511961111894'
 
   const [step, setStep] = useState<Step>(1)
@@ -81,240 +84,523 @@ function ProjectGuide({ language, open, onClose }: ProjectGuideProps) {
 
   const closeButtonRef = useRef<HTMLButtonElement>(null)
 
-  const businessOptions = useMemo<Array<Option<BusinessType>>>(() => [
-    {
-      key: 'clinic',
-      title: isPt ? 'Clínica ou saúde' : 'Clínica o salud',
-      description: isPt ? 'Consultas, agenda, pacientes e atendimento.' : 'Consultas, agenda, pacientes y atención.',
-      icon: Building2,
+  const t = {
+    pt: {
+      businessOptions: [
+        { key: 'clinic', title: 'Clínica ou saúde', description: 'Consultas, agenda, pacientes e atendimento.' },
+        { key: 'barber', title: 'Barbearia ou estética', description: 'Horários, serviços, profissionais e clientes.' },
+        { key: 'petshop', title: 'Petshop', description: 'Banho, tosa, agendamentos e cadastro de pets.' },
+        { key: 'store', title: 'Loja ou comércio', description: 'Produtos, pedidos, catálogo e WhatsApp.' },
+        { key: 'realestate', title: 'Imóveis ou reservas', description: 'Catálogo, disponibilidade, reservas e confirmação.' },
+        { key: 'restaurant', title: 'Restaurante ou delivery', description: 'Cardápio, pedidos, WhatsApp e organização.' },
+        { key: 'services', title: 'Prestação de serviços', description: 'Apresentação profissional, contatos e orçamentos.' },
+        { key: 'other', title: 'Outro tipo de negócio', description: 'Tenho uma ideia diferente ou personalizada.' },
+      ],
+      needOptions: [
+        { key: 'website', title: 'Site profissional', description: 'Quero presença online, confiança e mais contatos.' },
+        { key: 'booking', title: 'Agendamento online', description: 'Quero organizar horários, clientes e confirmações.' },
+        { key: 'system', title: 'Sistema web', description: 'Quero controlar processos, dados, clientes ou vendas.' },
+        { key: 'whatsapp', title: 'WhatsApp e atendimento', description: 'Quero facilitar contatos, pedidos e mensagens.' },
+        { key: 'notSure', title: 'Não sei o ideal', description: 'Quero que o diagnóstico indique o melhor caminho.' },
+      ],
+      problemOptions: {
+        website: [
+          { key: 'noWebsite', label: 'Meu negócio não tem site profissional' },
+          { key: 'lowTrust', label: 'Quero passar mais confiança para os clientes' },
+          { key: 'badImage', label: 'Minha presença online parece simples ou amadora' },
+          { key: 'fewContacts', label: 'Recebo poucos contatos ou orçamentos' },
+          { key: 'noGoogle', label: 'Não apareço bem no Google' },
+        ],
+        booking: [
+          { key: 'manualBooking', label: 'Agendamentos são manuais e bagunçados' },
+          { key: 'forgetClients', label: 'Clientes esquecem os horários' },
+          { key: 'lostTime', label: 'Perco muito tempo respondendo mensagens' },
+          { key: 'noConfirmation', label: 'Não tenho confirmação automática' },
+          { key: 'scheduleConflict', label: 'Tenho conflitos de horário com frequência' },
+        ],
+        system: [
+          { key: 'noControl', label: 'Falta controle de clientes, pedidos ou dados' },
+          { key: 'manualProcess', label: 'Processos são muito manuais e repetitivos' },
+          { key: 'noReports', label: 'Não tenho relatórios ou indicadores' },
+          { key: 'scatteredData', label: 'Dados espalhados em vários lugares' },
+          { key: 'noHistory', label: 'Falta histórico de ações e registros' },
+        ],
+        whatsapp: [
+          { key: 'lostMessages', label: 'Perco mensagens de clientes' },
+          { key: 'slowResponse', label: 'Demoro para responder ou organizar' },
+          { key: 'confusingOrders', label: 'Pedidos ou solicitações ficam confusos' },
+          { key: 'noCatalog', label: 'Não tenho catálogo ou cardápio digital' },
+          { key: 'noDirection', label: 'Cliente não sabe para onde enviar a mensagem' },
+        ],
+        notSure: [
+          { key: 'notSureProblem', label: 'Não sei exatamente qual é o problema' },
+          { key: 'needHelp', label: 'Preciso de ajuda para identificar o ideal' },
+          { key: 'wantGrowth', label: 'Quero crescer mas não sei por onde começar' },
+        ],
+      },
+      featureOptions: {
+        website: [
+          { key: 'whatsapp', label: 'Botão e mensagem automática para WhatsApp' },
+          { key: 'responsive', label: 'Visual perfeito no celular' },
+          { key: 'seo', label: 'SEO para aparecer melhor no Google' },
+          { key: 'pages', label: 'Páginas profissionais para apresentar serviços' },
+          { key: 'portfolio', label: 'Área de projetos, fotos ou cases' },
+          { key: 'lead', label: 'Formulário ou captação de leads' },
+        ],
+        booking: [
+          { key: 'calendar', label: 'Calendário de horários disponíveis' },
+          { key: 'services', label: 'Serviços, preços e profissionais' },
+          { key: 'professionals', label: 'Gestão de profissionais e agendas' },
+          { key: 'confirmation', label: 'Confirmação automática por WhatsApp' },
+          { key: 'admin', label: 'Painel para gerenciar agendamentos' },
+          { key: 'responsive', label: 'Funcionamento perfeito no celular' },
+        ],
+        system: [
+          { key: 'dashboard', label: 'Dashboard administrativo' },
+          { key: 'clients', label: 'Cadastro de clientes' },
+          { key: 'reports', label: 'Relatórios e indicadores' },
+          { key: 'permissions', label: 'Login e permissões de acesso' },
+          { key: 'processControl', label: 'Controle de processos internos' },
+          { key: 'history', label: 'Histórico de ações e registros' },
+          { key: 'responsiveAdmin', label: 'Painel adaptado para celular e computador' },
+        ],
+        whatsapp: [
+          { key: 'messageFlow', label: 'Mensagens prontas e botões inteligentes' },
+          { key: 'catalog', label: 'Catálogo simples integrado ao WhatsApp' },
+          { key: 'contactRoute', label: 'Direcionamento inteligente de atendimento' },
+          { key: 'supportPage', label: 'Página simples de apoio e informações' },
+          { key: 'quickReply', label: 'Respostas rápidas para perguntas comuns' },
+        ],
+        notSure: [
+          { key: 'diagnosis', label: 'Diagnóstico completo do meu negócio' },
+          { key: 'plan', label: 'Plano dividido por prioridades' },
+          { key: 'future', label: 'Projeto preparado para evoluir depois' },
+          { key: 'mentoring', label: 'Acompanhamento para definir o melhor caminho' },
+        ],
+      },
+      urgencyOptions: [
+        { key: 'calm', title: 'Sem pressa', description: 'Quero planejar com calma.' },
+        { key: 'soon', title: 'Quero começar em breve', description: 'Já tenho uma ideia e quero tirar do papel.' },
+        { key: 'urgent', title: 'Preciso rápido', description: 'Tenho urgência para colocar online ou organizar.' },
+      ],
+      budgetOptions: [
+        { key: 'starter', title: 'Começar simples', description: 'Quero uma primeira versão bem feita.' },
+        { key: 'professional', title: 'Projeto profissional', description: 'Quero algo completo, bonito e funcional.' },
+        { key: 'complete', title: 'Solução completa', description: 'Quero uma solução mais completa, com site, painel ou integrações conforme a necessidade.' },
+        { key: 'notSure', title: 'Ainda não sei', description: 'Quero entender o melhor investimento.' },
+      ],
+      labels: {
+        badge: 'PabloG Assist',
+        title: 'Diagnóstico inteligente do seu projeto',
+        helper: 'Responda algumas perguntas e receba uma recomendação personalizada para site, agendamento ou sistema.',
+        step1: 'Qual é o tipo do seu negócio?',
+        step2: 'O que você mais precisa agora?',
+        step3: 'Quais problemas você quer resolver?',
+        step3Helper: 'Pode escolher mais de uma opção.',
+        step4: 'Quais recursos seriam importantes?',
+        step4Helper: 'A assistente adapta as opções conforme sua necessidade.',
+        step5: 'Pra fechar o diagnóstico:',
+        urgency: 'Qual sua urgência?',
+        budget: 'Qual estilo de projeto você imagina?',
+        businessName: 'Nome do negócio',
+        businessNamePlaceholder: 'Ex: Clínica Bella Saúde',
+        projectIdea: 'Conte rapidamente sua ideia',
+        projectIdeaPlaceholder: 'Ex: Quero um site com agendamento para clientes marcarem pelo celular...',
+        result: 'Recomendação gerada',
+        back: 'Voltar',
+        next: 'Continuar',
+        submit: 'Enviar diagnóstico no WhatsApp',
+        close: 'Fechar assistente',
+        progress: 'Etapa',
+        of: 'de',
+        priorityWebsite: 'Prioridade: criar presença profissional, gerar confiança e aumentar contatos.',
+        priorityBooking: 'Prioridade: organizar horários, automatizar confirmações e reduzir faltas.',
+        prioritySystem: 'Prioridade: centralizar dados, organizar processos e gerar relatórios claros.',
+        priorityWhatsapp: 'Prioridade: agilizar atendimento, organizar mensagens e reduzir perda de clientes.',
+        priorityNotSure: 'Prioridade: fazer um diagnóstico completo e definir o melhor plano digital.',
+        planPrefix: 'Plano digital para',
+        yourBusiness: 'seu negócio',
+        tuBusiness: 'tu negocio',
+        notSpecified: 'Não especificado',
+        noSpecified: 'No especificado',
+        hello: 'Olá Pablo! Fiz o diagnóstico inteligente no site da PabloG.Dev.',
+        businessType: 'Tipo de negócio',
+        businessNameLabel: 'Nome do negócio',
+        notInformed: 'Não informado',
+        clientIdea: 'Ideia do cliente',
+        noExtraDetails: 'Não informou detalhes extras',
+        mainNeed: 'Principal necessidade',
+        currentProblems: 'Problemas atuais',
+        desiredFeatures: 'Recursos desejados',
+        urgencyLabel: 'Urgência',
+        projectStyle: 'Estilo de projeto',
+        plan: 'Plano',
+        recommendation: 'Recomendação gerada',
+        wantToKnow: 'Quero entender como podemos fazer esse projeto.',
+      }
     },
-    {
-      key: 'barber',
-      title: isPt ? 'Barbearia ou estética' : 'Barbería o estética',
-      description: isPt ? 'Horários, serviços, profissionais e clientes.' : 'Horarios, servicios, profesionales y clientes.',
-      icon: Calendar,
+    es: {
+      businessOptions: [
+        { key: 'clinic', title: 'Clínica o salud', description: 'Consultas, agenda, pacientes y atención.' },
+        { key: 'barber', title: 'Barbería o estética', description: 'Horarios, servicios, profesionales y clientes.' },
+        { key: 'petshop', title: 'Petshop', description: 'Baño, peluquería, reservas y registro de mascotas.' },
+        { key: 'store', title: 'Tienda o comercio', description: 'Productos, pedidos, catálogo y WhatsApp.' },
+        { key: 'realestate', title: 'Inmuebles o reservas', description: 'Catálogo, disponibilidad, reservas y confirmación.' },
+        { key: 'restaurant', title: 'Restaurante o delivery', description: 'Menú, pedidos, WhatsApp y organización.' },
+        { key: 'services', title: 'Servicios profesionales', description: 'Presentación profesional, contactos y presupuestos.' },
+        { key: 'other', title: 'Otro tipo de negocio', description: 'Tengo una idea diferente o personalizada.' },
+      ],
+      needOptions: [
+        { key: 'website', title: 'Sitio profesional', description: 'Quiero presencia online, confianza y más contactos.' },
+        { key: 'booking', title: 'Reservas online', description: 'Quiero organizar horarios, clientes y confirmaciones.' },
+        { key: 'system', title: 'Sistema web', description: 'Quiero controlar procesos, datos, clientes o ventas.' },
+        { key: 'whatsapp', title: 'WhatsApp y atención', description: 'Quiero facilitar contactos, pedidos y mensajes.' },
+        { key: 'notSure', title: 'No sé qué necesito', description: 'Quiero que el diagnóstico indique el mejor camino.' },
+      ],
+      problemOptions: {
+        website: [
+          { key: 'noWebsite', label: 'Mi negocio no tiene sitio profesional' },
+          { key: 'lowTrust', label: 'Quiero transmitir más confianza a los clientes' },
+          { key: 'badImage', label: 'Mi presencia online parece simple o amateur' },
+          { key: 'fewContacts', label: 'Recibo pocos contactos o presupuestos' },
+          { key: 'noGoogle', label: 'No aparezco bien en Google' },
+        ],
+        booking: [
+          { key: 'manualBooking', label: 'Las reservas son manuales y desorganizadas' },
+          { key: 'forgetClients', label: 'Los clientes olvidan los horarios' },
+          { key: 'lostTime', label: 'Pierdo mucho tiempo respondiendo mensajes' },
+          { key: 'noConfirmation', label: 'No tengo confirmación automática' },
+          { key: 'scheduleConflict', label: 'Tengo conflictos de horario con frecuencia' },
+        ],
+        system: [
+          { key: 'noControl', label: 'Falta control de clientes, pedidos o datos' },
+          { key: 'manualProcess', label: 'Los procesos son muy manuales y repetitivos' },
+          { key: 'noReports', label: 'No tengo reportes o indicadores' },
+          { key: 'scatteredData', label: 'Datos dispersos en varios lugares' },
+          { key: 'noHistory', label: 'Falta historial de acciones y registros' },
+        ],
+        whatsapp: [
+          { key: 'lostMessages', label: 'Pierdo mensajes de clientes' },
+          { key: 'slowResponse', label: 'Tardo en responder u organizar' },
+          { key: 'confusingOrders', label: 'Pedidos o solicitudes quedan confusos' },
+          { key: 'noCatalog', label: 'No tengo catálogo o menú digital' },
+          { key: 'noDirection', label: 'El cliente no sabe a dónde enviar el mensaje' },
+        ],
+        notSure: [
+          { key: 'notSureProblem', label: 'No sé exactamente cuál es el problema' },
+          { key: 'needHelp', label: 'Necesito ayuda para identificar lo ideal' },
+          { key: 'wantGrowth', label: 'Quiero crecer pero no sé por dónde empezar' },
+        ],
+      },
+      featureOptions: {
+        website: [
+          { key: 'whatsapp', label: 'Botón y mensaje automático para WhatsApp' },
+          { key: 'responsive', label: 'Visual perfecto en celular' },
+          { key: 'seo', label: 'SEO para aparecer mejor en Google' },
+          { key: 'pages', label: 'Páginas profesionales para presentar servicios' },
+          { key: 'portfolio', label: 'Área de proyectos, fotos o casos' },
+          { key: 'lead', label: 'Formulario o captación de leads' },
+        ],
+        booking: [
+          { key: 'calendar', label: 'Calendario de horarios disponibles' },
+          { key: 'services', label: 'Servicios, precios y profesionales' },
+          { key: 'professionals', label: 'Gestión de profesionales y agendas' },
+          { key: 'confirmation', label: 'Confirmación automática por WhatsApp' },
+          { key: 'admin', label: 'Panel para gestionar reservas' },
+          { key: 'responsive', label: 'Funcionamiento perfecto en celular' },
+        ],
+        system: [
+          { key: 'dashboard', label: 'Dashboard administrativo' },
+          { key: 'clients', label: 'Registro de clientes' },
+          { key: 'reports', label: 'Reportes e indicadores' },
+          { key: 'permissions', label: 'Login y permisos de acceso' },
+          { key: 'processControl', label: 'Control de procesos internos' },
+          { key: 'history', label: 'Historial de acciones y registros' },
+          { key: 'responsiveAdmin', label: 'Panel adaptado para celular y computadora' },
+        ],
+        whatsapp: [
+          { key: 'messageFlow', label: 'Mensajes listos y botones inteligentes' },
+          { key: 'catalog', label: 'Catálogo simple integrado a WhatsApp' },
+          { key: 'contactRoute', label: 'Direccionamiento inteligente de atención' },
+          { key: 'supportPage', label: 'Página simple de apoyo e información' },
+          { key: 'quickReply', label: 'Respuestas rápidas para preguntas comunes' },
+        ],
+        notSure: [
+          { key: 'diagnosis', label: 'Diagnóstico completo de mi negocio' },
+          { key: 'plan', label: 'Plan dividido por prioridades' },
+          { key: 'future', label: 'Proyecto preparado para evolucionar después' },
+          { key: 'mentoring', label: 'Acompañamiento para definir el mejor camino' },
+        ],
+      },
+      urgencyOptions: [
+        { key: 'calm', title: 'Sin prisa', description: 'Quiero planear con calma.' },
+        { key: 'soon', title: 'Quiero empezar pronto', description: 'Ya tengo una idea y quiero llevarla a la práctica.' },
+        { key: 'urgent', title: 'Lo necesito rápido', description: 'Tengo urgencia para ponerlo online u organizar.' },
+      ],
+      budgetOptions: [
+        { key: 'starter', title: 'Empezar simple', description: 'Quiero una primera versión bien hecha.' },
+        { key: 'professional', title: 'Proyecto profesional', description: 'Quiero algo completo, bonito y funcional.' },
+        { key: 'complete', title: 'Solución completa', description: 'Quiero una solución más completa, con sitio, panel o integraciones según la necesidad.' },
+        { key: 'notSure', title: 'Todavía no sé', description: 'Quiero entender la mejor inversión.' },
+      ],
+      labels: {
+        badge: 'PabloG Assist',
+        title: 'Diagnóstico inteligente de tu proyecto',
+        helper: 'Responde algunas preguntas y recibe una recomendación personalizada para sitio, reservas o sistemas.',
+        step1: '¿Cuál es el tipo de tu negocio?',
+        step2: '¿Qué necesitas más ahora?',
+        step3: '¿Qué problemas quieres resolver?',
+        step3Helper: 'Puedes elegir más de una opción.',
+        step4: '¿Qué recursos serían importantes?',
+        step4Helper: 'La asistente adapta las opciones según tu necesidad.',
+        step5: 'Para cerrar el diagnóstico:',
+        urgency: '¿Cuál es tu urgencia?',
+        budget: '¿Qué estilo de proyecto imaginas?',
+        businessName: 'Nombre del negocio',
+        businessNamePlaceholder: 'Ej: Clínica Bella Salud',
+        projectIdea: 'Cuéntame rápidamente tu idea',
+        projectIdeaPlaceholder: 'Ej: Quiero un sitio con reservas para que mis clientes agenden por celular...',
+        result: 'Recomendación generada',
+        back: 'Volver',
+        next: 'Continuar',
+        submit: 'Enviar diagnóstico por WhatsApp',
+        close: 'Cerrar asistente',
+        progress: 'Paso',
+        of: 'de',
+        priorityWebsite: 'Prioridad: crear presencia profesional, generar confianza y aumentar contactos.',
+        priorityBooking: 'Prioridad: organizar horarios, automatizar confirmaciones y reducir ausencias.',
+        prioritySystem: 'Prioridad: centralizar datos, organizar procesos y generar reportes claros.',
+        priorityWhatsapp: 'Prioridad: agilizar atención, organizar mensajes y reducir pérdida de clientes.',
+        priorityNotSure: 'Prioridad: hacer un diagnóstico completo y definir el mejor plan digital.',
+        planPrefix: 'Plan digital para',
+        yourBusiness: 'tu negocio',
+        tuBusiness: 'tu negocio',
+        notSpecified: 'No especificado',
+        noSpecified: 'No especificado',
+        hello: '¡Hola Pablo! Hice el diagnóstico inteligente en el sitio de PabloG.Dev.',
+        businessType: 'Tipo de negocio',
+        businessNameLabel: 'Nombre del negocio',
+        notInformed: 'No informado',
+        clientIdea: 'Idea del cliente',
+        noExtraDetails: 'No informó detalles extras',
+        mainNeed: 'Necesidad principal',
+        currentProblems: 'Problemas actuales',
+        desiredFeatures: 'Recursos deseados',
+        urgencyLabel: 'Urgencia',
+        projectStyle: 'Estilo de proyecto',
+        plan: 'Plan',
+        recommendation: 'Recomendación generada',
+        wantToKnow: 'Quiero entender cómo podemos hacer este proyecto.',
+      }
     },
-    {
-      key: 'petshop',
-      title: isPt ? 'Petshop' : 'Petshop',
-      description: isPt ? 'Banho, tosa, agendamentos e cadastro de pets.' : 'Baño, peluquería, reservas y registro de mascotas.',
-      icon: Store,
-    },
-    {
-      key: 'store',
-      title: isPt ? 'Loja ou comércio' : 'Tienda o comercio',
-      description: isPt ? 'Produtos, pedidos, catálogo e WhatsApp.' : 'Productos, pedidos, catálogo y WhatsApp.',
-      icon: Store,
-    },
-    {
-      key: 'realestate',
-      title: isPt ? 'Imóveis ou reservas' : 'Inmuebles o reservas',
-      description: isPt ? 'Catálogo, disponibilidade, reservas e confirmação.' : 'Catálogo, disponibilidad, reservas y confirmación.',
-      icon: Building2,
-    },
-    {
-      key: 'restaurant',
-      title: isPt ? 'Restaurante ou delivery' : 'Restaurante o delivery',
-      description: isPt ? 'Cardápio, pedidos, WhatsApp e organização.' : 'Menú, pedidos, WhatsApp y organización.',
-      icon: Store,
-    },
-    {
-      key: 'services',
-      title: isPt ? 'Prestação de serviços' : 'Servicios profesionales',
-      description: isPt ? 'Apresentação profissional, contatos e orçamentos.' : 'Presentación profesional, contactos y presupuestos.',
-      icon: Target,
-    },
-    {
-      key: 'other',
-      title: isPt ? 'Outro tipo de negócio' : 'Otro tipo de negocio',
-      description: isPt ? 'Tenho uma ideia diferente ou personalizada.' : 'Tengo una idea diferente o personalizada.',
-      icon: HelpCircle,
-    },
-  ], [isPt])
+    en: {
+      businessOptions: [
+        { key: 'clinic', title: 'Clinic or healthcare', description: 'Consultations, schedules, patients and care.' },
+        { key: 'barber', title: 'Barber or aesthetics', description: 'Schedules, services, professionals and clients.' },
+        { key: 'petshop', title: 'Petshop', description: 'Baths, grooming, bookings and pet registration.' },
+        { key: 'store', title: 'Store or commerce', description: 'Products, orders, catalog and WhatsApp.' },
+        { key: 'realestate', title: 'Real estate or bookings', description: 'Catalog, availability, reservations and confirmation.' },
+        { key: 'restaurant', title: 'Restaurant or delivery', description: 'Menu, orders, WhatsApp and organization.' },
+        { key: 'services', title: 'Professional services', description: 'Professional presentation, contacts and budgets.' },
+        { key: 'other', title: 'Other type of business', description: 'I have a different or customized idea.' },
+      ],
+      needOptions: [
+        { key: 'website', title: 'Professional website', description: 'I want online presence, trust and more contacts.' },
+        { key: 'booking', title: 'Online booking', description: 'I want to organize schedules, clients and confirmations.' },
+        { key: 'system', title: 'Web system', description: 'I want to control processes, data, clients or sales.' },
+        { key: 'whatsapp', title: 'WhatsApp and service', description: 'I want to facilitate contacts, orders and messages.' },
+        { key: 'notSure', title: 'I don\'t know what I need', description: 'I want the diagnosis to indicate the best path.' },
+      ],
+      problemOptions: {
+        website: [
+          { key: 'noWebsite', label: 'My business doesn\'t have a professional website' },
+          { key: 'lowTrust', label: 'I want to convey more trust to clients' },
+          { key: 'badImage', label: 'My online presence looks simple or amateur' },
+          { key: 'fewContacts', label: 'I receive few contacts or budgets' },
+          { key: 'noGoogle', label: 'I don\'t appear well on Google' },
+        ],
+        booking: [
+          { key: 'manualBooking', label: 'Bookings are manual and messy' },
+          { key: 'forgetClients', label: 'Clients forget their schedules' },
+          { key: 'lostTime', label: 'I spend a lot of time responding to messages' },
+          { key: 'noConfirmation', label: 'I don\'t have automatic confirmation' },
+          { key: 'scheduleConflict', label: 'I frequently have schedule conflicts' },
+        ],
+        system: [
+          { key: 'noControl', label: 'Lack of control over clients, orders or data' },
+          { key: 'manualProcess', label: 'Processes are very manual and repetitive' },
+          { key: 'noReports', label: 'I don\'t have reports or indicators' },
+          { key: 'scatteredData', label: 'Data scattered in multiple places' },
+          { key: 'noHistory', label: 'Lack of history of actions and records' },
+        ],
+        whatsapp: [
+          { key: 'lostMessages', label: 'I lose client messages' },
+          { key: 'slowResponse', label: 'I take too long to respond or organize' },
+          { key: 'confusingOrders', label: 'Orders or requests get confusing' },
+          { key: 'noCatalog', label: 'I don\'t have a digital catalog or menu' },
+          { key: 'noDirection', label: 'Client doesn\'t know where to send the message' },
+        ],
+        notSure: [
+          { key: 'notSureProblem', label: 'I don\'t know exactly what the problem is' },
+          { key: 'needHelp', label: 'I need help identifying the ideal solution' },
+          { key: 'wantGrowth', label: 'I want to grow but I don\'t know where to start' },
+        ],
+      },
+      featureOptions: {
+        website: [
+          { key: 'whatsapp', label: 'Button and automatic message for WhatsApp' },
+          { key: 'responsive', label: 'Perfect display on mobile' },
+          { key: 'seo', label: 'SEO to appear better on Google' },
+          { key: 'pages', label: 'Professional pages to present services' },
+          { key: 'portfolio', label: 'Projects area, photos or cases' },
+          { key: 'lead', label: 'Form or lead capture' },
+        ],
+        booking: [
+          { key: 'calendar', label: 'Available times calendar' },
+          { key: 'services', label: 'Services, prices and professionals' },
+          { key: 'professionals', label: 'Management of professionals and schedules' },
+          { key: 'confirmation', label: 'Automatic confirmation via WhatsApp' },
+          { key: 'admin', label: 'Dashboard to manage bookings' },
+          { key: 'responsive', label: 'Perfect functioning on mobile' },
+        ],
+        system: [
+          { key: 'dashboard', label: 'Administrative dashboard' },
+          { key: 'clients', label: 'Client registration' },
+          { key: 'reports', label: 'Reports and indicators' },
+          { key: 'permissions', label: 'Login and access permissions' },
+          { key: 'processControl', label: 'Internal process control' },
+          { key: 'history', label: 'History of actions and records' },
+          { key: 'responsiveAdmin', label: 'Dashboard adapted for mobile and computer' },
+        ],
+        whatsapp: [
+          { key: 'messageFlow', label: 'Ready messages and smart buttons' },
+          { key: 'catalog', label: 'Simple catalog integrated with WhatsApp' },
+          { key: 'contactRoute', label: 'Intelligent service routing' },
+          { key: 'supportPage', label: 'Simple support and information page' },
+          { key: 'quickReply', label: 'Quick answers to common questions' },
+        ],
+        notSure: [
+          { key: 'diagnosis', label: 'Complete diagnosis of my business' },
+          { key: 'plan', label: 'Plan divided by priorities' },
+          { key: 'future', label: 'Project prepared to evolve later' },
+          { key: 'mentoring', label: 'Guidance to define the best path' },
+        ],
+      },
+      urgencyOptions: [
+        { key: 'calm', title: 'No rush', description: 'I want to plan calmly.' },
+        { key: 'soon', title: 'I want to start soon', description: 'I already have an idea and want to bring it to life.' },
+        { key: 'urgent', title: 'I need it fast', description: 'I need urgency to put it online or organize.' },
+      ],
+      budgetOptions: [
+        { key: 'starter', title: 'Start simple', description: 'I want a well-done first version.' },
+        { key: 'professional', title: 'Professional project', description: 'I want something complete, beautiful and functional.' },
+        { key: 'complete', title: 'Complete solution', description: 'I want a more complete solution, with website, dashboard or integrations as needed.' },
+        { key: 'notSure', title: 'I don\'t know yet', description: 'I want to understand the best investment.' },
+      ],
+      labels: {
+        badge: 'PabloG Assist',
+        title: 'Smart diagnosis of your project',
+        helper: 'Answer a few questions and receive a personalized recommendation for website, booking or system.',
+        step1: 'What is your business type?',
+        step2: 'What do you need most right now?',
+        step3: 'What problems do you want to solve?',
+        step3Helper: 'You can choose more than one option.',
+        step4: 'What features would be important?',
+        step4Helper: 'The assistant adapts the options according to your need.',
+        step5: 'To close the diagnosis:',
+        urgency: 'What is your urgency?',
+        budget: 'What project style do you imagine?',
+        businessName: 'Business name',
+        businessNamePlaceholder: 'Ex: Bella Health Clinic',
+        projectIdea: 'Tell me your idea quickly',
+        projectIdeaPlaceholder: 'Ex: I want a website with booking for clients to schedule via mobile...',
+        result: 'Generated recommendation',
+        back: 'Back',
+        next: 'Continue',
+        submit: 'Send diagnosis via WhatsApp',
+        close: 'Close assistant',
+        progress: 'Step',
+        of: 'of',
+        priorityWebsite: 'Priority: create professional presence, build trust and increase contacts.',
+        priorityBooking: 'Priority: organize schedules, automate confirmations and reduce no-shows.',
+        prioritySystem: 'Priority: centralize data, organize processes and generate clear reports.',
+        priorityWhatsapp: 'Priority: streamline service, organize messages and reduce client loss.',
+        priorityNotSure: 'Priority: do a complete diagnosis and define the best digital plan.',
+        planPrefix: 'Digital plan for',
+        yourBusiness: 'your business',
+        tuBusiness: 'your business',
+        notSpecified: 'Not specified',
+        noSpecified: 'Not specified',
+        hello: 'Hello Pablo! I did the smart diagnosis on the PabloG.Dev website.',
+        businessType: 'Business type',
+        businessNameLabel: 'Business name',
+        notInformed: 'Not informed',
+        clientIdea: 'Client idea',
+        noExtraDetails: 'No extra details provided',
+        mainNeed: 'Main need',
+        currentProblems: 'Current problems',
+        desiredFeatures: 'Desired features',
+        urgencyLabel: 'Urgency',
+        projectStyle: 'Project style',
+        plan: 'Plan',
+        recommendation: 'Generated recommendation',
+        wantToKnow: 'I want to understand how we can make this project.',
+      }
+    }
+  }
 
-  const needOptions = useMemo<Array<Option<MainNeed>>>(() => [
-    {
-      key: 'website',
-      title: isPt ? 'Site profissional' : 'Sitio profesional',
-      description: isPt ? 'Quero presença online, confiança e mais contatos.' : 'Quiero presencia online, confianza y más contactos.',
-      icon: Globe,
-    },
-    {
-      key: 'booking',
-      title: isPt ? 'Agendamento online' : 'Reservas online',
-      description: isPt ? 'Quero organizar horários, clientes e confirmações.' : 'Quiero organizar horarios, clientes y confirmaciones.',
-      icon: Calendar,
-    },
-    {
-      key: 'system',
-      title: isPt ? 'Sistema web' : 'Sistema web',
-      description: isPt ? 'Quero controlar processos, dados, clientes ou vendas.' : 'Quiero controlar procesos, datos, clientes o ventas.',
-      icon: Settings2,
-    },
-    {
-      key: 'whatsapp',
-      title: isPt ? 'WhatsApp e atendimento' : 'WhatsApp y atención',
-      description: isPt ? 'Quero facilitar contatos, pedidos e mensagens.' : 'Quiero facilitar contactos, pedidos y mensajes.',
-      icon: MessageCircle,
-    },
-    {
-      key: 'notSure',
-      title: isPt ? 'Não sei o ideal' : 'No sé qué necesito',
-      description: isPt ? 'Quero que o diagnóstico indique o melhor caminho.' : 'Quiero que el diagnóstico indique el mejor camino.',
-      icon: Sparkles,
-    },
-  ], [isPt])
+  const lang = t[language]
+
+  const businessOptions = useMemo<Array<Option<BusinessType>>>(() => 
+    lang.businessOptions.map((item) => ({
+      ...item,
+      icon: item.key === 'clinic' || item.key === 'realestate' ? Building2 : 
+            item.key === 'barber' ? Calendar :
+            item.key === 'petshop' || item.key === 'store' || item.key === 'restaurant' ? Store :
+            item.key === 'services' ? Target :
+            HelpCircle
+    })), [lang]
+  )
+
+  const needOptions = useMemo<Array<Option<MainNeed>>>(() => 
+    lang.needOptions.map((item) => ({
+      ...item,
+      icon: item.key === 'website' ? Globe :
+            item.key === 'booking' ? Calendar :
+            item.key === 'system' ? Settings2 :
+            item.key === 'whatsapp' ? MessageCircle :
+            Sparkles
+    })), [lang]
+  )
 
   const problemOptions = useMemo<MultiOption[]>(() => {
-    if (mainNeed === 'website') {
-      return [
-        { key: 'noWebsite', label: isPt ? 'Meu negócio não tem site profissional' : 'Mi negocio no tiene sitio profesional' },
-        { key: 'lowTrust', label: isPt ? 'Quero passar mais confiança para os clientes' : 'Quiero transmitir más confianza a los clientes' },
-        { key: 'badImage', label: isPt ? 'Minha presença online parece simples ou amadora' : 'Mi presencia online parece simple o amateur' },
-        { key: 'fewContacts', label: isPt ? 'Recebo poucos contatos ou orçamentos' : 'Recibo pocos contactos o presupuestos' },
-        { key: 'noGoogle', label: isPt ? 'Não apareço bem no Google' : 'No aparezco bien en Google' },
-      ]
-    }
-
-    if (mainNeed === 'booking') {
-      return [
-        { key: 'manualBooking', label: isPt ? 'Agendamentos são manuais e bagunçados' : 'Las reservas son manuales y desorganizadas' },
-        { key: 'forgetClients', label: isPt ? 'Clientes esquecem os horários' : 'Los clientes olvidan los horarios' },
-        { key: 'lostTime', label: isPt ? 'Perco muito tempo respondendo mensagens' : 'Pierdo mucho tiempo respondiendo mensajes' },
-        { key: 'noConfirmation', label: isPt ? 'Não tenho confirmação automática' : 'No tengo confirmación automática' },
-        { key: 'scheduleConflict', label: isPt ? 'Tenho conflitos de horário com frequência' : 'Tengo conflictos de horario con frecuencia' },
-      ]
-    }
-
-    if (mainNeed === 'system') {
-      return [
-        { key: 'noControl', label: isPt ? 'Falta controle de clientes, pedidos ou dados' : 'Falta control de clientes, pedidos o datos' },
-        { key: 'manualProcess', label: isPt ? 'Processos são muito manuais e repetitivos' : 'Los procesos son muy manuales y repetitivos' },
-        { key: 'noReports', label: isPt ? 'Não tenho relatórios ou indicadores' : 'No tengo reportes o indicadores' },
-        { key: 'scatteredData', label: isPt ? 'Dados espalhados em vários lugares' : 'Datos dispersos en varios lugares' },
-        { key: 'noHistory', label: isPt ? 'Falta histórico de ações e registros' : 'Falta historial de acciones y registros' },
-      ]
-    }
-
-    if (mainNeed === 'whatsapp') {
-      return [
-        { key: 'lostMessages', label: isPt ? 'Perco mensagens de clientes' : 'Pierdo mensajes de clientes' },
-        { key: 'slowResponse', label: isPt ? 'Demoro para responder ou organizar' : 'Tardo en responder u organizar' },
-        { key: 'confusingOrders', label: isPt ? 'Pedidos ou solicitações ficam confusos' : 'Pedidos o solicitudes quedan confusos' },
-        { key: 'noCatalog', label: isPt ? 'Não tenho catálogo ou cardápio digital' : 'No tengo catálogo o menú digital' },
-        { key: 'noDirection', label: isPt ? 'Cliente não sabe para onde enviar a mensagem' : 'El cliente no sabe a dónde enviar el mensaje' },
-      ]
-    }
-
-    return [
-      { key: 'notSureProblem', label: isPt ? 'Não sei exatamente qual é o problema' : 'No sé exactamente cuál es el problema' },
-      { key: 'needHelp', label: isPt ? 'Preciso de ajuda para identificar o ideal' : 'Necesito ayuda para identificar lo ideal' },
-      { key: 'wantGrowth', label: isPt ? 'Quero crescer mas não sei por onde começar' : 'Quiero crecer pero no sé por dónde empezar' },
-    ]
-  }, [isPt, mainNeed])
+    const key = mainNeed || 'notSure'
+    return lang.problemOptions[key as keyof typeof lang.problemOptions] || lang.problemOptions.notSure
+  }, [mainNeed, lang])
 
   const featureOptions = useMemo<MultiOption[]>(() => {
-    if (mainNeed === 'website') {
-      return [
-        { key: 'whatsapp', label: isPt ? 'Botão e mensagem automática para WhatsApp' : 'Botón y mensaje automático para WhatsApp' },
-        { key: 'responsive', label: isPt ? 'Visual perfeito no celular' : 'Visual perfecto en celular' },
-        { key: 'seo', label: isPt ? 'SEO para aparecer melhor no Google' : 'SEO para aparecer mejor en Google' },
-        { key: 'pages', label: isPt ? 'Páginas profissionais para apresentar serviços' : 'Páginas profesionales para presentar servicios' },
-        { key: 'portfolio', label: isPt ? 'Área de projetos, fotos ou cases' : 'Área de proyectos, fotos o casos' },
-        { key: 'lead', label: isPt ? 'Formulário ou captação de leads' : 'Formulario o captación de leads' },
-      ]
-    }
+    const key = mainNeed || 'notSure'
+    return lang.featureOptions[key as keyof typeof lang.featureOptions] || lang.featureOptions.notSure
+  }, [mainNeed, lang])
 
-    if (mainNeed === 'booking') {
-      return [
-        { key: 'calendar', label: isPt ? 'Calendário de horários disponíveis' : 'Calendario de horarios disponibles' },
-        { key: 'services', label: isPt ? 'Serviços, preços e profissionais' : 'Servicios, precios y profesionales' },
-        { key: 'professionals', label: isPt ? 'Gestão de profissionais e agendas' : 'Gestión de profesionales y agendas' },
-        { key: 'confirmation', label: isPt ? 'Confirmação automática por WhatsApp' : 'Confirmación automática por WhatsApp' },
-        { key: 'admin', label: isPt ? 'Painel para gerenciar agendamentos' : 'Panel para gestionar reservas' },
-        { key: 'responsive', label: isPt ? 'Funcionamento perfeito no celular' : 'Funcionamiento perfecto en celular' },
-      ]
-    }
+  const urgencyOptions = useMemo<Array<Option<Urgency>>>(() => 
+    lang.urgencyOptions.map((item) => ({
+      ...item,
+      icon: item.key === 'calm' ? ClipboardList :
+            item.key === 'soon' ? Rocket :
+            Zap
+    })), [lang]
+  )
 
-    if (mainNeed === 'system') {
-      return [
-        { key: 'dashboard', label: isPt ? 'Dashboard administrativo' : 'Dashboard administrativo' },
-        { key: 'clients', label: isPt ? 'Cadastro de clientes' : 'Registro de clientes' },
-        { key: 'reports', label: isPt ? 'Relatórios e indicadores' : 'Reportes e indicadores' },
-        { key: 'permissions', label: isPt ? 'Login e permissões de acesso' : 'Login y permisos de acceso' },
-        { key: 'processControl', label: isPt ? 'Controle de processos internos' : 'Control de procesos internos' },
-        { key: 'history', label: isPt ? 'Histórico de ações e registros' : 'Historial de acciones y registros' },
-        { key: 'responsiveAdmin', label: isPt ? 'Painel adaptado para celular e computador' : 'Panel adaptado para celular y computadora' },
-      ]
-    }
-
-    if (mainNeed === 'whatsapp') {
-      return [
-        { key: 'messageFlow', label: isPt ? 'Mensagens prontas e botões inteligentes' : 'Mensajes listos y botones inteligentes' },
-        { key: 'catalog', label: isPt ? 'Catálogo simples integrado ao WhatsApp' : 'Catálogo simple integrado a WhatsApp' },
-        { key: 'contactRoute', label: isPt ? 'Direcionamento inteligente de atendimento' : 'Direccionamiento inteligente de atención' },
-        { key: 'supportPage', label: isPt ? 'Página simples de apoio e informações' : 'Página simple de apoyo e información' },
-        { key: 'quickReply', label: isPt ? 'Respostas rápidas para perguntas comuns' : 'Respuestas rápidas para preguntas comunes' },
-      ]
-    }
-
-    return [
-      { key: 'diagnosis', label: isPt ? 'Diagnóstico completo do meu negócio' : 'Diagnóstico completo de mi negocio' },
-      { key: 'plan', label: isPt ? 'Plano dividido por prioridades' : 'Plan dividido por prioridades' },
-      { key: 'future', label: isPt ? 'Projeto preparado para evoluir depois' : 'Proyecto preparado para evolucionar después' },
-      { key: 'mentoring', label: isPt ? 'Acompanhamento para definir o melhor caminho' : 'Acompañamiento para definir el mejor camino' },
-    ]
-  }, [isPt, mainNeed])
-
-  const urgencyOptions = useMemo<Array<Option<Urgency>>>(() => [
-    {
-      key: 'calm',
-      title: isPt ? 'Sem pressa' : 'Sin prisa',
-      description: isPt ? 'Quero planejar com calma.' : 'Quiero planear con calma.',
-      icon: ClipboardList,
-    },
-    {
-      key: 'soon',
-      title: isPt ? 'Quero começar em breve' : 'Quiero empezar pronto',
-      description: isPt ? 'Já tenho uma ideia e quero tirar do papel.' : 'Ya tengo una idea y quiero llevarla a la práctica.',
-      icon: Rocket,
-    },
-    {
-      key: 'urgent',
-      title: isPt ? 'Preciso rápido' : 'Lo necesito rápido',
-      description: isPt ? 'Tenho urgência para colocar online ou organizar.' : 'Tengo urgencia para ponerlo online u organizar.',
-      icon: Zap,
-    },
-  ], [isPt])
-
-  const budgetOptions = useMemo<Array<Option<Budget>>>(() => [
-    {
-      key: 'starter',
-      title: isPt ? 'Começar simples' : 'Empezar simple',
-      description: isPt ? 'Quero uma primeira versão bem feita.' : 'Quiero una primera versión bien hecha.',
-      icon: Rocket,
-    },
-    {
-      key: 'professional',
-      title: isPt ? 'Projeto profissional' : 'Proyecto profesional',
-      description: isPt ? 'Quero algo completo, bonito e funcional.' : 'Quiero algo completo, bonito y funcional.',
-      icon: Sparkles,
-    },
-    {
-      key: 'complete',
-      title: isPt ? 'Solução completa' : 'Solución completa',
-      description: isPt
-        ? 'Quero uma solução mais completa, com site, painel ou integrações conforme a necessidade.'
-        : 'Quiero una solución más completa, con sitio, panel o integraciones según la necesidad.',
-      icon: Settings2,
-    },
-    {
-      key: 'notSure',
-      title: isPt ? 'Ainda não sei' : 'Todavía no sé',
-      description: isPt ? 'Quero entender o melhor investimento.' : 'Quiero entender la mejor inversión.',
-      icon: HelpCircle,
-    },
-  ], [isPt])
+  const budgetOptions = useMemo<Array<Option<Budget>>>(() => 
+    lang.budgetOptions.map((item) => ({
+      ...item,
+      icon: item.key === 'starter' ? Rocket :
+            item.key === 'professional' ? Sparkles :
+            item.key === 'complete' ? Settings2 :
+            HelpCircle
+    })), [lang]
+  )
 
   const selectedBusiness = businessOptions.find((item) => item.key === businessType)
   const selectedNeed = needOptions.find((item) => item.key === mainNeed)
@@ -327,99 +613,73 @@ function ProjectGuide({ language, open, onClose }: ProjectGuideProps) {
     const items: string[] = []
 
     if (mainNeed === 'website') {
-      items.push(isPt ? 'Site profissional com visual premium' : 'Sitio profesional con visual premium')
-      items.push(isPt ? 'SEO para aparecer melhor no Google' : 'SEO para aparecer mejor en Google')
-      items.push(isPt ? 'Integração com WhatsApp para contato rápido' : 'Integración con WhatsApp para contacto rápido')
+      items.push(isPt ? 'Site profissional com visual premium' : isEs ? 'Sitio profesional con visual premium' : 'Professional website with premium look')
+      items.push(isPt ? 'SEO para aparecer melhor no Google' : isEs ? 'SEO para aparecer mejor en Google' : 'SEO to appear better on Google')
+      items.push(isPt ? 'Integração com WhatsApp para contato rápido' : isEs ? 'Integración con WhatsApp para contacto rápido' : 'WhatsApp integration for quick contact')
     }
 
     if (mainNeed === 'booking') {
-      items.push(isPt ? 'Sistema de agendamento online' : 'Sistema de reservas online')
-      items.push(isPt ? 'Calendário inteligente com horários disponíveis' : 'Calendario inteligente con horarios disponibles')
-      items.push(isPt ? 'Confirmação automática por WhatsApp' : 'Confirmación automática por WhatsApp')
+      items.push(isPt ? 'Sistema de agendamento online' : isEs ? 'Sistema de reservas online' : 'Online booking system')
+      items.push(isPt ? 'Calendário inteligente com horários disponíveis' : isEs ? 'Calendario inteligente con horarios disponibles' : 'Smart calendar with available times')
+      items.push(isPt ? 'Confirmação automática por WhatsApp' : isEs ? 'Confirmación automática por WhatsApp' : 'Automatic confirmation via WhatsApp')
     }
 
     if (mainNeed === 'system') {
-      items.push(isPt ? 'Painel administrativo para gestão completa' : 'Panel administrativo para gestión completa')
-      items.push(isPt ? 'Cadastro e organização de clientes e dados' : 'Registro y organización de clientes y datos')
-      items.push(isPt ? 'Relatórios e indicadores personalizados' : 'Reportes e indicadores personalizados')
+      items.push(isPt ? 'Painel administrativo para gestão completa' : isEs ? 'Panel administrativo para gestión completa' : 'Administrative dashboard for complete management')
+      items.push(isPt ? 'Cadastro e organização de clientes e dados' : isEs ? 'Registro y organización de clientes y datos' : 'Client and data registration and organization')
+      items.push(isPt ? 'Relatórios e indicadores personalizados' : isEs ? 'Reportes e indicadores personalizados' : 'Custom reports and indicators')
     }
 
     if (mainNeed === 'whatsapp') {
-      items.push(isPt ? 'Atendimento otimizado com WhatsApp' : 'Atención optimizada con WhatsApp')
-      items.push(isPt ? 'Mensagens prontas e botões inteligentes' : 'Mensajes listos y botones inteligentes')
-      items.push(isPt ? 'Direcionamento automático de atendimento' : 'Direccionamiento automático de atención')
+      items.push(isPt ? 'Atendimento otimizado com WhatsApp' : isEs ? 'Atención optimizada con WhatsApp' : 'Optimized service with WhatsApp')
+      items.push(isPt ? 'Mensagens prontas e botões inteligentes' : isEs ? 'Mensajes listos y botones inteligentes' : 'Ready messages and smart buttons')
+      items.push(isPt ? 'Direcionamento automático de atendimento' : isEs ? 'Direccionamiento automático de atención' : 'Automatic service routing')
     }
 
     if (mainNeed === 'notSure' || items.length === 0) {
-      items.push(isPt ? 'Diagnóstico inicial completo do negócio' : 'Diagnóstico inicial completo del negocio')
-      items.push(isPt ? 'Plano personalizado por etapas e prioridades' : 'Plan personalizado por etapas y prioridades')
-      items.push(isPt ? 'Recomendação do melhor caminho digital' : 'Recomendación del mejor camino digital')
+      items.push(isPt ? 'Diagnóstico inicial completo do negócio' : isEs ? 'Diagnóstico inicial completo del negocio' : 'Complete initial business diagnosis')
+      items.push(isPt ? 'Plano personalizado por etapas e prioridades' : isEs ? 'Plan personalizado por etapas y prioridades' : 'Custom plan by stages and priorities')
+      items.push(isPt ? 'Recomendação do melhor caminho digital' : isEs ? 'Recomendación del mejor camino digital' : 'Recommendation of the best digital path')
     }
 
     const has = (key: string) => problems.includes(key) || features.includes(key)
 
     if (mainNeed !== 'website' && (has('noWebsite') || has('lowTrust') || has('badImage'))) {
-      items.push(isPt ? 'Site institucional como apoio' : 'Sitio institucional como apoyo')
+      items.push(isPt ? 'Site institucional como apoio' : isEs ? 'Sitio institucional como apoyo' : 'Institutional website as support')
     }
 
     if (mainNeed !== 'booking' && has('manualBooking')) {
-      items.push(isPt ? 'Funcionalidade de agendamento como complemento' : 'Funcionalidad de reservas como complemento')
+      items.push(isPt ? 'Funcionalidade de agendamento como complemento' : isEs ? 'Funcionalidad de reservas como complemento' : 'Booking functionality as a complement')
     }
 
     if (mainNeed !== 'system' && (has('noControl') || has('manualProcess') || has('noReports'))) {
-      items.push(isPt ? 'Painel de controle simplificado' : 'Panel de control simplificado')
+      items.push(isPt ? 'Painel de controle simplificado' : isEs ? 'Panel de control simplificado' : 'Simplified control dashboard')
     }
 
     if (mainNeed !== 'whatsapp' && (has('lostMessages') || has('slowResponse'))) {
-      items.push(isPt ? 'Integração com WhatsApp para agilizar atendimento' : 'Integración con WhatsApp para agilizar atención')
+      items.push(isPt ? 'Integração com WhatsApp para agilizar atendimento' : isEs ? 'Integración con WhatsApp para agilizar atención' : 'WhatsApp integration to streamline service')
     }
 
     return Array.from(new Set(items))
-  }, [features, isPt, mainNeed, problems])
+  }, [features, isPt, isEs, mainNeed, problems])
 
   const priorityText = useMemo(() => {
-    if (mainNeed === 'website') {
-      return isPt
-        ? 'Prioridade: criar presença profissional, gerar confiança e aumentar contatos.'
-        : 'Prioridad: crear presencia profesional, generar confianza y aumentar contactos.'
-    }
-
-    if (mainNeed === 'booking') {
-      return isPt
-        ? 'Prioridade: organizar horários, automatizar confirmações e reduzir faltas.'
-        : 'Prioridad: organizar horarios, automatizar confirmaciones y reducir ausencias.'
-    }
-
-    if (mainNeed === 'system') {
-      return isPt
-        ? 'Prioridade: centralizar dados, organizar processos e gerar relatórios claros.'
-        : 'Prioridad: centralizar datos, organizar procesos y generar reportes claros.'
-    }
-
-    if (mainNeed === 'whatsapp') {
-      return isPt
-        ? 'Prioridade: agilizar atendimento, organizar mensagens e reduzir perda de clientes.'
-        : 'Prioridad: agilizar atención, organizar mensajes y reducir pérdida de clientes.'
-    }
-
-    return isPt
-      ? 'Prioridade: fazer um diagnóstico completo e definir o melhor plano digital.'
-      : 'Prioridad: hacer un diagnóstico completo y definir el mejor plan digital.'
-  }, [isPt, mainNeed])
+    if (mainNeed === 'website') return lang.labels.priorityWebsite
+    if (mainNeed === 'booking') return lang.labels.priorityBooking
+    if (mainNeed === 'system') return lang.labels.prioritySystem
+    if (mainNeed === 'whatsapp') return lang.labels.priorityWhatsapp
+    return lang.labels.priorityNotSure
+  }, [mainNeed, lang])
 
   const projectName = useMemo(() => {
     const name = businessName.trim()
 
     if (name) {
-      return isPt
-        ? `Plano digital para ${name}`
-        : `Plan digital para ${name}`
+      return `${lang.labels.planPrefix} ${name}`
     }
 
-    return isPt
-      ? `Plano digital para ${selectedBusiness?.title || 'seu negócio'}`
-      : `Plan digital para ${selectedBusiness?.title || 'tu negocio'}`
-  }, [businessName, isPt, selectedBusiness])
+    return `${lang.labels.planPrefix} ${selectedBusiness?.title || lang.labels.yourBusiness}`
+  }, [businessName, lang, selectedBusiness])
 
   const canGoNext = useMemo(() => {
     if (step === 1) return Boolean(businessType)
@@ -473,7 +733,7 @@ function ProjectGuide({ language, open, onClose }: ProjectGuideProps) {
           .filter(Boolean)
           .map((label) => `• ${label}`)
           .join('\n')
-      : (isPt ? 'Não especificado' : 'No especificado')
+      : lang.labels.notSpecified
 
     const featureLabels = features.length > 0
       ? features
@@ -481,65 +741,37 @@ function ProjectGuide({ language, open, onClose }: ProjectGuideProps) {
           .filter(Boolean)
           .map((label) => `• ${label}`)
           .join('\n')
-      : (isPt ? 'Não especificado' : 'No especificado')
+      : lang.labels.notSpecified
 
     const planItems = recommendedPlan.map((item) => `• ${item}`).join('\n')
 
-    const message = isPt
-      ? [
-          '🤖 *Olá Pablo! Fiz o diagnóstico inteligente no site da PabloG.Dev.*',
-          '',
-          `🏢 *Tipo de negócio:* ${selectedBusiness.title}`,
-          `📝 *Nome do negócio:* ${businessName.trim() || 'Não informado'}`,
-          `💡 *Ideia do cliente:* ${projectIdea.trim() || 'Não informou detalhes extras'}`,
-          '',
-          `🎯 *Principal necessidade:* ${selectedNeed.title}`,
-          '',
-          `⚠️ *Problemas atuais:*`,
-          problemLabels,
-          '',
-          `✨ *Recursos desejados:*`,
-          featureLabels,
-          '',
-          `⏰ *Urgência:* ${selectedUrgency.title}`,
-          `📦 *Estilo de projeto:* ${selectedBudget.title}`,
-          '',
-          `📋 *Plano:* ${projectName}`,
-          '',
-          '🧠 *Recomendação gerada:*',
-          planItems,
-          '',
-          `🔑 *${priorityText}*`,
-          '',
-          '💬 Quero entender como podemos fazer esse projeto.'
-        ].join('\n')
-      : [
-          '🤖 *¡Hola Pablo! Hice el diagnóstico inteligente en el sitio de PabloG.Dev.*',
-          '',
-          `🏢 *Tipo de negocio:* ${selectedBusiness.title}`,
-          `📝 *Nombre del negocio:* ${businessName.trim() || 'No informado'}`,
-          `💡 *Idea del cliente:* ${projectIdea.trim() || 'No informó detalles extras'}`,
-          '',
-          `🎯 *Necesidad principal:* ${selectedNeed.title}`,
-          '',
-          `⚠️ *Problemas actuales:*`,
-          problemLabels,
-          '',
-          `✨ *Recursos deseados:*`,
-          featureLabels,
-          '',
-          `⏰ *Urgencia:* ${selectedUrgency.title}`,
-          `📦 *Estilo de proyecto:* ${selectedBudget.title}`,
-          '',
-          `📋 *Plan:* ${projectName}`,
-          '',
-          '🧠 *Recomendación generada:*',
-          planItems,
-          '',
-          `🔑 *${priorityText}*`,
-          '',
-          '💬 Quiero entender cómo podemos hacer este proyecto.'
-        ].join('\n')
+    const message = [
+      `🤖 *${lang.labels.hello}*`,
+      '',
+      `🏢 *${lang.labels.businessType}:* ${selectedBusiness.title}`,
+      `📝 *${lang.labels.businessNameLabel}:* ${businessName.trim() || lang.labels.notInformed}`,
+      `💡 *${lang.labels.clientIdea}:* ${projectIdea.trim() || lang.labels.noExtraDetails}`,
+      '',
+      `🎯 *${lang.labels.mainNeed}:* ${selectedNeed.title}`,
+      '',
+      `⚠️ *${lang.labels.currentProblems}:*`,
+      problemLabels,
+      '',
+      `✨ *${lang.labels.desiredFeatures}:*`,
+      featureLabels,
+      '',
+      `⏰ *${lang.labels.urgencyLabel}:* ${selectedUrgency.title}`,
+      `📦 *${lang.labels.projectStyle}:* ${selectedBudget.title}`,
+      '',
+      `📋 *${lang.labels.plan}:* ${projectName}`,
+      '',
+      '🧠 *Recomendação gerada:*',
+      planItems,
+      '',
+      `🔑 *${priorityText}*`,
+      '',
+      `💬 ${lang.labels.wantToKnow}`
+    ].join('\n')
 
     window.open(
       `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`,
@@ -600,7 +832,7 @@ function ProjectGuide({ language, open, onClose }: ProjectGuideProps) {
         type="button"
         className="project-guide__overlay"
         onClick={closeGuide}
-        aria-label={isPt ? 'Fechar assistente' : 'Cerrar asistente'}
+        aria-label={lang.labels.close}
       />
 
       <div className="project-guide__modal project-guide__modal--smart">
@@ -609,7 +841,7 @@ function ProjectGuide({ language, open, onClose }: ProjectGuideProps) {
           type="button"
           className="project-guide__close"
           onClick={closeGuide}
-          aria-label={isPt ? 'Fechar assistente' : 'Cerrar asistente'}
+          aria-label={lang.labels.close}
         >
           <X size={18} />
         </button>
@@ -618,7 +850,7 @@ function ProjectGuide({ language, open, onClose }: ProjectGuideProps) {
           <div className="project-guide__assistant-icon">
             <img
               src="/dog-assistant.webp"
-              alt={isPt ? 'Assistente PabloG' : 'Asistente PabloG'}
+              alt={isPt ? 'Assistente PabloG' : isEs ? 'Asistente PabloG' : 'PabloG Assistant'}
               className="project-guide__assistant-image"
               width="44"
               height="44"
@@ -630,31 +862,27 @@ function ProjectGuide({ language, open, onClose }: ProjectGuideProps) {
 
           <div>
             <span className="project-guide__badge">
-              {isPt ? 'PabloG Assist' : 'PabloG Assist'}
+              {lang.labels.badge}
             </span>
 
             <h2 id="project-guide-title" className="project-guide__title">
-              {isPt
-                ? 'Diagnóstico inteligente do seu projeto'
-                : 'Diagnóstico inteligente de tu proyecto'}
+              {lang.labels.title}
             </h2>
           </div>
         </div>
 
-        <div className="project-guide__progress" role="progressbar" aria-valuenow={step} aria-valuemin={1} aria-valuemax={5} aria-label={isPt ? `Etapa ${step} de 5` : `Paso ${step} de 5`}>
+        <div className="project-guide__progress" role="progressbar" aria-valuenow={step} aria-valuemin={1} aria-valuemax={5} aria-label={`${lang.labels.progress} ${step} ${lang.labels.of} 5`}>
           <span style={{ width: progress }} />
         </div>
 
         <p className="project-guide__helper">
-          {isPt
-            ? 'Responda algumas perguntas e receba uma recomendação personalizada para site, agendamento ou sistema.'
-            : 'Responde algunas preguntas y recibe una recomendación personalizada para sitio, reservas o sistemas.'}
+          {lang.labels.helper}
         </p>
 
         {step === 1 && (
           <div className="project-guide__step">
             <h3 className="project-guide__question">
-              {isPt ? 'Qual é o tipo do seu negócio?' : '¿Cuál es el tipo de tu negocio?'}
+              {lang.labels.step1}
             </h3>
 
             <div className="project-guide__options project-guide__options--grid">
@@ -683,7 +911,7 @@ function ProjectGuide({ language, open, onClose }: ProjectGuideProps) {
         {step === 2 && (
           <div className="project-guide__step">
             <h3 className="project-guide__question">
-              {isPt ? 'O que você mais precisa agora?' : '¿Qué necesitas más ahora?'}
+              {lang.labels.step2}
             </h3>
 
             <div className="project-guide__options">
@@ -716,14 +944,14 @@ function ProjectGuide({ language, open, onClose }: ProjectGuideProps) {
         {step === 3 && (
           <div className="project-guide__step">
             <h3 className="project-guide__question">
-              {isPt ? 'Quais problemas você quer resolver?' : '¿Qué problemas quieres resolver?'}
+              {lang.labels.step3}
             </h3>
 
             <p className="project-guide__helper">
-              {isPt ? 'Pode escolher mais de uma opção.' : 'Puedes elegir más de una opción.'}
+              {lang.labels.step3Helper}
             </p>
 
-            <div className="project-guide__chips" role="group" aria-label={isPt ? 'Lista de problemas' : 'Lista de problemas'}>
+            <div className="project-guide__chips" role="group" aria-label={isPt ? 'Lista de problemas' : isEs ? 'Lista de problemas' : 'Problem list'}>
               {problemOptions.map((item) => {
                 const isSelected = problems.includes(item.key)
 
@@ -748,16 +976,14 @@ function ProjectGuide({ language, open, onClose }: ProjectGuideProps) {
         {step === 4 && (
           <div className="project-guide__step">
             <h3 className="project-guide__question">
-              {isPt ? 'Quais recursos seriam importantes?' : '¿Qué recursos serían importantes?'}
+              {lang.labels.step4}
             </h3>
 
             <p className="project-guide__helper">
-              {isPt
-                ? 'A assistente adapta as opções conforme sua necessidade.'
-                : 'La asistente adapta las opciones según tu necesidad.'}
+              {lang.labels.step4Helper}
             </p>
 
-            <div className="project-guide__chips" role="group" aria-label={isPt ? 'Lista de recursos' : 'Lista de recursos'}>
+            <div className="project-guide__chips" role="group" aria-label={isPt ? 'Lista de recursos' : isEs ? 'Lista de recursos' : 'Features list'}>
               {featureOptions.map((item) => {
                 const isSelected = features.includes(item.key)
 
@@ -782,11 +1008,11 @@ function ProjectGuide({ language, open, onClose }: ProjectGuideProps) {
         {step === 5 && (
           <div className="project-guide__step">
             <h3 className="project-guide__question">
-              {isPt ? 'Pra fechar o diagnóstico:' : 'Para cerrar el diagnóstico:'}
+              {lang.labels.step5}
             </h3>
 
             <p className="project-guide__mini-title">
-              {isPt ? 'Qual sua urgência?' : '¿Cuál es tu urgencia?'}
+              {lang.labels.urgency}
             </p>
 
             <div className="project-guide__options">
@@ -811,7 +1037,7 @@ function ProjectGuide({ language, open, onClose }: ProjectGuideProps) {
             </div>
 
             <p className="project-guide__mini-title">
-              {isPt ? 'Qual estilo de projeto você imagina?' : '¿Qué estilo de proyecto imaginas?'}
+              {lang.labels.budget}
             </p>
 
             <div className="project-guide__options">
@@ -837,39 +1063,35 @@ function ProjectGuide({ language, open, onClose }: ProjectGuideProps) {
 
             <div className="project-guide__custom">
               <label htmlFor="guide-business-name">
-                {isPt ? 'Nome do negócio' : 'Nombre del negocio'}
+                {lang.labels.businessName}
               </label>
 
               <input
                 id="guide-business-name"
                 value={businessName}
                 onChange={(event) => setBusinessName(event.target.value)}
-                placeholder={isPt ? 'Ex: Clínica Bella Saúde' : 'Ej: Clínica Bella Salud'}
+                placeholder={lang.labels.businessNamePlaceholder}
                 maxLength={80}
               />
 
               <label htmlFor="guide-project-idea">
-                {isPt ? 'Conte rapidamente sua ideia' : 'Cuéntame rápidamente tu idea'}
+                {lang.labels.projectIdea}
               </label>
 
               <textarea
                 id="guide-project-idea"
                 value={projectIdea}
                 onChange={(event) => setProjectIdea(event.target.value)}
-                placeholder={
-                  isPt
-                    ? 'Ex: Quero um site com agendamento para clientes marcarem pelo celular...'
-                    : 'Ej: Quiero un sitio con reservas para que mis clientes agenden por celular...'
-                }
+                placeholder={lang.labels.projectIdeaPlaceholder}
                 maxLength={500}
               />
             </div>
 
             {urgency && budget && (
-              <div className="project-guide__result" role="region" aria-label={isPt ? 'Recomendação gerada' : 'Recomendación generada'}>
+              <div className="project-guide__result" role="region" aria-label={lang.labels.result}>
                 <span>
                   <Sparkles size={16} />
-                  {isPt ? 'Recomendação gerada' : 'Recomendación generada'}
+                  {lang.labels.result}
                 </span>
 
                 <strong>{projectName}</strong>
@@ -894,7 +1116,7 @@ function ProjectGuide({ language, open, onClose }: ProjectGuideProps) {
               onClick={goBack}
             >
               <ArrowLeft size={15} />
-              {isPt ? 'Voltar' : 'Volver'}
+              {lang.labels.back}
             </button>
           )}
 
@@ -905,7 +1127,7 @@ function ProjectGuide({ language, open, onClose }: ProjectGuideProps) {
               disabled={!canGoNext}
               onClick={goNext}
             >
-              <span>{isPt ? 'Continuar' : 'Continuar'}</span>
+              <span>{lang.labels.next}</span>
               <ArrowRight size={16} />
             </button>
           ) : (
@@ -915,7 +1137,7 @@ function ProjectGuide({ language, open, onClose }: ProjectGuideProps) {
               disabled={!canGoNext}
               onClick={openWhatsApp}
             >
-              <span>{isPt ? 'Enviar diagnóstico no WhatsApp' : 'Enviar diagnóstico por WhatsApp'}</span>
+              <span>{lang.labels.submit}</span>
               <ArrowRight size={16} />
             </button>
           )}
