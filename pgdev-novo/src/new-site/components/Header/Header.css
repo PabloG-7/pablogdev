@@ -151,7 +151,7 @@
   background: #fec90f;
   opacity: 1;
   transform: scale(1);
-  padding: 4px 8px;
+  padding: 4px 4px;
 }
 
 .lang-btn:hover:not(.active) {
@@ -408,7 +408,7 @@
   }
 
   .mobile-lang-header-btn {
-    padding: 2px 5px;
+    padding: 2px 2px;
   }
 
   .flag-icon-mobile {
