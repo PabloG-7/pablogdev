@@ -1,5 +1,4 @@
 import './Hero.css'
-
 import heroBackground from '../../assets/hero-background.webp'
 import { ArrowRight, MessageCircle, Calendar, Layout, Zap } from 'lucide-react'
 import type { Language } from '../../types'
@@ -17,6 +16,27 @@ export default function Hero({ language, onOpenGuide }: HeroProps) {
 
   const whatsappLink = `https://wa.me/5511961111894?text=${encodeURIComponent(whatsappMessage)}`
 
+  const content = {
+    pt: {
+      label: 'Soluções digitais',
+      title: <>Transforme seu negócio com <span>sites e sistemas</span></>,
+      text: 'Organize atendimentos, integre WhatsApp e profissionalize seu negócio.',
+      features: ['WhatsApp', 'Agendamentos', 'Gestão', '24/7'],
+      ctaPrimary: 'Falar no WhatsApp',
+      ctaSecondary: 'Diagnóstico grátis'
+    },
+    es: {
+      label: 'Soluciones digitales',
+      title: <>Transforma tu negocio con <span>sitios y sistemas</span></>,
+      text: 'Organiza atenciones, integra WhatsApp y profesionaliza tu negocio.',
+      features: ['WhatsApp', 'Agendamientos', 'Gestión', '24/7'],
+      ctaPrimary: 'Hablar por WhatsApp',
+      ctaSecondary: 'Diagnóstico gratis'
+    }
+  }
+
+  const currentContent = content[language]
+
   return (
     <section className="hero" id="inicio">
       <div 
@@ -29,42 +49,36 @@ export default function Hero({ language, onOpenGuide }: HeroProps) {
       <div className="hero-container">
         <div className="hero-content">
           <p className="hero-label">
-            {language === 'pt' ? 'Soluções digitais' : 'Soluciones digitales'}
+            {currentContent.label}
           </p>
 
           <h1 className="hero-title">
-            {language === 'pt' ? (
-              <>Transforme seu negócio com <span>sites e sistemas</span></>
-            ) : (
-              <>Transforma tu negocio con <span>sitios y sistemas</span></>
-            )}
+            {currentContent.title}
           </h1>
           
           <p className="hero-text">
-            {language === 'pt'
-              ? 'Organize atendimentos, integre WhatsApp e profissionalize seu negócio.'
-              : 'Organiza atenciones, integra WhatsApp y profesionaliza tu negocio.'}
+            {currentContent.text}
           </p>
 
           <div className="hero-features">
             <span className="hero-feature">
               <MessageCircle size={14} />
-              WhatsApp
+              {currentContent.features[0]}
             </span>
             <span className="hero-feature-divider">·</span>
             <span className="hero-feature">
               <Calendar size={14} />
-              Agendamentos
+              {currentContent.features[1]}
             </span>
             <span className="hero-feature-divider">·</span>
             <span className="hero-feature">
               <Layout size={14} />
-              Gestão
+              {currentContent.features[2]}
             </span>
             <span className="hero-feature-divider">·</span>
             <span className="hero-feature">
               <Zap size={14} />
-              24/7
+              {currentContent.features[3]}
             </span>
           </div>
 
@@ -75,7 +89,7 @@ export default function Hero({ language, onOpenGuide }: HeroProps) {
               rel="noopener noreferrer" 
               className="hero-btn primary"
             >
-              Falar no WhatsApp
+              {currentContent.ctaPrimary}
               <ArrowRight size={16} />
             </a>
             
@@ -83,7 +97,7 @@ export default function Hero({ language, onOpenGuide }: HeroProps) {
               onClick={onOpenGuide}
               className="hero-btn secondary"
             >
-              Diagnóstico grátis
+              {currentContent.ctaSecondary}
               <ClipboardList size={16} />
             </button>
           </div>

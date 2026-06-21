@@ -1,6 +1,5 @@
 import './Services.css'
 import { Globe, Settings2, CalendarCheck } from 'lucide-react'
-
 import type { Language } from '../../types'
 import serviceImage from '../../assets/service-background.webp'
 
@@ -9,43 +8,60 @@ type ServicesProps = {
 }
 
 // Serviços com suporte a dois idiomas
-const getServices = (isPt: boolean) => [
-  {
-    title: isPt ? 'Sites que passam confiança' : 'Sitios que generan confianza',
-    description: isPt
-      ? 'Páginas modernas para apresentar seu negócio, mostrar seus serviços e levar o cliente direto para o WhatsApp.'
-      : 'Páginas modernas para presentar tu negocio, mostrar tus servicios y llevar al cliente directo a WhatsApp.',
-    icon: Globe,
-    points: isPt
-      ? ['Visual profissional', 'Contato pelo WhatsApp', 'Funciona no celular']
-      : ['Visual profesional', 'Contacto por WhatsApp', 'Funciona en celular']
-  },
-  {
-    title: isPt ? 'Sistemas para organizar seu negócio' : 'Sistemas para organizar tu negocio',
-    description: isPt
-      ? 'Painéis sob medida para controlar clientes, pedidos, reservas, serviços e informações importantes.'
-      : 'Paneles a medida para controlar clientes, pedidos, reservas, servicios e información importante.',
-    icon: Settings2,
-    points: isPt
-      ? ['Controle interno', 'Dados organizados', 'Mais produtividade']
-      : ['Control interno', 'Datos organizados', 'Más productividad']
-  },
-  {
-    title: isPt ? 'Agendamentos online' : 'Agendamientos online',
-    description: isPt
-      ? 'Uma experiência simples para o cliente escolher horário, enviar os dados e chamar no WhatsApp.'
-      : 'Una experiencia simple para que el cliente elija horario, envíe sus datos y contacte por WhatsApp.',
-    icon: CalendarCheck,
-    points: isPt
-      ? ['Horários disponíveis', 'Envio para WhatsApp', 'Ideal para serviços']
-      : ['Horarios disponibles', 'Envío a WhatsApp', 'Ideal para servicios']
-  }
-]
+const getServices = (language: Language) => {
+  const isPt = language === 'pt'
+  
+  return [
+    {
+      title: isPt ? 'Sites que passam confiança' : 'Sitios que generan confianza',
+      description: isPt
+        ? 'Páginas modernas para apresentar seu negócio, mostrar seus serviços e levar o cliente direto para o WhatsApp.'
+        : 'Páginas modernas para presentar tu negocio, mostrar tus servicios y llevar al cliente directo a WhatsApp.',
+      icon: Globe,
+      points: isPt
+        ? ['Visual profissional', 'Contato pelo WhatsApp', 'Funciona no celular']
+        : ['Visual profesional', 'Contacto por WhatsApp', 'Funciona en celular']
+    },
+    {
+      title: isPt ? 'Sistemas para organizar seu negócio' : 'Sistemas para organizar tu negocio',
+      description: isPt
+        ? 'Painéis sob medida para controlar clientes, pedidos, reservas, serviços e informações importantes.'
+        : 'Paneles a medida para controlar clientes, pedidos, reservas, servicios e información importante.',
+      icon: Settings2,
+      points: isPt
+        ? ['Controle interno', 'Dados organizados', 'Mais produtividade']
+        : ['Control interno', 'Datos organizados', 'Más productividad']
+    },
+    {
+      title: isPt ? 'Agendamentos online' : 'Agendamientos online',
+      description: isPt
+        ? 'Uma experiência simples para o cliente escolher horário, enviar os dados e chamar no WhatsApp.'
+        : 'Una experiencia simple para que el cliente elija horario, envíe sus datos y contacte por WhatsApp.',
+      icon: CalendarCheck,
+      points: isPt
+        ? ['Horários disponíveis', 'Envio para WhatsApp', 'Ideal para serviços']
+        : ['Horarios disponibles', 'Envío a WhatsApp', 'Ideal para servicios']
+    }
+  ]
+}
 
 export default function Services({ language }: ServicesProps) {
+  const services = getServices(language)
   const isPt = language === 'pt'
- 
-  const services = getServices(isPt)
+
+  // Títulos principais com suporte a dois idiomas
+  const mainTitle = {
+    pt: {
+      line1: 'Soluções digitais',
+      line2: 'para seu negócio'
+    },
+    es: {
+      line1: 'Soluciones digitales',
+      line2: 'para tu negocio'
+    }
+  }
+
+  const currentTitle = mainTitle[language]
 
   return (
     <section className="services" id="servicos">
@@ -58,8 +74,8 @@ export default function Services({ language }: ServicesProps) {
       <div className="services-container">
         <div className="services-header">
           <h2 className="services-title">
-            <span className="line-1">Soluções digitais</span>
-            <span className="line-2">para seu negócio</span>
+            <span className="line-1">{currentTitle.line1}</span>
+            <span className="line-2">{currentTitle.line2}</span>
           </h2>
         </div>
 
