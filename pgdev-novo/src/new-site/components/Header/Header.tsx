@@ -1,5 +1,7 @@
 import './Header.css'
 import logo from '../../assets/apenas-logo.png'
+import brFlag from '../../assets/bandeira-brasil.webp' 
+import esFlag from '../../assets/bandeira-espanha.webp' 
 import { Menu, X } from 'lucide-react'
 import { FaWhatsapp } from 'react-icons/fa'
 import { useState, useEffect } from 'react'
@@ -18,7 +20,6 @@ export default function Header({ language, onChangeLanguage }: HeaderProps) {
   const [activeSection, setActiveSection] = useState('inicio')
   const content = language === 'pt' ? pt : es
 
-  // Função para rastrear o clique do WhatsApp no Meta Pixel
   const handleWhatsAppClick = () => {
     if (window.fbq) {
       window.fbq('track', 'Contact')
@@ -46,7 +47,6 @@ export default function Header({ language, onChangeLanguage }: HeaderProps) {
   const closeMenu = () => setIsMenuOpen(false)
   const toggleMenu = () => setIsMenuOpen(prev => !prev)
 
-  // Fecha o menu ao redimensionar para mobile
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth > 900 && isMenuOpen) {
@@ -77,8 +77,20 @@ export default function Header({ language, onChangeLanguage }: HeaderProps) {
 
         <div className="actions">
           <div className="lang">
-            <button className={`lang-btn ${language === 'pt' ? 'active' : ''}`} onClick={() => onChangeLanguage('pt')}>PT</button>
-            <button className={`lang-btn ${language === 'es' ? 'active' : ''}`} onClick={() => onChangeLanguage('es')}>ES</button>
+            <button 
+              className={`lang-btn ${language === 'pt' ? 'active' : ''}`} 
+              onClick={() => onChangeLanguage('pt')}
+              aria-label="Português"
+            >
+              <img src={brFlag} alt="Português" className="flag-icon" />
+            </button>
+            <button 
+              className={`lang-btn ${language === 'es' ? 'active' : ''}`} 
+              onClick={() => onChangeLanguage('es')}
+              aria-label="Español"
+            >
+              <img src={esFlag} alt="Español" className="flag-icon" />
+            </button>
           </div>
 
           <a
@@ -93,10 +105,22 @@ export default function Header({ language, onChangeLanguage }: HeaderProps) {
           </a>
         </div>
 
-        {/* SELETOR DE IDIOMA MOBILE - DENTRO DO HEADER, FORA DO MENU */}
+        {/* SELETOR DE IDIOMA MOBILE */}
         <div className="mobile-lang-header">
-          <button className={`mobile-lang-header-btn ${language === 'pt' ? 'active' : ''}`} onClick={() => onChangeLanguage('pt')}>PT</button>
-          <button className={`mobile-lang-header-btn ${language === 'es' ? 'active' : ''}`} onClick={() => onChangeLanguage('es')}>ES</button>
+          <button 
+            className={`mobile-lang-header-btn ${language === 'pt' ? 'active' : ''}`} 
+            onClick={() => onChangeLanguage('pt')}
+            aria-label="Português"
+          >
+            <img src={brFlag} alt="Português" className="flag-icon-mobile" />
+          </button>
+          <button 
+            className={`mobile-lang-header-btn ${language === 'es' ? 'active' : ''}`} 
+            onClick={() => onChangeLanguage('es')}
+            aria-label="Español"
+          >
+            <img src={esFlag} alt="Español" className="flag-icon-mobile" />
+          </button>
         </div>
 
         <button type="button" className={`mobile-btn ${isMenuOpen ? 'open' : ''}`} onClick={toggleMenu} aria-label="Menu">
