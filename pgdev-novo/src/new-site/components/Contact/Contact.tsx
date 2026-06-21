@@ -1,8 +1,6 @@
 import './Contact.css'
 import { Mail } from 'lucide-react'
 import { FaWhatsapp, FaInstagram, FaFacebook } from 'react-icons/fa'
-import { pt } from '../../i18n/pt'
-import { es } from '../../i18n/es'
 import type { Language } from '../../types'
 
 type ContactProps = {
@@ -10,28 +8,51 @@ type ContactProps = {
 }
 
 export default function Contact({ language }: ContactProps) {
-  const content = language === 'pt' ? pt : es
+  const content = {
+    pt: {
+      badge: 'CONTATO',
+      title: <>Vamos <span>conversar?</span></>,
+      description: 'Escolha o melhor canal e fale comigo agora mesmo.',
+      cardMessage: 'Olá! Vim pelo site e gostaria de mais informações.',
+      whatsapp: 'WhatsApp',
+      email: 'Email',
+      social: 'Redes sociais'
+    },
+    es: {
+      badge: 'CONTACTO',
+      title: <>¿Vamos <span>conversar?</span></>,
+      description: 'Elige el mejor canal y háblame ahora mismo.',
+      cardMessage: '¡Hola! Vine por el sitio y me gustaría más información.',
+      whatsapp: 'WhatsApp',
+      email: 'Correo',
+      social: 'Redes sociales'
+    },
+    en: {
+      badge: 'CONTACT',
+      title: <>Let's <span>talk?</span></>,
+      description: 'Choose the best channel and talk to me right now.',
+      cardMessage: 'Hello! I came through the site and would like more information.',
+      whatsapp: 'WhatsApp',
+      email: 'Email',
+      social: 'Social media'
+    }
+  }
 
-  const whatsappLink = `https://wa.me/5511961111894?text=${encodeURIComponent(content.contact.cardMessage)}`
+  const currentContent = content[language]
+  const whatsappLink = `https://wa.me/5511961111894?text=${encodeURIComponent(currentContent.cardMessage)}`
 
   return (
     <section className="contact" id="contato">
       <div className="contact-container">
         <div className="contact-header">
           <span className="contact-badge">
-            {language === 'pt' ? 'CONTATO' : 'CONTACTO'}
+            {currentContent.badge}
           </span>
           <h2 className="contact-title">
-            {language === 'pt' ? (
-              <>Vamos <span>conversar?</span></>
-            ) : (
-              <>¿Vamos <span>conversar?</span></>
-            )}
+            {currentContent.title}
           </h2>
           <p className="contact-description">
-            {language === 'pt'
-              ? 'Escolha o melhor canal e fale comigo agora mesmo.'
-              : 'Elige el mejor canal y háblame ahora mismo.'}
+            {currentContent.description}
           </p>
         </div>
 
@@ -45,7 +66,7 @@ export default function Contact({ language }: ContactProps) {
             <div className="contact-card-icon">
               <FaWhatsapp size={24} />
             </div>
-            <h3>WhatsApp</h3>
+            <h3>{currentContent.whatsapp}</h3>
             <p>+55 11 96111-1894</p>
             <span className="contact-arrow">→</span>
           </a>
@@ -57,14 +78,14 @@ export default function Contact({ language }: ContactProps) {
             <div className="contact-card-icon">
               <Mail size={24} />
             </div>
-            <h3>Email</h3>
+            <h3>{currentContent.email}</h3>
             <p>pgdevsoftware@gmail.com</p>
             <span className="contact-arrow">→</span>
           </a>
         </div>
 
         <div className="contact-social">
-          <span>Redes sociais</span>
+          <span>{currentContent.social}</span>
           <div className="social-links">
             <a href="https://www.instagram.com/pablog.dev/" target="_blank" rel="noopener noreferrer">
               <FaInstagram size={18} />

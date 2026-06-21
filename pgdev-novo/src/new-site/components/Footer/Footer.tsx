@@ -1,8 +1,6 @@
 import './Footer.css'
 import logo from '../../assets/apple-touch-icon.png'
 import { ChevronUp } from 'lucide-react'
-import { pt } from '../../i18n/pt'
-import { es } from '../../i18n/es'
 import type { Language } from '../../types'
 
 type FooterProps = {
@@ -10,7 +8,19 @@ type FooterProps = {
 }
 
 export default function Footer({ language }: FooterProps) {
-  const content = language === 'pt' ? pt : es
+  const content = {
+    pt: {
+      copyright: '© 2026 PabloG.Dev - Transformando ideias em negócios digitais.'
+    },
+    es: {
+      copyright: '© 2026 PabloG.Dev - Transformando ideas en negocios digitales.'
+    },
+    en: {
+      copyright: '© 2026 PabloG.Dev - Transforming ideas into digital businesses.'
+    }
+  }
+
+  const currentContent = content[language]
 
   const scrollToTop = () => {
     try {
@@ -18,6 +28,12 @@ export default function Footer({ language }: FooterProps) {
     } catch {
       window.scrollTo(0, 0)
     }
+  }
+
+  const ariaLabel = {
+    pt: 'Voltar ao topo',
+    es: 'Volver arriba',
+    en: 'Back to top'
   }
 
   return (
@@ -33,13 +49,13 @@ export default function Footer({ language }: FooterProps) {
             loading="lazy"
             decoding="async"
           />
-          <span className="footer-copyright">{content.footer.copyright}</span>
+          <span className="footer-copyright">{currentContent.copyright}</span>
         </div>
 
         <button 
           onClick={scrollToTop} 
           className="footer-back-top" 
-          aria-label={language === 'pt' ? 'Voltar ao topo' : 'Volver arriba'}
+          aria-label={ariaLabel[language]}
         >
           <ChevronUp size={18} />
         </button>

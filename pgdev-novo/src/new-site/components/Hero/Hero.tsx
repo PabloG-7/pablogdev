@@ -10,11 +10,13 @@ type HeroProps = {
 }
 
 export default function Hero({ language, onOpenGuide }: HeroProps) {
-  const whatsappMessage = language === 'pt'
-    ? 'Olá! Quero profissionalizar meu negócio online.'
-    : '¡Hola! Quiero profesionalizar mi negocio online.'
+  const whatsappMessage = {
+    pt: 'Olá! Quero profissionalizar meu negócio online.',
+    es: '¡Hola! Quiero profesionalizar mi negocio online.',
+    en: 'Hello! I want to professionalize my online business.'
+  }
 
-  const whatsappLink = `https://wa.me/5511961111894?text=${encodeURIComponent(whatsappMessage)}`
+  const whatsappLink = `https://wa.me/5511961111894?text=${encodeURIComponent(whatsappMessage[language])}`
 
   const content = {
     pt: {
@@ -32,6 +34,14 @@ export default function Hero({ language, onOpenGuide }: HeroProps) {
       features: ['WhatsApp', 'Agendamientos', 'Gestión', '24/7'],
       ctaPrimary: 'Hablar por WhatsApp',
       ctaSecondary: 'Diagnóstico gratis'
+    },
+    en: {
+      label: 'Digital Solutions',
+      title: <>Transform your business with <span>websites and systems</span></>,
+      text: 'Organize appointments, integrate WhatsApp and professionalize your business.',
+      features: ['WhatsApp', 'Scheduling', 'Management', '24/7'],
+      ctaPrimary: 'Talk on WhatsApp',
+      ctaSecondary: 'Free Diagnosis'
     }
   }
 

@@ -7,61 +7,91 @@ type ServicesProps = {
   language: Language
 }
 
-// Serviços com suporte a dois idiomas
+// Serviços com suporte a três idiomas
 const getServices = (language: Language) => {
-  const isPt = language === 'pt'
-  
-  return [
-    {
-      title: isPt ? 'Sites que passam confiança' : 'Sitios que generan confianza',
-      description: isPt
-        ? 'Páginas modernas para apresentar seu negócio, mostrar seus serviços e levar o cliente direto para o WhatsApp.'
-        : 'Páginas modernas para presentar tu negocio, mostrar tus servicios y llevar al cliente directo a WhatsApp.',
-      icon: Globe,
-      points: isPt
-        ? ['Visual profissional', 'Contato pelo WhatsApp', 'Funciona no celular']
-        : ['Visual profesional', 'Contacto por WhatsApp', 'Funciona en celular']
-    },
-    {
-      title: isPt ? 'Sistemas para organizar seu negócio' : 'Sistemas para organizar tu negocio',
-      description: isPt
-        ? 'Painéis sob medida para controlar clientes, pedidos, reservas, serviços e informações importantes.'
-        : 'Paneles a medida para controlar clientes, pedidos, reservas, servicios e información importante.',
-      icon: Settings2,
-      points: isPt
-        ? ['Controle interno', 'Dados organizados', 'Mais produtividade']
-        : ['Control interno', 'Datos organizados', 'Más productividad']
-    },
-    {
-      title: isPt ? 'Agendamentos online' : 'Agendamientos online',
-      description: isPt
-        ? 'Uma experiência simples para o cliente escolher horário, enviar os dados e chamar no WhatsApp.'
-        : 'Una experiencia simple para que el cliente elija horario, envíe sus datos y contacte por WhatsApp.',
-      icon: CalendarCheck,
-      points: isPt
-        ? ['Horários disponíveis', 'Envio para WhatsApp', 'Ideal para serviços']
-        : ['Horarios disponibles', 'Envío a WhatsApp', 'Ideal para servicios']
-    }
-  ]
-}
-
-export default function Services({ language }: ServicesProps) {
-  const services = getServices(language)
-  const isPt = language === 'pt'
-
-  // Títulos principais com suporte a dois idiomas
-  const mainTitle = {
+  const content = {
     pt: {
-      line1: 'Soluções digitais',
-      line2: 'para seu negócio'
+      title: 'Soluções digitais',
+      subtitle: 'para seu negócio',
+      services: [
+        {
+          title: 'Sites que passam confiança',
+          description: 'Páginas modernas para apresentar seu negócio, mostrar seus serviços e levar o cliente direto para o WhatsApp.',
+          icon: Globe,
+          points: ['Visual profissional', 'Contato pelo WhatsApp', 'Funciona no celular']
+        },
+        {
+          title: 'Sistemas para organizar seu negócio',
+          description: 'Painéis sob medida para controlar clientes, pedidos, reservas, serviços e informações importantes.',
+          icon: Settings2,
+          points: ['Controle interno', 'Dados organizados', 'Mais produtividade']
+        },
+        {
+          title: 'Agendamentos online',
+          description: 'Uma experiência simples para o cliente escolher horário, enviar os dados e chamar no WhatsApp.',
+          icon: CalendarCheck,
+          points: ['Horários disponíveis', 'Envio para WhatsApp', 'Ideal para serviços']
+        }
+      ],
+      scrollText: 'Role para explorar'
     },
     es: {
-      line1: 'Soluciones digitales',
-      line2: 'para tu negocio'
+      title: 'Soluciones digitales',
+      subtitle: 'para tu negocio',
+      services: [
+        {
+          title: 'Sitios que generan confianza',
+          description: 'Páginas modernas para presentar tu negocio, mostrar tus servicios y llevar al cliente directo a WhatsApp.',
+          icon: Globe,
+          points: ['Visual profesional', 'Contacto por WhatsApp', 'Funciona en celular']
+        },
+        {
+          title: 'Sistemas para organizar tu negocio',
+          description: 'Paneles a medida para controlar clientes, pedidos, reservas, servicios e información importante.',
+          icon: Settings2,
+          points: ['Control interno', 'Datos organizados', 'Más productividad']
+        },
+        {
+          title: 'Agendamientos online',
+          description: 'Una experiencia simple para que el cliente elija horario, envíe sus datos y contacte por WhatsApp.',
+          icon: CalendarCheck,
+          points: ['Horarios disponibles', 'Envío a WhatsApp', 'Ideal para servicios']
+        }
+      ],
+      scrollText: 'Desliza para explorar'
+    },
+    en: {
+      title: 'Digital Solutions',
+      subtitle: 'for your business',
+      services: [
+        {
+          title: 'Trustworthy Websites',
+          description: 'Modern pages to present your business, showcase your services and take customers straight to WhatsApp.',
+          icon: Globe,
+          points: ['Professional look', 'WhatsApp contact', 'Mobile friendly']
+        },
+        {
+          title: 'Systems to organize your business',
+          description: 'Custom dashboards to manage clients, orders, bookings, services and important information.',
+          icon: Settings2,
+          points: ['Internal control', 'Organized data', 'More productivity']
+        },
+        {
+          title: 'Online Scheduling',
+          description: 'A simple experience for customers to choose a time, send their details and connect via WhatsApp.',
+          icon: CalendarCheck,
+          points: ['Available times', 'WhatsApp integration', 'Ideal for services']
+        }
+      ],
+      scrollText: 'Scroll to explore'
     }
   }
 
-  const currentTitle = mainTitle[language]
+  return content[language]
+}
+
+export default function Services({ language }: ServicesProps) {
+  const data = getServices(language)
 
   return (
     <section className="services" id="servicos">
@@ -74,13 +104,13 @@ export default function Services({ language }: ServicesProps) {
       <div className="services-container">
         <div className="services-header">
           <h2 className="services-title">
-            <span className="line-1">{currentTitle.line1}</span>
-            <span className="line-2">{currentTitle.line2}</span>
+            <span className="line-1">{data.title}</span>
+            <span className="line-2">{data.subtitle}</span>
           </h2>
         </div>
 
         <div className="services-grid">
-          {services.map((service) => {
+          {data.services.map((service) => {
             const Icon = service.icon
             return (
               <div key={service.title} className="service-card">
@@ -107,7 +137,7 @@ export default function Services({ language }: ServicesProps) {
             <span></span>
           </div>
           <span className="scroll-text">
-            {isPt ? 'Role para explorar' : 'Desliza para explorar'}
+            {data.scrollText}
           </span>
         </div>
       </div>

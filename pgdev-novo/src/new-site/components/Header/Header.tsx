@@ -1,12 +1,11 @@
 import './Header.css'
 import logo from '../../assets/apenas-logo.png'
 import brFlag from '../../assets/bandeira-brasil.webp' 
-import esFlag from '../../assets/bandeira-espanha.webp' 
+import esFlag from '../../assets/bandeira-espanha.webp'
+import enFlag from '../../assets/bandeira-eua.webp'
 import { Menu, X } from 'lucide-react'
 import { FaWhatsapp } from 'react-icons/fa'
 import { useState, useEffect } from 'react'
-import { pt } from '../../i18n/pt'
-import { es } from '../../i18n/es'
 import type { Language } from '../../types'
 
 type HeaderProps = {
@@ -18,7 +17,42 @@ export default function Header({ language, onChangeLanguage }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [activeSection, setActiveSection] = useState('inicio')
-  const content = language === 'pt' ? pt : es
+  
+  // Conteúdo direto no componente
+  const content = {
+    pt: {
+      header: {
+        home: 'Início',
+        services: 'Serviços',
+        projects: 'Projetos',
+        about: 'Sobre',
+        contact: 'Contato',
+        cta: 'WhatsApp'
+      }
+    },
+    es: {
+      header: {
+        home: 'Inicio',
+        services: 'Servicios',
+        projects: 'Proyectos',
+        about: 'Sobre',
+        contact: 'Contacto',
+        cta: 'WhatsApp'
+      }
+    },
+    en: {
+      header: {
+        home: 'Home',
+        services: 'Services',
+        projects: 'Projects',
+        about: 'About',
+        contact: 'Contact',
+        cta: 'WhatsApp'
+      }
+    }
+  }
+
+  const currentContent = content[language]
 
   const handleWhatsAppClick = () => {
     if (window.fbq) {
@@ -68,11 +102,11 @@ export default function Header({ language, onChangeLanguage }: HeaderProps) {
         </a>
 
         <nav className="nav">
-          <a href="#inicio" className={`nav-link ${activeSection === 'inicio' ? 'active' : ''}`}>{content.header.home}</a>
-          <a href="#servicos" className={`nav-link ${activeSection === 'servicos' ? 'active' : ''}`}>{content.header.services}</a>
-          <a href="#projetos" className={`nav-link ${activeSection === 'projetos' ? 'active' : ''}`}>{content.header.projects}</a>
-          <a href="#sobre" className={`nav-link ${activeSection === 'sobre' ? 'active' : ''}`}>{content.header.about}</a>
-          <a href="#contato" className={`nav-link ${activeSection === 'contato' ? 'active' : ''}`}>{content.header.contact}</a>
+          <a href="#inicio" className={`nav-link ${activeSection === 'inicio' ? 'active' : ''}`}>{currentContent.header.home}</a>
+          <a href="#servicos" className={`nav-link ${activeSection === 'servicos' ? 'active' : ''}`}>{currentContent.header.services}</a>
+          <a href="#projetos" className={`nav-link ${activeSection === 'projetos' ? 'active' : ''}`}>{currentContent.header.projects}</a>
+          <a href="#sobre" className={`nav-link ${activeSection === 'sobre' ? 'active' : ''}`}>{currentContent.header.about}</a>
+          <a href="#contato" className={`nav-link ${activeSection === 'contato' ? 'active' : ''}`}>{currentContent.header.contact}</a>
         </nav>
 
         <div className="actions">
@@ -91,6 +125,13 @@ export default function Header({ language, onChangeLanguage }: HeaderProps) {
             >
               <img src={esFlag} alt="Español" className="flag-icon" />
             </button>
+            <button 
+              className={`lang-btn ${language === 'en' ? 'active' : ''}`} 
+              onClick={() => onChangeLanguage('en')}
+              aria-label="English"
+            >
+              <img src={enFlag} alt="English" className="flag-icon" />
+            </button>
           </div>
 
           <a
@@ -101,7 +142,7 @@ export default function Header({ language, onChangeLanguage }: HeaderProps) {
             onClick={handleWhatsAppClick}
           >
             <FaWhatsapp size={16} />
-            <span>{content.header.cta}</span>
+            <span>{currentContent.header.cta}</span>
           </a>
         </div>
 
@@ -121,6 +162,13 @@ export default function Header({ language, onChangeLanguage }: HeaderProps) {
           >
             <img src={esFlag} alt="Español" className="flag-icon-mobile" />
           </button>
+          <button 
+            className={`mobile-lang-header-btn ${language === 'en' ? 'active' : ''}`} 
+            onClick={() => onChangeLanguage('en')}
+            aria-label="English"
+          >
+            <img src={enFlag} alt="English" className="flag-icon-mobile" />
+          </button>
         </div>
 
         <button type="button" className={`mobile-btn ${isMenuOpen ? 'open' : ''}`} onClick={toggleMenu} aria-label="Menu">
@@ -131,11 +179,11 @@ export default function Header({ language, onChangeLanguage }: HeaderProps) {
       <div className={`mobile-menu ${isMenuOpen ? 'open' : ''}`}>
         <div className="mobile-menu-inner">
           <nav className="mobile-nav">
-            <a href="#inicio" className={activeSection === 'inicio' ? 'active' : ''} onClick={closeMenu}>{content.header.home}</a>
-            <a href="#servicos" className={activeSection === 'servicos' ? 'active' : ''} onClick={closeMenu}>{content.header.services}</a>
-            <a href="#projetos" className={activeSection === 'projetos' ? 'active' : ''} onClick={closeMenu}>{content.header.projects}</a>
-            <a href="#sobre" className={activeSection === 'sobre' ? 'active' : ''} onClick={closeMenu}>{content.header.about}</a>
-            <a href="#contato" className={activeSection === 'contato' ? 'active' : ''} onClick={closeMenu}>{content.header.contact}</a>
+            <a href="#inicio" className={activeSection === 'inicio' ? 'active' : ''} onClick={closeMenu}>{currentContent.header.home}</a>
+            <a href="#servicos" className={activeSection === 'servicos' ? 'active' : ''} onClick={closeMenu}>{currentContent.header.services}</a>
+            <a href="#projetos" className={activeSection === 'projetos' ? 'active' : ''} onClick={closeMenu}>{currentContent.header.projects}</a>
+            <a href="#sobre" className={activeSection === 'sobre' ? 'active' : ''} onClick={closeMenu}>{currentContent.header.about}</a>
+            <a href="#contato" className={activeSection === 'contato' ? 'active' : ''} onClick={closeMenu}>{currentContent.header.contact}</a>
           </nav>
 
           <a
@@ -149,7 +197,7 @@ export default function Header({ language, onChangeLanguage }: HeaderProps) {
             }}
           >
             <FaWhatsapp size={16} />
-            <span>{content.header.cta}</span>
+            <span>{currentContent.header.cta}</span>
           </a>
         </div>
       </div>
