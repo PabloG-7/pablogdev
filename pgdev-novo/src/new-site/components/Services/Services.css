@@ -271,8 +271,8 @@
 /* Desktop */
 @media (max-width: 1200px) {
   .services-background {
-    background-size: 50% 100%;
-    background-position: 8% center;
+    background-size: 67% 81%;
+    background-position: -28% center;
     opacity: 1;
   }
   
@@ -281,7 +281,7 @@
   }
 
   .services-title .line-2 {
-    transform: translateX(-15px);
+    transform: translateX(60px);
   }
   
   .services-title .line-3 {
@@ -300,8 +300,8 @@
   }
   
   .services-background {
-    background-size: 55% 100%;
-    background-position: 5% center;
+    background-size: 80% 120%;
+     background-position: -130px 0%;
     opacity: 1;
   }
   
@@ -314,7 +314,7 @@
 
   .services-title .line-2 {
     font-size: 2.4rem;
-    transform: translateX(-10px);
+    transform: translateX(50px);
   }
   
   .services-title .line-3 {
@@ -330,8 +330,8 @@
   }
   
   .services-background {
-    background-size: 60% 100%;
-    background-position: 0% center;
+    background-size: cover;
+      background-position: -260px 0%;
     opacity: 1;
   }
   
@@ -344,7 +344,7 @@
 
   .services-title .line-2 {
     font-size: 2.2rem;
-    transform: translateX(-8px);
+    transform: translateX(40px);
   }
   
   .services-title .line-3 {
@@ -370,7 +370,7 @@
   
   .services-background {
     background-size: cover;
-    background-position: center;
+      background-position: -220px 0%;
     opacity: 0.6;
   }
   
@@ -383,7 +383,7 @@
 
   .services-title .line-2 {
     font-size: 2rem;
-    transform: translateX(-5px);
+    transform: translateX(30px);
   }
   
   .services-title .line-3 {
@@ -414,7 +414,7 @@
   
   .services-background {
     background-size: cover;
-    background-position: center;
+     background-position: -300px 0%;
     opacity: 0.6;
   }
   
@@ -431,7 +431,7 @@
 
   .services-title .line-2 {
     font-size: 1.8rem;
-    transform: translateX(-5px);
+    transform: translateX(25px);
   }
   
   .services-title .line-3 {
