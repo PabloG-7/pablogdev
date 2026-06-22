@@ -424,6 +424,7 @@
   /* ===== OPACIDADE DA IMAGEM EM TABLETS ===== */
   .hero-background {
     opacity: 0.6;
+     background-position: 65% center;
   }
 }
 
