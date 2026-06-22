@@ -19,31 +19,31 @@ export default function Hero({ language, onOpenGuide }: HeroProps) {
   const whatsappLink = `https://wa.me/5511961111894?text=${encodeURIComponent(whatsappMessage[language])}`
 
   const content = {
-    pt: {
-      label: 'Soluções digitais',
-      title: <>Transforme seu negócio com <span>sites e sistemas</span></>,
-      text: 'Organize atendimentos, integre WhatsApp e profissionalize seu negócio.',
-      features: ['WhatsApp', 'Agendamentos', 'Gestão', '24/7'],
-      ctaPrimary: 'Falar no WhatsApp',
-      ctaSecondary: 'Diagnóstico grátis'
-    },
-    es: {
-      label: 'Soluciones digitales',
-      title: <>Transforma tu negocio con <span>sitios y sistemas</span></>,
-      text: 'Organiza atenciones, integra WhatsApp y profesionaliza tu negocio.',
-      features: ['WhatsApp', 'Agendamientos', 'Gestión', '24/7'],
-      ctaPrimary: 'Hablar por WhatsApp',
-      ctaSecondary: 'Diagnóstico gratis'
-    },
-    en: {
-      label: 'Digital Solutions',
-      title: <>Transform your business with <span>websites and systems</span></>,
-      text: 'Organize appointments, integrate WhatsApp and professionalize your business.',
-      features: ['WhatsApp', 'Scheduling', 'Management', '24/7'],
-      ctaPrimary: 'Talk on WhatsApp',
-      ctaSecondary: 'Free Diagnosis'
-    }
+  pt: {
+    label: 'Presença online', 
+    title: <>Transforme seu negócio com <span>sites e sistemas</span></>,
+    text: 'Organize atendimentos, integre WhatsApp e profissionalize seu negócio.',
+    features: ['WhatsApp', 'Agendamentos', 'Gestão', '24/7'],
+    ctaPrimary: 'Falar no WhatsApp',
+    ctaSecondary: 'Diagnóstico grátis'
+  },
+  es: {
+    label: 'Presencia online', 
+    title: <>Transforma tu negocio con <span>sitios y sistemas</span></>,
+    text: 'Organiza atenciones, integra WhatsApp y profesionaliza tu negocio.',
+    features: ['WhatsApp', 'Agendamientos', 'Gestión', '24/7'],
+    ctaPrimary: 'Hablar por WhatsApp',
+    ctaSecondary: 'Diagnóstico gratis'
+  },
+  en: {
+    label: 'Online presence',
+    title: <>Transform your business with <span>websites and systems</span></>,
+    text: 'Organize appointments, integrate WhatsApp and professionalize your business.',
+    features: ['WhatsApp', 'Scheduling', 'Management', '24/7'],
+    ctaPrimary: 'Talk on WhatsApp',
+    ctaSecondary: 'Free Diagnosis'
   }
+}
 
   const currentContent = content[language]
 

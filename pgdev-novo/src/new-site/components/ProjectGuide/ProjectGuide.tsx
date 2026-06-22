@@ -1,5 +1,6 @@
 import './ProjectGuide.css'
 import { useEffect, useMemo, useRef, useState } from 'react'
+import type { LucideIcon } from 'lucide-react'
 
 import {
   ArrowLeft,
@@ -56,7 +57,7 @@ type Option<T extends string> = {
   key: T
   title: string
   description: string
-  icon: typeof Globe
+  icon: LucideIcon
 }
 
 type MultiOption = {
@@ -67,7 +68,6 @@ type MultiOption = {
 function ProjectGuide({ language, open, onClose }: ProjectGuideProps) {
   const isPt = language === 'pt'
   const isEs = language === 'es'
-  const isEn = language === 'en'
   
   const whatsappNumber = '5511961111894'
 
@@ -220,9 +220,7 @@ function ProjectGuide({ language, open, onClose }: ProjectGuideProps) {
         priorityNotSure: 'Prioridade: fazer um diagnóstico completo e definir o melhor plano digital.',
         planPrefix: 'Plano digital para',
         yourBusiness: 'seu negócio',
-        tuBusiness: 'tu negocio',
         notSpecified: 'Não especificado',
-        noSpecified: 'No especificado',
         hello: 'Olá Pablo! Fiz o diagnóstico inteligente no site da PabloG.Dev.',
         businessType: 'Tipo de negócio',
         businessNameLabel: 'Nome do negócio',
@@ -374,9 +372,7 @@ function ProjectGuide({ language, open, onClose }: ProjectGuideProps) {
         priorityNotSure: 'Prioridad: hacer un diagnóstico completo y definir el mejor plan digital.',
         planPrefix: 'Plan digital para',
         yourBusiness: 'tu negocio',
-        tuBusiness: 'tu negocio',
         notSpecified: 'No especificado',
-        noSpecified: 'No especificado',
         hello: '¡Hola Pablo! Hice el diagnóstico inteligente en el sitio de PabloG.Dev.',
         businessType: 'Tipo de negocio',
         businessNameLabel: 'Nombre del negocio',
@@ -528,9 +524,7 @@ function ProjectGuide({ language, open, onClose }: ProjectGuideProps) {
         priorityNotSure: 'Priority: do a complete diagnosis and define the best digital plan.',
         planPrefix: 'Digital plan for',
         yourBusiness: 'your business',
-        tuBusiness: 'your business',
         notSpecified: 'Not specified',
-        noSpecified: 'Not specified',
         hello: 'Hello Pablo! I did the smart diagnosis on the PabloG.Dev website.',
         businessType: 'Business type',
         businessNameLabel: 'Business name',
@@ -551,55 +545,91 @@ function ProjectGuide({ language, open, onClose }: ProjectGuideProps) {
 
   const lang = t[language]
 
-  const businessOptions = useMemo<Array<Option<BusinessType>>>(() => 
-    lang.businessOptions.map((item) => ({
-      ...item,
-      icon: item.key === 'clinic' || item.key === 'realestate' ? Building2 : 
-            item.key === 'barber' ? Calendar :
-            item.key === 'petshop' || item.key === 'store' || item.key === 'restaurant' ? Store :
-            item.key === 'services' ? Target :
-            HelpCircle
-    })), [lang]
+  const businessOptions = useMemo<Array<Option<BusinessType>>>(
+    () =>
+      lang.businessOptions.map((item) => {
+        let Icon: LucideIcon
+
+        if (item.key === 'clinic' || item.key === 'realestate') Icon = Building2
+        else if (item.key === 'barber') Icon = Calendar
+        else if (
+          item.key === 'petshop' ||
+          item.key === 'store' ||
+          item.key === 'restaurant'
+        ) Icon = Store
+        else if (item.key === 'services') Icon = Target
+        else Icon = HelpCircle
+
+        return {
+          ...item,
+          icon: Icon
+        } as Option<BusinessType>
+      }),
+    [lang.businessOptions]
   )
 
-  const needOptions = useMemo<Array<Option<MainNeed>>>(() => 
-    lang.needOptions.map((item) => ({
-      ...item,
-      icon: item.key === 'website' ? Globe :
-            item.key === 'booking' ? Calendar :
-            item.key === 'system' ? Settings2 :
-            item.key === 'whatsapp' ? MessageCircle :
-            Sparkles
-    })), [lang]
+  const needOptions = useMemo<Array<Option<MainNeed>>>(
+    () =>
+      lang.needOptions.map((item) => {
+        let Icon: LucideIcon
+
+        if (item.key === 'website') Icon = Globe
+        else if (item.key === 'booking') Icon = Calendar
+        else if (item.key === 'system') Icon = Settings2
+        else if (item.key === 'whatsapp') Icon = MessageCircle
+        else Icon = Sparkles
+
+        return {
+          ...item,
+          icon: Icon
+        } as Option<MainNeed>
+      }),
+    [lang.needOptions]
   )
 
   const problemOptions = useMemo<MultiOption[]>(() => {
     const key = mainNeed || 'notSure'
     return lang.problemOptions[key as keyof typeof lang.problemOptions] || lang.problemOptions.notSure
-  }, [mainNeed, lang])
+  }, [mainNeed, lang.problemOptions])
 
   const featureOptions = useMemo<MultiOption[]>(() => {
     const key = mainNeed || 'notSure'
     return lang.featureOptions[key as keyof typeof lang.featureOptions] || lang.featureOptions.notSure
-  }, [mainNeed, lang])
+  }, [mainNeed, lang.featureOptions])
 
-  const urgencyOptions = useMemo<Array<Option<Urgency>>>(() => 
-    lang.urgencyOptions.map((item) => ({
-      ...item,
-      icon: item.key === 'calm' ? ClipboardList :
-            item.key === 'soon' ? Rocket :
-            Zap
-    })), [lang]
+  const urgencyOptions = useMemo<Array<Option<Urgency>>>(
+    () =>
+      lang.urgencyOptions.map((item) => {
+        let Icon: LucideIcon
+
+        if (item.key === 'calm') Icon = ClipboardList
+        else if (item.key === 'soon') Icon = Rocket
+        else Icon = Zap
+
+        return {
+          ...item,
+          icon: Icon
+        } as Option<Urgency>
+      }),
+    [lang.urgencyOptions]
   )
 
-  const budgetOptions = useMemo<Array<Option<Budget>>>(() => 
-    lang.budgetOptions.map((item) => ({
-      ...item,
-      icon: item.key === 'starter' ? Rocket :
-            item.key === 'professional' ? Sparkles :
-            item.key === 'complete' ? Settings2 :
-            HelpCircle
-    })), [lang]
+  const budgetOptions = useMemo<Array<Option<Budget>>>(
+    () =>
+      lang.budgetOptions.map((item) => {
+        let Icon: LucideIcon
+
+        if (item.key === 'starter') Icon = Rocket
+        else if (item.key === 'professional') Icon = Sparkles
+        else if (item.key === 'complete') Icon = Settings2
+        else Icon = HelpCircle
+
+        return {
+          ...item,
+          icon: Icon
+        } as Option<Budget>
+      }),
+    [lang.budgetOptions]
   )
 
   const selectedBusiness = businessOptions.find((item) => item.key === businessType)
