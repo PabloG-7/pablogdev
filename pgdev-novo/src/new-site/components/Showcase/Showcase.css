@@ -3,23 +3,24 @@
    ============================================ */
 
 .showcase {
-  padding: 80px 0;
+  padding: 80px 0 60px;
   background: #000c24;
   position: relative;
   overflow: hidden;
+  margin-top: -1px;
 }
 
 /* Transição suave com a seção anterior */
 .showcase::before {
   content: '';
   position: absolute;
-  top: -2px;
+  top: -40px;
   left: 0;
   right: 0;
   height: 80px;
   background: linear-gradient(180deg, transparent, #000c24);
   pointer-events: none;
-  z-index: 2;
+  z-index: 1;
 }
 
 .showcase-container {
@@ -27,7 +28,7 @@
   margin: 0 auto;
   padding: 0 24px;
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 
 /* ===== GRID ===== */
@@ -86,6 +87,7 @@
   pointer-events: none;
 }
 
+/* SÓ APARECE NO HOVER - FUNCIONA EM TODOS OS DISPOSITIVOS */
 .showcase-card:hover .card-hover {
   opacity: 1;
 }
@@ -133,9 +135,24 @@
    RESPONSIVE
    ============================================ */
 
+/* Desktop Grande */
+@media (max-width: 1400px) {
+  .showcase {
+    padding: 70px 0 50px;
+  }
+}
+
+/* Desktop Médio */
+@media (max-width: 1200px) {
+  .showcase {
+    padding: 60px 0 40px;
+  }
+}
+
+/* Tablet */
 @media (max-width: 1024px) {
   .showcase {
-    padding: 60px 0;
+    padding: 50px 0 40px;
   }
   
   .showcase-grid {
@@ -158,6 +175,11 @@
     width: 32px;
     height: 32px;
   }
+
+  .showcase::before {
+    top: -30px;
+    height: 60px;
+  }
 }
 
 @media (max-width: 900px) {
@@ -177,11 +199,16 @@
     width: 30px;
     height: 30px;
   }
+
+  .showcase::before {
+    top: -25px;
+    height: 50px;
+  }
 }
 
 @media (max-width: 768px) {
   .showcase {
-    padding: 50px 0;
+    padding: 40px 0 30px;
   }
 
   .showcase-container {
@@ -213,11 +240,17 @@
     width: 16px;
     height: 16px;
   }
+
+  .showcase::before {
+    top: -20px;
+    height: 40px;
+  }
 }
 
+/* MOBILE - MANTÉM O HOVER FUNCIONANDO NORMALMENTE */
 @media (max-width: 640px) {
   .showcase {
-    padding: 40px 0;
+    padding: 30px 0 20px;
   }
 
   .showcase-container {
@@ -229,16 +262,8 @@
     gap: 20px;
   }
 
-  .showcase-card:hover .card {
-    transform: none;
-  }
-
-  .showcase-card:hover .card img {
-    transform: none;
-  }
-
+  /* REMOVI O opacity: 1 forçado - agora só aparece no hover */
   .card-hover {
-    opacity: 1;
     padding: 60px 16px 16px;
     background: linear-gradient(to top, #000c24, #000c24ee, transparent);
   }
@@ -260,11 +285,22 @@
     width: 18px;
     height: 18px;
   }
+
+  .showcase::before {
+    top: -15px;
+    height: 30px;
+  }
+  
+  /* Em mobile, hover funciona com clique/toque */
+  .showcase-card:active .card-hover,
+  .showcase-card:focus .card-hover {
+    opacity: 1;
+  }
 }
 
 @media (max-width: 480px) {
   .showcase {
-    padding: 30px 0;
+    padding: 20px 0 15px;
   }
 
   .showcase-container {
@@ -298,11 +334,16 @@
     width: 16px;
     height: 16px;
   }
+
+  .showcase::before {
+    top: -10px;
+    height: 20px;
+  }
 }
 
 @media (max-width: 360px) {
   .showcase {
-    padding: 24px 0;
+    padding: 15px 0 10px;
   }
 
   .showcase-container {
@@ -334,27 +375,34 @@
     width: 14px;
     height: 14px;
   }
+
+  .showcase::before {
+    top: -8px;
+    height: 16px;
+  }
 }
 
 /* ============================================
-   TOUCH DEVICES - MELHORIAS
+   TOUCH DEVICES - INTERAÇÃO POR TOQUE
    ============================================ */
 @media (hover: none) {
-  .showcase-card:hover .card {
-    transform: none;
-  }
-
-  .showcase-card:hover .card img {
-    transform: none;
-  }
-
-  .showcase-card:hover .card-icon {
-    transform: none;
-  }
-
-  .card-hover {
+  /* Em dispositivos touch, o hover aparece no clique/toque */
+  .showcase-card:active .card-hover,
+  .showcase-card:focus .card-hover {
     opacity: 1;
-    background: linear-gradient(to top, #000c24, #000c24ee, transparent);
+  }
+  
+  /* Remove transformações em touch para evitar problemas */
+  .showcase-card:active .card {
+    transform: none !important;
+  }
+
+  .showcase-card:active .card img {
+    transform: none !important;
+  }
+
+  .showcase-card:active .card-icon {
+    transform: none !important;
   }
 }
 
@@ -365,6 +413,11 @@
   .showcase {
     padding: 20px 0;
     background: #ffffff;
+    margin-top: 0;
+  }
+
+  .showcase::before {
+    display: none;
   }
 
   .showcase-card {
@@ -393,10 +446,6 @@
   }
 
   .card-icon {
-    display: none;
-  }
-
-  .showcase::before {
     display: none;
   }
 }
