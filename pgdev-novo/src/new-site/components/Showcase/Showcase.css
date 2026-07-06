@@ -1,50 +1,36 @@
 /* ============================================
-   SHOWCASE - COM FONTES IGUAIS A HERO E SERVICES
+   SHOWCASE - SEM TÍTULO, APENAS GRID
    ============================================ */
 
 .showcase {
   padding: 80px 0;
   background: #000c24;
   position: relative;
+  overflow: hidden;
+}
+
+/* Transição suave com a seção anterior */
+.showcase::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(180deg, transparent, #000c24);
+  pointer-events: none;
+  z-index: 2;
 }
 
 .showcase-container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 24px;
+  position: relative;
+  z-index: 1;
 }
 
-.showcase-header {
-  margin-bottom: 48px;
-}
-
-.showcase-label {
-  display: block;
-  margin-bottom: 12px;
-  color: #fec90f;
-  font-size: 0.8125rem; /* IGUAL AO HERO-LABEL E SERVICES-LABEL */
-  font-weight: 600; /* IGUAL AO HERO-LABEL E SERVICES-LABEL */
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-}
-
-.showcase-title {
-  margin: 0;
-  font-size: 2rem;
-  font-weight: 300; /* IGUAL AO HERO-TITLE E SERVICES-TITLE */
-  color: #ffffff;
-  line-height: 1.1; /* IGUAL AO HERO-TITLE E SERVICES-TITLE */
-  letter-spacing: -0.02em; /* IGUAL AO HERO-TITLE E SERVICES-TITLE */
-}
-
-.showcase-title span {
-  display: block;
-  color: #fec90f;
-  font-size: 1.5rem;
-  font-weight: 600; /* IGUAL AO SPAN DA HERO E SERVICES */
-  margin-top: 4px;
-}
-
+/* ===== GRID ===== */
 .showcase-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -65,6 +51,7 @@
   background: rgba(255, 255, 255, 0.04);
   transition: transform 0.3s ease;
   aspect-ratio: 900 / 560;
+  border-radius: 12px;
 }
 
 .card img {
@@ -111,17 +98,17 @@
 .card-text h3 {
   margin: 0 0 6px;
   font-size: 1rem;
-  font-weight: 400; /* IGUAL AO HERO-FEATURE E SERVICE-INFO H3 */
+  font-weight: 400;
   color: #ffffff;
 }
 
 .card-text p {
   margin: 0;
-  font-size: 0.8125rem; /* IGUAL AO HERO-FEATURE E SERVICES-LABEL */
+  font-size: 0.8125rem;
   color: #fec90f;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  font-weight: 300; /* IGUAL AO HERO-TEXT E SERVICE-INFO P */
+  font-weight: 300;
 }
 
 .card-icon {
@@ -142,14 +129,44 @@
   background: #ffffff;
 }
 
-/* Ajuste para telas médias */
-@media (max-width: 900px) {
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 1024px) {
+  .showcase {
+    padding: 60px 0;
+  }
+  
   .showcase-grid {
     gap: 24px;
   }
 
   .card-hover {
-    padding: 20px 16px 16px;
+    padding: 60px 16px 16px;
+  }
+
+  .card-text h3 {
+    font-size: 0.95rem;
+  }
+
+  .card-text p {
+    font-size: 0.75rem;
+  }
+
+  .card-icon {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+@media (max-width: 900px) {
+  .showcase-grid {
+    gap: 20px;
+  }
+
+  .card-hover {
+    padding: 50px 16px 16px;
   }
 
   .card-text h3 {
@@ -162,34 +179,54 @@
   }
 }
 
-/* Tablet */
 @media (max-width: 768px) {
-  .showcase-title {
-    font-size: 1.75rem;
+  .showcase {
+    padding: 50px 0;
   }
 
-  .showcase-title span {
-    font-size: 1.25rem;
-  }
-}
-
-/* Mobile */
-@media (max-width: 640px) {
   .showcase-container {
     padding: 0 20px;
   }
 
   .showcase-grid {
+    gap: 20px;
+  }
+
+  .card-hover {
+    padding: 40px 14px 14px;
+  }
+
+  .card-text h3 {
+    font-size: 0.85rem;
+  }
+
+  .card-text p {
+    font-size: 0.7rem;
+  }
+
+  .card-icon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .card-icon svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+@media (max-width: 640px) {
+  .showcase {
+    padding: 40px 0;
+  }
+
+  .showcase-container {
+    padding: 0 16px;
+  }
+
+  .showcase-grid {
     grid-template-columns: 1fr;
-    gap: 24px;
-  }
-
-  .showcase-title {
-    font-size: 1.5rem;
-  }
-
-  .showcase-title span {
-    font-size: 1.125rem;
+    gap: 20px;
   }
 
   .showcase-card:hover .card {
@@ -201,51 +238,165 @@
   }
 
   .card-hover {
-    opacity: 0;
-    padding: 20px 16px 16px;
+    opacity: 1;
+    padding: 60px 16px 16px;
+    background: linear-gradient(to top, #000c24, #000c24ee, transparent);
+  }
+
+  .card-text h3 {
+    font-size: 1rem;
   }
 
   .card-text p {
     font-size: 0.75rem;
   }
+
+  .card-icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .card-icon svg {
+    width: 18px;
+    height: 18px;
+  }
 }
 
-/* Mobile pequeno */
 @media (max-width: 480px) {
   .showcase {
-    padding: 50px 0;
+    padding: 30px 0;
   }
 
   .showcase-container {
-    padding: 0 16px;
+    padding: 0 12px;
   }
 
-  .showcase-header {
-    margin-bottom: 32px;
+  .showcase-grid {
+    gap: 16px;
   }
 
-  .showcase-title {
-    font-size: 1.3rem;
-  }
-
-  .showcase-title span {
-    font-size: 1.125rem;
-  }
-
-  .showcase-label {
-    font-size: 0.75rem;
+  .card-hover {
+    padding: 50px 14px 14px;
   }
 
   .card-text h3 {
     font-size: 0.9rem;
+    margin-bottom: 4px;
   }
 
   .card-text p {
     font-size: 0.7rem;
+    letter-spacing: 0.3px;
   }
 
   .card-icon {
     width: 28px;
     height: 28px;
+  }
+
+  .card-icon svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+@media (max-width: 360px) {
+  .showcase {
+    padding: 24px 0;
+  }
+
+  .showcase-container {
+    padding: 0 8px;
+  }
+
+  .showcase-grid {
+    gap: 12px;
+  }
+
+  .card-hover {
+    padding: 40px 10px 10px;
+  }
+
+  .card-text h3 {
+    font-size: 0.8rem;
+  }
+
+  .card-text p {
+    font-size: 0.65rem;
+  }
+
+  .card-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .card-icon svg {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+/* ============================================
+   TOUCH DEVICES - MELHORIAS
+   ============================================ */
+@media (hover: none) {
+  .showcase-card:hover .card {
+    transform: none;
+  }
+
+  .showcase-card:hover .card img {
+    transform: none;
+  }
+
+  .showcase-card:hover .card-icon {
+    transform: none;
+  }
+
+  .card-hover {
+    opacity: 1;
+    background: linear-gradient(to top, #000c24, #000c24ee, transparent);
+  }
+}
+
+/* ============================================
+   IMPRESSÃO - OCULTAR
+   ============================================ */
+@media print {
+  .showcase {
+    padding: 20px 0;
+    background: #ffffff;
+  }
+
+  .showcase-card {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+  }
+
+  .card-hover {
+    opacity: 1;
+    background: #f5f5f5;
+    position: relative;
+    padding: 12px 16px;
+  }
+
+  .card-text h3 {
+    color: #000;
+  }
+
+  .card-text p {
+    color: #666;
+  }
+
+  .card-icon {
+    display: none;
+  }
+
+  .showcase::before {
+    display: none;
   }
 }

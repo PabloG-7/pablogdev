@@ -1,6 +1,7 @@
-// About.tsx - Sem vídeo
+// About.tsx - Visual limpo sem stats
 import './About.css'
-import logo from '../../assets/apenas-logo-pablogdev.png'
+import logo from '../../assets/apenas-logo.png'
+import { Code, Smartphone, Zap } from 'lucide-react'
 import type { Language } from '../../types'
 
 type AboutProps = { language: Language }
@@ -8,28 +9,43 @@ type AboutProps = { language: Language }
 export default function About({ language }: AboutProps) {
   const content = {
     pt: {
-      label: 'QUEM ESTÁ POR TRÁS',
+      label: 'SOBRE MIM',
       title: 'Pablo',
       titleSpan: 'G.',
       titleEnd: 'Dev',
-      text1: 'Sou desenvolvedor especializado em criar soluções digitais que realmente resolvem problemas. Meu foco é entregar sites e sistemas que organizam processos, integram WhatsApp e trazem mais clientes para seu negócio.',
-      text2: 'Atendo desde pequenos empreendedores até negócios que precisam profissionalizar sua presença online. Sem enrolação: código limpo, entrega rápida e suporte de verdade.'
+      text1: 'Transformo ideias em soluções digitais que realmente funcionam. Cada projeto é pensado para organizar processos, integrar WhatsApp e gerar resultados concretos para seu negócio.',
+      text2: 'Trabalho com tecnologia para resolver problemas reais. Sem complicação: código limpo, entrega no prazo e suporte que não some depois do projeto.',
+      features: [
+        { icon: Code, label: 'Código limpo e otimizado' },
+        { icon: Smartphone, label: '100% responsivo' },
+        { icon: Zap, label: 'Entrega ágil' }
+      ]
     },
     es: {
-      label: 'QUIÉN ESTÁ DETRÁS',
+      label: 'SOBRE MÍ',
       title: 'Pablo',
       titleSpan: 'G.',
       titleEnd: 'Dev',
-      text1: 'Soy desarrollador especializado en crear soluciones digitales que realmente resuelven problemas. Mi enfoque es entregar sitios y sistemas que organizan procesos, integran WhatsApp y traen más clientes a tu negocio.',
-      text2: 'Atiendo desde pequeños emprendedores hasta negocios que necesitan profesionalizar su presencia online. Sin rodeos: código limpio, entrega rápida y soporte de verdad.'
+      text1: 'Transformo ideas en soluciones digitales que realmente funcionan. Cada proyecto está pensado para organizar procesos, integrar WhatsApp y generar resultados concretos para tu negocio.',
+      text2: 'Trabajo con tecnología para resolver problemas reales. Sin complicaciones: código limpio, entrega a tiempo y soporte que no desaparece después del proyecto.',
+      features: [
+        { icon: Code, label: 'Código limpio y optimizado' },
+        { icon: Smartphone, label: '100% responsivo' },
+        { icon: Zap, label: 'Entrega ágil' }
+      ]
     },
     en: {
-      label: 'WHO IS BEHIND',
+      label: 'ABOUT ME',
       title: 'Pablo',
       titleSpan: 'G.',
       titleEnd: 'Dev',
-      text1: 'I am a developer specialized in creating digital solutions that truly solve problems. My focus is to deliver websites and systems that organize processes, integrate WhatsApp and bring more customers to your business.',
-      text2: 'I serve from small entrepreneurs to businesses that need to professionalize their online presence. No nonsense: clean code, fast delivery and real support.'
+      text1: 'I turn ideas into digital solutions that actually work. Each project is designed to organize processes, integrate WhatsApp and deliver real results for your business.',
+      text2: 'I work with technology to solve real problems. No complications: clean code, on-time delivery and support that doesn\'t disappear after the project.',
+      features: [
+        { icon: Code, label: 'Clean and optimized code' },
+        { icon: Smartphone, label: '100% responsive' },
+        { icon: Zap, label: 'Agile delivery' }
+      ]
     }
   }
 
@@ -37,20 +53,50 @@ export default function About({ language }: AboutProps) {
 
   return (
     <section className="about" id="sobre">
+      {/* LOGO NO FUNDO */}
+      <div className="about-bg">
+        <img src={logo} alt="PabloG.Dev" />
+        <div className="about-bg-glow"></div>
+      </div>
+      
       <div className="about-container">
-        <span className="about-label">{currentContent.label}</span>
-        <h2 className="about-title">
-          {currentContent.title}
-          <span>{currentContent.titleSpan}</span>
-          {currentContent.titleEnd}
-        </h2>
+        <div className="about-grid">
+          {/* LADO ESQUERDO - TEXTO */}
+          <div className="about-main">
+            <div className="about-header">
+              <span className="about-label">{currentContent.label}</span>
+              <h2 className="about-title">
+                {currentContent.title}
+                <span>{currentContent.titleSpan}</span>
+                {currentContent.titleEnd}
+              </h2>
+              <div className="about-title-line"></div>
+            </div>
 
-        <div className="about-content">
-          <p>{currentContent.text1}</p>
-          <p>{currentContent.text2}</p>
-          
-          <div className="about-logo">
-            <img src={logo} alt="PabloG.Dev" />
+            <div className="about-texts">
+              <p className="about-text">{currentContent.text1}</p>
+              <p className="about-text">{currentContent.text2}</p>
+            </div>
+
+            {/* FEATURES */}
+            <div className="about-features">
+              {currentContent.features.map((feature, index) => {
+                const Icon = feature.icon
+                return (
+                  <div key={index} className="about-feature">
+                    <div className="about-feature-icon">
+                      <Icon size={16} />
+                    </div>
+                    <span>{feature.label}</span>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+
+          {/* LADO DIREITO - VAZIO OU COM OUTRA COISA */}
+          <div className="about-side">
+            {/* ESPAÇO VAZIO - PODE ADICIONAR OUTRA COISA DEPOIS */}
           </div>
         </div>
       </div>

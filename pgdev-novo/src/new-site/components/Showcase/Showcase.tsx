@@ -9,131 +9,158 @@ type ShowcaseProps = {
 export default function Showcase({ language }: ShowcaseProps) {
   const content = {
     pt: {
-      label: 'EXEMPLOS DE SOLUÇÕES',
-      title: 'Ideias visuais para',
-      titleSpan: 'vender mais online',
       projects: [
         {
           name: 'Dr. Bruno',
-          category: 'Site para profissional da saúde',
+          category: 'Saúde',
+          description: 'Site profissional com WhatsApp para agendamento.',
           image: '/images/exemplo1.webp',
           url: 'https://pablog-7.github.io/projeto-drbruno/',
+          results: ['+40% agendamentos', 'Atendimento 24/7']
         },
         {
           name: 'Kushi',
-          category: 'Loja virtual de moda',
+          category: 'Moda',
+          description: 'Loja virtual com pedidos direto pelo WhatsApp.',
           image: '/images/exemplo2.webp',
           url: 'https://pablog-7.github.io/ecommerce-kushi/',
-        },
-        {
-          name: 'Atelier',
-          category: 'Landing page de moda',
-          image: '/images/exemplo3.webp',
-          url: 'https://roupas-ateller.vercel.app/',
+          results: ['Vendas automatizadas', 'Catálogo digital']
         },
         {
           name: 'Barbearia',
-          category: 'Site com agendamento online',
+          category: 'Beleza',
+          description: 'Sistema de agendamento com confirmação automática.',
           image: '/images/exemplo4.webp',
           url: 'https://agendamento-de-barbearia-virid.vercel.app/',
+          results: ['Sem filas', 'Gestão de horários']
         },
         {
           name: 'Saveur',
-          category: 'Site para restaurante',
+          category: 'Gastronomia',
+          description: 'Site com cardápio digital e delivery integrado.',
           image: '/images/exemplo5.webp',
           url: 'https://sistema-web-para-restaurante.vercel.app/',
+          results: ['Pedidos organizados', 'Mais vendas']
         },
         {
           name: 'Habitat',
-          category: 'Site para imobiliária',
+          category: 'Imobiliária',
+          description: 'Site institucional com catálogo de imóveis.',
           image: '/images/exemplo6.webp',
           url: 'https://sistema-web-imobiliaria.vercel.app/',
+          results: ['Mais visibilidade', 'Contatos qualificados']
+        },
+        {
+          name: 'Atelier',
+          category: 'Moda',
+          description: 'Landing page para lançamento de coleção.',
+          image: '/images/exemplo3.webp',
+          url: 'https://roupas-ateller.vercel.app/',
+          results: ['Alta conversão', 'Lançamento de sucesso']
         },
       ]
     },
     es: {
-      label: 'EJEMPLOS DE SOLUCIONES',
-      title: 'Ideas visuales para',
-      titleSpan: 'vender más online',
       projects: [
         {
           name: 'Dr. Bruno',
-          category: 'Sitio para profesional de salud',
+          category: 'Salud',
+          description: 'Sitio profesional con WhatsApp para reservas.',
           image: '/images/exemplo1.webp',
           url: 'https://pablog-7.github.io/projeto-drbruno/',
+          results: ['+40% reservas', 'Atención 24/7']
         },
         {
           name: 'Kushi',
-          category: 'Tienda online de moda',
+          category: 'Moda',
+          description: 'Tienda virtual con pedidos directo por WhatsApp.',
           image: '/images/exemplo2.webp',
           url: 'https://pablog-7.github.io/ecommerce-kushi/',
-        },
-        {
-          name: 'Atelier',
-          category: 'Landing page de moda',
-          image: '/images/exemplo3.webp',
-          url: 'https://roupas-ateller.vercel.app/',
+          results: ['Ventas automatizadas', 'Catálogo digital']
         },
         {
           name: 'Barbearia',
-          category: 'Sitio con agenda online',
+          category: 'Belleza',
+          description: 'Sistema de reservas con confirmación automática.',
           image: '/images/exemplo4.webp',
           url: 'https://agendamento-de-barbearia-virid.vercel.app/',
+          results: ['Sin filas', 'Gestión de horarios']
         },
         {
           name: 'Saveur',
-          category: 'Sitio para restaurante',
+          category: 'Gastronomía',
+          description: 'Sitio con menú digital y delivery integrado.',
           image: '/images/exemplo5.webp',
           url: 'https://sistema-web-para-restaurante.vercel.app/',
+          results: ['Pedidos organizados', 'Más ventas']
         },
         {
           name: 'Habitat',
-          category: 'Sitio para inmobiliaria',
+          category: 'Inmobiliaria',
+          description: 'Sitio institucional con catálogo de inmuebles.',
           image: '/images/exemplo6.webp',
           url: 'https://sistema-web-imobiliaria.vercel.app/',
+          results: ['Más visibilidad', 'Contactos calificados']
+        },
+        {
+          name: 'Atelier',
+          category: 'Moda',
+          description: 'Landing page para lanzamiento de colección.',
+          image: '/images/exemplo3.webp',
+          url: 'https://roupas-ateller.vercel.app/',
+          results: ['Alta conversión', 'Lanzamiento exitoso']
         },
       ]
     },
     en: {
-      label: 'SOLUTION EXAMPLES',
-      title: 'Visual ideas to',
-      titleSpan: 'sell more online',
       projects: [
         {
           name: 'Dr. Bruno',
-          category: 'Website for healthcare professional',
+          category: 'Healthcare',
+          description: 'Professional website with WhatsApp for bookings.',
           image: '/images/exemplo1.webp',
           url: 'https://pablog-7.github.io/projeto-drbruno/',
+          results: ['+40% bookings', '24/7 service']
         },
         {
           name: 'Kushi',
-          category: 'Fashion e-commerce',
+          category: 'Fashion',
+          description: 'Online store with orders directly via WhatsApp.',
           image: '/images/exemplo2.webp',
           url: 'https://pablog-7.github.io/ecommerce-kushi/',
-        },
-        {
-          name: 'Atelier',
-          category: 'Fashion landing page',
-          image: '/images/exemplo3.webp',
-          url: 'https://roupas-ateller.vercel.app/',
+          results: ['Automated sales', 'Digital catalog']
         },
         {
           name: 'Barbearia',
-          category: 'Website with online scheduling',
+          category: 'Beauty',
+          description: 'Booking system with automatic confirmation.',
           image: '/images/exemplo4.webp',
           url: 'https://agendamento-de-barbearia-virid.vercel.app/',
+          results: ['No waiting lines', 'Schedule management']
         },
         {
           name: 'Saveur',
-          category: 'Restaurant website',
+          category: 'Gastronomy',
+          description: 'Website with digital menu and integrated delivery.',
           image: '/images/exemplo5.webp',
           url: 'https://sistema-web-para-restaurante.vercel.app/',
+          results: ['Organized orders', 'More sales']
         },
         {
           name: 'Habitat',
-          category: 'Real estate website',
+          category: 'Real Estate',
+          description: 'Institutional website with property catalog.',
           image: '/images/exemplo6.webp',
           url: 'https://sistema-web-imobiliaria.vercel.app/',
+          results: ['More visibility', 'Qualified contacts']
+        },
+        {
+          name: 'Atelier',
+          category: 'Fashion',
+          description: 'Landing page for collection launch.',
+          image: '/images/exemplo3.webp',
+          url: 'https://roupas-ateller.vercel.app/',
+          results: ['High conversion', 'Successful launch']
         },
       ]
     }
@@ -148,17 +175,6 @@ export default function Showcase({ language }: ShowcaseProps) {
   return (
     <section className="showcase" id="projetos">
       <div className="showcase-container">
-        <div className="showcase-header">
-          <span className="showcase-label">
-            {currentContent.label}
-          </span>
-
-          <h2 className="showcase-title">
-            {currentContent.title}
-            <span>{currentContent.titleSpan}</span>
-          </h2>
-        </div>
-
         <div className="showcase-grid">
           {currentContent.projects.map((project, index) => (
             <button
