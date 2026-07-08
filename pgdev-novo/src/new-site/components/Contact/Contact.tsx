@@ -37,7 +37,6 @@ export default function Contact({ language }: ContactProps) {
 
   return (
     <section className="contact" id="contato">
-      {/* Transição vinda da seção anterior */}
       <div className="contact-transition"></div>
       
       <div className="contact-container">

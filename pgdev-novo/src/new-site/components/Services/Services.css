@@ -76,6 +76,9 @@
   letter-spacing: -0.02em;
   text-align: center;
   transform: translateX(170px);
+  /* LINHA TRAÇADA IGUAL A HERO */
+  border-bottom: 2px solid rgba(254, 201, 15, 0.3);
+  padding-bottom: 4px;
 }
 
 .services-title .line-3 {
