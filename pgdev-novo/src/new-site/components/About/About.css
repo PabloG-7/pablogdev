@@ -1,15 +1,16 @@
 /* About.css - Visual limpo sem stats */
 .about {
-  padding: 80px 0;
+  padding: 80px 0 100px;
   background: #000c24;
   position: relative;
   overflow: hidden;
   min-height: 100vh;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
-/* ===== LOGO NO FUNDO ===== */
+/* ===== LOGO NO FUNDO - IGUAL SERVICES ===== */
 .about-bg {
   position: absolute;
   inset: 0;
@@ -17,7 +18,8 @@
   align-items: center;
   justify-content: center;
   pointer-events: none;
-  z-index: 0;
+  z-index: 1;
+  opacity: 1 !important;
 }
 
 .about-bg img {
@@ -48,34 +50,33 @@
   50% { transform: scale(1.2); opacity: 1; }
 }
 
-/* ===== CONTAINER ===== */
+/* ===== CONTAINER - CENTRALIZADO IGUAL HERO ===== */
 .about-container {
-  max-width: 1200px;
+  max-width: 900px;
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 48px;
   position: relative;
-  z-index: 1;
+  z-index: 3;
   width: 100%;
 }
 
-/* ===== GRID ===== */
-.about-grid {
-  display: grid;
-  grid-template-columns: 1fr 280px;
-  gap: 60px;
-  align-items: start;
-}
-
-/* ===== LADO ESQUERDO ===== */
-.about-main {
+.about-wrapper {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  text-align: center;
   gap: 32px;
 }
+
+/* ============================================
+   HEADER - CENTRALIZADO IGUAL HERO
+   ============================================ */
 
 .about-header {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  text-align: center;
   gap: 4px;
 }
 
@@ -87,7 +88,7 @@
   text-transform: uppercase;
   display: inline-block;
   position: relative;
-  padding-left: 20px;
+  padding: 0 20px;
 }
 
 .about-label::before {
@@ -101,45 +102,67 @@
   background: #fec90f;
 }
 
+.about-label::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 12px;
+  height: 2px;
+  background: #fec90f;
+}
+
 .about-title {
-  font-size: 3rem;
-  font-weight: 700;
+  font-size: clamp(2.4rem, 5.5vw, 4rem);
+  font-weight: 300;
   color: #fff;
   margin: 0;
   line-height: 1.1;
+  letter-spacing: -0.02em;
 }
 
 .about-title span {
+  font-weight: 700;
   color: #fec90f;
 }
 
 .about-title-line {
   width: 60px;
   height: 3px;
-  background: linear-gradient(90deg, #fec90f, transparent);
+  background: #fec90f;
   border-radius: 2px;
   margin-top: 8px;
 }
+
+/* ============================================
+   TEXTOS - CENTRALIZADO
+   ============================================ */
 
 .about-texts {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  max-width: 600px;
+  max-width: 620px;
 }
 
 .about-text {
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 1.0625rem;
   line-height: 1.8;
   margin: 0;
+  font-weight: 300;
 }
 
-/* ===== FEATURES ===== */
+/* ============================================
+   FEATURES - CENTRALIZADO IGUAL HERO
+   ============================================ */
+
 .about-features {
   display: flex;
-  gap: 24px;
+  gap: 24px 40px;
   flex-wrap: wrap;
+  justify-content: center;
   padding-top: 8px;
 }
 
@@ -147,8 +170,9 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.45);
   font-size: 0.8125rem;
+  font-weight: 300;
   transition: color 0.3s ease;
 }
 
@@ -160,8 +184,8 @@
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  background: rgba(254, 201, 15, 0.08);
-  border: 1px solid rgba(254, 201, 15, 0.06);
+  background: rgba(254, 201, 15, 0.04);
+  border: 1px solid rgba(254, 201, 15, 0.04);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -171,46 +195,42 @@
 }
 
 .about-feature:hover .about-feature-icon {
-  background: rgba(254, 201, 15, 0.15);
-  border-color: rgba(254, 201, 15, 0.15);
-}
-
-/* ===== LADO DIREITO ===== */
-.about-side {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+  background: rgba(254, 201, 15, 0.08);
+  border-color: rgba(254, 201, 15, 0.08);
+  transform: scale(1.05);
 }
 
 /* ============================================
-   RESPONSIVE
+   RESPONSIVO - IGUAL HERO E SERVICES
    ============================================ */
 
 @media (max-width: 1024px) {
+  .about-container {
+    padding: 0 40px;
+  }
+  
   .about-bg img {
     width: 60%;
     max-width: 500px;
   }
 
-  .about-grid {
-    grid-template-columns: 1fr 240px;
-    gap: 40px;
-  }
-
   .about-title {
-    font-size: 2.5rem;
+    font-size: 2.8rem;
   }
 }
 
 @media (max-width: 768px) {
   .about {
-    padding: 60px 0;
+    padding: 60px 0 80px;
     min-height: auto;
   }
 
-  .about-grid {
-    grid-template-columns: 1fr;
-    gap: 40px;
+  .about-container {
+    padding: 0 24px;
+  }
+
+  .about-wrapper {
+    gap: 24px;
   }
 
   .about-title {
@@ -218,11 +238,7 @@
   }
 
   .about-text {
-    font-size: 0.9375rem;
-  }
-
-  .about-side {
-    display: none;
+    font-size: 1rem;
   }
 
   .about-bg img {
@@ -236,7 +252,7 @@
   }
 
   .about-features {
-    gap: 12px;
+    gap: 12px 24px;
   }
 
   .about-feature {
@@ -246,7 +262,15 @@
 
 @media (max-width: 480px) {
   .about {
-    padding: 48px 0;
+    padding: 48px 0 60px;
+  }
+
+  .about-container {
+    padding: 0 20px;
+  }
+
+  .about-wrapper {
+    gap: 20px;
   }
 
   .about-title {
@@ -254,11 +278,16 @@
   }
 
   .about-text {
-    font-size: 0.875rem;
+    font-size: 0.9375rem;
   }
 
   .about-label {
     font-size: 0.6875rem;
+  }
+
+  .about-label::before,
+  .about-label::after {
+    width: 10px;
   }
 
   .about-bg img {
@@ -274,10 +303,44 @@
 
   .about-title-line {
     width: 40px;
+    height: 2px;
   }
 
   .about-features {
     flex-direction: column;
     gap: 10px;
+    align-items: center;
+  }
+
+  .about-feature {
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .about-title {
+    font-size: 1.5rem;
+  }
+
+  .about-text {
+    font-size: 0.875rem;
+  }
+
+  .about-label {
+    font-size: 0.625rem;
+  }
+
+  .about-feature {
+    font-size: 0.7rem;
+  }
+
+  .about-feature-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .about-feature-icon svg {
+    width: 14px;
+    height: 14px;
   }
 }

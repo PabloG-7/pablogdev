@@ -60,43 +60,34 @@ export default function About({ language }: AboutProps) {
       </div>
       
       <div className="about-container">
-        <div className="about-grid">
-          {/* LADO ESQUERDO - TEXTO */}
-          <div className="about-main">
-            <div className="about-header">
-              <span className="about-label">{currentContent.label}</span>
-              <h2 className="about-title">
-                {currentContent.title}
-                <span>{currentContent.titleSpan}</span>
-                {currentContent.titleEnd}
-              </h2>
-              <div className="about-title-line"></div>
-            </div>
-
-            <div className="about-texts">
-              <p className="about-text">{currentContent.text1}</p>
-              <p className="about-text">{currentContent.text2}</p>
-            </div>
-
-            {/* FEATURES */}
-            <div className="about-features">
-              {currentContent.features.map((feature, index) => {
-                const Icon = feature.icon
-                return (
-                  <div key={index} className="about-feature">
-                    <div className="about-feature-icon">
-                      <Icon size={16} />
-                    </div>
-                    <span>{feature.label}</span>
-                  </div>
-                )
-              })}
-            </div>
+        <div className="about-wrapper">
+          <div className="about-header">
+            <span className="about-label">{currentContent.label}</span>
+            <h2 className="about-title">
+              {currentContent.title}
+              <span>{currentContent.titleSpan}</span>
+              {currentContent.titleEnd}
+            </h2>
+            <div className="about-title-line"></div>
           </div>
 
-          {/* LADO DIREITO - VAZIO OU COM OUTRA COISA */}
-          <div className="about-side">
-            {/* ESPAÇO VAZIO - PODE ADICIONAR OUTRA COISA DEPOIS */}
+          <div className="about-texts">
+            <p className="about-text">{currentContent.text1}</p>
+            <p className="about-text">{currentContent.text2}</p>
+          </div>
+
+          <div className="about-features">
+            {currentContent.features.map((feature, index) => {
+              const Icon = feature.icon
+              return (
+                <div key={index} className="about-feature">
+                  <div className="about-feature-icon">
+                    <Icon size={16} />
+                  </div>
+                  <span>{feature.label}</span>
+                </div>
+              )
+            })}
           </div>
         </div>
       </div>

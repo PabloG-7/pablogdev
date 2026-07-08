@@ -1,16 +1,20 @@
 /* ============================================
-   CONTACT - ALINHADO À ESQUERDA (like About)
+   CONTACT - FUNDO AMARELO
    ============================================ */
 
 .contact {
-  padding: 80px 0;
+  padding: 80px 0 100px;
   background: #fec90f;
   position: relative;
+  overflow: hidden;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* Transição suave vindo da seção About */
-.contact::before {
-  content: '';
+/* Transição suave vinda da seção About (fundo escuro -> amarelo) */
+.contact-transition {
   position: absolute;
   top: -60px;
   left: 0;
@@ -18,38 +22,57 @@
   height: 60px;
   background: linear-gradient(to bottom, #000c24, #fec90f);
   pointer-events: none;
+  z-index: 1;
+}
+
+/* Fundo com padrão sutil */
+.contact::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(0, 12, 36, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(0, 12, 36, 0.02) 0%, transparent 40%);
+  pointer-events: none;
+  z-index: 1;
 }
 
 .contact-container {
-  max-width: 1200px;
+  max-width: 900px;
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 48px;
   position: relative;
   z-index: 2;
-  text-align: left;
+  width: 100%;
 }
 
-.contact-badge {
-  display: inline-block;
-  margin-bottom: 16px;
-  color: rgba(0, 12, 36, 0.5);
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
+.contact-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* ============================================
+   HEADER - CENTRALIZADO (SEM BADGE E SEM DESCRIÇÃO)
+   ============================================ */
+
+.contact-header {
+  margin-bottom: 48px;
 }
 
 .contact-title {
-  font-size: 2rem;
-  font-weight: 600;
+  font-size: clamp(2.4rem, 5.5vw, 4rem);
+  font-weight: 300;
   color: #000c24;
-  margin: 0 0 16px;
-  line-height: 1.2;
+  margin: 0;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
 }
 
 .contact-title span {
-  color: #000c24;
   font-weight: 700;
+  color: #000c24;
   position: relative;
 }
 
@@ -59,62 +82,97 @@
   bottom: -4px;
   left: 0;
   width: 100%;
-  height: 2px;
-  background: #000c24;
-  transform: scaleX(0);
-  transform-origin: right;
-  transition: transform 0.3s ease;
+  height: 3px;
+  background: rgba(0, 12, 36, 0.1);
+  border-radius: 2px;
 }
 
-.contact-title:hover span::after {
-  transform: scaleX(1);
-  transform-origin: left;
-}
+/* ============================================
+   CARDS - CENTRALIZADO
+   ============================================ */
 
-.contact-description {
-  color: rgba(0, 12, 36, 0.6);
-  font-size: 1rem;
-  line-height: 1.6;
-  margin: 0 0 48px;
-  max-width: 500px;
-}
-
-/* Cards */
 .contact-grid {
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   gap: 24px;
   margin-bottom: 48px;
   flex-wrap: wrap;
+  width: 100%;
 }
 
 .contact-card {
   min-width: 240px;
-  background: #ffffff;
+  flex: 1;
+  max-width: 320px;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(8px);
   padding: 28px 24px;
-  border-radius: 20px;
+  border-radius: 16px;
   text-decoration: none;
-  text-align: left;
-  transition: all 0.2s ease;
-  border: 1px solid transparent;
+  text-align: center;
+  transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Efeito de brilho na borda - igual as outras seções */
+.contact-card::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 16px;
+  padding: 1px;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0%,
+    rgba(0, 12, 36, 0.05) 25%,
+    transparent 50%,
+    rgba(0, 12, 36, 0.05) 75%,
+    transparent 100%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  animation: spinBorder 4s linear infinite;
+}
+
+.contact-card:hover::before {
+  opacity: 1;
+}
+
+@keyframes spinBorder {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 .contact-card:hover {
-  transform: translateY(-4px);
-  border-color: #000c24;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  transform: translateY(-6px);
+  background: rgba(255, 255, 255, 0.7);
+  border-color: rgba(0, 12, 36, 0.1);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
 }
 
 .contact-card-icon {
-  width: 48px;
-  height: 48px;
+  width: 52px;
+  height: 52px;
   background: rgba(0, 12, 36, 0.05);
+  border: 1px solid rgba(0, 12, 36, 0.04);
   border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 20px;
+  margin: 0 auto 16px;
   color: #000c24;
+  transition: all 0.3s ease;
+}
+
+.contact-card:hover .contact-card-icon {
+  background: rgba(0, 12, 36, 0.08);
+  border-color: rgba(0, 12, 36, 0.08);
+  transform: scale(1.05);
 }
 
 .contact-card h3 {
@@ -125,18 +183,18 @@
 }
 
 .contact-card p {
-  margin: 0;
+  margin: 0 0 16px;
   font-size: 0.85rem;
-  color: rgba(0, 12, 36, 0.5);
+  color: rgba(0, 12, 36, 0.4);
+  font-weight: 300;
 }
 
 .contact-arrow {
   display: inline-block;
-  margin-top: 16px;
   font-size: 1rem;
   opacity: 0;
-  transform: translateX(-4px);
-  transition: all 0.2s;
+  transform: translateX(-8px);
+  transition: all 0.4s ease;
   color: #000c24;
 }
 
@@ -145,72 +203,112 @@
   transform: translateX(0);
 }
 
-/* Redes sociais - alinhado à esquerda */
+/* ============================================
+   SOCIAL - CENTRALIZADO
+   ============================================ */
+
 .contact-social {
-  border-top: 1px solid rgba(0, 12, 36, 0.1);
+  border-top: 1px solid rgba(0, 12, 36, 0.08);
   padding-top: 32px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .contact-social span {
-  display: block;
   font-size: 0.7rem;
-  color: rgba(0, 12, 36, 0.4);
+  color: rgba(0, 12, 36, 0.3);
   text-transform: uppercase;
   letter-spacing: 0.1em;
   margin-bottom: 12px;
-  text-align: left;
 }
 
 .social-links {
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   gap: 24px;
 }
 
 .social-links a {
-  color: rgba(0, 12, 36, 0.4);
-  transition: all 0.2s;
+  color: rgba(0, 12, 36, 0.3);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 12, 36, 0.04);
 }
 
 .social-links a:hover {
   color: #000c24;
-  transform: translateY(-2px);
+  border-color: rgba(0, 12, 36, 0.1);
+  background: rgba(0, 12, 36, 0.04);
+  transform: translateY(-3px);
 }
 
 /* ============================================
    RESPONSIVO
    ============================================ */
 
+@media (max-width: 1024px) {
+  .contact-container {
+    padding: 0 40px;
+  }
+}
+
 @media (max-width: 768px) {
   .contact {
-    padding: 60px 0;
+    padding: 60px 0 80px;
+    min-height: auto;
   }
 
-  .contact::before {
+  .contact-transition {
     height: 40px;
     top: -40px;
   }
 
-  .contact-title {
-    font-size: 1.8rem;
+  .contact-container {
+    padding: 0 24px;
   }
 
-  .contact-description {
-    font-size: 0.95rem;
-    max-width: 100%;
+  .contact-header {
+    margin-bottom: 36px;
+  }
+
+  .contact-title {
+    font-size: 2.25rem;
   }
 
   .contact-grid {
-    justify-content: flex-start;
+    gap: 16px;
+  }
+
+  .contact-card {
+    min-width: 200px;
+    max-width: 100%;
+    padding: 24px 20px;
+  }
+
+  .contact-card-icon {
+    width: 44px;
+    height: 44px;
+  }
+
+  .contact-card-icon svg {
+    width: 20px;
+    height: 20px;
   }
 }
 
 @media (max-width: 640px) {
   .contact {
-    padding: 50px 0;
+    padding: 50px 0 60px;
   }
 
-  .contact::before {
+  .contact-transition {
     height: 30px;
     top: -30px;
   }
@@ -220,15 +318,17 @@
   }
 
   .contact-title {
-    font-size: 1.6rem;
+    font-size: 1.8rem;
   }
 
   .contact-grid {
-    gap: 16px;
+    flex-direction: column;
+    align-items: center;
   }
 
   .contact-card {
     min-width: 100%;
+    max-width: 400px;
     padding: 20px;
   }
 
@@ -238,29 +338,97 @@
   }
 
   .contact-card-icon svg {
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
   }
 
   .contact-social span {
-    text-align: left;
+    font-size: 0.65rem;
   }
 
   .social-links {
-    justify-content: flex-start;
+    gap: 16px;
+  }
+
+  .social-links a {
+    width: 36px;
+    height: 36px;
   }
 }
 
 @media (max-width: 480px) {
   .contact {
-    padding: 40px 0;
+    padding: 40px 0 50px;
   }
 
+  .contact-transition {
+    height: 24px;
+    top: -24px;
+  }
+
+  .contact-container {
+    padding: 0 16px;
+  }
+
+  .contact-header {
+    margin-bottom: 28px;
+  }
+
+  .contact-title {
+    font-size: 1.6rem;
+  }
+
+  .contact-card {
+    padding: 18px 16px;
+  }
+
+  .contact-card h3 {
+    font-size: 1rem;
+  }
+
+  .contact-card p {
+    font-size: 0.8rem;
+  }
+
+  .contact-social {
+    padding-top: 24px;
+  }
+
+  .social-links {
+    gap: 12px;
+  }
+
+  .social-links a {
+    width: 32px;
+    height: 32px;
+  }
+
+  .social-links a svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+@media (max-width: 380px) {
   .contact-title {
     font-size: 1.4rem;
   }
 
-  .contact-description {
-    font-size: 0.85rem;
+  .contact-card {
+    padding: 16px 14px;
+  }
+
+  .contact-card-icon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .contact-card-icon svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .contact-card h3 {
+    font-size: 0.9375rem;
   }
 }

@@ -1,3 +1,4 @@
+/* ===== SERVICES SECTION ===== */
 .services {
   padding: 80px 0;
   background: #000c24;
@@ -6,24 +7,25 @@
   min-height: 100vh;
 }
 
-/* ===== IMAGEM DE FUNDO - 100% VISÍVEL ===== */
+/* ===== IMAGEM DE FUNDO - SÓ O OPACITY CARALHO ===== */
 .services-background {
   position: absolute;
   inset: 0;
-  background-size: 45% 100%;
-  background-position: 10% center;
+  background-size: cover;
+  background-position: center;
   background-repeat: no-repeat;
-  z-index: 0;
-  opacity: 1;
+  z-index: 1;
+  opacity: 1 !important; /* SÓ ISSO PORRA */
 }
 
-/* OVERLAY SÓ NA DIREITA PRA DAR CONTRASTE */
+/* OVERLAY - MANTIVE O SEU */
 .services-background::after {
   content: '';
   position: absolute;
   inset: 0;
-  z-index: 1;
+  z-index: 2;
 }
+
 /* ============================================
    CONTAINER
    ============================================ */
@@ -33,7 +35,7 @@
   margin: 0 auto;
   padding: 0 24px;
   position: relative;
-  z-index: 2;
+  z-index: 3;
 }
 
 /* ============================================
@@ -63,8 +65,6 @@
   color: #fff;
   letter-spacing: -0.02em;
   text-align: center;
-  
-  /* ESCADA - PRIMEIRO DEGRAU BEM PRA ESQUERDA */
   transform: translateX(-0px);
 }
 
@@ -75,8 +75,6 @@
   color: #fec90f;
   letter-spacing: -0.02em;
   text-align: center;
-  
-  /* ESCADA - SEGUNDO DEGRAU MENOS PRA ESQUERDA */
   transform: translateX(170px);
 }
 
@@ -87,8 +85,6 @@
   color: #fff;
   letter-spacing: -0.02em;
   text-align: center;
-  
-  /* ESCADA - TERCEIRO DEGRAU QUASE CENTRALIZADO */
   transform: translateX(20px);
 }
 
@@ -256,7 +252,7 @@
 }
 
 /* ============================================
-   RESPONSIVO
+   RESPONSIVO - SÓ OPACITY PORRA
    ============================================ */
 
 /* Desktop Grande */
@@ -264,7 +260,7 @@
   .services-background {
     background-size: 45% 100%;
     background-position: 14% center;
-    opacity: 1;
+    opacity: 1 !important;
   }
 }
 
@@ -273,7 +269,7 @@
   .services-background {
     background-size: 67% 81%;
     background-position: -28% center;
-    opacity: 1;
+    opacity: 1 !important;
   }
   
   .services-title .line-1 {
@@ -301,11 +297,9 @@
   
   .services-background {
     background-size: 80% 120%;
-     background-position: -130px 0%;
-    opacity: 1;
+    background-position: -130px 0%;
+    opacity: 1 !important;
   }
-  
- 
   
   .services-title .line-1 {
     font-size: 2.4rem;
@@ -331,11 +325,9 @@
   
   .services-background {
     background-size: cover;
-      background-position: -260px 0%;
-    opacity: 1;
+    background-position: -260px 0%;
+    opacity: 1 !important;
   }
-  
-
   
   .services-title .line-1 {
     font-size: 2.2rem;
@@ -370,11 +362,9 @@
   
   .services-background {
     background-size: cover;
-      background-position: -220px 0%;
-    opacity: 0.6;
+    background-position: -220px 0%;
+    opacity: 1 !important;
   }
-  
-
   
   .services-title .line-1 {
     font-size: 2rem;
@@ -414,11 +404,9 @@
   
   .services-background {
     background-size: cover;
-     background-position: -300px 0%;
-    opacity: 0.6;
+    background-position: -300px 0%;
+    opacity: 1 !important;
   }
-  
-
   
   .services-header {
     margin-bottom: 32px;
@@ -462,10 +450,9 @@
   .services-background {
     background-size: 500px;
     background-position: -130px 0%;
-    opacity: 0.6;
+    opacity: 1 !important;
   }
   
- 
   .services-title .line-1 {
     font-size: 1.5rem;
     transform: translateX(-2px);
@@ -524,5 +511,9 @@
   
   .service-points li {
     font-size: 0.65rem;
+  }
+
+  .services-background {
+    opacity: 1 !important;
   }
 }

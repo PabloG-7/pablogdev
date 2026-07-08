@@ -4,6 +4,7 @@
   min-height: 100vh;
   display: flex;
   align-items: center;
+  justify-content: center;
   overflow: hidden;
   padding-top: calc(96px + env(safe-area-inset-top, 0px));
   background: #000c24;
@@ -20,6 +21,7 @@
   animation: zoomInOut 20s ease-in-out infinite alternate;
   transform-origin: center center;
   will-change: transform;
+  opacity: 1 !important;
 }
 
 @keyframes zoomInOut {
@@ -39,20 +41,20 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: rgba(0, 12, 36, 0.4);
+  background: rgba(0, 12, 36, 0.3);
   z-index: 2;
   animation: overlayPulse 8s ease-in-out infinite alternate;
 }
 
 @keyframes overlayPulse {
   0% {
-    opacity: 0.4;
-  }
-  50% {
     opacity: 0.3;
   }
+  50% {
+    opacity: 0.2;
+  }
   100% {
-    opacity: 0.4;
+    opacity: 0.3;
   }
 }
 
@@ -61,14 +63,21 @@
   position: relative;
   z-index: 5;
   width: 100%;
-  max-width: 1200px;
+  max-width: 900px;
   margin: 0 auto;
   padding: 80px 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-/* ===== CONTENT ===== */
+/* ===== CONTENT - CENTRALIZADO ===== */
 .hero-content {
-  max-width: 560px;
+  max-width: 680px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* ===== LABEL ===== */
@@ -106,7 +115,7 @@
   font-size: 1.0625rem;
   line-height: 1.6;
   color: rgba(255, 255, 255, 0.6);
-  max-width: 420px;
+  max-width: 520px;
   font-weight: 300;
   animation: fadeInUp 1s ease 0.2s forwards;
   opacity: 0;
@@ -117,6 +126,7 @@
   display: flex;
   align-items: center;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 12px;
   margin-bottom: 48px;
   animation: fadeInUp 1s ease 0.3s forwards;
@@ -153,6 +163,7 @@
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
+  justify-content: center;
   animation: fadeInUp 1s ease 0.4s forwards;
   opacity: 0;
 }
@@ -461,12 +472,12 @@
   }
   
   .hero-background {
-    opacity: 0.6;
+    opacity: 1 !important;
     background-position: 65% center;
   }
 
   .hero-background::after {
-    background: rgba(0, 12, 36, 0.6);
+    background: rgba(0, 12, 36, 0.4);
   }
 }
 
@@ -498,11 +509,11 @@
 
   .hero-background {
     background-position: 65% center;
-    opacity: 0.6;
+    opacity: 1 !important;
   }
 
   .hero-background::after {
-    background: rgba(0, 12, 36, 0.7);
+    background: rgba(0, 12, 36, 0.5);
   }
 }
 
@@ -513,11 +524,11 @@
 
   .hero-background {
     background-position: 30% center;
-    opacity: 0.5;
+    opacity: 1 !important;
   }
 
   .hero-background::after {
-    background: rgba(0, 12, 36, 0.8);
+    background: rgba(0, 12, 36, 0.6);
   }
 }
 
