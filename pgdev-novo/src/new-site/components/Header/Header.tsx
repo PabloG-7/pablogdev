@@ -24,7 +24,7 @@ export default function Header({ language, onChangeLanguage }: HeaderProps) {
       header: {
         home: 'Início',
         services: 'Serviços',
-        projects: 'Projetos',
+        projects: 'Exemplos',
         about: 'Sobre',
         contact: 'Contato',
         cta: 'WhatsApp'
@@ -34,7 +34,7 @@ export default function Header({ language, onChangeLanguage }: HeaderProps) {
       header: {
         home: 'Inicio',
         services: 'Servicios',
-        projects: 'Proyectos',
+        projects: 'Ejemplos',
         about: 'Sobre',
         contact: 'Contacto',
         cta: 'WhatsApp'
@@ -44,7 +44,7 @@ export default function Header({ language, onChangeLanguage }: HeaderProps) {
       header: {
         home: 'Home',
         services: 'Services',
-        projects: 'Projects',
+        projects: 'Examples',
         about: 'About',
         contact: 'Contact',
         cta: 'WhatsApp'
