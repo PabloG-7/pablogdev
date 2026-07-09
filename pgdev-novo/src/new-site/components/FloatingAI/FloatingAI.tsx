@@ -43,12 +43,14 @@ export default function FloatingAI({ language }: FloatingAIProps) {
   })
   const [isTyping, setIsTyping] = useState(false)
   const [inputValue, setInputValue] = useState('')
+  
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
 
   const isPt = language === 'pt'
   const isEs = language === 'es'
 
+  // Dicionário de traduções centralizado e tipado
   const t = {
     pt: {
       buttonLabel: 'Assistente',
@@ -144,7 +146,7 @@ export default function FloatingAI({ language }: FloatingAIProps) {
       },
       company: {
         message: '¿Cuál es el nombre de tu empresa o negocio?',
-        placeholder: 'Ej: Clínica Bella Salud'
+        placeholder: 'Ej: Clínica Bella Saúde'
       },
       name: {
         message: '¿Cuál es tu nombre?',
@@ -214,102 +216,107 @@ export default function FloatingAI({ language }: FloatingAIProps) {
     }
   }
 
-  const lang = t[language]
+  const lang = t[language] || t['pt'] // Fallback de segurança para português
   const whatsappNumber = '5511961111894'
 
   const generateId = useCallback(() => {
-    if (typeof crypto !== 'undefined' && crypto.randomUUID) {
-      return crypto.randomUUID()
+    if (typeof window !== 'undefined' && window.crypto && window.crypto.randomUUID) {
+      return window.crypto.randomUUID()
     }
-    return `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`
+    return `${Date.now()}-${Math.random().toString(36).substring(2, 11)}`
   }, [])
 
   const scrollToBottom = useCallback(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: 'smooth' })
+    }
   }, [])
 
   const addMessage = useCallback((message: Omit<Message, 'id'>) => {
+    const newId = generateId()
     setMessages(prev => {
       const lastMsg = prev[prev.length - 1]
       if (lastMsg?.text === message.text && lastMsg?.type === message.type) {
         return prev
       }
-      return [...prev, { ...message, id: generateId() }]
+      return [...prev, { ...message, id: newId }]
     })
-    setTimeout(scrollToBottom, 100)
-  }, [scrollToBottom, generateId])
+  }, [generateId])
+
+  // Rola para o fundo sempre que o tamanho do array de mensagens mudar ou o bot estiver digitando
+  useEffect(() => {
+    scrollToBottom()
+  }, [messages, isTyping, scrollToBottom])
 
   const simulateTyping = useCallback(async (message: string, options?: Message['options']) => {
     setIsTyping(true)
-    await new Promise(resolve => setTimeout(resolve, 400 + Math.random() * 300))
+    await new Promise(resolve => setTimeout(resolve, 600 + Math.random() * 400))
     addMessage({ type: 'bot', text: message, options })
     setIsTyping(false)
   }, [addMessage])
 
-  const openWhatsApp = useCallback(() => {
+  const openWhatsApp = useCallback((currentData: typeof userData) => {
     const serviceMap: Record<string, string> = {
       website: isPt ? 'Criar um Site' : isEs ? 'Crear un Sitio' : 'Create a Website',
       system: isPt ? 'Criar um Sistema' : isEs ? 'Crear un Sistema' : 'Create a System',
       ai: isPt ? 'IA e Automação' : isEs ? 'IA y Automatización' : 'AI & Automation',
       improve: isPt ? 'Melhorar um Projeto Existente' : isEs ? 'Mejorar un Proyecto Existente' : 'Improve an Existing Project',
-      hasProject: isPt ? 'Já tenho um Projeto' : isEs ? 'Ya tengo un Proyecto' : 'I already have a Project',
+      hasProject: isPt ? 'Já tenho um Projeto' : isEs ? 'Ya tenho un Proyecto' : 'I already have a Project',
       doubt: isPt ? 'Tenho uma Dúvida' : isEs ? 'Tengo una Duda' : 'I have a Question',
       notSure: isPt ? 'Não sei qual solução preciso' : isEs ? 'No sé qué solución necesito' : 'I\'m not sure what solution I need',
       budget: isPt ? 'Quero solicitar um orçamento' : isEs ? 'Quiero solicitar un presupuesto' : 'I want to request a quote'
     }
 
-    const serviceLabel = userData.serviceRaw || serviceMap[userData.service] || userData.service
-    const company = userData.company || (isPt ? 'não informado' : isEs ? 'no informado' : 'not informed')
-    const name = userData.name || (isPt ? 'não informado' : isEs ? 'no informado' : 'not informed')
+    const serviceLabel = currentData.serviceRaw || serviceMap[currentData.service] || currentData.service
+    const company = currentData.company || (isPt ? 'não informado' : isEs ? 'no informado' : 'not informed')
+    const name = currentData.name || (isPt ? 'não informado' : isEs ? 'no informado' : 'not informed')
+    
+    let textMessage = ''
 
-    let message = ''
-
-    if (userData.service === 'doubt' && userData.question) {
-      message = isPt
-        ? `Olá! Vim pelo assistente do site.\n\nInteresse: Tenho uma dúvida\n\nDúvida:\n${userData.question}\n\nEmpresa: ${company}\nNome: ${name}`
+    if (currentData.service === 'doubt' && currentData.question) {
+      textMessage = isPt
+        ? `Olá! Vim pelo assistente do site.\n\nInteresse: Tenho uma dúvida\n\nDúvida:\n${currentData.question}\n\nEmpresa: ${company}\nNome: ${name}`
         : isEs
-        ? `¡Hola! Vine por el asistente del sitio.\n\nInterés: Tengo una duda\n\nDuda:\n${userData.question}\n\nEmpresa: ${company}\nNombre: ${name}`
-        : `Hello! I came through the site assistant.\n\nInterest: I have a question\n\nQuestion:\n${userData.question}\n\nCompany: ${company}\nName: ${name}`
-    } else if ((userData.service === 'hasProject' || userData.service === 'notSure' || userData.service === 'budget') && userData.description) {
-      const interestLabel = userData.service === 'hasProject' 
+        ? `¡Hola! Vine por el asistente del sitio.\n\nInterés: Tengo una duda\n\nDuda:\n${currentData.question}\n\nEmpresa: ${company}\nNombre: ${name}`
+        : `Hello! I came through the site assistant.\n\nInterest: I have a question\n\nQuestion:\n${currentData.question}\n\nCompany: ${company}\nName: ${name}`
+    } else if (['hasProject', 'notSure', 'budget'].includes(currentData.service) && currentData.description) {
+      const interestLabel = currentData.service === 'hasProject' 
         ? (isPt ? 'Já tenho um projeto' : isEs ? 'Ya tengo un proyecto' : 'I already have a project')
-        : userData.service === 'budget'
+        : currentData.service === 'budget'
         ? (isPt ? 'Quero solicitar um orçamento' : isEs ? 'Quiero solicitar un presupuesto' : 'I want to request a quote')
         : (isPt ? 'Não sei qual solução preciso' : isEs ? 'No sé qué solución necesito' : 'I\'m not sure what solution I need')
       
-      message = isPt
-        ? `Olá! Vim pelo assistente do site.\n\nInteresse: ${interestLabel}\n\nDescrição:\n${userData.description}\n\nEmpresa: ${company}\nNome: ${name}`
+      textMessage = isPt
+        ? `Olá! Vim pelo assistente do site.\n\nInteresse: ${interestLabel}\n\nDescrição:\n${currentData.description}\n\nEmpresa: ${company}\nNome: ${name}`
         : isEs
-        ? `¡Hola! Vine por el asistente del sitio.\n\nInterés: ${interestLabel}\n\nDescripción:\n${userData.description}\n\nEmpresa: ${company}\nNombre: ${name}`
-        : `Hello! I came through the site assistant.\n\nInterest: ${interestLabel}\n\nDescription:\n${userData.description}\n\nCompany: ${company}\nName: ${name}`
+        ? `¡Hola! Vine por el asistente del sitio.\n\nInterés: ${interestLabel}\n\nDescripción:\n${currentData.description}\n\nEmpresa: ${company}\nNombre: ${name}`
+        : `Hello! I came through the site assistant.\n\nInterest: ${interestLabel}\n\nDescription:\n${currentData.description}\n\nCompany: ${company}\nName: ${name}`
     } else {
-      message = isPt
+      textMessage = isPt
         ? `Olá! Vim pelo assistente do site.\n\nServiço: ${serviceLabel}\nEmpresa: ${company}\nNome: ${name}\n\nGostaria de saber mais sobre as soluções.`
         : isEs
         ? `¡Hola! Vine por el asistente del sitio.\n\nServicio: ${serviceLabel}\nEmpresa: ${company}\nNombre: ${name}\n\nMe gustaría saber más sobre las soluciones.`
         : `Hello! I came through the site assistant.\n\nService: ${serviceLabel}\nCompany: ${company}\nName: ${name}\n\nI would like to know more about the solutions.`
     }
 
-    window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`, '_blank')
-  }, [userData, isPt, isEs])
+    window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(textMessage)}`, '_blank', 'noopener,noreferrer')
+  }, [isPt, isEs])
 
   const handleOptionClick = useCallback(async (value: string) => {
-    let userLabel = value
-
     if (currentStep === 'welcome') {
-      userLabel = value === 'start' ? lang.welcome.options[0].label : lang.welcome.options[1].label
+      const userLabel = value === 'start' ? lang.welcome.options[0].label : lang.welcome.options[1].label
       addMessage({ type: 'user', text: userLabel })
-
+      
       if (value === 'skip') {
         await simulateTyping(
           isPt ? 'Entendido. Vou abrir o WhatsApp para você falar diretamente comigo.' :
           isEs ? 'Entendido. Voy a abrir WhatsApp para que hables directamente conmigo.' :
           'Understood. I\'ll open WhatsApp for you to talk directly with me.'
         )
-        setTimeout(openWhatsApp, 500)
+        setTimeout(() => openWhatsApp(userData), 800)
         return
       }
-
+      
       setCurrentStep('service')
       await simulateTyping(lang.service.message, lang.service.options)
       return
@@ -317,37 +324,32 @@ export default function FloatingAI({ language }: FloatingAIProps) {
 
     if (currentStep === 'service') {
       const option = lang.service.options.find(o => o.value === value)
-      userLabel = option?.label || value
+      const userLabel = option?.label || value
       addMessage({ type: 'user', text: userLabel })
       
       setUserData(prev => ({ ...prev, service: value, serviceRaw: option?.label || value }))
       
-      // Casos que precisam de descrição
       if (value === 'hasProject') {
         setCurrentStep('projectDescription')
         await simulateTyping(lang.projectDescription.message)
         return
       }
-      
       if (value === 'doubt') {
         setCurrentStep('doubtDescription')
         await simulateTyping(lang.doubtDescription.message)
         return
       }
-      
       if (value === 'notSure') {
         setCurrentStep('notSureDescription')
         await simulateTyping(lang.notSureDescription.message)
         return
       }
-
       if (value === 'budget') {
         setCurrentStep('budgetDescription')
         await simulateTyping(lang.budgetDescription.message)
         return
       }
       
-      // Casos normais - vai direto para empresa
       setCurrentStep('company')
       await simulateTyping(lang.company.message)
       return
@@ -365,104 +367,118 @@ export default function FloatingAI({ language }: FloatingAIProps) {
         return
       }
       if (value === 'whatsapp') {
-        openWhatsApp()
+        openWhatsApp(userData)
         return
       }
     }
-  }, [currentStep, lang, addMessage, simulateTyping, openWhatsApp, isPt, isEs])
+  }, [currentStep, lang, addMessage, simulateTyping, openWhatsApp, userData, isPt, isEs])
 
   const handleSendMessage = useCallback(async () => {
     const text = inputValue.trim()
     if (!text) return
-
     setInputValue('')
     addMessage({ type: 'user', text })
 
     if (currentStep === 'projectDescription') {
-      setUserData(prev => ({ ...prev, description: text }))
-      setCurrentStep('company')
-      await simulateTyping(lang.company.message)
-      return
-    }
-
-    if (currentStep === 'doubtDescription') {
-      setUserData(prev => ({ ...prev, question: text }))
-      setCurrentStep('company')
-      await simulateTyping(lang.company.message)
-      return
-    }
-
-    if (currentStep === 'notSureDescription') {
-      setUserData(prev => ({ ...prev, description: text }))
-      setCurrentStep('company')
-      await simulateTyping(lang.company.message)
-      return
-    }
-
-    if (currentStep === 'budgetDescription') {
-      setUserData(prev => ({ ...prev, description: text }))
-      setCurrentStep('company')
-      await simulateTyping(lang.company.message)
-      return
-    }
-
-    if (currentStep === 'company') {
-      setUserData(prev => ({ ...prev, company: text }))
-      setCurrentStep('name')
-      await simulateTyping(lang.name.message)
-      return
-    }
-
-    if (currentStep === 'name') {
-      setUserData(prev => ({ ...prev, name: text }))
-      setCurrentStep('result')
-      
-      setIsTyping(true)
-      await new Promise(resolve => setTimeout(resolve, 600))
-      
-      const serviceLabel = userData.serviceRaw || lang.service.options.find(o => o.value === userData.service)?.label || userData.service
-      
-      let resultMessage = `${lang.result.message}\n\n`
-      
-      // Adiciona informações específicas baseado no tipo
-      if (userData.service === 'doubt' && userData.question) {
-        resultMessage += isPt 
-          ? `📋 Interesse: Tenho uma dúvida\n💭 Dúvida: ${userData.question}\n🏢 Empresa: ${userData.company}\n👤 Nome: ${text}`
-          : isEs
-          ? `📋 Interés: Tengo una duda\n💭 Duda: ${userData.question}\n🏢 Empresa: ${userData.company}\n👤 Nombre: ${text}`
-          : `📋 Interest: I have a question\n💭 Question: ${userData.question}\n🏢 Company: ${userData.company}\n👤 Name: ${text}`
-      } else if ((userData.service === 'hasProject' || userData.service === 'notSure' || userData.service === 'budget') && userData.description) {
-        const interestLabel = userData.service === 'hasProject' 
-          ? (isPt ? 'Já tenho um projeto' : isEs ? 'Ya tengo un proyecto' : 'I already have a project')
-          : userData.service === 'budget'
-          ? (isPt ? 'Quero solicitar um orçamento' : isEs ? 'Quiero solicitar un presupuesto' : 'I want to request a quote')
-          : (isPt ? 'Não sei qual solução preciso' : isEs ? 'No sé qué solución necesito' : 'I\'m not sure what solution I need')
-        
-        resultMessage += isPt
-          ? `📋 Interesse: ${interestLabel}\n📝 Descrição: ${userData.description}\n🏢 Empresa: ${userData.company}\n👤 Nome: ${text}`
-          : isEs
-          ? `📋 Interés: ${interestLabel}\n📝 Descripción: ${userData.description}\n🏢 Empresa: ${userData.company}\n👤 Nombre: ${text}`
-          : `📋 Interest: ${interestLabel}\n📝 Description: ${userData.description}\n🏢 Company: ${userData.company}\n👤 Name: ${text}`
-      } else {
-        resultMessage += isPt
-          ? `📋 Serviço: ${serviceLabel}\n🏢 Empresa: ${userData.company}\n👤 Nome: ${text}`
-          : isEs
-          ? `📋 Servicio: ${serviceLabel}\n🏢 Empresa: ${userData.company}\n👤 Nombre: ${text}`
-          : `📋 Service: ${serviceLabel}\n🏢 Company: ${userData.company}\n👤 Name: ${text}`
-      }
-      
-      addMessage({ 
-        type: 'bot', 
-        text: resultMessage,
-        options: [
-          { id: 'whatsapp', label: lang.result.cta, value: 'whatsapp' },
-          { id: 'restart', label: lang.result.restart, value: 'restart' }
-        ]
+      setUserData(prev => {
+        const updated = { ...prev, description: text }
+        setCurrentStep('company')
+        simulateTyping(lang.company.message)
+        return updated
       })
-      setIsTyping(false)
       return
     }
-  }, [inputValue, currentStep, lang, addMessage, simulateTyping, userData, isPt, isEs])
+    if (currentStep === 'doubtDescription') {
+      setUserData(prev => {
+        const updated = { ...prev, question: text }
+        setCurrentStep('company')
+        simulateTyping(lang.company.message)
+        return updated
+      })
+      return
+    }
+    if (currentStep === 'notSureDescription') {
+      setUserData(prev => {
+        const updated = { ...prev, description: text }
+        setCurrentStep('company')
+        simulateTyping(lang.company.message)
+        return updated
+      })
+      return
+    }
+    if (currentStep === 'budgetDescription') {
+      setUserData(prev => {
+        const updated = { ...prev, description: text }
+        setCurrentStep('company')
+        simulateTyping(lang.company.message)
+        return updated
+      })
+      return
+    }
+    if (currentStep === 'company') {
+      setUserData(prev => {
+        const updated = { ...prev, company: text }
+        setCurrentStep('name')
+        simulateTyping(lang.name.message)
+        return updated
+      })
+      return
+    }
+    if (currentStep === 'name') {
+      setUserData(prev => {
+        const updated = { ...prev, name: text }
+        setCurrentStep('result')
+        
+        // Função interna auto-executável para lidar com o delay e renderizar o resultado final
+        const renderResult = async () => {
+          setIsTyping(true)
+          await new Promise(resolve => setTimeout(resolve, 800))
+          
+          const serviceLabel = updated.serviceRaw || lang.service.options.find(o => o.value === updated.service)?.label || updated.service
+          let resultMessage = `${lang.result.message}\n\n`
+          
+          if (updated.service === 'doubt' && updated.question) {
+            resultMessage += isPt 
+              ? `📋 Interesse: Tenho uma dúvida\n💭 Dúvida: ${updated.question}\n🏢 Empresa: ${updated.company}\n👤 Nome: ${text}`
+              : isEs
+              ? `📋 Interés: Tengo una duda\n💭 Duda: ${updated.question}\n🏢 Empresa: ${updated.company}\n👤 Nombre: ${text}`
+              : `📋 Interest: I have a question\n💭 Question: ${updated.question}\n🏢 Company: ${updated.company}\n👤 Name: ${text}`
+          } else if (['hasProject', 'notSure', 'budget'].includes(updated.service) && updated.description) {
+            const interestLabel = updated.service === 'hasProject' 
+              ? (isPt ? 'Já tenho um projeto' : isEs ? 'Ya tengo un proyecto' : 'I already have a project')
+              : updated.service === 'budget'
+              ? (isPt ? 'Quero solicitar um orçamento' : isEs ? 'Quiero solicitar un presupuesto' : 'I want to request a quote')
+              : (isPt ? 'Não sei qual solução preciso' : isEs ? 'No sé qué solución necesito' : 'I\'m not sure what solution I need')
+            
+            resultMessage += isPt
+              ? `📋 Interesse: ${interestLabel}\n📝 Descrição: ${updated.description}\n🏢 Empresa: ${updated.company}\n👤 Nome: ${text}`
+              : isEs
+              ? `📋 Interés: ${interestLabel}\n📝 Descripción: ${updated.description}\n🏢 Empresa: ${updated.company}\n👤 Nombre: ${text}`
+              : `📋 Interest: ${interestLabel}\n📝 Description: ${updated.description}\n🏢 Company: ${updated.company}\n👤 Name: ${text}`
+          } else {
+            resultMessage += isPt
+              ? `📋 Serviço: ${serviceLabel}\n🏢 Empresa: ${updated.company}\n👤 Nome: ${text}`
+              : isEs
+              ? `📋 Servicio: ${serviceLabel}\n🏢 Empresa: ${updated.company}\n👤 Nombre: ${text}`
+              : `📋 Service: ${serviceLabel}\n🏢 Company: ${updated.company}\n👤 Name: ${text}`
+          }
+          
+          addMessage({ 
+            type: 'bot', 
+            text: resultMessage,
+            options: [
+              { id: 'whatsapp', label: lang.result.cta, value: 'whatsapp' },
+              { id: 'restart', label: lang.result.restart, value: 'restart' }
+            ]
+          })
+          setIsTyping(false)
+        }
+        
+        renderResult()
+        return updated
+      })
+    }
+  }, [inputValue, currentStep, lang, addMessage, simulateTyping, isPt, isEs])
 
   const toggleOpen = useCallback(() => {
     setIsOpen(prev => {
@@ -475,10 +491,6 @@ export default function FloatingAI({ language }: FloatingAIProps) {
       return newState
     })
   }, [messages.length, lang, simulateTyping])
-
-  useEffect(() => {
-    scrollToBottom()
-  }, [messages, scrollToBottom])
 
   useEffect(() => {
     if (isOpen) {
@@ -514,16 +526,13 @@ export default function FloatingAI({ language }: FloatingAIProps) {
       {/* ===== CHAT ===== */}
       {isOpen && (
         <div className="floating-ai-chat">
-          {/* ===== HEADER - APENAS CAPA ===== */}
+          {/* ===== HEADER ===== */}
           <div className="floating-ai-header">
-            {/* CAPA DE FUNDO */}
             <img
               src="/iconiacapa.webp"
               alt=""
               className="header-cover"
             />
-            
-            {/* CONTEÚDO DO HEADER - APENAS O BOTÃO FECHAR */}
             <div className="header-content">
               <button 
                 className="header-close" 
@@ -537,7 +546,6 @@ export default function FloatingAI({ language }: FloatingAIProps) {
 
           {/* ===== BODY ===== */}
           <div className="floating-ai-body">
-            {/* ===== MESSAGES ===== */}
             <div className="messages-container">
               {messages.map((message) => (
                 <div 
@@ -623,13 +631,8 @@ export default function FloatingAI({ language }: FloatingAIProps) {
               <div ref={messagesEndRef} />
             </div>
 
-            {/* ===== INPUT - SÓ APARECE NOS PASSOS QUE PRECISAM DE TEXTO ===== */}
-            {(currentStep === 'company' || 
-              currentStep === 'name' || 
-              currentStep === 'projectDescription' || 
-              currentStep === 'doubtDescription' || 
-              currentStep === 'notSureDescription' ||
-              currentStep === 'budgetDescription') && (
+            {/* ===== INPUT ===== */}
+            {['company', 'name', 'projectDescription', 'doubtDescription', 'notSureDescription', 'budgetDescription'].includes(currentStep) && (
               <div className="chat-input">
                 <input
                   ref={inputRef}
