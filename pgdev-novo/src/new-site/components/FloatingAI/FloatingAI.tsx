@@ -50,6 +50,53 @@ export default function FloatingAI({ language }: FloatingAIProps) {
   const isPt = language === 'pt'
   const isEs = language === 'es'
 
+  // ============================================
+  // CONTROLE DE SCROLL DO FUNDO EM MOBILE
+  // ============================================
+  useEffect(() => {
+    const isMobile = window.innerWidth <= 640
+    
+    if (isOpen && isMobile) {
+      // Bloqueia o scroll do body e html
+      document.body.style.overflow = 'hidden'
+      document.body.style.position = 'fixed'
+      document.body.style.width = '100%'
+      document.body.style.height = '100%'
+      document.body.style.top = '0'
+      document.body.style.left = '0'
+      document.body.style.right = '0'
+      document.body.style.bottom = '0'
+      
+      document.documentElement.style.overflow = 'hidden'
+    } else {
+      // Restaura o scroll
+      document.body.style.overflow = ''
+      document.body.style.position = ''
+      document.body.style.width = ''
+      document.body.style.height = ''
+      document.body.style.top = ''
+      document.body.style.left = ''
+      document.body.style.right = ''
+      document.body.style.bottom = ''
+      
+      document.documentElement.style.overflow = ''
+    }
+
+    // Cleanup ao desmontar
+    return () => {
+      document.body.style.overflow = ''
+      document.body.style.position = ''
+      document.body.style.width = ''
+      document.body.style.height = ''
+      document.body.style.top = ''
+      document.body.style.left = ''
+      document.body.style.right = ''
+      document.body.style.bottom = ''
+      
+      document.documentElement.style.overflow = ''
+    }
+  }, [isOpen])
+
   // Dicionário de traduções centralizado e tipado
   const t = {
     pt: {
@@ -216,7 +263,7 @@ export default function FloatingAI({ language }: FloatingAIProps) {
     }
   }
 
-  const lang = t[language] || t['pt'] // Fallback de segurança para português
+  const lang = t[language] || t['pt']
   const whatsappNumber = '5511961111894'
 
   const generateId = useCallback(() => {
@@ -243,7 +290,6 @@ export default function FloatingAI({ language }: FloatingAIProps) {
     })
   }, [generateId])
 
-  // Rola para o fundo sempre que o tamanho do array de mensagens mudar ou o bot estiver digitando
   useEffect(() => {
     scrollToBottom()
   }, [messages, isTyping, scrollToBottom])
@@ -429,7 +475,6 @@ export default function FloatingAI({ language }: FloatingAIProps) {
         const updated = { ...prev, name: text }
         setCurrentStep('result')
         
-        // Função interna auto-executável para lidar com o delay e renderizar o resultado final
         const renderResult = async () => {
           setIsTyping(true)
           await new Promise(resolve => setTimeout(resolve, 800))
@@ -500,7 +545,6 @@ export default function FloatingAI({ language }: FloatingAIProps) {
 
   return (
     <>
-      {/* ===== BOTÃO FLUTUANTE ===== */}
       <button
         className={`floating-ai-button ${isOpen ? 'open' : ''}`}
         onClick={toggleOpen}
@@ -523,10 +567,8 @@ export default function FloatingAI({ language }: FloatingAIProps) {
         )}
       </button>
 
-      {/* ===== CHAT ===== */}
       {isOpen && (
         <div className="floating-ai-chat">
-          {/* ===== HEADER ===== */}
           <div className="floating-ai-header">
             <img
               src="/iconiacapa.webp"
@@ -544,7 +586,6 @@ export default function FloatingAI({ language }: FloatingAIProps) {
             </div>
           </div>
 
-          {/* ===== BODY ===== */}
           <div className="floating-ai-body">
             <div className="messages-container">
               {messages.map((message) => (
@@ -572,7 +613,6 @@ export default function FloatingAI({ language }: FloatingAIProps) {
                     </div>
                   </div>
                   
-                  {/* ===== OPÇÕES ===== */}
                   {message.options && message.type === 'bot' && currentStep !== 'result' && (
                     <div className="message-options">
                       {message.options.map((option) => (
@@ -605,7 +645,6 @@ export default function FloatingAI({ language }: FloatingAIProps) {
                 </div>
               ))}
               
-              {/* ===== TYPING INDICATOR ===== */}
               {isTyping && (
                 <div className="message bot typing">
                   <div className="message-content">
@@ -631,7 +670,6 @@ export default function FloatingAI({ language }: FloatingAIProps) {
               <div ref={messagesEndRef} />
             </div>
 
-            {/* ===== INPUT ===== */}
             {['company', 'name', 'projectDescription', 'doubtDescription', 'notSureDescription', 'budgetDescription'].includes(currentStep) && (
               <div className="chat-input">
                 <input
