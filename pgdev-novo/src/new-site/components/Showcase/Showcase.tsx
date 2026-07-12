@@ -12,56 +12,56 @@ export default function Showcase({ language }: ShowcaseProps) {
       projects: [
         {
           name: 'Casamentos & Eventos',
-          image: 'public/images/exemplo1.webp',
+          image: '/images/exemplo1.webp',
           url: 'https://pablog-7.github.io/casamento-site-exemplo/',
           description: 'Sites elegantes para cerimônias e celebrações',
           category: 'Eventos'
         },
         {
           name: 'Moda e Vestuário',
-          image: 'public/images/exemplo2.webp',
+          image: '/images/exemplo2.webp',
           url: 'https://roupas-ateller.vercel.app/',
           description: 'Catálogos e lojas para marcas de moda',
           category: 'E-commerce'
         },
         {
           name: 'Alimentação e Docerias',
-          image: 'public/images/exemplo3.webp',
+          image: '/images/exemplo3.webp',
           url: 'https://pablog-7.github.io/donuts-site-exemplo/',
           description: 'Cardápios atrativos para restaurantes e confeitarias',
           category: 'Alimentação'
         },
         {
           name: 'Saúde e Bem-Estar',
-          image: 'public/images/exemplo4.webp',
+          image: '/images/exemplo4.webp',
           url: 'https://pablog-7.github.io/projeto-drbruno/',
           description: 'Páginas profissionais para médicos e clínicas',
           category: 'Saúde'
         },
         {
           name: 'E-commerce de Moda',
-          image: 'public/images/exemplo5.webp',
+          image: '/images/exemplo5.webp',
           url: 'https://pablog-7.github.io/ecommerce-kushi/',
           description: 'Lojas virtuais completas e modernas',
           category: 'E-commerce'
         },
         {
           name: 'Imobiliárias e Corretores',
-          image: 'public/images/exemplo6.webp',
+          image: '/images/exemplo6.webp',
           url: 'https://sistema-web-imobiliaria.vercel.app/',
           description: 'Portais imobiliários com busca avançada',
           category: 'Imobiliário'
         },
         {
           name: 'Barbearias e Salões',
-          image: 'public/images/exemplo7.webp',
+          image: '/images/exemplo7.webp',
           url: 'https://agendamento-de-barbearia-virid.vercel.app/',
           description: 'Agendamentos e portfólios para profissionais',
           category: 'Beleza'
         },
         {
           name: 'Yoga e Qualidade de Vida',
-          image: 'public/images/exemplo8.webp',
+          image: '/images/exemplo8.webp',
           url: 'https://pablog-7.github.io/yoga-site-exemplo/',
           description: 'Plataformas para práticas e bem-estar',
           category: 'Bem-Estar'
