@@ -1,5 +1,5 @@
 import './Showcase.css'
-import { ArrowUpRight } from 'lucide-react'
+import { Eye } from 'lucide-react'
 import type { Language } from '../../types'
 
 type ShowcaseProps = {
@@ -11,157 +11,133 @@ export default function Showcase({ language }: ShowcaseProps) {
     pt: {
       projects: [
         {
-          name: 'Dr. Bruno',
-          category: 'Saúde',
-          description: 'Site profissional com WhatsApp para agendamento.',
-          image: '/images/exemplo1.webp',
-          url: 'https://pablog-7.github.io/projeto-drbruno/',
-          results: ['+40% agendamentos', 'Atendimento 24/7']
+          name: 'Casamentos & Eventos',
+          image: 'public/images/exemplo1.webp',
+          url: 'https://pablog-7.github.io/casamento-site-exemplo/'
         },
         {
-          name: 'Kushi',
-          category: 'Moda',
-          description: 'Loja virtual com pedidos direto pelo WhatsApp.',
-          image: '/images/exemplo2.webp',
-          url: 'https://pablog-7.github.io/ecommerce-kushi/',
-          results: ['Vendas automatizadas', 'Catálogo digital']
+          name: 'Moda e Vestuário',
+          image: 'public/images/exemplo2.webp',
+          url: 'https://roupas-ateller.vercel.app/'
         },
         {
-          name: 'Barbearia',
-          category: 'Beleza',
-          description: 'Sistema de agendamento com confirmação automática.',
-          image: '/images/exemplo4.webp',
-          url: 'https://agendamento-de-barbearia-virid.vercel.app/',
-          results: ['Sem filas', 'Gestão de horários']
+          name: 'Alimentação e Docerias',
+          image: 'public/images/exemplo3.webp',
+          url: 'https://pablog-7.github.io/donuts-site-exemplo/'
         },
         {
-          name: 'Saveur',
-          category: 'Gastronomia',
-          description: 'Site com cardápio digital e delivery integrado.',
-          image: '/images/exemplo5.webp',
-          url: 'https://sistema-web-para-restaurante.vercel.app/',
-          results: ['Pedidos organizados', 'Mais vendas']
+          name: 'Saúde e Bem-Estar',
+          image: 'public/images/exemplo4.webp',
+          url: 'https://pablog-7.github.io/projeto-drbruno/'
         },
         {
-          name: 'Habitat',
-          category: 'Imobiliária',
-          description: 'Site institucional com catálogo de imóveis.',
-          image: '/images/exemplo6.webp',
-          url: 'https://sistema-web-imobiliaria.vercel.app/',
-          results: ['Mais visibilidade', 'Contatos qualificados']
+          name: 'E-commerce de Moda',
+          image: 'public/images/exemplo5.webp',
+          url: 'https://pablog-7.github.io/ecommerce-kushi/'
         },
         {
-          name: 'Atelier',
-          category: 'Moda',
-          description: 'Landing page para lançamento de coleção.',
-          image: '/images/exemplo3.webp',
-          url: 'https://roupas-ateller.vercel.app/',
-          results: ['Alta conversão', 'Lançamento de sucesso']
+          name: 'Imobiliárias e Corretores',
+          image: 'public/images/exemplo6.webp',
+          url: 'https://sistema-web-imobiliaria.vercel.app/'
         },
+        {
+          name: 'Barbearias e Salões',
+          image: 'public/images/exemplo7.webp',
+          url: 'https://agendamento-de-barbearia-virid.vercel.app/'
+        },
+        {
+          name: 'Yoga e Qualidade de Vida',
+          image: 'public/images/exemplo8.webp',
+          url: 'https://pablog-7.github.io/yoga-site-exemplo/'
+        }
       ]
     },
     es: {
       projects: [
         {
-          name: 'Dr. Bruno',
-          category: 'Salud',
-          description: 'Sitio profesional con WhatsApp para reservas.',
-          image: '/images/exemplo1.webp',
-          url: 'https://pablog-7.github.io/projeto-drbruno/',
-          results: ['+40% reservas', 'Atención 24/7']
+          name: 'Bodas y Eventos',
+          image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=900&h=560&fit=crop&crop=center',
+          url: 'https://pablog-7.github.io/casamento-site-exemplo/'
         },
         {
-          name: 'Kushi',
-          category: 'Moda',
-          description: 'Tienda virtual con pedidos directo por WhatsApp.',
-          image: '/images/exemplo2.webp',
-          url: 'https://pablog-7.github.io/ecommerce-kushi/',
-          results: ['Ventas automatizadas', 'Catálogo digital']
+          name: 'Moda y Vestimenta',
+          image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=900&h=560&fit=crop&crop=center',
+          url: 'https://roupas-ateller.vercel.app/'
         },
         {
-          name: 'Barbearia',
-          category: 'Belleza',
-          description: 'Sistema de reservas con confirmación automática.',
-          image: '/images/exemplo4.webp',
-          url: 'https://agendamento-de-barbearia-virid.vercel.app/',
-          results: ['Sin filas', 'Gestión de horarios']
+          name: 'Alimentación y Repostería',
+          image: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=900&h=560&fit=crop&crop=center',
+          url: 'https://pablog-7.github.io/donuts-site-exemplo/'
         },
         {
-          name: 'Saveur',
-          category: 'Gastronomía',
-          description: 'Sitio con menú digital y delivery integrado.',
-          image: '/images/exemplo5.webp',
-          url: 'https://sistema-web-para-restaurante.vercel.app/',
-          results: ['Pedidos organizados', 'Más ventas']
+          name: 'Salud y Bienestar',
+          image: 'https://images.unsplash.com/photo-1552566626-52f8b828add9?w=900&h=560&fit=crop&crop=center',
+          url: 'https://pablog-7.github.io/projeto-drbruno/'
         },
         {
-          name: 'Habitat',
-          category: 'Inmobiliaria',
-          description: 'Sitio institucional con catálogo de inmuebles.',
-          image: '/images/exemplo6.webp',
-          url: 'https://sistema-web-imobiliaria.vercel.app/',
-          results: ['Más visibilidad', 'Contactos calificados']
+          name: 'E-commerce de Moda',
+          image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=900&h=560&fit=crop&crop=center',
+          url: 'https://pablog-7.github.io/ecommerce-kushi/'
         },
         {
-          name: 'Atelier',
-          category: 'Moda',
-          description: 'Landing page para lanzamiento de colección.',
-          image: '/images/exemplo3.webp',
-          url: 'https://roupas-ateller.vercel.app/',
-          results: ['Alta conversión', 'Lanzamiento exitoso']
+          name: 'Inmobiliarias y Corredores',
+          image: 'https://images.unsplash.com/photo-1541701494587-cb58502866ab?w=900&h=560&fit=crop&crop=center',
+          url: 'https://sistema-web-imobiliaria.vercel.app/'
         },
+        {
+          name: 'Barberías y Salones',
+          image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=900&h=560&fit=crop&crop=center',
+          url: 'https://agendamento-de-barbearia-virid.vercel.app/'
+        },
+        {
+          name: 'Yoga y Calidad de Vida',
+          image: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=900&h=560&fit=crop&crop=center',
+          url: 'https://pablog-7.github.io/yoga-site-exemplo/'
+        }
       ]
     },
     en: {
       projects: [
         {
-          name: 'Dr. Bruno',
-          category: 'Healthcare',
-          description: 'Professional website with WhatsApp for bookings.',
-          image: '/images/exemplo1.webp',
-          url: 'https://pablog-7.github.io/projeto-drbruno/',
-          results: ['+40% bookings', '24/7 service']
+          name: 'Weddings & Events',
+          image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=900&h=560&fit=crop&crop=center',
+          url: 'https://pablog-7.github.io/casamento-site-exemplo/'
         },
         {
-          name: 'Kushi',
-          category: 'Fashion',
-          description: 'Online store with orders directly via WhatsApp.',
-          image: '/images/exemplo2.webp',
-          url: 'https://pablog-7.github.io/ecommerce-kushi/',
-          results: ['Automated sales', 'Digital catalog']
+          name: 'Fashion & Clothing',
+          image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=900&h=560&fit=crop&crop=center',
+          url: 'https://roupas-ateller.vercel.app/'
         },
         {
-          name: 'Barbearia',
-          category: 'Beauty',
-          description: 'Booking system with automatic confirmation.',
-          image: '/images/exemplo4.webp',
-          url: 'https://agendamento-de-barbearia-virid.vercel.app/',
-          results: ['No waiting lines', 'Schedule management']
+          name: 'Food & Bakeries',
+          image: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=900&h=560&fit=crop&crop=center',
+          url: 'https://pablog-7.github.io/donuts-site-exemplo/'
         },
         {
-          name: 'Saveur',
-          category: 'Gastronomy',
-          description: 'Website with digital menu and integrated delivery.',
-          image: '/images/exemplo5.webp',
-          url: 'https://sistema-web-para-restaurante.vercel.app/',
-          results: ['Organized orders', 'More sales']
+          name: 'Health & Wellness',
+          image: 'https://images.unsplash.com/photo-1552566626-52f8b828add9?w=900&h=560&fit=crop&crop=center',
+          url: 'https://pablog-7.github.io/projeto-drbruno/'
         },
         {
-          name: 'Habitat',
-          category: 'Real Estate',
-          description: 'Institutional website with property catalog.',
-          image: '/images/exemplo6.webp',
-          url: 'https://sistema-web-imobiliaria.vercel.app/',
-          results: ['More visibility', 'Qualified contacts']
+          name: 'Fashion E-commerce',
+          image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=900&h=560&fit=crop&crop=center',
+          url: 'https://pablog-7.github.io/ecommerce-kushi/'
         },
         {
-          name: 'Atelier',
-          category: 'Fashion',
-          description: 'Landing page for collection launch.',
-          image: '/images/exemplo3.webp',
-          url: 'https://roupas-ateller.vercel.app/',
-          results: ['High conversion', 'Successful launch']
+          name: 'Real Estate & Brokers',
+          image: 'https://images.unsplash.com/photo-1541701494587-cb58502866ab?w=900&h=560&fit=crop&crop=center',
+          url: 'https://sistema-web-imobiliaria.vercel.app/'
         },
+        {
+          name: 'Barbershops & Salons',
+          image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=900&h=560&fit=crop&crop=center',
+          url: 'https://agendamento-de-barbearia-virid.vercel.app/'
+        },
+        {
+          name: 'Yoga & Quality of Life',
+          image: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=900&h=560&fit=crop&crop=center',
+          url: 'https://pablog-7.github.io/yoga-site-exemplo/'
+        }
       ]
     }
   }
@@ -173,7 +149,7 @@ export default function Showcase({ language }: ShowcaseProps) {
   }
 
   return (
-    <section className="showcase" id="projetos">
+    <section className="showcase" id="templates">
       <div className="showcase-container">
         <div className="showcase-grid">
           {currentContent.projects.map((project, index) => (
@@ -181,7 +157,7 @@ export default function Showcase({ language }: ShowcaseProps) {
               key={project.name}
               className="showcase-card"
               onClick={() => handleProjectClick(project.url)}
-              aria-label={`Abrir projeto ${project.name}`}
+              aria-label={`Visualizar ${project.name}`}
             >
               <div className="card">
                 <img
@@ -189,20 +165,16 @@ export default function Showcase({ language }: ShowcaseProps) {
                   alt={project.name}
                   width={900}
                   height={560}
-                  loading={index < 2 ? 'eager' : 'lazy'}
-                  fetchPriority={index < 2 ? 'high' : 'low'}
+                  loading={index < 4 ? 'eager' : 'lazy'}
+                  fetchPriority={index < 4 ? 'high' : 'low'}
                   decoding="async"
                 />
-
-                <div className="card-hover">
-                  <div className="card-text">
-                    <h3>{project.name}</h3>
-                    <p>{project.category}</p>
-                  </div>
-
-                  <div className="card-icon">
-                    <ArrowUpRight size={18} />
-                  </div>
+                
+                <div className="card-overlay">
+                  <span className="card-link">
+                    <Eye size={20} />
+                    Visualizar Template
+                  </span>
                 </div>
               </div>
             </button>
