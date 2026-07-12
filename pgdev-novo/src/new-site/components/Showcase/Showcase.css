@@ -1,5 +1,5 @@
 /* ============================================
-   SHOWCASE - TEMPLATES (APENAS IMAGENS)
+   SHOWCASE - TEMPLATES COM DETALHES
    ============================================ */
 
 .showcase {
@@ -27,8 +27,10 @@
   border: none;
   cursor: pointer;
   padding: 0;
+  position: relative;
 }
 
+/* ===== CARD ===== */
 .card {
   position: relative;
   overflow: hidden;
@@ -36,7 +38,7 @@
   border-radius: 16px;
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.06);
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .card img {
@@ -44,71 +46,128 @@
   height: 100%;
   display: block;
   object-fit: cover;
-  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-/* ===== HOVER ===== */
+/* ===== HOVER DO CARD ===== */
 .showcase-card:hover .card {
-  border-color: rgba(254, 201, 15, 0.2);
-  transform: translateY(-4px);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  border-color: rgba(254, 201, 15, 0.3);
+  transform: translateY(-6px);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.6);
 }
 
 .showcase-card:hover .card img {
-  transform: scale(1.05);
+  transform: scale(1.02);
 }
 
-/* ===== OVERLAY ===== */
+/* ===== OVERLAY COM DETALHES ===== */
 .card-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 12, 36, 0.8);
-  backdrop-filter: blur(4px);
+  background: rgba(0, 12, 36, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   display: flex;
   align-items: center;
   justify-content: center;
   opacity: 0;
   transition: opacity 0.4s ease;
+  padding: 30px;
 }
 
 .showcase-card:hover .card-overlay {
+  opacity: 0.9;
+}
+
+/* ===== CONTEÚDO DO OVERLAY ===== */
+.overlay-content {
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+  transform: translateY(20px);
+  opacity: 0;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition-delay: 0.05s;
+}
+
+.showcase-card:hover .overlay-content {
+  transform: translateY(0);
   opacity: 1;
 }
 
+/* Header com categoria */
+.overlay-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 4px;
+}
+
+.overlay-icon {
+  color: #fec90f;
+}
+
+.overlay-category {
+  color: #fec90f;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* Título */
+.overlay-title {
+  color: #ffffff;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0;
+}
+
+/* Descrição */
+.overlay-description {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 4px 0 12px 0;
+  max-width: 300px;
+}
+
+/* ===== BOTÃO VISUALIZAR ===== */
 .card-link {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 12px;
   background: #fec90f;
   color: #000c24;
-  padding: 14px 32px;
+  padding: 12px 32px;
   border-radius: 50px;
   font-weight: 600;
-  font-size: 1rem;
-  transform: translateY(20px);
-  opacity: 0;
+  font-size: 0.95rem;
+  width: fit-content;
+  margin-top: 4px;
   transition: all 0.3s ease;
-  letter-spacing: 0.3px;
-}
-
-.showcase-card:hover .card-link {
-  transform: translateY(0);
-  opacity: 1;
-  transition-delay: 0.1s;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 20px rgba(254, 201, 15, 0.2);
 }
 
 .card-link:hover {
   background: #ffffff;
   transform: scale(1.05);
-  box-shadow: 0 8px 30px rgba(254, 201, 15, 0.3);
+  box-shadow: 0 8px 40px rgba(254, 201, 15, 0.4);
 }
 
 .card-link svg {
-  transition: transform 0.2s ease;
+  transition: transform 0.3s ease;
 }
 
 .card-link:hover svg {
-  transform: scale(1.1);
+  transform: translateX(4px) scale(1.1);
 }
 
 /* ============================================
@@ -119,6 +178,14 @@
 @media (max-width: 1024px) {
   .showcase-grid {
     gap: 24px;
+  }
+
+  .overlay-title {
+    font-size: 1.3rem;
+  }
+
+  .overlay-description {
+    font-size: 0.85rem;
   }
 }
 
@@ -133,12 +200,24 @@
   }
 
   .showcase-grid {
-    gap: 20px;
+    gap: 18px;
   }
 
   .card-link {
-    padding: 12px 24px;
-    font-size: 0.9rem;
+    padding: 10px 24px;
+    font-size: 0.85rem;
+  }
+
+  .overlay-title {
+    font-size: 1.1rem;
+  }
+
+  .overlay-description {
+    font-size: 0.8rem;
+  }
+
+  .card-overlay {
+    padding: 20px;
   }
 }
 
@@ -153,21 +232,33 @@
   }
 
   .showcase-grid {
-    grid-template-columns: 1fr; /* 1 COLUNA */
+    grid-template-columns: 1fr;
     gap: 20px;
     max-width: 500px;
     margin: 0 auto;
   }
 
   .card-link {
-    padding: 12px 28px;
-    font-size: 0.9rem;
-    gap: 10px;
+    padding: 10px 24px;
+    font-size: 0.85rem;
+    gap: 8px;
   }
 
   .card-link svg {
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
+  }
+
+  .overlay-title {
+    font-size: 1.2rem;
+  }
+
+  .overlay-description {
+    font-size: 0.85rem;
+  }
+
+  .card-overlay {
+    padding: 24px;
   }
 }
 
@@ -191,14 +282,35 @@
   }
 
   .card-link {
-    padding: 10px 24px;
-    font-size: 0.85rem;
-    gap: 8px;
+    padding: 8px 20px;
+    font-size: 0.8rem;
+    gap: 6px;
   }
 
   .card-link svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .overlay-title {
+    font-size: 1rem;
+  }
+
+  .overlay-description {
+    font-size: 0.8rem;
+  }
+
+  .overlay-category {
+    font-size: 0.65rem;
+  }
+
+  .overlay-icon {
     width: 18px;
     height: 18px;
+  }
+
+  .card-overlay {
+    padding: 16px;
   }
 }
 
@@ -222,14 +334,39 @@
   }
 
   .card-link {
-    padding: 8px 18px;
-    font-size: 0.75rem;
-    gap: 6px;
+    padding: 6px 16px;
+    font-size: 0.7rem;
+    gap: 4px;
   }
 
   .card-link svg {
-    width: 16px;
-    height: 16px;
+    width: 14px;
+    height: 14px;
+  }
+
+  .overlay-title {
+    font-size: 0.9rem;
+  }
+
+  .overlay-description {
+    font-size: 0.7rem;
+  }
+
+  .card-overlay {
+    padding: 12px;
+  }
+
+  .overlay-header {
+    gap: 6px;
+  }
+
+  .overlay-category {
+    font-size: 0.6rem;
+  }
+
+  .overlay-icon {
+    width: 14px;
+    height: 14px;
   }
 }
 
@@ -247,14 +384,7 @@
 
   .card-overlay {
     opacity: 0 !important;
-  }
-
-  .card-link {
-    transform: translateY(0) !important;
-    opacity: 1 !important;
-    background: rgba(254, 201, 15, 0.9);
-    padding: 10px 20px;
-    font-size: 0.8rem;
+    pointer-events: none;
   }
 
   .showcase-card:active .card {
