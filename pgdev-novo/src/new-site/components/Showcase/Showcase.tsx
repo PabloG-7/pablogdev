@@ -72,6 +72,13 @@ export default function Showcase({ language }: ShowcaseProps) {
           url: 'https://pablog-7.github.io/virtz-site-exemplo/',
           description: 'Loja virtual de roupas com design moderno e destacado',
           category: 'E-commerce'
+        },
+        {
+          name: 'Chilliz - Sorvetes Artesanais',
+          image: '/images/exemplo10.webp',
+          url: 'https://pablog-7.github.io/sorvete-site-exemplo/',
+          description: 'Página para marcas de sorveteria com design vibrante',
+          category: 'Alimentação'
         }
       ]
     },
@@ -135,10 +142,17 @@ export default function Showcase({ language }: ShowcaseProps) {
         },
         {
           name: 'Virtz - Moda Streetwear',
-          image: '/images/exemplo9.webp', // <--- CORRIGIDO PARA IMAGEM LOCAL
+          image: '/images/exemplo9.webp',
           url: 'https://pablog-7.github.io/virtz-site-exemplo/',
           description: 'Tienda virtual de ropa con diseño moderno y destacado',
           category: 'E-commerce'
+        },
+        {
+          name: 'Chilliz - Helados Artesanales',
+          image: '/images/exemplo10.webp',
+          url: 'https://pablog-7.github.io/sorvete-site-exemplo/',
+          description: 'Página para marcas de heladería con diseño vibrante',
+          category: 'Alimentación'
         }
       ]
     },
@@ -202,10 +216,17 @@ export default function Showcase({ language }: ShowcaseProps) {
         },
         {
           name: 'Virtz - Streetwear Fashion',
-          image: '/images/exemplo9.webp', // <--- CORRIGIDO PARA IMAGEM LOCAL
+          image: '/images/exemplo9.webp',
           url: 'https://pablog-7.github.io/virtz-site-exemplo/',
           description: 'Clothing e-commerce with bold and modern design',
           category: 'E-commerce'
+        },
+        {
+          name: 'Chilliz - Artisan Ice Cream',
+          image: '/images/exemplo10.webp',
+          url: 'https://pablog-7.github.io/sorvete-site-exemplo/',
+          description: 'Vibrant landing page for ice cream brands',
+          category: 'Food'
         }
       ]
     }
