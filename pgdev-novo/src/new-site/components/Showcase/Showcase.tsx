@@ -65,6 +65,13 @@ export default function Showcase({ language }: ShowcaseProps) {
           url: 'https://pablog-7.github.io/yoga-site-exemplo/',
           description: 'Plataformas para práticas e bem-estar',
           category: 'Bem-Estar'
+        },
+        {
+          name: 'Virtz - Moda Streetwear',
+          image: '/images/exemplo9.webp',
+          url: 'https://pablog-7.github.io/virtz-site-exemplo/',
+          description: 'Loja virtual de roupas com design moderno e destacado',
+          category: 'E-commerce'
         }
       ]
     },
@@ -72,59 +79,66 @@ export default function Showcase({ language }: ShowcaseProps) {
       projects: [
         {
           name: 'Bodas y Eventos',
-          image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=900&h=560&fit=crop&crop=center',
+          image: '/images/exemplo1.webp',
           url: 'https://pablog-7.github.io/casamento-site-exemplo/',
           description: 'Sitios elegantes para ceremonias y celebraciones',
           category: 'Eventos'
         },
         {
           name: 'Moda y Vestimenta',
-          image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=900&h=560&fit=crop&crop=center',
+          image: '/images/exemplo2.webp',
           url: 'https://roupas-ateller.vercel.app/',
           description: 'Catálogos y tiendas para marcas de moda',
           category: 'E-commerce'
         },
         {
           name: 'Alimentación y Repostería',
-          image: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=900&h=560&fit=crop&crop=center',
+          image: '/images/exemplo3.webp',
           url: 'https://pablog-7.github.io/donuts-site-exemplo/',
           description: 'Menús atractivos para restaurantes y pastelerías',
           category: 'Alimentación'
         },
         {
           name: 'Salud y Bienestar',
-          image: 'https://images.unsplash.com/photo-1552566626-52f8b828add9?w=900&h=560&fit=crop&crop=center',
+          image: '/images/exemplo4.webp',
           url: 'https://pablog-7.github.io/projeto-drbruno/',
           description: 'Páginas profesionales para médicos y clínicas',
           category: 'Salud'
         },
         {
           name: 'E-commerce de Moda',
-          image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=900&h=560&fit=crop&crop=center',
+          image: '/images/exemplo5.webp',
           url: 'https://pablog-7.github.io/ecommerce-kushi/',
           description: 'Tiendas virtuales completas y modernas',
           category: 'E-commerce'
         },
         {
           name: 'Inmobiliarias y Corredores',
-          image: 'https://images.unsplash.com/photo-1541701494587-cb58502866ab?w=900&h=560&fit=crop&crop=center',
+          image: '/images/exemplo6.webp',
           url: 'https://sistema-web-imobiliaria.vercel.app/',
           description: 'Portales inmobiliarios con búsqueda avanzada',
           category: 'Inmobiliario'
         },
         {
           name: 'Barberías y Salones',
-          image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=900&h=560&fit=crop&crop=center',
+          image: '/images/exemplo7.webp',
           url: 'https://agendamento-de-barbearia-virid.vercel.app/',
           description: 'Agendamientos y portafolios para profesionales',
           category: 'Belleza'
         },
         {
           name: 'Yoga y Calidad de Vida',
-          image: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=900&h=560&fit=crop&crop=center',
+          image: '/images/exemplo8.webp',
           url: 'https://pablog-7.github.io/yoga-site-exemplo/',
           description: 'Plataformas para prácticas y bienestar',
           category: 'Bienestar'
+        },
+        {
+          name: 'Virtz - Moda Streetwear',
+          image: '/images/exemplo9.webp', // <--- CORRIGIDO PARA IMAGEM LOCAL
+          url: 'https://pablog-7.github.io/virtz-site-exemplo/',
+          description: 'Tienda virtual de ropa con diseño moderno y destacado',
+          category: 'E-commerce'
         }
       ]
     },
@@ -132,59 +146,66 @@ export default function Showcase({ language }: ShowcaseProps) {
       projects: [
         {
           name: 'Weddings & Events',
-          image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=900&h=560&fit=crop&crop=center',
+          image: '/images/exemplo1.webp',
           url: 'https://pablog-7.github.io/casamento-site-exemplo/',
           description: 'Elegant sites for ceremonies and celebrations',
           category: 'Events'
         },
         {
           name: 'Fashion & Clothing',
-          image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=900&h=560&fit=crop&crop=center',
+          image: '/images/exemplo2.webp',
           url: 'https://roupas-ateller.vercel.app/',
           description: 'Catalogs and stores for fashion brands',
           category: 'E-commerce'
         },
         {
           name: 'Food & Bakeries',
-          image: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=900&h=560&fit=crop&crop=center',
+          image: '/images/exemplo3.webp',
           url: 'https://pablog-7.github.io/donuts-site-exemplo/',
           description: 'Attractive menus for restaurants and bakeries',
           category: 'Food'
         },
         {
           name: 'Health & Wellness',
-          image: 'https://images.unsplash.com/photo-1552566626-52f8b828add9?w=900&h=560&fit=crop&crop=center',
+          image: '/images/exemplo4.webp',
           url: 'https://pablog-7.github.io/projeto-drbruno/',
           description: 'Professional pages for doctors and clinics',
           category: 'Health'
         },
         {
           name: 'Fashion E-commerce',
-          image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=900&h=560&fit=crop&crop=center',
+          image: '/images/exemplo5.webp',
           url: 'https://pablog-7.github.io/ecommerce-kushi/',
           description: 'Complete and modern virtual stores',
           category: 'E-commerce'
         },
         {
           name: 'Real Estate & Brokers',
-          image: 'https://images.unsplash.com/photo-1541701494587-cb58502866ab?w=900&h=560&fit=crop&crop=center',
+          image: '/images/exemplo6.webp',
           url: 'https://sistema-web-imobiliaria.vercel.app/',
           description: 'Real estate portals with advanced search',
           category: 'Real Estate'
         },
         {
           name: 'Barbershops & Salons',
-          image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=900&h=560&fit=crop&crop=center',
+          image: '/images/exemplo7.webp',
           url: 'https://agendamento-de-barbearia-virid.vercel.app/',
           description: 'Scheduling and portfolios for professionals',
           category: 'Beauty'
         },
         {
           name: 'Yoga & Quality of Life',
-          image: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=900&h=560&fit=crop&crop=center',
+          image: '/images/exemplo8.webp',
           url: 'https://pablog-7.github.io/yoga-site-exemplo/',
           description: 'Platforms for practice and wellness',
           category: 'Wellness'
+        },
+        {
+          name: 'Virtz - Streetwear Fashion',
+          image: '/images/exemplo9.webp', // <--- CORRIGIDO PARA IMAGEM LOCAL
+          url: 'https://pablog-7.github.io/virtz-site-exemplo/',
+          description: 'Clothing e-commerce with bold and modern design',
+          category: 'E-commerce'
         }
       ]
     }
