@@ -53,11 +53,11 @@ export default function Showcase({ language }: ShowcaseProps) {
           category: 'Imobiliário'
         },
         {
-          name: 'Barbearias e Salões',
+          name: 'Chilliz - Sorvetes Artesanais',
           image: '/images/exemplo7.webp',
-          url: 'https://agendamento-de-barbearia-virid.vercel.app/',
-          description: 'Agendamentos e portfólios para profissionais',
-          category: 'Beleza'
+          url: 'https://pablog-7.github.io/sorvete-site-exemplo/',
+          description: 'Página para marcas de sorveteria com design vibrante',
+          category: 'Alimentação'
         },
         {
           name: 'Yoga e Qualidade de Vida',
@@ -74,11 +74,11 @@ export default function Showcase({ language }: ShowcaseProps) {
           category: 'E-commerce'
         },
         {
-          name: 'Chilliz - Sorvetes Artesanais',
+          name: 'Barbearias e Salões',
           image: '/images/exemplo10.webp',
-          url: 'https://pablog-7.github.io/sorvete-site-exemplo/',
-          description: 'Página para marcas de sorveteria com design vibrante',
-          category: 'Alimentação'
+          url: 'https://agendamento-de-barbearia-virid.vercel.app/',
+          description: 'Agendamentos e portfólios para profissionais',
+          category: 'Beleza'
         }
       ]
     },
@@ -127,11 +127,11 @@ export default function Showcase({ language }: ShowcaseProps) {
           category: 'Inmobiliario'
         },
         {
-          name: 'Barberías y Salones',
+          name: 'Chilliz - Helados Artesanales',
           image: '/images/exemplo7.webp',
-          url: 'https://agendamento-de-barbearia-virid.vercel.app/',
-          description: 'Agendamientos y portafolios para profesionales',
-          category: 'Belleza'
+          url: 'https://pablog-7.github.io/sorvete-site-exemplo/',
+          description: 'Página para marcas de heladería con diseño vibrante',
+          category: 'Alimentación'
         },
         {
           name: 'Yoga y Calidad de Vida',
@@ -148,11 +148,11 @@ export default function Showcase({ language }: ShowcaseProps) {
           category: 'E-commerce'
         },
         {
-          name: 'Chilliz - Helados Artesanales',
+          name: 'Barberías y Salones',
           image: '/images/exemplo10.webp',
-          url: 'https://pablog-7.github.io/sorvete-site-exemplo/',
-          description: 'Página para marcas de heladería con diseño vibrante',
-          category: 'Alimentación'
+          url: 'https://agendamento-de-barbearia-virid.vercel.app/',
+          description: 'Agendamientos y portafolios para profesionales',
+          category: 'Belleza'
         }
       ]
     },
@@ -201,11 +201,11 @@ export default function Showcase({ language }: ShowcaseProps) {
           category: 'Real Estate'
         },
         {
-          name: 'Barbershops & Salons',
+          name: 'Chilliz - Artisan Ice Cream',
           image: '/images/exemplo7.webp',
-          url: 'https://agendamento-de-barbearia-virid.vercel.app/',
-          description: 'Scheduling and portfolios for professionals',
-          category: 'Beauty'
+          url: 'https://pablog-7.github.io/sorvete-site-exemplo/',
+          description: 'Vibrant landing page for ice cream brands',
+          category: 'Food'
         },
         {
           name: 'Yoga & Quality of Life',
@@ -222,11 +222,11 @@ export default function Showcase({ language }: ShowcaseProps) {
           category: 'E-commerce'
         },
         {
-          name: 'Chilliz - Artisan Ice Cream',
+          name: 'Barbershops & Salons',
           image: '/images/exemplo10.webp',
-          url: 'https://pablog-7.github.io/sorvete-site-exemplo/',
-          description: 'Vibrant landing page for ice cream brands',
-          category: 'Food'
+          url: 'https://agendamento-de-barbearia-virid.vercel.app/',
+          description: 'Scheduling and portfolios for professionals',
+          category: 'Beauty'
         }
       ]
     }
