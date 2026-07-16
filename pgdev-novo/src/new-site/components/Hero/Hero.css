@@ -80,21 +80,36 @@
   align-items: center;
 }
 
-/* ===== LABEL ===== */
+/* ===== LABEL - FUNDO DOURADO COM TEXTO ESCURO ===== */
 .hero-label {
   font-size: 0.8125rem;
-  font-weight: 600;
-  color: #fec90f;
+  font-weight: 700;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   margin: 0 0 24px;
   animation: fadeInUp 1s ease forwards;
+  
+  /* FUNDO DOURADO */
+  background: #fec90f;
+  color: #000c24;
+  padding: 6px 24px;
+  border-radius: 20px;
+  display: inline-block;
+  
+  /* Sombra suave para destaque */
+  box-shadow: 0 4px 20px rgba(254, 201, 15, 0.2);
+  transition: all 0.3s ease;
+}
+
+.hero-label:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 30px rgba(254, 201, 15, 0.35);
 }
 
 /* ===== TITLE - SÓ TÍTULO EM NEGRITO ===== */
 .hero-title {
   font-size: clamp(2.4rem, 5.5vw, 4rem);
-  font-weight: 900; /* MUDADO: 300 -> 900 (ultra negrito) */
+  font-weight: 900;
   color: #fff;
   margin: 0 0 28px;
   line-height: 1.1;
@@ -102,18 +117,17 @@
   animation: fadeInUp 1s ease 0.1s forwards;
   opacity: 0;
   
-  /* Sombra para legibilidade */
   text-shadow: 
     0 2px 8px rgba(0, 0, 0, 0.3),
     0 4px 20px rgba(0, 0, 0, 0.15);
 }
 
 .hero-title span {
-  font-weight: 900; /* MUDADO: 600 -> 900 */
+  font-weight: 900;
   color: #fec90f;
   border-bottom: 2px solid rgba(254, 201, 15, 0.3);
+  padding-bottom: 2px;
   
-  /* Sombra dourada para destaque */
   text-shadow: 
     0 0 30px rgba(254, 201, 15, 0.15),
     0 2px 8px rgba(0, 0, 0, 0.3);
@@ -124,9 +138,9 @@
   margin: 0 0 40px;
   font-size: 1.0625rem;
   line-height: 1.6;
-  color: rgba(255, 255, 255, 0.6); /* MANTIDO ORIGINAL */
+  color: rgba(255, 255, 255, 0.6);
   max-width: 520px;
-  font-weight: 300; /* MANTIDO ORIGINAL */
+  font-weight: 300;
   animation: fadeInUp 1s ease 0.2s forwards;
   opacity: 0;
 }
@@ -148,8 +162,8 @@
   align-items: center;
   gap: 6px;
   font-size: 0.8125rem;
-  color: rgba(255, 255, 255, 0.5); /* MANTIDO ORIGINAL */
-  font-weight: 400; /* MANTIDO ORIGINAL */
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 400;
   transition: color 0.3s ease;
 }
 
@@ -452,10 +466,9 @@
 
   .hero-title {
     font-size: clamp(1.9rem, 8vw, 2.8rem);
-    font-weight: 900; /* MANTIDO NEGRITO NO MOBILE */
+    font-weight: 900;
     margin-bottom: 20px;
     
-    /* Sombra mais forte no mobile */
     text-shadow: 
       0 2px 12px rgba(0, 0, 0, 0.4),
       0 4px 24px rgba(0, 0, 0, 0.2);
@@ -503,8 +516,10 @@
   }
 
   .hero-label {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
+    padding: 4px 16px;
     margin-bottom: 16px;
+    border-radius: 16px;
   }
 
   .hero-title {
