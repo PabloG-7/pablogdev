@@ -113,18 +113,29 @@
   background: #fec90f;
 }
 
+/* ===== TITLE - SÓ TÍTULO EM NEGRITO ===== */
 .about-title {
   font-size: clamp(2.4rem, 5.5vw, 4rem);
-  font-weight: 300;
+  font-weight: 900; /* MUDADO: 300 -> 900 (ultra negrito) */
   color: #fff;
   margin: 0;
   line-height: 1.1;
   letter-spacing: -0.02em;
+  
+  /* Sombra para legibilidade */
+  text-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.3),
+    0 4px 20px rgba(0, 0, 0, 0.15);
 }
 
 .about-title span {
-  font-weight: 700;
+  font-weight: 900; /* MUDADO: 700 -> 900 (ultra negrito) */
   color: #fec90f;
+  
+  /* Sombra dourada para destaque */
+  text-shadow: 
+    0 0 30px rgba(254, 201, 15, 0.15),
+    0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .about-title-line {
@@ -136,7 +147,7 @@
 }
 
 /* ============================================
-   TEXTOS - CENTRALIZADO
+   TEXTOS - CENTRALIZADO (MANTIDO ORIGINAL)
    ============================================ */
 
 .about-texts {
@@ -147,15 +158,15 @@
 }
 
 .about-text {
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.6); /* MANTIDO ORIGINAL */
   font-size: 1.0625rem;
   line-height: 1.8;
   margin: 0;
-  font-weight: 300;
+  font-weight: 300; /* MANTIDO ORIGINAL */
 }
 
 /* ============================================
-   FEATURES - CENTRALIZADO IGUAL HERO
+   FEATURES - CENTRALIZADO IGUAL HERO (MANTIDO ORIGINAL)
    ============================================ */
 
 .about-features {
@@ -170,9 +181,9 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  color: rgba(255, 255, 255, 0.45);
+  color: rgba(255, 255, 255, 0.45); /* MANTIDO ORIGINAL */
   font-size: 0.8125rem;
-  font-weight: 300;
+  font-weight: 300; /* MANTIDO ORIGINAL */
   transition: color 0.3s ease;
 }
 
@@ -216,6 +227,7 @@
 
   .about-title {
     font-size: 2.8rem;
+    font-weight: 900;
   }
 }
 
@@ -235,6 +247,12 @@
 
   .about-title {
     font-size: 2.25rem;
+    font-weight: 900;
+    
+    /* Sombra mais forte no mobile */
+    text-shadow: 
+      0 2px 12px rgba(0, 0, 0, 0.4),
+      0 4px 24px rgba(0, 0, 0, 0.2);
   }
 
   .about-text {
@@ -275,6 +293,10 @@
 
   .about-title {
     font-size: 1.75rem;
+    font-weight: 900;
+    text-shadow: 
+      0 2px 16px rgba(0, 0, 0, 0.5),
+      0 4px 32px rgba(0, 0, 0, 0.3);
   }
 
   .about-text {
@@ -320,6 +342,7 @@
 @media (max-width: 380px) {
   .about-title {
     font-size: 1.5rem;
+    font-weight: 900;
   }
 
   .about-text {
