@@ -31,10 +31,7 @@
   justify-content: space-between;
 }
 
-/* ============================================
-   BRAND - ANIMAÇÃO DE ESTRELAS CADENTES (RESPONSIVA)
-   ============================================ */
-
+/* Brand com animação do traçado */
 .brand {
   text-decoration: none;
   flex-shrink: 0;
@@ -44,7 +41,7 @@
 }
 
 .brand:hover {
-  opacity: 0.85;
+  opacity: 0.8;
 }
 
 .brand-logo {
@@ -53,328 +50,57 @@
   display: block;
 }
 
-/* Traçado com animação de estrelas cadentes */
+/* Traçado animado embaixo da logo */
 .brand-underline {
   position: absolute;
   bottom: -6px;
   left: 0;
-  width: 100%;
+  width: 0%;
   height: 2px;
-  background: linear-gradient(90deg, 
-    transparent 0%, 
-    #fec90f 20%, 
-    #ffd700 40%, 
-    #fec90f 60%, 
-    transparent 80%,
-    transparent 100%
-  );
+  background: #fec90f;
   border-radius: 2px;
-  background-size: 300% 100%;
-  animation: shootingStar 3s ease-in-out infinite;
-  box-shadow: 0 0 10px rgba(254, 201, 15, 0.1);
+  transition: width 0.3s ease;
 }
 
-@keyframes shootingStar {
-  0% {
-    background-position: -300% 0;
-    opacity: 0.3;
-    transform: scaleX(0.8);
-  }
-  30% {
-    opacity: 1;
-    transform: scaleX(1);
-  }
-  70% {
-    opacity: 1;
-    transform: scaleX(1);
-  }
-  100% {
-    background-position: 300% 0;
-    opacity: 0.3;
-    transform: scaleX(0.8);
-  }
-}
-
-/* Efeito hover - estrelas mais intensas */
 .brand:hover .brand-underline {
-  animation-duration: 1.5s;
-  box-shadow: 0 0 25px rgba(254, 201, 15, 0.3);
-  height: 2.5px;
+  width: 100%;
 }
 
-/* ============================================
-   PARTÍCULAS - RESPONSIVAS
-   ============================================ */
-
-/* Desktop - todas as partículas visíveis */
-.brand::before {
-  content: '✦';
-  position: absolute;
-  top: -15px;
-  right: -20px;
-  font-size: 8px;
-  color: #fec90f;
-  opacity: 0;
-  animation: particleFloat 4s ease-in-out infinite;
-}
-
-.brand::after {
-  content: '✦';
-  position: absolute;
-  bottom: -15px;
-  left: -20px;
-  font-size: 6px;
-  color: #fec90f;
-  opacity: 0;
-  animation: particleFloat 4s ease-in-out infinite 1.5s;
-}
-
-.brand .particle-1 {
-  position: absolute;
-  top: -10px;
-  left: -15px;
-  font-size: 5px;
-  color: #ffd700;
-  opacity: 0;
-  animation: particleFloat 4.5s ease-in-out infinite 2.5s;
-  pointer-events: none;
-}
-
-.brand .particle-2 {
-  position: absolute;
-  bottom: -12px;
-  right: -15px;
-  font-size: 7px;
-  color: #fec90f;
-  opacity: 0;
-  animation: particleFloat 4.5s ease-in-out infinite 3.5s;
-  pointer-events: none;
-}
-
-.brand .particle-3 {
-  position: absolute;
-  top: 50%;
-  left: -25px;
-  font-size: 4px;
-  color: #ffd700;
-  opacity: 0;
-  animation: particleFloat 5s ease-in-out infinite 1s;
-  pointer-events: none;
-}
-
-.brand .particle-4 {
-  position: absolute;
-  top: 50%;
-  right: -25px;
-  font-size: 4px;
-  color: #fec90f;
-  opacity: 0;
-  animation: particleFloat 5s ease-in-out infinite 2s;
-  pointer-events: none;
-}
-
-@keyframes particleFloat {
+/* Animação contínua de encher e esvaziar */
+@keyframes underlinePulse {
   0% {
-    opacity: 0;
-    transform: translate(0, 0) scale(0) rotate(0deg);
+    width: 0%;
+    left: 0;
   }
-  20% {
-    opacity: 1;
-    transform: translate(5px, -10px) scale(1.2) rotate(45deg);
-  }
-  40% {
-    opacity: 0.8;
-    transform: translate(10px, -5px) scale(1) rotate(90deg);
-  }
-  60% {
-    opacity: 0.6;
-    transform: translate(5px, 5px) scale(0.8) rotate(135deg);
-  }
-  80% {
-    opacity: 0.3;
-    transform: translate(-5px, 10px) scale(0.5) rotate(180deg);
+  50% {
+    width: 100%;
+    left: 0;
   }
   100% {
-    opacity: 0;
-    transform: translate(-10px, 0) scale(0) rotate(225deg);
+    width: 0%;
+    left: 100%;
   }
 }
 
-.brand:hover::before,
-.brand:hover::after,
-.brand:hover .particle-1,
-.brand:hover .particle-2,
-.brand:hover .particle-3,
-.brand:hover .particle-4 {
-  animation-duration: 2s;
+.brand-underline {
+  animation: underlinePulse 3s ease-in-out infinite;
 }
 
-/* ============================================
-   RESPONSIVIDADE DAS PARTÍCULAS
-   ============================================ */
-
-/* Tablet grande - reduz partículas */
-@media (max-width: 1024px) {
-  .brand::before,
-  .brand::after {
-    font-size: 6px;
-    animation-duration: 5s;
-  }
-  
-  .brand .particle-1,
-  .brand .particle-2,
-  .brand .particle-3,
-  .brand .particle-4 {
-    font-size: 4px;
-    animation-duration: 5.5s;
-  }
-  
-  .brand::before {
-    top: -12px;
-    right: -16px;
-  }
-  
-  .brand::after {
-    bottom: -12px;
-    left: -16px;
-  }
-  
-  .brand .particle-3 {
-    left: -20px;
-  }
-  
-  .brand .particle-4 {
-    right: -20px;
-  }
+/* Para quando passar o mouse, para a animação e mostra o traçado completo */
+.brand:hover .brand-underline {
+  animation: none;
+  width: 100%;
+  left: 0;
 }
 
-/* Tablet - menos partículas, mais espaçadas */
-@media (max-width: 900px) {
-  /* Esconde partículas mais distantes */
-  .brand .particle-3,
-  .brand .particle-4 {
-    display: none;
-  }
-  
-  .brand::before,
-  .brand::after {
-    font-size: 5px;
-    animation-duration: 6s;
-  }
-  
-  .brand .particle-1,
-  .brand .particle-2 {
-    font-size: 4px;
-    animation-duration: 6s;
-  }
-  
-  .brand::before {
-    top: -10px;
-    right: -14px;
-  }
-  
-  .brand::after {
-    bottom: -10px;
-    left: -14px;
-  }
-  
-  .brand .particle-1 {
-    top: -8px;
-    left: -12px;
-  }
-  
-  .brand .particle-2 {
-    bottom: -10px;
-    right: -12px;
-  }
-}
-
-/* Mobile grande - apenas 2 partículas */
-@media (max-width: 640px) {
-  .brand-logo {
-    height: 30px;
-  }
-  
-  .brand-underline {
-    bottom: -4px;
-    height: 1.5px;
-  }
-  
-  /* Esconde todas as partículas extras, mantém apenas ::before e ::after */
-  .brand .particle-1,
-  .brand .particle-2,
-  .brand .particle-3,
-  .brand .particle-4 {
-    display: none;
-  }
-  
-  .brand::before,
-  .brand::after {
-    font-size: 4px;
-    animation-duration: 7s;
-  }
-  
-  .brand::before {
-    top: -8px;
-    right: -12px;
-  }
-  
-  .brand::after {
-    bottom: -8px;
-    left: -12px;
-  }
-  
-  .brand:hover::before,
-  .brand:hover::after {
-    animation-duration: 3s;
-  }
-}
-
-/* Mobile pequeno - partículas ainda menores */
-@media (max-width: 480px) {
-  .brand-logo {
-    height: 36px;
-  }
-  
-  .brand-underline {
-    bottom: -3px;
-    height: 1.5px;
-  }
-  
-  /* Esconde todas as partículas no mobile pequeno */
-  .brand::before,
-  .brand::after,
-  .brand .particle-1,
-  .brand .particle-2,
-  .brand .particle-3,
-  .brand .particle-4 {
-    display: none;
-  }
-}
-
-/* Mobile muito pequeno */
-@media (max-width: 380px) {
-  .brand-logo {
-    height: 28px;
-  }
-  
-  .brand-underline {
-    bottom: -2px;
-    height: 1px;
-  }
-}
-
-/* ============================================
-   NAV
-   ============================================ */
-
+/* Nav */
 .nav {
   display: flex;
   gap: 40px;
 }
 
 .nav-link {
-  color: rgba(255, 255, 255, 0.55);
+  color: #ffffff;
   font-size: 0.8125rem;
   font-weight: 500;
   text-decoration: none;
@@ -610,7 +336,7 @@
 }
 
 /* ============================================
-   RESPONSIVE - HEADER
+   RESPONSIVE
    ============================================ */
 
 /* Tablet e mobile - esconde nav e actions, mostra botões mobile */
@@ -634,6 +360,10 @@
   .header-inner {
     padding: 0 24px;
     height: 64px;
+  }
+
+  .brand-logo {
+    height: 30px;
   }
 
   .mobile-menu {
@@ -661,6 +391,10 @@
   .header-inner {
     padding: 0 20px;
     height: 60px;
+  }
+
+  .brand-logo {
+    height: 36px;
   }
 
   .mobile-menu {
