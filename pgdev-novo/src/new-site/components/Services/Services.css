@@ -1,4 +1,19 @@
-/* ===== SERVICES SECTION ===== */
+/* ============================================
+   VARIÁVEIS GLOBAIS (mesmas do hero)
+   ============================================ */
+:root {
+  --hero-bg: #000c24;
+  --gold: #fec90f;
+  --gold-rgb: 254, 201, 15;
+  --white: #ffffff;
+  --text-muted: rgba(255, 255, 255, 0.6);
+  --text-dim: rgba(255, 255, 255, 0.5);
+  --border-light: rgba(255, 255, 255, 0.15);
+}
+
+/* ============================================
+   SERVICES SECTION
+   ============================================ */
 .services {
   padding: 80px 0;
   background: #000c24;
@@ -7,7 +22,7 @@
   min-height: 100vh;
 }
 
-/* ===== IMAGEM DE FUNDO - SÓ O OPACITY CARALHO ===== */
+/* ===== IMAGEM DE FUNDO - EXATAMENTE IGUAL ORIGINAL ===== */
 .services-background {
   position: absolute;
   inset: 0;
@@ -15,10 +30,10 @@
   background-position: center;
   background-repeat: no-repeat;
   z-index: 1;
-  opacity: 1 !important; /* SÓ ISSO PORRA */
+  opacity: 1 !important; /* MANTIDO IGUAL ORIGINAL */
 }
 
-/* OVERLAY - MANTIVE O SEU */
+/* OVERLAY - MANTIDO IGUAL ORIGINAL */
 .services-background::after {
   content: '';
   position: absolute;
@@ -29,7 +44,6 @@
 /* ============================================
    CONTAINER
    ============================================ */
-
 .services-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -39,9 +53,8 @@
 }
 
 /* ============================================
-   HEADER - TÍTULO CENTRALIZADO COM ESCADA FORTE
+   HEADER - TÍTULO CENTRALIZADO (SÓ TÍTULOS)
    ============================================ */
-
 .services-header {
   width: 100%;
   margin-bottom: 48px;
@@ -59,38 +72,54 @@
   width: 100%;
 }
 
+/* LINHA 1 - SÓ TÍTULO EM NEGRITO */
 .services-title .line-1 {
   font-size: 2.8rem;
-  font-weight: 300;
-  color: #fff;
+  font-weight: 700; /* MUDADO: 300 -> 700 (negrito) */
+  color: #ffffff;
   letter-spacing: -0.02em;
   text-align: center;
   transform: translateX(-0px);
+  
+  /* Sombra para legibilidade */
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
+/* LINHA 2 - DOURADA E NEGRITO (destaque) */
 .services-title .line-2 {
   margin-top: 8px;
   font-size: 2.8rem;
-  font-weight: 700;
+  font-weight: 900; /* MUDADO: 700 -> 900 (ultra negrito) */
   color: #fec90f;
   letter-spacing: -0.02em;
   text-align: center;
   transform: translateX(170px);
-  /* LINHA TRAÇADA IGUAL A HERO */
   border-bottom: 2px solid rgba(254, 201, 15, 0.3);
   padding-bottom: 4px;
+  
+  /* Sombra dourada para destaque */
+  text-shadow: 
+    0 0 30px rgba(254, 201, 15, 0.15),
+    0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
+/* LINHA 3 - SÓ TÍTULO EM NEGRITO */
 .services-title .line-3 {
   margin-top: 8px;
   font-size: 2.8rem;
-  font-weight: 500;
-  color: #fff;
+  font-weight: 700; /* MUDADO: 500 -> 700 (negrito) */
+  color: #ffffff;
   letter-spacing: -0.02em;
   text-align: center;
   transform: translateX(20px);
+  
+  /* Sombra para legibilidade */
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
+/* ============================================
+   GRID
+   ============================================ */
 .services-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -100,9 +129,8 @@
 }
 
 /* ============================================
-   CARDS
+   CARDS (SÓ TÍTULOS EM NEGRITO)
    ============================================ */
-
 .service-card {
   display: flex;
   align-items: flex-start;
@@ -136,19 +164,24 @@
   flex: 1;
 }
 
+/* SÓ O TÍTULO DO CARD EM NEGRITO */
 .service-info h3 {
   margin: 0 0 6px;
   font-size: 1rem;
-  font-weight: 400;
+  font-weight: 700; /* MUDADO: 400 -> 700 (negrito) */
   color: #ffffff;
+  
+  /* Sombra para legibilidade */
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
 }
 
+/* DESCRIÇÃO - MANTIDA ORIGINAL */
 .service-info p {
   margin: 0 0 12px;
   font-size: 0.8125rem;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.6); /* MANTIDO ORIGINAL */
   line-height: 1.6;
-  font-weight: 300;
+  font-weight: 300; /* MANTIDO ORIGINAL */
 }
 
 .service-points {
@@ -157,13 +190,14 @@
   margin: 0;
 }
 
+/* PONTOS - MANTIDOS ORIGINAIS */
 .service-points li {
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.7); /* MANTIDO ORIGINAL */
   font-size: 0.75rem;
   margin-bottom: 6px;
   padding-left: 12px;
   position: relative;
-  font-weight: 300;
+  font-weight: 300; /* MANTIDO ORIGINAL */
 }
 
 .service-points li::before {
@@ -174,9 +208,8 @@
 }
 
 /* ============================================
-   SCROLL INDICATOR
+   SCROLL INDICATOR (MANTIDO IGUAL)
    ============================================ */
-
 .scroll-indicator {
   display: flex;
   flex-direction: column;
@@ -243,7 +276,7 @@
 .scroll-text {
   color: rgba(255, 255, 255, 0.5);
   font-size: 0.65rem;
-  font-weight: 500;
+  font-weight: 500; /* MANTIDO ORIGINAL */
   letter-spacing: 0.15em;
   text-transform: uppercase;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -255,7 +288,7 @@
 }
 
 /* ============================================
-   RESPONSIVO - SÓ OPACITY PORRA
+   RESPONSIVO - SÓ OPACITY PORRA (MANTIDO IGUAL)
    ============================================ */
 
 /* Desktop Grande */
@@ -306,16 +339,19 @@
   
   .services-title .line-1 {
     font-size: 2.4rem;
+    font-weight: 700;
     transform: translateX(-50px);
   }
 
   .services-title .line-2 {
     font-size: 2.4rem;
+    font-weight: 900;
     transform: translateX(50px);
   }
   
   .services-title .line-3 {
     font-size: 2.4rem;
+    font-weight: 700;
     transform: translateX(10px);
   }
 }
@@ -334,16 +370,19 @@
   
   .services-title .line-1 {
     font-size: 2.2rem;
+    font-weight: 700;
     transform: translateX(-40px);
   }
 
   .services-title .line-2 {
     font-size: 2.2rem;
+    font-weight: 900;
     transform: translateX(40px);
   }
   
   .services-title .line-3 {
     font-size: 2.2rem;
+    font-weight: 700;
     transform: translateX(8px);
   }
 }
@@ -371,16 +410,19 @@
   
   .services-title .line-1 {
     font-size: 2rem;
+    font-weight: 700;
     transform: translateX(-30px);
   }
 
   .services-title .line-2 {
     font-size: 2rem;
+    font-weight: 900;
     transform: translateX(30px);
   }
   
   .services-title .line-3 {
     font-size: 2rem;
+    font-weight: 700;
     transform: translateX(5px);
   }
 }
@@ -417,16 +459,19 @@
   
   .services-title .line-1 {
     font-size: 1.8rem;
+    font-weight: 700;
     transform: translateX(-25px);
   }
 
   .services-title .line-2 {
     font-size: 1.8rem;
+    font-weight: 900;
     transform: translateX(25px);
   }
   
   .services-title .line-3 {
     font-size: 1.8rem;
+    font-weight: 700;
     transform: translateX(5px);
   }
   
@@ -458,13 +503,21 @@
   
   .services-title .line-1 {
     font-size: 1.5rem;
+    font-weight: 700;
     transform: translateX(-2px);
   }
 
   .services-title .line-2 {
     font-size: 1.5rem;
+    font-weight: 900;
     transform: translateX(30px);
     margin-top: 4px;
+  }
+  
+  .services-title .line-3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    transform: translateX(0px);
   }
   
   .scroll-arrows span {
@@ -481,16 +534,19 @@
 @media (max-width: 380px) {
   .services-title .line-1 {
     font-size: 1.2rem;
+    font-weight: 700;
     transform: translateX(-15px);
   }
 
   .services-title .line-2 {
     font-size: 1.2rem;
+    font-weight: 900;
     transform: translateX(-2px);
   }
   
   .services-title .line-3 {
     font-size: 1.2rem;
+    font-weight: 700;
     transform: translateX(2px);
   }
   
@@ -506,6 +562,7 @@
   
   .service-info h3 {
     font-size: 0.875rem;
+    font-weight: 700;
   }
   
   .service-info p {
