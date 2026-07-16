@@ -30,7 +30,7 @@
   background-position: center;
   background-repeat: no-repeat;
   z-index: 1;
-  opacity: 1 !important; /* MANTIDO IGUAL ORIGINAL */
+  opacity: 1 !important;
 }
 
 /* OVERLAY - MANTIDO IGUAL ORIGINAL */
@@ -75,7 +75,7 @@
 /* LINHA 1 - SÓ TÍTULO EM NEGRITO */
 .services-title .line-1 {
   font-size: 2.8rem;
-  font-weight: 700; /* MUDADO: 300 -> 700 (negrito) */
+  font-weight: 700;
   color: #ffffff;
   letter-spacing: -0.02em;
   text-align: center;
@@ -85,11 +85,11 @@
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
-/* LINHA 2 - DOURADA E NEGRITO (destaque) */
+/* LINHA 2 - DOURADA COM BRILHO ESTÁTICO (igual ao hero) */
 .services-title .line-2 {
   margin-top: 8px;
   font-size: 2.8rem;
-  font-weight: 900; /* MUDADO: 700 -> 900 (ultra negrito) */
+  font-weight: 900;
   color: #fec90f;
   letter-spacing: -0.02em;
   text-align: center;
@@ -97,9 +97,10 @@
   border-bottom: 2px solid rgba(254, 201, 15, 0.3);
   padding-bottom: 4px;
   
-  /* Sombra dourada para destaque */
+  /* BRILHO ESTÁTICO - APENAS UMA CAMADA DE GLOW (igual ao hero) */
   text-shadow: 
-    0 0 30px rgba(254, 201, 15, 0.15),
+    0 0 20px rgba(254, 201, 15, 0.25),
+    0 0 40px rgba(254, 201, 15, 0.12),
     0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
@@ -107,7 +108,7 @@
 .services-title .line-3 {
   margin-top: 8px;
   font-size: 2.8rem;
-  font-weight: 700; /* MUDADO: 500 -> 700 (negrito) */
+  font-weight: 700;
   color: #ffffff;
   letter-spacing: -0.02em;
   text-align: center;
@@ -129,7 +130,7 @@
 }
 
 /* ============================================
-   CARDS (SÓ TÍTULOS EM NEGRITO)
+   CARDS - SEM TRANSITIONS PARA EVITAR TRAVAMENTO
    ============================================ */
 .service-card {
   display: flex;
@@ -139,36 +140,25 @@
   border-radius: 12px;
   background: rgba(0, 12, 36, 0.6);
   border: 1px solid rgba(255, 255, 255, 0.06);
-  transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-}
-
-.service-card:hover {
-  transform: translateY(-6px);
-  background: rgb(0, 12, 36);
-  border-color: rgba(254, 201, 15, 0.15);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+  /* SEM transition */
 }
 
 .service-card svg {
   color: #fec90f;
   flex-shrink: 0;
   margin-top: 2px;
-  transition: transform 0.3s ease;
-}
-
-.service-card:hover svg {
-  transform: scale(1.15);
+  /* SEM transition */
 }
 
 .service-info {
   flex: 1;
 }
 
-/* SÓ O TÍTULO DO CARD EM NEGRITO */
+/* TÍTULO DO CARD EM NEGRITO */
 .service-info h3 {
   margin: 0 0 6px;
   font-size: 1rem;
-  font-weight: 700; /* MUDADO: 400 -> 700 (negrito) */
+  font-weight: 700;
   color: #ffffff;
   
   /* Sombra para legibilidade */
@@ -179,9 +169,9 @@
 .service-info p {
   margin: 0 0 12px;
   font-size: 0.8125rem;
-  color: rgba(255, 255, 255, 0.6); /* MANTIDO ORIGINAL */
+  color: rgba(255, 255, 255, 0.6);
   line-height: 1.6;
-  font-weight: 300; /* MANTIDO ORIGINAL */
+  font-weight: 300;
 }
 
 .service-points {
@@ -192,12 +182,12 @@
 
 /* PONTOS - MANTIDOS ORIGINAIS */
 .service-points li {
-  color: rgba(255, 255, 255, 0.7); /* MANTIDO ORIGINAL */
+  color: rgba(255, 255, 255, 0.7);
   font-size: 0.75rem;
   margin-bottom: 6px;
   padding-left: 12px;
   position: relative;
-  font-weight: 300; /* MANTIDO ORIGINAL */
+  font-weight: 300;
 }
 
 .service-points li::before {
@@ -208,7 +198,7 @@
 }
 
 /* ============================================
-   SCROLL INDICATOR (MANTIDO IGUAL)
+   SCROLL INDICATOR - SEM TRANSITIONS
    ============================================ */
 .scroll-indicator {
   display: flex;
@@ -216,13 +206,9 @@
   align-items: center;
   gap: 12px;
   opacity: 1;
-  transition: opacity 0.3s ease;
   position: relative;
   z-index: 2;
-}
-
-.scroll-indicator:hover {
-  opacity: 1;
+  /* SEM transition */
 }
 
 .scroll-arrows {
@@ -240,12 +226,7 @@
   border-bottom: 2.5px solid #fec90f;
   transform: rotate(45deg);
   animation: arrowDown 2s ease-in-out infinite;
-  transition: all 0.3s ease;
-}
-
-.scroll-indicator:hover .scroll-arrows span {
-  border-color: #ffd43b;
-  transform: rotate(45deg) scale(1.1);
+  /* SEM transition */
 }
 
 .scroll-arrows span:nth-child(1) {
@@ -276,19 +257,15 @@
 .scroll-text {
   color: rgba(255, 255, 255, 0.5);
   font-size: 0.65rem;
-  font-weight: 500; /* MANTIDO ORIGINAL */
+  font-weight: 500;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  transition: color 0.3s ease;
-}
-
-.scroll-indicator:hover .scroll-text {
-  color: rgba(255, 255, 255, 0.8);
+  /* SEM transition */
 }
 
 /* ============================================
-   RESPONSIVO - SÓ OPACITY PORRA (MANTIDO IGUAL)
+   RESPONSIVO - BRILHO EM TODOS OS TAMANHOS
    ============================================ */
 
 /* Desktop Grande */
@@ -297,6 +274,14 @@
     background-size: 45% 100%;
     background-position: 14% center;
     opacity: 1 !important;
+  }
+  
+  /* BRILHO TABLET GRANDE */
+  .services-title .line-2 {
+    text-shadow: 
+      0 0 16px rgba(254, 201, 15, 0.25),
+      0 0 32px rgba(254, 201, 15, 0.12),
+      0 2px 8px rgba(0, 0, 0, 0.3);
   }
 }
 
@@ -318,6 +303,14 @@
   
   .services-title .line-3 {
     transform: translateX(15px);
+  }
+  
+  /* BRILHO DESKTOP PEQUENO */
+  .services-title .line-2 {
+    text-shadow: 
+      0 0 16px rgba(254, 201, 15, 0.25),
+      0 0 32px rgba(254, 201, 15, 0.12),
+      0 2px 8px rgba(0, 0, 0, 0.3);
   }
 }
 
@@ -347,6 +340,12 @@
     font-size: 2.4rem;
     font-weight: 900;
     transform: translateX(50px);
+    
+    /* BRILHO TABLET */
+    text-shadow: 
+      0 0 14px rgba(254, 201, 15, 0.25),
+      0 0 28px rgba(254, 201, 15, 0.12),
+      0 2px 8px rgba(0, 0, 0, 0.3);
   }
   
   .services-title .line-3 {
@@ -378,6 +377,12 @@
     font-size: 2.2rem;
     font-weight: 900;
     transform: translateX(40px);
+    
+    /* BRILHO TABLET */
+    text-shadow: 
+      0 0 14px rgba(254, 201, 15, 0.25),
+      0 0 28px rgba(254, 201, 15, 0.12),
+      0 2px 8px rgba(0, 0, 0, 0.3);
   }
   
   .services-title .line-3 {
@@ -418,6 +423,13 @@
     font-size: 2rem;
     font-weight: 900;
     transform: translateX(30px);
+    
+    /* BRILHO TABLET PEQUENO */
+    text-shadow: 
+      0 0 12px rgba(254, 201, 15, 0.25),
+      0 0 24px rgba(254, 201, 15, 0.12),
+      0 2px 8px rgba(0, 0, 0, 0.3);
+    border-bottom-width: 2px;
   }
   
   .services-title .line-3 {
@@ -467,6 +479,12 @@
     font-size: 1.8rem;
     font-weight: 900;
     transform: translateX(25px);
+    
+    /* BRILHO MOBILE GRANDE */
+    text-shadow: 
+      0 0 10px rgba(254, 201, 15, 0.25),
+      0 0 20px rgba(254, 201, 15, 0.12),
+      0 2px 8px rgba(0, 0, 0, 0.3);
   }
   
   .services-title .line-3 {
@@ -512,6 +530,14 @@
     font-weight: 900;
     transform: translateX(30px);
     margin-top: 4px;
+    
+    /* BRILHO MOBILE PEQUENO */
+    text-shadow: 
+      0 0 8px rgba(254, 201, 15, 0.25),
+      0 0 16px rgba(254, 201, 15, 0.12),
+      0 2px 8px rgba(0, 0, 0, 0.3);
+    border-bottom-width: 2px;
+    padding-bottom: 2px;
   }
   
   .services-title .line-3 {
@@ -542,6 +568,14 @@
     font-size: 1.2rem;
     font-weight: 900;
     transform: translateX(-2px);
+    
+    /* BRILHO MOBILE MUITO PEQUENO */
+    text-shadow: 
+      0 0 6px rgba(254, 201, 15, 0.2),
+      0 0 12px rgba(254, 201, 15, 0.1),
+      0 2px 8px rgba(0, 0, 0, 0.3);
+    border-bottom-width: 1px;
+    padding-bottom: 2px;
   }
   
   .services-title .line-3 {
