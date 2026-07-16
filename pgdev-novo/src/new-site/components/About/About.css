@@ -1,4 +1,4 @@
-/* About.css - Visual limpo sem stats */
+/* About.css - Visual melhorado com identidade do site */
 .about {
   padding: 80px 0 100px;
   background: #000c24;
@@ -10,7 +10,11 @@
   justify-content: center;
 }
 
-/* ===== LOGO NO FUNDO - IGUAL SERVICES ===== */
+/* ============================================
+   FUNDO - IGUAL HERO/SERVICES
+   ============================================ */
+
+/* Logo no fundo */
 .about-bg {
   position: absolute;
   inset: 0;
@@ -50,7 +54,9 @@
   50% { transform: scale(1.2); opacity: 1; }
 }
 
-/* ===== CONTAINER - CENTRALIZADO IGUAL HERO ===== */
+/* ============================================
+   CONTAINER - CENTRALIZADO IGUAL HERO
+   ============================================ */
 .about-container {
   max-width: 900px;
   margin: 0 auto;
@@ -69,7 +75,7 @@
 }
 
 /* ============================================
-   HEADER - CENTRALIZADO IGUAL HERO
+   HEADER - MELHORADO
    ============================================ */
 
 .about-header {
@@ -78,17 +84,19 @@
   align-items: center;
   text-align: center;
   gap: 4px;
+  margin-bottom: 8px;
 }
 
+/* LABEL - IGUAL HERO */
 .about-label {
   color: #fec90f;
   font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.15em;
+  font-weight: 700; /* MUDADO: 600 -> 700 */
+  letter-spacing: 0.2em; /* MUDADO: 0.15em -> 0.2em */
   text-transform: uppercase;
   display: inline-block;
   position: relative;
-  padding: 0 20px;
+  padding: 0 24px;
 }
 
 .about-label::before {
@@ -97,9 +105,10 @@
   left: 0;
   top: 50%;
   transform: translateY(-50%);
-  width: 12px;
+  width: 14px;
   height: 2px;
   background: #fec90f;
+  border-radius: 1px;
 }
 
 .about-label::after {
@@ -108,15 +117,16 @@
   right: 0;
   top: 50%;
   transform: translateY(-50%);
-  width: 12px;
+  width: 14px;
   height: 2px;
   background: #fec90f;
+  border-radius: 1px;
 }
 
-/* ===== TITLE - SÓ TÍTULO EM NEGRITO ===== */
+/* TÍTULO - ULTRA NEGRITO IGUAL HERO */
 .about-title {
   font-size: clamp(2.4rem, 5.5vw, 4rem);
-  font-weight: 900; /* MUDADO: 300 -> 900 (ultra negrito) */
+  font-weight: 900;
   color: #fff;
   margin: 0;
   line-height: 1.1;
@@ -129,7 +139,7 @@
 }
 
 .about-title span {
-  font-weight: 900; /* MUDADO: 700 -> 900 (ultra negrito) */
+  font-weight: 900;
   color: #fec90f;
   
   /* Sombra dourada para destaque */
@@ -138,35 +148,48 @@
     0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
+/* LINHA DECORATIVA - MELHORADA */
 .about-title-line {
   width: 60px;
   height: 3px;
-  background: #fec90f;
+  background: linear-gradient(90deg, transparent, #fec90f, transparent);
   border-radius: 2px;
-  margin-top: 8px;
+  margin-top: 12px;
+  animation: linePulse 3s ease-in-out infinite;
+}
+
+@keyframes linePulse {
+  0%, 100% { width: 60px; opacity: 0.6; }
+  50% { width: 80px; opacity: 1; }
 }
 
 /* ============================================
-   TEXTOS - CENTRALIZADO (MANTIDO ORIGINAL)
+   TEXTOS - COM ESPAÇAMENTO MELHORADO
    ============================================ */
 
 .about-texts {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 20px; /* MUDADO: 16px -> 20px */
   max-width: 620px;
 }
 
 .about-text {
-  color: rgba(255, 255, 255, 0.6); /* MANTIDO ORIGINAL */
+  color: rgba(255, 255, 255, 0.6);
   font-size: 1.0625rem;
   line-height: 1.8;
   margin: 0;
-  font-weight: 300; /* MANTIDO ORIGINAL */
+  font-weight: 300;
+}
+
+/* DESTAQUE DO TEXTO - NOVO */
+.about-text strong {
+  color: #fec90f;
+  font-weight: 600;
 }
 
 /* ============================================
-   FEATURES - CENTRALIZADO IGUAL HERO (MANTIDO ORIGINAL)
+   FEATURES - MELHORADO
    ============================================ */
 
 .about-features {
@@ -175,28 +198,31 @@
   flex-wrap: wrap;
   justify-content: center;
   padding-top: 8px;
+  border-top: 1px solid rgba(254, 201, 15, 0.06);
+  padding-top: 24px;
 }
 
 .about-feature {
   display: flex;
   align-items: center;
-  gap: 8px;
-  color: rgba(255, 255, 255, 0.45); /* MANTIDO ORIGINAL */
+  gap: 10px; /* MUDADO: 8px -> 10px */
+  color: rgba(255, 255, 255, 0.45);
   font-size: 0.8125rem;
-  font-weight: 300; /* MANTIDO ORIGINAL */
-  transition: color 0.3s ease;
+  font-weight: 300;
+  transition: all 0.3s ease;
 }
 
 .about-feature:hover {
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.85);
 }
 
+/* ÍCONE - MELHORADO */
 .about-feature-icon {
-  width: 28px;
-  height: 28px;
+  width: 32px; /* MUDADO: 28px -> 32px */
+  height: 32px;
   border-radius: 50%;
   background: rgba(254, 201, 15, 0.04);
-  border: 1px solid rgba(254, 201, 15, 0.04);
+  border: 1px solid rgba(254, 201, 15, 0.06);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -206,9 +232,81 @@
 }
 
 .about-feature:hover .about-feature-icon {
-  background: rgba(254, 201, 15, 0.08);
-  border-color: rgba(254, 201, 15, 0.08);
-  transform: scale(1.05);
+  background: rgba(254, 201, 15, 0.1);
+  border-color: rgba(254, 201, 15, 0.15);
+  transform: scale(1.08);
+  box-shadow: 0 0 20px rgba(254, 201, 15, 0.05);
+}
+
+/* TEXTO DO FEATURE - NEGRITO NO NOME */
+.about-feature strong {
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 600;
+}
+
+/* ============================================
+   CTA BOTÃO - IGUAL HERO (NOVO)
+   ============================================ */
+
+.about-cta {
+  margin-top: 8px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.about-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 0 32px;
+  height: 48px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.875rem;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+}
+
+.about-btn.primary {
+  background: #fec90f;
+  color: #000c24;
+  border: 2px solid #fec90f;
+}
+
+.about-btn.primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 40px rgba(254, 201, 15, 0.35);
+  gap: 16px;
+}
+
+.about-btn.primary:active {
+  transform: translateY(0) scale(0.97);
+}
+
+.about-btn.secondary {
+  background: transparent;
+  color: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.about-btn.secondary:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.95);
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.about-btn svg {
+  transition: transform 0.3s ease;
+}
+
+.about-btn:hover svg {
+  transform: translateX(4px);
 }
 
 /* ============================================
@@ -248,8 +346,6 @@
   .about-title {
     font-size: 2.25rem;
     font-weight: 900;
-    
-    /* Sombra mais forte no mobile */
     text-shadow: 
       0 2px 12px rgba(0, 0, 0, 0.4),
       0 4px 24px rgba(0, 0, 0, 0.2);
@@ -270,11 +366,22 @@
   }
 
   .about-features {
-    gap: 12px 24px;
+    gap: 16px 24px;
+    padding-top: 20px;
   }
 
   .about-feature {
     font-size: 0.75rem;
+  }
+
+  .about-btn {
+    width: 100%;
+    justify-content: center;
+    height: 50px;
+  }
+
+  .about-cta {
+    width: 100%;
   }
 }
 
@@ -305,6 +412,7 @@
 
   .about-label {
     font-size: 0.6875rem;
+    padding: 0 16px;
   }
 
   .about-label::before,
@@ -326,16 +434,30 @@
   .about-title-line {
     width: 40px;
     height: 2px;
+    margin-top: 8px;
   }
 
   .about-features {
     flex-direction: column;
-    gap: 10px;
+    gap: 12px;
     align-items: center;
+    padding-top: 16px;
   }
 
   .about-feature {
     font-size: 0.75rem;
+  }
+
+  .about-cta {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .about-btn {
+    width: 100%;
+    justify-content: center;
+    height: 50px;
+    font-size: 0.9rem;
   }
 }
 
@@ -358,12 +480,17 @@
   }
 
   .about-feature-icon {
-    width: 24px;
-    height: 24px;
+    width: 28px;
+    height: 28px;
   }
 
   .about-feature-icon svg {
     width: 14px;
     height: 14px;
+  }
+
+  .about-btn {
+    height: 44px;
+    font-size: 0.8rem;
   }
 }
