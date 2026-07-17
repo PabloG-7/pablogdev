@@ -7,6 +7,8 @@ import Header from './new-site/components/Header/Header'
 import Hero from './new-site/components/Hero/Hero'
 import Services from './new-site/components/Services/Services'
 import Showcase from './new-site/components/Showcase/Showcase'
+import Process from './new-site/components/Process/Process'
+import FAQ from './new-site/components/FAQ/FAQ'
 import About from './new-site/components/About/About'
 import Contact from './new-site/components/Contact/Contact'
 import Footer from './new-site/components/Footer/Footer'
@@ -24,8 +26,10 @@ function getInitialLanguage(): Language {
   }
 
   const browserLang = navigator.language.toLowerCase()
+
   if (browserLang.startsWith('es')) return 'es'
   if (browserLang.startsWith('en')) return 'en'
+
   return 'pt'
 }
 
@@ -41,11 +45,18 @@ function App() {
 
   const [isGuideOpen, setIsGuideOpen] = useState(false)
 
-  const currentLanguage: Language = isSpanishRoute ? 'es' : isEnglishRoute ? 'en' : language
+  const currentLanguage: Language =
+    isSpanishRoute ? 'es' : isEnglishRoute ? 'en' : language
 
   useEffect(() => {
     localStorage.setItem('pgdev-language', currentLanguage)
-    document.documentElement.lang = currentLanguage === 'pt' ? 'pt-BR' : currentLanguage === 'es' ? 'es' : 'en'
+
+    document.documentElement.lang =
+      currentLanguage === 'pt'
+        ? 'pt-BR'
+        : currentLanguage === 'es'
+        ? 'es'
+        : 'en'
   }, [currentLanguage])
 
   if (path === '/pablo-gomes') {
@@ -76,6 +87,11 @@ function App() {
         <Services language={currentLanguage} />
 
         <Showcase language={currentLanguage} />
+
+        {/* CORREÇÃO AQUI - Passando a prop language */}
+        <Process language={currentLanguage} />
+
+        <FAQ language={currentLanguage} /> {/* Também adicionei language no FAQ */}
 
         <About language={currentLanguage} />
 
