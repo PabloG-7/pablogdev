@@ -581,7 +581,7 @@
   }
 }
 
-@media (max-width: 380px) {
+@media (max-width: 320px) {
   .hero-title {
     font-size: clamp(1.3rem, 6vw, 1.55rem);
     font-weight: 900;
