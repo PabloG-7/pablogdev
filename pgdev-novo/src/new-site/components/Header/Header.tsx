@@ -10,22 +10,30 @@ import type { Language } from '../../types'
 
 type HeaderProps = {
   language: Language
-  onChangeLanguage: (language: Language) => void
 }
 
-export default function Header({ language, onChangeLanguage }: HeaderProps) {
+export default function Header({ language }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [activeSection, setActiveSection] = useState('inicio')
   
-  // Conteúdo direto no componente
+  const basePath = language === 'es' ? '/es' : language === 'en' ? '/en' : ''
+
+  const whatsappMessages = {
+    pt: 'Olá, vim pelo site PabloG.Dev e gostaria de saber mais sobre sites e sistemas.',
+    es: 'Hola, vengo del sitio PabloG.Dev y me gustaría obtener más información sobre sitios web y sistemas.',
+    en: "Hello, I came from the PabloG.Dev website and I'd like to know more about websites and custom systems."
+  }
+
+  const whatsappLink = `https://wa.me/5511961111894?text=${encodeURIComponent(whatsappMessages[language])}`
+
   const content = {
     pt: {
       header: {
         home: 'Início',
         services: 'Serviços',
         projects: 'Exemplos',
-        about: 'Sobre',
+        process: 'Processo',
         contact: 'Contato',
         cta: 'WhatsApp'
       }
@@ -35,7 +43,7 @@ export default function Header({ language, onChangeLanguage }: HeaderProps) {
         home: 'Inicio',
         services: 'Servicios',
         projects: 'Ejemplos',
-        about: 'Sobre',
+        process: 'Proceso',
         contact: 'Contacto',
         cta: 'WhatsApp'
       }
@@ -45,7 +53,7 @@ export default function Header({ language, onChangeLanguage }: HeaderProps) {
         home: 'Home',
         services: 'Services',
         projects: 'Examples',
-        about: 'About',
+        process: 'Process',
         contact: 'Contact',
         cta: 'WhatsApp'
       }
@@ -53,6 +61,18 @@ export default function Header({ language, onChangeLanguage }: HeaderProps) {
   }
 
   const currentContent = content[language]
+
+  const changeLanguage = (lang: Language) => {
+    const currentHash = window.location.hash
+
+    if (lang === 'pt') {
+      window.location.href = `/${currentHash}`
+    } else if (lang === 'es') {
+      window.location.href = `/es${currentHash}`
+    } else if (lang === 'en') {
+      window.location.href = `/en${currentHash}`
+    }
+  }
 
   const handleWhatsAppClick = () => {
     if (window.fbq) {
@@ -64,7 +84,7 @@ export default function Header({ language, onChangeLanguage }: HeaderProps) {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50)
       
-      const sections = ['inicio', 'servicos', 'projetos', 'sobre', 'contato']
+      const sections = ['inicio', 'servicos', 'exemplos', 'processo', 'contato']
       const scrollPos = window.scrollY + 200
       
       for (const section of sections) {
@@ -91,46 +111,47 @@ export default function Header({ language, onChangeLanguage }: HeaderProps) {
     return () => window.removeEventListener('resize', handleResize)
   }, [isMenuOpen])
 
-  const whatsappLink = "https://wa.me/5511961111894?text=Ol%C3%A1%2C%20vim%20pelo%20site%20PabloG.Dev%20e%20gostaria%20de%20saber%20mais%20sobre%20sites%20e%20sistemas."
-
   return (
     <header className={`header ${scrolled ? 'scrolled' : ''}`}>
       <div className="header-inner">
-        <a href="#inicio" className="brand" onClick={closeMenu}>
+        <a href={`${basePath}#inicio`} className="brand" onClick={closeMenu}>
           <img src={logo} alt="PabloG.Dev" className="brand-logo" />
           <div className="brand-underline"></div>
         </a>
 
         <nav className="nav">
-          <a href="#inicio" className={`nav-link ${activeSection === 'inicio' ? 'active' : ''}`}>{currentContent.header.home}</a>
-          <a href="#servicos" className={`nav-link ${activeSection === 'servicos' ? 'active' : ''}`}>{currentContent.header.services}</a>
-          <a href="#projetos" className={`nav-link ${activeSection === 'projetos' ? 'active' : ''}`}>{currentContent.header.projects}</a>
-          <a href="#sobre" className={`nav-link ${activeSection === 'sobre' ? 'active' : ''}`}>{currentContent.header.about}</a>
-          <a href="#contato" className={`nav-link ${activeSection === 'contato' ? 'active' : ''}`}>{currentContent.header.contact}</a>
+          <a href={`${basePath}#inicio`} className={`nav-link ${activeSection === 'inicio' ? 'active' : ''}`}>{currentContent.header.home}</a>
+          <a href={`${basePath}#servicos`} className={`nav-link ${activeSection === 'servicos' ? 'active' : ''}`}>{currentContent.header.services}</a>
+          <a href={`${basePath}#exemplos`} className={`nav-link ${activeSection === 'exemplos' ? 'active' : ''}`}>{currentContent.header.projects}</a>
+          <a href={`${basePath}#processo`} className={`nav-link ${activeSection === 'processo' ? 'active' : ''}`}>{currentContent.header.process}</a>
+          <a href={`${basePath}#contato`} className={`nav-link ${activeSection === 'contato' ? 'active' : ''}`}>{currentContent.header.contact}</a>
         </nav>
 
         <div className="actions">
           <div className="lang">
             <button 
               className={`lang-btn ${language === 'pt' ? 'active' : ''}`} 
-              onClick={() => onChangeLanguage('pt')}
+              onClick={() => changeLanguage('pt')}
               aria-label="Português"
             >
               <img src={brFlag} alt="Português" className="flag-icon" />
+              <span className="lang-label">PT</span>
             </button>
             <button 
               className={`lang-btn ${language === 'es' ? 'active' : ''}`} 
-              onClick={() => onChangeLanguage('es')}
+              onClick={() => changeLanguage('es')}
               aria-label="Español"
             >
               <img src={esFlag} alt="Español" className="flag-icon" />
+              <span className="lang-label">ES</span>
             </button>
             <button 
               className={`lang-btn ${language === 'en' ? 'active' : ''}`} 
-              onClick={() => onChangeLanguage('en')}
+              onClick={() => changeLanguage('en')}
               aria-label="English"
             >
               <img src={enFlag} alt="English" className="flag-icon" />
+              <span className="lang-label">EN</span>
             </button>
           </div>
 
@@ -146,28 +167,30 @@ export default function Header({ language, onChangeLanguage }: HeaderProps) {
           </a>
         </div>
 
-        {/* SELETOR DE IDIOMA MOBILE */}
         <div className="mobile-lang-header">
           <button 
             className={`mobile-lang-header-btn ${language === 'pt' ? 'active' : ''}`} 
-            onClick={() => onChangeLanguage('pt')}
+            onClick={() => changeLanguage('pt')}
             aria-label="Português"
           >
             <img src={brFlag} alt="Português" className="flag-icon-mobile" />
+            <span className="mobile-lang-label">PT</span>
           </button>
           <button 
             className={`mobile-lang-header-btn ${language === 'es' ? 'active' : ''}`} 
-            onClick={() => onChangeLanguage('es')}
+            onClick={() => changeLanguage('es')}
             aria-label="Español"
           >
             <img src={esFlag} alt="Español" className="flag-icon-mobile" />
+            <span className="mobile-lang-label">ES</span>
           </button>
           <button 
             className={`mobile-lang-header-btn ${language === 'en' ? 'active' : ''}`} 
-            onClick={() => onChangeLanguage('en')}
+            onClick={() => changeLanguage('en')}
             aria-label="English"
           >
             <img src={enFlag} alt="English" className="flag-icon-mobile" />
+            <span className="mobile-lang-label">EN</span>
           </button>
         </div>
 
@@ -179,11 +202,11 @@ export default function Header({ language, onChangeLanguage }: HeaderProps) {
       <div className={`mobile-menu ${isMenuOpen ? 'open' : ''}`}>
         <div className="mobile-menu-inner">
           <nav className="mobile-nav">
-            <a href="#inicio" className={activeSection === 'inicio' ? 'active' : ''} onClick={closeMenu}>{currentContent.header.home}</a>
-            <a href="#servicos" className={activeSection === 'servicos' ? 'active' : ''} onClick={closeMenu}>{currentContent.header.services}</a>
-            <a href="#projetos" className={activeSection === 'projetos' ? 'active' : ''} onClick={closeMenu}>{currentContent.header.projects}</a>
-            <a href="#sobre" className={activeSection === 'sobre' ? 'active' : ''} onClick={closeMenu}>{currentContent.header.about}</a>
-            <a href="#contato" className={activeSection === 'contato' ? 'active' : ''} onClick={closeMenu}>{currentContent.header.contact}</a>
+            <a href={`${basePath}#inicio`} className={activeSection === 'inicio' ? 'active' : ''} onClick={closeMenu}>{currentContent.header.home}</a>
+            <a href={`${basePath}#servicos`} className={activeSection === 'servicos' ? 'active' : ''} onClick={closeMenu}>{currentContent.header.services}</a>
+            <a href={`${basePath}#exemplos`} className={activeSection === 'exemplos' ? 'active' : ''} onClick={closeMenu}>{currentContent.header.projects}</a>
+            <a href={`${basePath}#processo`} className={activeSection === 'processo' ? 'active' : ''} onClick={closeMenu}>{currentContent.header.process}</a>
+            <a href={`${basePath}#contato`} className={activeSection === 'contato' ? 'active' : ''} onClick={closeMenu}>{currentContent.header.contact}</a>
           </nav>
 
           <a

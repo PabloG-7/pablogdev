@@ -18,47 +18,28 @@ import PabloGomesPage from './new-site/components/PabloGomesPage/PabloGomesPage'
 
 import type { Language } from './new-site/types'
 
-function getInitialLanguage(): Language {
-  const savedLanguage = localStorage.getItem('pgdev-language')
-
-  if (savedLanguage === 'pt' || savedLanguage === 'es' || savedLanguage === 'en') {
-    return savedLanguage
-  }
-
-  const browserLang = navigator.language.toLowerCase()
-
-  if (browserLang.startsWith('es')) return 'es'
-  if (browserLang.startsWith('en')) return 'en'
-
-  return 'pt'
-}
-
 function App() {
   const path = window.location.pathname
 
-  const isSpanishRoute = path === '/es' || path.startsWith('/es/')
-  const isEnglishRoute = path === '/en' || path.startsWith('/en/')
-
-  const [language, setLanguage] = useState<Language>(
-    isSpanishRoute ? 'es' : isEnglishRoute ? 'en' : getInitialLanguage()
-  )
+  const currentLanguage: Language =
+    path === '/es' || path.startsWith('/es/')
+      ? 'es'
+      : path === '/en' || path.startsWith('/en/')
+      ? 'en'
+      : 'pt'
 
   const [isGuideOpen, setIsGuideOpen] = useState(false)
 
-  const currentLanguage: Language =
-    isSpanishRoute ? 'es' : isEnglishRoute ? 'en' : language
-
   useEffect(() => {
-    localStorage.setItem('pgdev-language', currentLanguage)
+  document.documentElement.lang =
+    currentLanguage === 'pt'
+      ? 'pt-BR'
+      : currentLanguage === 'es'
+      ? 'es'
+      : 'en'
+}, [currentLanguage])
 
-    document.documentElement.lang =
-      currentLanguage === 'pt'
-        ? 'pt-BR'
-        : currentLanguage === 'es'
-        ? 'es'
-        : 'en'
-  }, [currentLanguage])
-
+  // Página exclusiva Pablo Gomes
   if (path === '/pablo-gomes') {
     return <PabloGomesPage language="pt" />
   }
@@ -73,10 +54,7 @@ function App() {
 
   return (
     <>
-      <Header
-        language={currentLanguage}
-        onChangeLanguage={setLanguage}
-      />
+      <Header language={currentLanguage} />
 
       <main>
         <Hero
@@ -88,10 +66,9 @@ function App() {
 
         <Showcase language={currentLanguage} />
 
-        {/* CORREÇÃO AQUI - Passando a prop language */}
         <Process language={currentLanguage} />
 
-        <FAQ language={currentLanguage} /> {/* Também adicionei language no FAQ */}
+        <FAQ language={currentLanguage} />
 
         <About language={currentLanguage} />
 

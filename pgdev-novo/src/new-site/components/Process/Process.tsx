@@ -124,7 +124,7 @@ export default function Process({ language }: ProcessProps) {
   const currentContent = content[language]
 
   return (
-    <section className="process">
+    <section className="process" id="processo">
       <div 
         className="process-background"
         style={{ backgroundImage: 'url(/plan-de-fundo-process.png)' }}

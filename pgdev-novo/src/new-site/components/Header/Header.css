@@ -22,7 +22,7 @@
 }
 
 .header-inner {
-  max-width: 1200px;
+  max-width: 1320px;
   margin: 0 auto;
   padding: 0 40px;
   height: 72px;
@@ -96,7 +96,7 @@
 /* Nav */
 .nav {
   display: flex;
-  gap: 40px;
+  gap: 26px;
 }
 
 .nav-link {
@@ -106,7 +106,7 @@
   text-decoration: none;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  padding: 6px 12px;
+  padding: 6px 8px;
   border-radius: 8px;
   transition: all 0.2s;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -124,48 +124,81 @@
   gap: 16px;
 }
 
+/* ============================================
+   SELECTOR DE IDIOMA - NOVO VISUAL
+   ============================================ */
+
 .lang {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 6px;
   padding: 4px;
-  background: rgba(255, 255, 255, 0.03);
-  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
 }
 
 .lang-btn {
   background: none;
   border: none;
   cursor: pointer;
-  padding: 4px 8px;
-  border-radius: 6px;
-  transition: all 0.2s;
-  opacity: 0.5;
-  transform: scale(0.9);
+  padding: 6px 12px;
+  border-radius: 8px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0.6;
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 8px;
+  position: relative;
+}
+
+.lang-btn:hover:not(.active) {
+  opacity: 0.9;
+  transform: translateY(-1px);
 }
 
 .lang-btn.active {
   background: #fec90f;
   opacity: 1;
   transform: scale(1);
-  padding: 4px 4px;
+  box-shadow: 0 4px 15px rgba(254, 201, 15, 0.3);
 }
 
-.lang-btn:hover:not(.active) {
-  opacity: 0.8;
-  transform: scale(1);
+.lang-btn.active .lang-label {
+  color: #000c24;
+  font-weight: 700;
 }
 
 .flag-icon {
-  width: 28px;
-  height: 20px;
-  border-radius: 3px;
+  width: 24px;
+  height: 16px;
+  border-radius: 4px;
   display: block;
   object-fit: cover;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.lang-btn:hover .flag-icon {
+  transform: scale(1.05);
+}
+
+.lang-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.8);
+  letter-spacing: 0.05em;
+  transition: all 0.3s ease;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.lang-btn:hover .lang-label {
+  color: #ffffff;
+}
+
+.lang-btn.active .lang-label {
+  color: #000c24;
 }
 
 .cta {
@@ -194,45 +227,67 @@
   display: none;
   align-items: center;
   gap: 4px;
-  background: rgba(255, 255, 255, 0.08);
-  padding: 4px 8px;
-  border-radius: 8px;
-  margin-right: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 4px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  margin-right: 8px;
 }
 
 .mobile-lang-header-btn {
   background: none;
   border: none;
   cursor: pointer;
-  padding: 4px 8px;
+  padding: 4px 10px;
   border-radius: 6px;
-  transition: all 0.2s;
-  opacity: 0.5;
-  transform: scale(0.9);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0.6;
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 6px;
 }
 
 .mobile-lang-header-btn.active {
   background: #fec90f;
   opacity: 1;
-  transform: scale(1);
-  padding: 4px 8px;
+  box-shadow: 0 2px 10px rgba(254, 201, 15, 0.2);
+}
+
+.mobile-lang-header-btn.active .mobile-lang-label {
+  color: #000c24;
+  font-weight: 700;
 }
 
 .mobile-lang-header-btn:hover:not(.active) {
-  opacity: 0.8;
-  transform: scale(1);
+  opacity: 0.9;
+  transform: scale(1.02);
 }
 
 .flag-icon-mobile {
-  width: 24px;
-  height: 17px;
+  width: 20px;
+  height: 14px;
   border-radius: 3px;
   display: block;
   object-fit: cover;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.mobile-lang-header-btn:hover .flag-icon-mobile {
+  transform: scale(1.05);
+}
+
+.mobile-lang-label {
+  font-size: 0.6rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.7);
+  letter-spacing: 0.05em;
+  transition: all 0.3s ease;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.mobile-lang-header-btn:hover .mobile-lang-label {
+  color: #ffffff;
 }
 
 /* ============================================
@@ -372,17 +427,21 @@
   }
 
   .mobile-lang-header {
-    padding: 3px 6px;
-    margin-right: 8px;
+    padding: 3px;
+    gap: 3px;
   }
 
   .mobile-lang-header-btn {
-    padding: 3px 6px;
+    padding: 3px 8px;
   }
 
   .flag-icon-mobile {
-    width: 20px;
-    height: 14px;
+    width: 18px;
+    height: 12px;
+  }
+
+  .mobile-lang-label {
+    font-size: 0.55rem;
   }
 }
 
@@ -403,17 +462,22 @@
   }
 
   .mobile-lang-header {
-    padding: 3px 5px;
+    padding: 2px;
+    gap: 2px;
     margin-right: 6px;
   }
 
   .mobile-lang-header-btn {
-    padding: 2px 2px;
+    padding: 2px 6px;
   }
 
   .flag-icon-mobile {
-    width: 18px;
-    height: 13px;
+    width: 16px;
+    height: 11px;
+  }
+
+  .mobile-lang-label {
+    font-size: 0.5rem;
   }
 }
 
@@ -431,6 +495,19 @@
   .cta {
     padding: 7px 16px;
     font-size: 0.75rem;
+  }
+
+  .lang-btn {
+    padding: 4px 8px;
+  }
+
+  .flag-icon {
+    width: 20px;
+    height: 14px;
+  }
+
+  .lang-label {
+    font-size: 0.6rem;
   }
 }
 

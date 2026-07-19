@@ -262,7 +262,7 @@ export default function Showcase({ language }: ShowcaseProps) {
   }
 
   return (
-    <section className="showcase" id="templates">
+    <section className="showcase" id="exemplos">
       <div className="showcase-container">
         <div className="showcase-grid">
           {currentContent.projects.map((project, index) => {
