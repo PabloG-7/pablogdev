@@ -17,8 +17,10 @@ export default function Header({ language }: HeaderProps) {
   const [scrolled, setScrolled] = useState(false)
   const [activeSection, setActiveSection] = useState('inicio')
   
+  // Base path para cada idioma
   const basePath = language === 'es' ? '/es' : language === 'en' ? '/en' : ''
 
+  // Mensagens do WhatsApp por idioma
   const whatsappMessages = {
     pt: 'Olá, vim pelo site PabloG.Dev e gostaria de saber mais sobre sites e sistemas.',
     es: 'Hola, vengo del sitio PabloG.Dev y me gustaría obtener más información sobre sitios web y sistemas.',
@@ -27,6 +29,7 @@ export default function Header({ language }: HeaderProps) {
 
   const whatsappLink = `https://wa.me/5511961111894?text=${encodeURIComponent(whatsappMessages[language])}`
 
+  // Conteúdo direto no componente
   const content = {
     pt: {
       header: {
@@ -62,6 +65,7 @@ export default function Header({ language }: HeaderProps) {
 
   const currentContent = content[language]
 
+  // Função para trocar idioma mantendo a seção atual
   const changeLanguage = (lang: Language) => {
     const currentHash = window.location.hash
 
@@ -135,7 +139,6 @@ export default function Header({ language }: HeaderProps) {
               aria-label="Português"
             >
               <img src={brFlag} alt="Português" className="flag-icon" />
-              <span className="lang-label">PT</span>
             </button>
             <button 
               className={`lang-btn ${language === 'es' ? 'active' : ''}`} 
@@ -143,7 +146,6 @@ export default function Header({ language }: HeaderProps) {
               aria-label="Español"
             >
               <img src={esFlag} alt="Español" className="flag-icon" />
-              <span className="lang-label">ES</span>
             </button>
             <button 
               className={`lang-btn ${language === 'en' ? 'active' : ''}`} 
@@ -151,7 +153,6 @@ export default function Header({ language }: HeaderProps) {
               aria-label="English"
             >
               <img src={enFlag} alt="English" className="flag-icon" />
-              <span className="lang-label">EN</span>
             </button>
           </div>
 
@@ -167,6 +168,7 @@ export default function Header({ language }: HeaderProps) {
           </a>
         </div>
 
+        {/* SELETOR DE IDIOMA MOBILE */}
         <div className="mobile-lang-header">
           <button 
             className={`mobile-lang-header-btn ${language === 'pt' ? 'active' : ''}`} 
@@ -174,7 +176,6 @@ export default function Header({ language }: HeaderProps) {
             aria-label="Português"
           >
             <img src={brFlag} alt="Português" className="flag-icon-mobile" />
-            <span className="mobile-lang-label">PT</span>
           </button>
           <button 
             className={`mobile-lang-header-btn ${language === 'es' ? 'active' : ''}`} 
@@ -182,7 +183,6 @@ export default function Header({ language }: HeaderProps) {
             aria-label="Español"
           >
             <img src={esFlag} alt="Español" className="flag-icon-mobile" />
-            <span className="mobile-lang-label">ES</span>
           </button>
           <button 
             className={`mobile-lang-header-btn ${language === 'en' ? 'active' : ''}`} 
@@ -190,7 +190,6 @@ export default function Header({ language }: HeaderProps) {
             aria-label="English"
           >
             <img src={enFlag} alt="English" className="flag-icon-mobile" />
-            <span className="mobile-lang-label">EN</span>
           </button>
         </div>
 
