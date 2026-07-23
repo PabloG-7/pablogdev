@@ -1,5 +1,5 @@
 import './Showcase.css'
-import { Eye, Sparkles, Monitor, Calendar, ShoppingBag, Home, Scissors, Heart } from 'lucide-react'
+import { Eye, Sparkles, Monitor, Calendar, ShoppingBag, Home, Scissors, Heart, Leaf } from 'lucide-react'
 import type { Language } from '../../types'
 
 type ShowcaseProps = {
@@ -79,6 +79,13 @@ export default function Showcase({ language }: ShowcaseProps) {
           url: 'https://agendamento-de-barbearia-virid.vercel.app/',
           description: 'Agendamentos e portfólios para profissionais',
           category: 'Beleza'
+        },
+        {
+          name: 'Avora Mart - E-commerce Premium',
+          image: '/images/exemplo11.webp',
+          url: 'https://pablog-7.github.io/fruit-site-exemplo/',
+          description: 'UI Concept de e-commerce moderno com design premium e responsivo',
+          category: 'E-commerce'
         }
       ]
     },
@@ -153,6 +160,13 @@ export default function Showcase({ language }: ShowcaseProps) {
           url: 'https://agendamento-de-barbearia-virid.vercel.app/',
           description: 'Agendamientos y portafolios para profesionales',
           category: 'Belleza'
+        },
+        {
+          name: 'Avora Mart - E-commerce Premium',
+          image: '/images/exemplo11.webp',
+          url: 'https://pablog-7.github.io/fruit-site-exemplo/',
+          description: 'UI Concept de e-commerce moderno con diseño premium y responsivo',
+          category: 'E-commerce'
         }
       ]
     },
@@ -227,6 +241,13 @@ export default function Showcase({ language }: ShowcaseProps) {
           url: 'https://agendamento-de-barbearia-virid.vercel.app/',
           description: 'Scheduling and portfolios for professionals',
           category: 'Beauty'
+        },
+        {
+          name: 'Avora Mart - Premium E-commerce',
+          image: '/images/exemplo11.webp',
+          url: 'https://pablog-7.github.io/fruit-site-exemplo/',
+          description: 'Modern e-commerce UI Concept with premium and responsive design',
+          category: 'E-commerce'
         }
       ]
     }
@@ -241,10 +262,11 @@ export default function Showcase({ language }: ShowcaseProps) {
   const getCategoryIcon = (category: string) => {
     const icons: Record<string, any> = {
       'Eventos': Calendar,
+      'Events': Calendar,
       'E-commerce': ShoppingBag,
-      'Alimentación': ShoppingBag,
-      'Alimentação': ShoppingBag,
-      'Food': ShoppingBag,
+      'Alimentación': Leaf,
+      'Alimentação': Leaf,
+      'Food': Leaf,
       'Saúde': Heart,
       'Salud': Heart,
       'Health': Heart,
