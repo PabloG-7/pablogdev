@@ -86,6 +86,13 @@ export default function Showcase({ language }: ShowcaseProps) {
           url: 'https://pablog-7.github.io/fruit-site-exemplo/',
           description: 'UI Concept de e-commerce moderno com design premium e responsivo',
           category: 'E-commerce'
+        },
+        {
+          name: 'MUSE Hair Atelier',
+          image: '/images/exemplo12.webp',
+          url: 'https://pablog-7.github.io/muse-site-exemplo/',
+          description: 'Site institucional para salão de beleza com design clean, agendamento integrado e dashboard administrativo',
+          category: 'Beleza'
         }
       ]
     },
@@ -167,6 +174,13 @@ export default function Showcase({ language }: ShowcaseProps) {
           url: 'https://pablog-7.github.io/fruit-site-exemplo/',
           description: 'UI Concept de e-commerce moderno con diseño premium y responsivo',
           category: 'E-commerce'
+        },
+        {
+          name: 'MUSE Hair Atelier',
+          image: '/images/exemplo12.webp',
+          url: 'https://pablog-7.github.io/muse-site-exemplo/',
+          description: 'Sitio institucional para salón de belleza con diseño clean, agenda integrada y dashboard administrativo',
+          category: 'Belleza'
         }
       ]
     },
@@ -248,6 +262,13 @@ export default function Showcase({ language }: ShowcaseProps) {
           url: 'https://pablog-7.github.io/fruit-site-exemplo/',
           description: 'Modern e-commerce UI Concept with premium and responsive design',
           category: 'E-commerce'
+        },
+        {
+          name: 'MUSE Hair Atelier',
+          image: '/images/exemplo12.webp',
+          url: 'https://pablog-7.github.io/muse-site-exemplo/',
+          description: 'Institutional website for a beauty salon with clean design, integrated scheduling and admin dashboard',
+          category: 'Beauty'
         }
       ]
     }
