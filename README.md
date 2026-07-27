@@ -3,7 +3,6 @@
 > Site profissional para desenvolvedor front-end com portfólio, serviços e suporte multilíngue (PT/ES/EN).
 
 🌐 **Website:** https://www.pablogdev.com.br  
-🚀 **Demo:** https://pablogdev.com.br
 
 ---
 
