@@ -108,8 +108,6 @@ Construído com **React 19**, **TypeScript**, **Vite**, **GSAP** e **Framer Moti
 
 Este é o meu site profissional - a minha presença digital como desenvolvedor front-end. Aqui mostro quem sou, o que faço e os resultados que entrego. Cada detalhe foi pensado para transmitir profissionalismo, qualidade e confiança.
 
-O site conta com um showcase com projetos reais (muitos dos quais tiveram READMEs criados aqui mesmo), demonstrando minha capacidade de transformar ideias em produtos digitais de alta qualidade.
-
 ---
 
 <div align="center">
