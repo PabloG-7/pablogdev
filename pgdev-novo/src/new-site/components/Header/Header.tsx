@@ -17,10 +17,8 @@ export default function Header({ language }: HeaderProps) {
   const [scrolled, setScrolled] = useState(false)
   const [activeSection, setActiveSection] = useState('inicio')
   
-  // Base path para cada idioma
   const basePath = language === 'es' ? '/es' : language === 'en' ? '/en' : ''
 
-  // Mensagens do WhatsApp por idioma
   const whatsappMessages = {
     pt: 'Olá, vim pelo site PabloG.Dev e gostaria de saber mais sobre sites e sistemas.',
     es: 'Hola, vengo del sitio PabloG.Dev y me gustaría obtener más información sobre sitios web y sistemas.',
@@ -29,7 +27,6 @@ export default function Header({ language }: HeaderProps) {
 
   const whatsappLink = `https://wa.me/5511961111894?text=${encodeURIComponent(whatsappMessages[language])}`
 
-  // Conteúdo direto no componente
   const content = {
     pt: {
       header: {
@@ -65,7 +62,6 @@ export default function Header({ language }: HeaderProps) {
 
   const currentContent = content[language]
 
-  // Função para trocar idioma mantendo a seção atual
   const changeLanguage = (lang: Language) => {
     const currentHash = window.location.hash
 
@@ -120,7 +116,6 @@ export default function Header({ language }: HeaderProps) {
       <div className="header-inner">
         <a href={`${basePath}#inicio`} className="brand" onClick={closeMenu}>
           <img src={logo} alt="PabloG.Dev" className="brand-logo" />
-          <div className="brand-underline"></div>
         </a>
 
         <nav className="nav">
@@ -168,7 +163,6 @@ export default function Header({ language }: HeaderProps) {
           </a>
         </div>
 
-        {/* SELETOR DE IDIOMA MOBILE */}
         <div className="mobile-lang-header">
           <button 
             className={`mobile-lang-header-btn ${language === 'pt' ? 'active' : ''}`} 
