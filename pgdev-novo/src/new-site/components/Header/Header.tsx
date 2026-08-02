@@ -3,19 +3,118 @@ import logo from '../../assets/apenas-logo.png'
 import brFlag from '../../assets/bandeira-brasil.webp' 
 import esFlag from '../../assets/bandeira-espanha.webp'
 import enFlag from '../../assets/bandeira-eua.webp'
-import { Menu, X } from 'lucide-react'
+import { Menu, X, Sun, Moon, ChevronDown, Globe, Settings } from 'lucide-react'
 import { FaWhatsapp } from 'react-icons/fa'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import type { Language } from '../../types'
 
 type HeaderProps = {
   language: Language
+  theme: 'dark' | 'light'
+  onToggleTheme: () => void
 }
 
-export default function Header({ language }: HeaderProps) {
+// Language options
+const languageOptions = [
+  { code: 'pt', label: 'Português', flag: brFlag },
+  { code: 'es', label: 'Español', flag: esFlag },
+  { code: 'en', label: 'English', flag: enFlag }
+]
+
+// Language Dropdown Component (CORRIGIDO)
+const LanguageDropdown = ({ 
+  language, 
+  isOpen, 
+  onToggle, 
+  onClose,
+  onChange,
+  variant = 'desktop'
+}: { 
+  language: Language
+  isOpen: boolean
+  onToggle: () => void
+  onClose: () => void
+  onChange: (lang: Language) => void
+  variant?: 'desktop' | 'tablet' | 'mobile'
+}) => {
+  const current = languageOptions.find(l => l.code === language)
+  const ref = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (ref.current && !ref.current.contains(event.target as Node)) {
+        onClose() // FECHA, não alterna
+      }
+    }
+    
+    if (isOpen) {
+      document.addEventListener('mousedown', handleClickOutside)
+    }
+    
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [isOpen, onClose])
+
+  const className = `lang-${variant}`
+
+  return (
+    <div className={`${className}-wrapper`} ref={ref}>
+      <button 
+        className={`${className}-trigger`}
+        onClick={onToggle}
+        aria-label="Selecionar idioma"
+      >
+        <img 
+          src={current?.flag} 
+          alt={current?.label}
+          className={`${className}-trigger-flag`}
+        />
+        {variant === 'desktop' && (
+          <>
+            <span className="lang-trigger-label">{current?.code.toUpperCase()}</span>
+            <ChevronDown size={14} className={`lang-chevron ${isOpen ? 'open' : ''}`} />
+          </>
+        )}
+        {variant !== 'desktop' && (
+          <ChevronDown size={12} className={`lang-chevron ${isOpen ? 'open' : ''}`} />
+        )}
+      </button>
+
+      {isOpen && (
+        <div className={`${className}-dropdown`}>
+          {languageOptions.map((option) => (
+            <button
+              key={option.code}
+              className={`${className}-option ${language === option.code ? 'active' : ''}`}
+              onClick={() => {
+                onClose() // FECHA primeiro
+                onChange(option.code as Language) // Depois muda
+              }}
+            >
+              <img src={option.flag} alt={option.label} className={`${className}-option-flag`} />
+              <span>{option.label}</span>
+              {language === option.code && variant === 'desktop' && (
+                <span className="lang-check">✓</span>
+              )}
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  )
+}
+
+export default function Header({
+  language,
+  theme,
+  onToggleTheme
+}: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [activeSection, setActiveSection] = useState('inicio')
+  
+  // ESTADOS SEPARADOS para cada dropdown
+  const [isDesktopLangOpen, setIsDesktopLangOpen] = useState(false)
+  const [isTabletLangOpen, setIsTabletLangOpen] = useState(false)
   
   const basePath = language === 'es' ? '/es' : language === 'en' ? '/en' : ''
 
@@ -35,7 +134,12 @@ export default function Header({ language }: HeaderProps) {
         projects: 'Exemplos',
         process: 'Processo',
         contact: 'Contato',
-        cta: 'WhatsApp'
+        cta: 'WhatsApp',
+        settings: 'Configurações',
+        language: 'Idioma',
+        theme: 'Tema',
+        dark: 'Escuro',
+        light: 'Claro'
       }
     },
     es: {
@@ -45,7 +149,12 @@ export default function Header({ language }: HeaderProps) {
         projects: 'Ejemplos',
         process: 'Proceso',
         contact: 'Contacto',
-        cta: 'WhatsApp'
+        cta: 'WhatsApp',
+        settings: 'Configuraciones',
+        language: 'Idioma',
+        theme: 'Tema',
+        dark: 'Oscuro',
+        light: 'Claro'
       }
     },
     en: {
@@ -55,7 +164,12 @@ export default function Header({ language }: HeaderProps) {
         projects: 'Examples',
         process: 'Process',
         contact: 'Contact',
-        cta: 'WhatsApp'
+        cta: 'WhatsApp',
+        settings: 'Settings',
+        language: 'Language',
+        theme: 'Theme',
+        dark: 'Dark',
+        light: 'Light'
       }
     }
   }
@@ -64,7 +178,7 @@ export default function Header({ language }: HeaderProps) {
 
   const changeLanguage = (lang: Language) => {
     const currentHash = window.location.hash
-
+    
     if (lang === 'pt') {
       window.location.href = `/${currentHash}`
     } else if (lang === 'es') {
@@ -118,6 +232,7 @@ export default function Header({ language }: HeaderProps) {
           <img src={logo} alt="PabloG.Dev" className="brand-logo" />
         </a>
 
+        {/* DESKTOP NAV */}
         <nav className="nav">
           <a href={`${basePath}#inicio`} className={`nav-link ${activeSection === 'inicio' ? 'active' : ''}`}>{currentContent.header.home}</a>
           <a href={`${basePath}#servicos`} className={`nav-link ${activeSection === 'servicos' ? 'active' : ''}`}>{currentContent.header.services}</a>
@@ -126,30 +241,25 @@ export default function Header({ language }: HeaderProps) {
           <a href={`${basePath}#contato`} className={`nav-link ${activeSection === 'contato' ? 'active' : ''}`}>{currentContent.header.contact}</a>
         </nav>
 
+        {/* DESKTOP ACTIONS */}
         <div className="actions">
-          <div className="lang">
-            <button 
-              className={`lang-btn ${language === 'pt' ? 'active' : ''}`} 
-              onClick={() => changeLanguage('pt')}
-              aria-label="Português"
-            >
-              <img src={brFlag} alt="Português" className="flag-icon" />
-            </button>
-            <button 
-              className={`lang-btn ${language === 'es' ? 'active' : ''}`} 
-              onClick={() => changeLanguage('es')}
-              aria-label="Español"
-            >
-              <img src={esFlag} alt="Español" className="flag-icon" />
-            </button>
-            <button 
-              className={`lang-btn ${language === 'en' ? 'active' : ''}`} 
-              onClick={() => changeLanguage('en')}
-              aria-label="English"
-            >
-              <img src={enFlag} alt="English" className="flag-icon" />
-            </button>
-          </div>
+          <LanguageDropdown
+            language={language}
+            isOpen={isDesktopLangOpen}
+            onToggle={() => setIsDesktopLangOpen(v => !v)}
+            onClose={() => setIsDesktopLangOpen(false)}
+            onChange={changeLanguage}
+            variant="desktop"
+          />
+
+          <button
+            type="button"
+            className="theme-toggle"
+            onClick={onToggleTheme}
+            aria-label="Alternar tema"
+          >
+            {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
+          </button>
 
           <a
             href={whatsappLink}
@@ -163,35 +273,34 @@ export default function Header({ language }: HeaderProps) {
           </a>
         </div>
 
-        <div className="mobile-lang-header">
-          <button 
-            className={`mobile-lang-header-btn ${language === 'pt' ? 'active' : ''}`} 
-            onClick={() => changeLanguage('pt')}
-            aria-label="Português"
+        {/* TABLET CONTROLS */}
+        <div className="tablet-controls">
+          <LanguageDropdown
+            language={language}
+            isOpen={isTabletLangOpen}
+            onToggle={() => setIsTabletLangOpen(v => !v)}
+            onClose={() => setIsTabletLangOpen(false)}
+            onChange={changeLanguage}
+            variant="tablet"
+          />
+
+          <button
+            type="button"
+            className="tablet-theme-toggle"
+            onClick={onToggleTheme}
+            aria-label="Alternar tema"
           >
-            <img src={brFlag} alt="Português" className="flag-icon-mobile" />
-          </button>
-          <button 
-            className={`mobile-lang-header-btn ${language === 'es' ? 'active' : ''}`} 
-            onClick={() => changeLanguage('es')}
-            aria-label="Español"
-          >
-            <img src={esFlag} alt="Español" className="flag-icon-mobile" />
-          </button>
-          <button 
-            className={`mobile-lang-header-btn ${language === 'en' ? 'active' : ''}`} 
-            onClick={() => changeLanguage('en')}
-            aria-label="English"
-          >
-            <img src={enFlag} alt="English" className="flag-icon-mobile" />
+            {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
           </button>
         </div>
 
+        {/* MOBILE MENU BUTTON */}
         <button type="button" className={`mobile-btn ${isMenuOpen ? 'open' : ''}`} onClick={toggleMenu} aria-label="Menu">
           {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
         </button>
       </div>
 
+      {/* MOBILE MENU - DRAWER */}
       <div className={`mobile-menu ${isMenuOpen ? 'open' : ''}`}>
         <div className="mobile-menu-inner">
           <nav className="mobile-nav">
@@ -201,6 +310,53 @@ export default function Header({ language }: HeaderProps) {
             <a href={`${basePath}#processo`} className={activeSection === 'processo' ? 'active' : ''} onClick={closeMenu}>{currentContent.header.process}</a>
             <a href={`${basePath}#contato`} className={activeSection === 'contato' ? 'active' : ''} onClick={closeMenu}>{currentContent.header.contact}</a>
           </nav>
+
+          <div className="mobile-divider"></div>
+
+          {/* CONFIGURAÇÕES */}
+          <div className="mobile-settings">
+            <span className="mobile-settings-label">
+              <Settings size={16} />
+              {currentContent.header.settings}
+            </span>
+
+            <div className="mobile-lang-section">
+              <span className="mobile-lang-label">
+                <Globe size={14} />
+                {currentContent.header.language}
+              </span>
+              <div className="mobile-lang-options">
+                {languageOptions.map((option) => (
+                  <button
+                    key={option.code}
+                    className={`mobile-lang-option ${language === option.code ? 'active' : ''}`}
+                    onClick={() => {
+                      changeLanguage(option.code as Language)
+                      closeMenu()
+                    }}
+                  >
+                    <img src={option.flag} alt={option.label} className="mobile-lang-option-flag" />
+                    <span>{option.label}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <button
+              className="mobile-theme-option"
+              onClick={() => {
+                onToggleTheme()
+                closeMenu()
+              }}
+            >
+              {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
+              <span>
+                {currentContent.header.theme}: {theme === 'dark' ? currentContent.header.dark : currentContent.header.light}
+              </span>
+            </button>
+          </div>
+
+          <div className="mobile-divider"></div>
 
           <a
             href={whatsappLink}

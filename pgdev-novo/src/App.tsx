@@ -30,14 +30,25 @@ function App() {
 
   const [isGuideOpen, setIsGuideOpen] = useState(false)
 
+  // PASSO 1
+  const [theme, setTheme] = useState<'dark' | 'light'>(() => {
+    return (localStorage.getItem('theme') as 'dark' | 'light') || 'dark'
+  })
+
   useEffect(() => {
-  document.documentElement.lang =
-    currentLanguage === 'pt'
-      ? 'pt-BR'
-      : currentLanguage === 'es'
-      ? 'es'
-      : 'en'
-}, [currentLanguage])
+    document.documentElement.lang =
+      currentLanguage === 'pt'
+        ? 'pt-BR'
+        : currentLanguage === 'es'
+        ? 'es'
+        : 'en'
+  }, [currentLanguage])
+
+  // PASSO 1 - useEffect do tema
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme)
+    localStorage.setItem('theme', theme)
+  }, [theme])
 
   // Página exclusiva Pablo Gomes
   if (path === '/pablo-gomes') {
@@ -54,7 +65,14 @@ function App() {
 
   return (
     <>
-      <Header language={currentLanguage} />
+      {/* PASSO 2 */}
+      <Header
+        language={currentLanguage}
+        theme={theme}
+        onToggleTheme={() =>
+          setTheme(theme === 'dark' ? 'light' : 'dark')
+        }
+      />
 
       <main>
         <Hero

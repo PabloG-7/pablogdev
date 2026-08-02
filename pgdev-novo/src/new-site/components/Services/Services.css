@@ -1,28 +1,15 @@
 /* ============================================
-   VARIÁVEIS GLOBAIS (mesmas do hero)
-   ============================================ */
-:root {
-  --hero-bg: #000c24;
-  --gold: #fec90f;
-  --gold-rgb: 254, 201, 15;
-  --white: #ffffff;
-  --text-muted: rgba(255, 255, 255, 0.6);
-  --text-dim: rgba(255, 255, 255, 0.5);
-  --border-light: rgba(255, 255, 255, 0.15);
-}
-
-/* ============================================
    SERVICES SECTION
    ============================================ */
 .services {
   padding: 80px 0;
-  background: #000c24;
+  background: var(--bg-primary);
   position: relative;
   overflow: hidden;
   min-height: 100vh;
 }
 
-/* ===== IMAGEM DE FUNDO - EXATAMENTE IGUAL ORIGINAL ===== */
+/* ===== IMAGEM DE FUNDO ===== */
 .services-background {
   position: absolute;
   inset: 0;
@@ -33,7 +20,6 @@
   opacity: 1 !important;
 }
 
-/* OVERLAY - MANTIDO IGUAL ORIGINAL */
 .services-background::after {
   content: '';
   position: absolute;
@@ -41,9 +27,7 @@
   z-index: 2;
 }
 
-/* ============================================
-   CONTAINER
-   ============================================ */
+/* ===== CONTAINER ===== */
 .services-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -52,9 +36,7 @@
   z-index: 3;
 }
 
-/* ============================================
-   HEADER - TÍTULO CENTRALIZADO (SÓ TÍTULOS)
-   ============================================ */
+/* ===== HEADER ===== */
 .services-header {
   width: 100%;
   margin-bottom: 48px;
@@ -72,55 +54,45 @@
   width: 100%;
 }
 
-/* LINHA 1 - SÓ TÍTULO EM NEGRITO */
 .services-title .line-1 {
   font-size: 2.8rem;
   font-weight: 700;
-  color: #ffffff;
+  color: var(--text-primary);
   letter-spacing: -0.02em;
   text-align: center;
   transform: translateX(-0px);
-  
-  /* Sombra para legibilidade */
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
-/* LINHA 2 - DOURADA COM BRILHO ESTÁTICO (igual ao hero) */
 .services-title .line-2 {
   margin-top: 8px;
   font-size: 2.8rem;
   font-weight: 900;
-  color: #fec90f;
+  color: var(--accent);
   letter-spacing: -0.02em;
   text-align: center;
   transform: translateX(170px);
-  border-bottom: 2px solid rgba(254, 201, 15, 0.3);
+  border-bottom: 2px solid var(--border-accent);
   padding-bottom: 4px;
   
-  /* BRILHO ESTÁTICO - APENAS UMA CAMADA DE GLOW (igual ao hero) */
   text-shadow: 
     0 0 20px rgba(254, 201, 15, 0.25),
     0 0 40px rgba(254, 201, 15, 0.12),
     0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
-/* LINHA 3 - SÓ TÍTULO EM NEGRITO */
 .services-title .line-3 {
   margin-top: 8px;
   font-size: 2.8rem;
   font-weight: 700;
-  color: #ffffff;
+  color: var(--text-primary);
   letter-spacing: -0.02em;
   text-align: center;
   transform: translateX(20px);
-  
-  /* Sombra para legibilidade */
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
-/* ============================================
-   GRID
-   ============================================ */
+/* ===== GRID ===== */
 .services-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -129,47 +101,39 @@
   position: relative;
 }
 
-/* ============================================
-   CARDS - SEM TRANSITIONS PARA EVITAR TRAVAMENTO
-   ============================================ */
+/* ===== CARDS ===== */
 .service-card {
   display: flex;
   align-items: flex-start;
   gap: 16px;
   padding: 24px 28px;
   border-radius: 12px;
-  background: rgba(0, 12, 36, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  /* SEM transition */
+  background: var(--card-bg);
+  border: 1px solid var(--border-soft);
 }
 
 .service-card svg {
-  color: #fec90f;
+  color: var(--accent);
   flex-shrink: 0;
   margin-top: 2px;
-  /* SEM transition */
 }
 
 .service-info {
   flex: 1;
 }
 
-/* TÍTULO DO CARD EM NEGRITO */
 .service-info h3 {
   margin: 0 0 6px;
   font-size: 1rem;
   font-weight: 700;
-  color: #ffffff;
-  
-  /* Sombra para legibilidade */
+  color: var(--text-primary);
   text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
 }
 
-/* DESCRIÇÃO - MANTIDA ORIGINAL */
 .service-info p {
   margin: 0 0 12px;
   font-size: 0.8125rem;
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--text-secondary);
   line-height: 1.6;
   font-weight: 300;
 }
@@ -180,9 +144,8 @@
   margin: 0;
 }
 
-/* PONTOS - MANTIDOS ORIGINAIS */
 .service-points li {
-  color: rgba(255, 255, 255, 0.7);
+  color: var(--text-muted);
   font-size: 0.75rem;
   margin-bottom: 6px;
   padding-left: 12px;
@@ -192,14 +155,12 @@
 
 .service-points li::before {
   content: "•";
-  color: #fec90f;
+  color: var(--accent);
   position: absolute;
   left: 0;
 }
 
-/* ============================================
-   SCROLL INDICATOR - SEM TRANSITIONS
-   ============================================ */
+/* ===== SCROLL INDICATOR ===== */
 .scroll-indicator {
   display: flex;
   flex-direction: column;
@@ -208,7 +169,6 @@
   opacity: 1;
   position: relative;
   z-index: 2;
-  /* SEM transition */
 }
 
 .scroll-arrows {
@@ -222,11 +182,10 @@
   display: block;
   width: 16px;
   height: 16px;
-  border-right: 2.5px solid #fec90f;
-  border-bottom: 2.5px solid #fec90f;
+  border-right: 2.5px solid var(--accent);
+  border-bottom: 2.5px solid var(--accent);
   transform: rotate(45deg);
   animation: arrowDown 2s ease-in-out infinite;
-  /* SEM transition */
 }
 
 .scroll-arrows span:nth-child(1) {
@@ -255,28 +214,76 @@
 }
 
 .scroll-text {
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--text-dim);
   font-size: 0.65rem;
   font-weight: 500;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  /* SEM transition */
 }
 
 /* ============================================
-   RESPONSIVO - BRILHO EM TODOS OS TAMANHOS
+   LIGHT MODE - SERVICES PREMIUM
    ============================================ */
 
-/* Desktop Grande */
-@media (max-width: 1400px) {
+[data-theme="light"] .service-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="light"] .service-info h3 {
+  color: #111827;
+  text-shadow: none;
+}
+
+[data-theme="light"] .service-info p {
+  color: #64748b;
+}
+
+[data-theme="light"] .service-points li {
+  color: #475569;
+}
+
+[data-theme="light"] .service-points li::before {
+  color: var(--accent);
+}
+
+[data-theme="light"] .services-title .line-1 {
+  color: #111827;
+  text-shadow: none;
+}
+
+[data-theme="light"] .services-title .line-2 {
+  color: var(--accent);
+  border-bottom-color: var(--border-accent);
+  text-shadow: 0 0 30px rgba(243, 195, 22, 0.15);
+}
+
+[data-theme="light"] .services-title .line-3 {
+  color: #111827;
+  text-shadow: none;
+}
+
+[data-theme="light"] .scroll-text {
+  color: #94a3b8;
+}
+
+[data-theme="light"] .scroll-arrows span {
+  border-color: var(--accent);
+}
+
+/* ============================================
+   RESPONSIVO
+   ============================================ */
+
+@media (max-width: 2900px) {
   .services-background {
     background-size: 45% 100%;
     background-position: 14% center;
     opacity: 1 !important;
   }
   
-  /* BRILHO TABLET GRANDE */
   .services-title .line-2 {
     text-shadow: 
       0 0 16px rgba(254, 201, 15, 0.25),
@@ -285,7 +292,6 @@
   }
 }
 
-/* Desktop */
 @media (max-width: 1200px) {
   .services-background {
     background-size: 67% 81%;
@@ -296,16 +302,13 @@
   .services-title .line-1 {
     transform: translateX(-60px);
   }
-
   .services-title .line-2 {
     transform: translateX(60px);
   }
-  
   .services-title .line-3 {
     transform: translateX(15px);
   }
   
-  /* BRILHO DESKTOP PEQUENO */
   .services-title .line-2 {
     text-shadow: 
       0 0 16px rgba(254, 201, 15, 0.25),
@@ -314,7 +317,6 @@
   }
 }
 
-/* Desktop pequeno */
 @media (max-width: 1024px) {
   .services-grid {
     gap: 24px;
@@ -332,30 +334,22 @@
   
   .services-title .line-1 {
     font-size: 2.4rem;
-    font-weight: 700;
     transform: translateX(-50px);
   }
-
   .services-title .line-2 {
     font-size: 2.4rem;
-    font-weight: 900;
     transform: translateX(50px);
-    
-    /* BRILHO TABLET */
     text-shadow: 
       0 0 14px rgba(254, 201, 15, 0.25),
       0 0 28px rgba(254, 201, 15, 0.12),
       0 2px 8px rgba(0, 0, 0, 0.3);
   }
-  
   .services-title .line-3 {
     font-size: 2.4rem;
-    font-weight: 700;
     transform: translateX(10px);
   }
 }
 
-/* Tablet */
 @media (max-width: 900px) {
   .services-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -369,169 +363,125 @@
   
   .services-title .line-1 {
     font-size: 2.2rem;
-    font-weight: 700;
     transform: translateX(-40px);
   }
-
   .services-title .line-2 {
     font-size: 2.2rem;
-    font-weight: 900;
     transform: translateX(40px);
-    
-    /* BRILHO TABLET */
     text-shadow: 
       0 0 14px rgba(254, 201, 15, 0.25),
       0 0 28px rgba(254, 201, 15, 0.12),
       0 2px 8px rgba(0, 0, 0, 0.3);
   }
-  
   .services-title .line-3 {
     font-size: 2.2rem;
-    font-weight: 700;
     transform: translateX(8px);
   }
 }
 
-/* Tablet pequeno */
 @media (max-width: 768px) {
   .services {
     padding: 60px 0;
   }
-
   .services-grid {
     margin-bottom: 60px;
     gap: 20px;
   }
-  
   .service-card {
     padding: 16px 20px;
   }
-  
   .services-background {
     background-size: cover;
     background-position: -220px 0%;
     opacity: 1 !important;
   }
-  
   .services-title .line-1 {
     font-size: 2rem;
-    font-weight: 700;
     transform: translateX(-30px);
   }
-
   .services-title .line-2 {
     font-size: 2rem;
-    font-weight: 900;
     transform: translateX(30px);
-    
-    /* BRILHO TABLET PEQUENO */
     text-shadow: 
       0 0 12px rgba(254, 201, 15, 0.25),
       0 0 24px rgba(254, 201, 15, 0.12),
       0 2px 8px rgba(0, 0, 0, 0.3);
     border-bottom-width: 2px;
   }
-  
   .services-title .line-3 {
     font-size: 2rem;
-    font-weight: 700;
     transform: translateX(5px);
   }
 }
 
-/* Mobile grande */
 @media (max-width: 640px) {
   .services {
     padding: 50px 0;
   }
-
   .services-container {
     padding: 0 20px;
   }
-
   .services-grid {
     grid-template-columns: 1fr;
     gap: 16px;
     margin-bottom: 40px;
   }
-  
   .service-card {
     padding: 16px 18px;
   }
-  
   .services-background {
     background-size: cover;
     background-position: -300px 0%;
     opacity: 1 !important;
   }
-  
   .services-header {
     margin-bottom: 32px;
   }
-  
   .services-title .line-1 {
     font-size: 1.8rem;
-    font-weight: 700;
     transform: translateX(-25px);
   }
-
   .services-title .line-2 {
     font-size: 1.8rem;
-    font-weight: 900;
     transform: translateX(25px);
-    
-    /* BRILHO MOBILE GRANDE */
     text-shadow: 
       0 0 10px rgba(254, 201, 15, 0.25),
       0 0 20px rgba(254, 201, 15, 0.12),
       0 2px 8px rgba(0, 0, 0, 0.3);
   }
-  
   .services-title .line-3 {
     font-size: 1.8rem;
-    font-weight: 700;
     transform: translateX(5px);
   }
-  
   .scroll-arrows span {
     width: 12px;
     height: 12px;
   }
 }
 
-/* Mobile pequeno */
 @media (max-width: 480px) {
   .services {
     padding: 40px 0;
   }
-  
   .services-container {
     padding: 0 16px;
   }
-  
   .service-card {
     padding: 14px 16px;
   }
-  
   .services-background {
     background-size: 500px;
     background-position: -130px 0%;
     opacity: 1 !important;
   }
-  
   .services-title .line-1 {
     font-size: 1.5rem;
-    font-weight: 700;
     transform: translateX(-2px);
   }
-
   .services-title .line-2 {
     font-size: 1.5rem;
-    font-weight: 900;
     transform: translateX(30px);
     margin-top: 4px;
-    
-    /* BRILHO MOBILE PEQUENO */
     text-shadow: 
       0 0 8px rgba(254, 201, 15, 0.25),
       0 0 16px rgba(254, 201, 15, 0.12),
@@ -539,37 +489,27 @@
     border-bottom-width: 2px;
     padding-bottom: 2px;
   }
-  
   .services-title .line-3 {
     font-size: 1.5rem;
-    font-weight: 700;
     transform: translateX(0px);
   }
-  
   .scroll-arrows span {
     width: 10px;
     height: 10px;
   }
-  
   .scroll-text {
     font-size: 0.5rem;
   }
 }
 
-/* Mobile muito pequeno */
 @media (max-width: 380px) {
   .services-title .line-1 {
     font-size: 1.2rem;
-    font-weight: 700;
     transform: translateX(-15px);
   }
-
   .services-title .line-2 {
     font-size: 1.2rem;
-    font-weight: 900;
     transform: translateX(-2px);
-    
-    /* BRILHO MOBILE MUITO PEQUENO */
     text-shadow: 
       0 0 6px rgba(254, 201, 15, 0.2),
       0 0 12px rgba(254, 201, 15, 0.1),
@@ -577,36 +517,27 @@
     border-bottom-width: 1px;
     padding-bottom: 2px;
   }
-  
   .services-title .line-3 {
     font-size: 1.2rem;
-    font-weight: 700;
     transform: translateX(2px);
   }
-  
   .service-card {
     padding: 12px 14px;
     gap: 12px;
   }
-  
   .service-card svg {
     width: 18px;
     height: 18px;
   }
-  
   .service-info h3 {
     font-size: 0.875rem;
-    font-weight: 700;
   }
-  
   .service-info p {
     font-size: 0.7rem;
   }
-  
   .service-points li {
     font-size: 0.65rem;
   }
-
   .services-background {
     opacity: 1 !important;
   }
