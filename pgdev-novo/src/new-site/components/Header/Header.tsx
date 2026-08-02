@@ -21,7 +21,7 @@ const languageOptions = [
   { code: 'en', label: 'English', flag: enFlag }
 ]
 
-// Language Dropdown Component (CORRIGIDO)
+// Language Dropdown Component
 const LanguageDropdown = ({ 
   language, 
   isOpen, 
@@ -43,7 +43,7 @@ const LanguageDropdown = ({
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (ref.current && !ref.current.contains(event.target as Node)) {
-        onClose() // FECHA, não alterna
+        onClose()
       }
     }
     
@@ -86,8 +86,8 @@ const LanguageDropdown = ({
               key={option.code}
               className={`${className}-option ${language === option.code ? 'active' : ''}`}
               onClick={() => {
-                onClose() // FECHA primeiro
-                onChange(option.code as Language) // Depois muda
+                onClose()
+                onChange(option.code as Language)
               }}
             >
               <img src={option.flag} alt={option.label} className={`${className}-option-flag`} />
@@ -112,7 +112,7 @@ export default function Header({
   const [scrolled, setScrolled] = useState(false)
   const [activeSection, setActiveSection] = useState('inicio')
   
-  // ESTADOS SEPARADOS para cada dropdown
+  // Estados separados para cada dropdown
   const [isDesktopLangOpen, setIsDesktopLangOpen] = useState(false)
   const [isTabletLangOpen, setIsTabletLangOpen] = useState(false)
   
@@ -228,17 +228,43 @@ export default function Header({
   return (
     <header className={`header ${scrolled ? 'scrolled' : ''}`}>
       <div className="header-inner">
+        {/* BRAND */}
         <a href={`${basePath}#inicio`} className="brand" onClick={closeMenu}>
           <img src={logo} alt="PabloG.Dev" className="brand-logo" />
         </a>
 
         {/* DESKTOP NAV */}
         <nav className="nav">
-          <a href={`${basePath}#inicio`} className={`nav-link ${activeSection === 'inicio' ? 'active' : ''}`}>{currentContent.header.home}</a>
-          <a href={`${basePath}#servicos`} className={`nav-link ${activeSection === 'servicos' ? 'active' : ''}`}>{currentContent.header.services}</a>
-          <a href={`${basePath}#exemplos`} className={`nav-link ${activeSection === 'exemplos' ? 'active' : ''}`}>{currentContent.header.projects}</a>
-          <a href={`${basePath}#processo`} className={`nav-link ${activeSection === 'processo' ? 'active' : ''}`}>{currentContent.header.process}</a>
-          <a href={`${basePath}#contato`} className={`nav-link ${activeSection === 'contato' ? 'active' : ''}`}>{currentContent.header.contact}</a>
+          <a 
+            href={`${basePath}#inicio`} 
+            className={`nav-link ${activeSection === 'inicio' ? 'active' : ''}`}
+          >
+            {currentContent.header.home}
+          </a>
+          <a 
+            href={`${basePath}#servicos`} 
+            className={`nav-link ${activeSection === 'servicos' ? 'active' : ''}`}
+          >
+            {currentContent.header.services}
+          </a>
+          <a 
+            href={`${basePath}#exemplos`} 
+            className={`nav-link ${activeSection === 'exemplos' ? 'active' : ''}`}
+          >
+            {currentContent.header.projects}
+          </a>
+          <a 
+            href={`${basePath}#processo`} 
+            className={`nav-link ${activeSection === 'processo' ? 'active' : ''}`}
+          >
+            {currentContent.header.process}
+          </a>
+          <a 
+            href={`${basePath}#contato`} 
+            className={`nav-link ${activeSection === 'contato' ? 'active' : ''}`}
+          >
+            {currentContent.header.contact}
+          </a>
         </nav>
 
         {/* DESKTOP ACTIONS */}
@@ -273,42 +299,80 @@ export default function Header({
           </a>
         </div>
 
-        {/* TABLET CONTROLS */}
-        <div className="tablet-controls">
-          <LanguageDropdown
-            language={language}
-            isOpen={isTabletLangOpen}
-            onToggle={() => setIsTabletLangOpen(v => !v)}
-            onClose={() => setIsTabletLangOpen(false)}
-            onChange={changeLanguage}
-            variant="tablet"
-          />
+        {/* MOBILE CONTROLS - Novo design unificado */}
+        <div className="mobile-controls">
+          {/* Grupo de controles (idioma + tema) */}
+          <div className="mobile-controls-group">
+            <LanguageDropdown
+              language={language}
+              isOpen={isTabletLangOpen}
+              onToggle={() => setIsTabletLangOpen(v => !v)}
+              onClose={() => setIsTabletLangOpen(false)}
+              onChange={changeLanguage}
+              variant="tablet"
+            />
 
-          <button
-            type="button"
-            className="tablet-theme-toggle"
-            onClick={onToggleTheme}
-            aria-label="Alternar tema"
+            <button
+              type="button"
+              className="mobile-theme-toggle"
+              onClick={onToggleTheme}
+              aria-label="Alternar tema"
+            >
+              {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
+            </button>
+          </div>
+
+          {/* Menu Toggle Button */}
+          <button 
+            type="button" 
+            className={`mobile-btn ${isMenuOpen ? 'open' : ''}`} 
+            onClick={toggleMenu} 
+            aria-label="Menu"
           >
-            {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
+            {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
-
-        {/* MOBILE MENU BUTTON */}
-        <button type="button" className={`mobile-btn ${isMenuOpen ? 'open' : ''}`} onClick={toggleMenu} aria-label="Menu">
-          {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
-        </button>
       </div>
 
       {/* MOBILE MENU - DRAWER */}
       <div className={`mobile-menu ${isMenuOpen ? 'open' : ''}`}>
         <div className="mobile-menu-inner">
           <nav className="mobile-nav">
-            <a href={`${basePath}#inicio`} className={activeSection === 'inicio' ? 'active' : ''} onClick={closeMenu}>{currentContent.header.home}</a>
-            <a href={`${basePath}#servicos`} className={activeSection === 'servicos' ? 'active' : ''} onClick={closeMenu}>{currentContent.header.services}</a>
-            <a href={`${basePath}#exemplos`} className={activeSection === 'exemplos' ? 'active' : ''} onClick={closeMenu}>{currentContent.header.projects}</a>
-            <a href={`${basePath}#processo`} className={activeSection === 'processo' ? 'active' : ''} onClick={closeMenu}>{currentContent.header.process}</a>
-            <a href={`${basePath}#contato`} className={activeSection === 'contato' ? 'active' : ''} onClick={closeMenu}>{currentContent.header.contact}</a>
+            <a 
+              href={`${basePath}#inicio`} 
+              className={activeSection === 'inicio' ? 'active' : ''} 
+              onClick={closeMenu}
+            >
+              {currentContent.header.home}
+            </a>
+            <a 
+              href={`${basePath}#servicos`} 
+              className={activeSection === 'servicos' ? 'active' : ''} 
+              onClick={closeMenu}
+            >
+              {currentContent.header.services}
+            </a>
+            <a 
+              href={`${basePath}#exemplos`} 
+              className={activeSection === 'exemplos' ? 'active' : ''} 
+              onClick={closeMenu}
+            >
+              {currentContent.header.projects}
+            </a>
+            <a 
+              href={`${basePath}#processo`} 
+              className={activeSection === 'processo' ? 'active' : ''} 
+              onClick={closeMenu}
+            >
+              {currentContent.header.process}
+            </a>
+            <a 
+              href={`${basePath}#contato`} 
+              className={activeSection === 'contato' ? 'active' : ''} 
+              onClick={closeMenu}
+            >
+              {currentContent.header.contact}
+            </a>
           </nav>
 
           <div className="mobile-divider"></div>
@@ -335,7 +399,11 @@ export default function Header({
                       closeMenu()
                     }}
                   >
-                    <img src={option.flag} alt={option.label} className="mobile-lang-option-flag" />
+                    <img 
+                      src={option.flag} 
+                      alt={option.label} 
+                      className="mobile-lang-option-flag" 
+                    />
                     <span>{option.label}</span>
                   </button>
                 ))}
