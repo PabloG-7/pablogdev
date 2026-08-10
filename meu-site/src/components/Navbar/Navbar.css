@@ -630,48 +630,55 @@
 }
 
 /* =========================================================
-   OVERLAY MOBILE
+   OVERLAY MOBILE - OTIMIZADO
    ========================================================= */
 .nav-overlay {
-    display: none;
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    inset: 0;
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     z-index: 999;
     opacity: 0;
-    transition: opacity 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+        opacity 0.35s ease,
+        visibility 0.35s ease;
+    will-change: opacity;
 }
 
 .nav-overlay.active {
-    display: block;
     opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
 }
 
 /* =========================================================
-   MENU MOBILE
+   MENU MOBILE - OTIMIZADO COM TRANSFORM
    ========================================================= */
 .nav-mobile {
     position: fixed;
     top: 0;
-    right: -100%;
+    right: 0;
     width: 85%;
     max-width: 380px;
     height: 100%;
-    background: linear-gradient(180deg, 
+    background: linear-gradient(
+        180deg,
         rgba(3, 21, 58, 0.97) 0%,
         rgba(3, 21, 58, 0.95) 50%,
         rgba(3, 21, 58, 0.98) 100%
     );
-    backdrop-filter: blur(30px);
-    -webkit-backdrop-filter: blur(30px);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
     z-index: 1001;
     padding: 32px 28px;
-    transition: right 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    transform: translate3d(100%, 0, 0);
+    transition: transform 0.45s cubic-bezier(0.23, 1, 0.32, 1);
+    will-change: transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
     border-left: 1px solid rgba(243, 195, 22, 0.08);
     overflow-y: auto;
     display: flex;
@@ -681,7 +688,8 @@
 }
 
 [data-theme="light"] .nav-mobile {
-    background: linear-gradient(180deg, 
+    background: linear-gradient(
+        180deg,
         rgba(255, 255, 255, 0.98) 0%,
         rgba(255, 255, 255, 0.95) 50%,
         rgba(255, 255, 255, 0.98) 100%
@@ -691,7 +699,7 @@
 }
 
 .nav-mobile.active {
-    right: 0;
+    transform: translate3d(0, 0, 0);
 }
 
 .nav-mobile .close-menu {

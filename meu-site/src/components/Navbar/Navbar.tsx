@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useTheme } from '../../hooks/useTheme'
 import { useLanguage } from '../../hooks/useLanguage'
 import { useAudio } from '../../hooks/useAudio'
@@ -14,15 +14,22 @@ export function Navbar({ onContactClick }: NavbarProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const { play } = useAudio()
 
+  // Controle do scroll com useEffect
+  useEffect(() => {
+    document.body.style.overflow = isMenuOpen ? 'hidden' : ''
+    
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [isMenuOpen])
+
   const toggleMenu = () => {
     play('click')
-    setIsMenuOpen(!isMenuOpen)
-    document.body.style.overflow = !isMenuOpen ? 'hidden' : ''
+    setIsMenuOpen(prev => !prev)
   }
 
   const closeMenu = () => {
     setIsMenuOpen(false)
-    document.body.style.overflow = ''
   }
 
   const handleThemeToggle = () => {
@@ -53,7 +60,7 @@ export function Navbar({ onContactClick }: NavbarProps) {
   const handleContactClick = () => {
     play('confirm')
     closeMenu()
-    onContactClick() // Isso chama a função scrollToFooter do App.tsx
+    onContactClick()
   }
 
   return (
