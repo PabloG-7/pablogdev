@@ -1,15 +1,14 @@
 /* =========================================================
    NAVBAR - DESIGN FUTURISTA COM NEON GLOW (VERSÃO OTIMIZADA)
-========================================================= */
+   ========================================================= */
 .navbar {
-    width: calc(100% - 32px);
-    max-width: var(--container);
-    margin: 16px auto;
-    padding: 8px 20px;
     background: rgba(3, 21, 58, 0.3);
+    padding: 8px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    max-width: var(--container);
+    margin: 16px auto;
     position: sticky;
     top: 16px;
     z-index: 1000;
@@ -19,7 +18,6 @@
     box-shadow: none;
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    box-sizing: border-box;
 }
 
 .navbar::before {
@@ -229,7 +227,7 @@
 
 /* =========================================================
    LANG SELECTOR - COM BANDEIRAS ESTILIZADAS
-========================================================= */
+   ========================================================= */
 .lang-selector {
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.06);
@@ -317,7 +315,7 @@
 
 /* =========================================================
    THEME TOGGLE
-========================================================= */
+   ========================================================= */
 .theme-toggle {
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.06);
@@ -361,7 +359,7 @@
 
 /* =========================================================
    MENU TOGGLE - NOVO VISUAL FUTURISTA
-========================================================= */
+   ========================================================= */
 .menu-toggle {
     display: none;
     background: transparent;
@@ -507,12 +505,11 @@
 
 /* =========================================================
    NAVBAR - RESPONSIVIDADE
-========================================================= */
+   ========================================================= */
 @media (max-width: 1024px) {
     .navbar {
-        width: calc(100% - 32px);
         padding: 8px 16px;
-        margin: 12px auto;
+        margin: 12px 16px;
         top: 12px;
     }
     .nav-links li {
@@ -542,9 +539,8 @@
         display: flex;
     }
     .navbar {
-        width: calc(100% - 24px);
         padding: 8px 14px;
-        margin: 10px auto;
+        margin: 10px 12px;
         top: 10px;
     }
     .logo-text {
@@ -579,11 +575,9 @@
 
 @media (max-width: 480px) {
     .navbar {
-        width: calc(100% - 16px);
         padding: 6px 10px;
-        margin: 8px auto;
+        margin: 8px 8px;
         top: 8px;
-        box-sizing: border-box;
     }
     .logo-text {
         font-size: 11px;
@@ -626,7 +620,7 @@
 
 /* =========================================================
    NAV MOBILE - DESIGN MODERNO E SOFISTICADO
-========================================================= */
+   ========================================================= */
 .nav-overlay {
     display: none;
     position: fixed;
@@ -651,9 +645,9 @@
     position: fixed;
     top: 0;
     right: -100%;
-    width: min(85%, 380px);
-    max-width: 100%;
-    height: 100dvh;
+    width: 85%;
+    max-width: 380px;
+    height: 100%;
     background: linear-gradient(180deg, 
         rgba(3, 21, 58, 0.97) 0%,
         rgba(3, 21, 58, 0.95) 50%,
@@ -666,12 +660,10 @@
     transition: right 0.6s cubic-bezier(0.23, 1, 0.32, 1);
     border-left: 1px solid rgba(243, 195, 22, 0.08);
     overflow-y: auto;
-    overflow-x: hidden;
     display: flex;
     flex-direction: column;
     gap: 0;
     box-shadow: -20px 0 60px rgba(0, 0, 0, 0.5);
-    box-sizing: border-box;
 }
 
 [data-theme="light"] .nav-mobile {
@@ -994,10 +986,9 @@
 /* Responsividade mobile */
 @media (max-width: 480px) {
     .nav-mobile {
+        padding: 24px 20px;
         width: 88%;
         max-width: 320px;
-        padding: 24px 20px;
-        box-sizing: border-box;
     }
     
     .nav-mobile .mobile-logo .logo-wrapper {

@@ -7,7 +7,6 @@ import { Process } from './components/Process/Process'
 import { FAQ } from './components/FAQ/FAQ'
 import { Footer } from './components/Footer/Footer'
 import { useAudio } from './hooks/useAudio'
-import DotCursor from './components/DotCursor/DotCursor'
 
 import './styles/global.css'
 import './styles/variables.css'
@@ -27,9 +26,6 @@ function App() {
 
   return (
     <>
-      {/* Cursor personalizado global */}
-      <DotCursor />
-
       <Navbar onContactClick={scrollToFooter} />
 
       <section id="home">
