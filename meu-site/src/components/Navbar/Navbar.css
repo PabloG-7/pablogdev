@@ -1,5 +1,5 @@
 /* =========================================================
-   NAVBAR - DESIGN FUTURISTA COM NEON GLOW (VERSÃO OTIMIZADA)
+   NAVBAR - FIXA NO TOPO COM DESIGN FUTURISTA
    ========================================================= */
 .navbar {
     background: rgba(3, 21, 58, 0.3);
@@ -7,15 +7,24 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    
+    width: calc(100% - 32px);
     max-width: var(--container);
-    margin: 16px auto;
-    position: sticky;
+    
+    margin: 0 auto;
+    
+    position: fixed;
     top: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    
     z-index: 1000;
+    
     border-radius: 0;
     transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
     border: none;
     box-shadow: none;
+    
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
 }
@@ -51,7 +60,9 @@
     opacity: 0.25;
 }
 
-/* Logo - versão com imagem */
+/* =========================================================
+   LOGO
+   ========================================================= */
 .logo-group {
     display: flex;
     align-items: center;
@@ -123,7 +134,9 @@
     box-shadow: 0 0 15px var(--accent);
 }
 
-/* Nav Links - mais compacto */
+/* =========================================================
+   NAV LINKS
+   ========================================================= */
 .nav-links {
     display: flex;
     gap: 0;
@@ -171,7 +184,9 @@
     padding-left: 20px;
 }
 
-/* Botão Contato - mais compacto */
+/* =========================================================
+   BOTÃO CONTATO
+   ========================================================= */
 .nav-btn {
     background: transparent;
     color: var(--accent);
@@ -217,7 +232,9 @@
     z-index: 1;
 }
 
-/* Controls - mais compacto */
+/* =========================================================
+   CONTROLES
+   ========================================================= */
 .control-group {
     display: flex;
     align-items: center;
@@ -226,7 +243,7 @@
 }
 
 /* =========================================================
-   LANG SELECTOR - COM BANDEIRAS ESTILIZADAS
+   LANG SELECTOR
    ========================================================= */
 .lang-selector {
     background: rgba(255, 255, 255, 0.03);
@@ -265,7 +282,6 @@
     height: 36px;
 }
 
-/* Estilização das imagens das bandeiras - MAIORES */
 .lang-btn img {
     width: 28px;
     height: 19px;
@@ -295,7 +311,6 @@
     transform: scale(1.05);
 }
 
-/* Indicador de idioma ativo - traço abaixo */
 .lang-btn.active::after {
     content: '';
     position: absolute;
@@ -308,7 +323,6 @@
     box-shadow: 0 0 15px var(--accent);
 }
 
-/* Efeito hover nas bandeiras */
 .lang-btn:not(.active):hover {
     background: rgba(243, 195, 22, 0.05);
 }
@@ -358,7 +372,7 @@
 }
 
 /* =========================================================
-   MENU TOGGLE - NOVO VISUAL FUTURISTA
+   MENU TOGGLE (HAMBURGER)
    ========================================================= */
 .menu-toggle {
     display: none;
@@ -376,7 +390,6 @@
     padding: 0;
 }
 
-/* Container das linhas */
 .menu-toggle .hamburger {
     position: relative;
     width: 22px;
@@ -387,7 +400,6 @@
     transition: all 0.3s ease;
 }
 
-/* Linhas individuais */
 .menu-toggle .hamburger span {
     display: block;
     height: 2px;
@@ -399,7 +411,6 @@
     transform-origin: center;
 }
 
-/* Efeito de glow nas linhas */
 .menu-toggle .hamburger span::before {
     content: '';
     position: absolute;
@@ -422,7 +433,6 @@
     opacity: 0.5;
 }
 
-/* Linha superior - animação individual */
 .menu-toggle .hamburger span:nth-child(1) {
     width: 70%;
     transition-delay: 0.05s;
@@ -447,7 +457,6 @@
     width: 100%;
 }
 
-/* Círculo decorativo ao redor */
 .menu-toggle::before {
     content: '';
     position: absolute;
@@ -477,7 +486,6 @@
     transform: scale(1);
 }
 
-/* Estado ativo (quando o menu está aberto) */
 .menu-toggle.active .hamburger span:nth-child(1) {
     transform: rotate(45deg) translate(5px, 5px);
     width: 100%;
@@ -504,12 +512,13 @@
 }
 
 /* =========================================================
-   NAVBAR - RESPONSIVIDADE
+   RESPONSIVIDADE DA NAVBAR
    ========================================================= */
 @media (max-width: 1024px) {
     .navbar {
+        width: calc(100% - 32px);
         padding: 8px 16px;
-        margin: 12px 16px;
+        margin: 0;
         top: 12px;
     }
     .nav-links li {
@@ -539,8 +548,9 @@
         display: flex;
     }
     .navbar {
+        width: calc(100% - 24px);
         padding: 8px 14px;
-        margin: 10px 12px;
+        margin: 0;
         top: 10px;
     }
     .logo-text {
@@ -575,8 +585,9 @@
 
 @media (max-width: 480px) {
     .navbar {
+        width: calc(100% - 16px);
         padding: 6px 10px;
-        margin: 8px 8px;
+        margin: 0;
         top: 8px;
     }
     .logo-text {
@@ -619,7 +630,7 @@
 }
 
 /* =========================================================
-   NAV MOBILE - DESIGN MODERNO E SOFISTICADO
+   OVERLAY MOBILE
    ========================================================= */
 .nav-overlay {
     display: none;
@@ -641,6 +652,9 @@
     opacity: 1;
 }
 
+/* =========================================================
+   MENU MOBILE
+   ========================================================= */
 .nav-mobile {
     position: fixed;
     top: 0;
@@ -680,7 +694,6 @@
     right: 0;
 }
 
-/* Botão fechar - elegante */
 .nav-mobile .close-menu {
     align-self: flex-end;
     background: rgba(255, 255, 255, 0.03);
@@ -726,7 +739,6 @@
     transform: scale(1.1);
 }
 
-/* Logo no mobile */
 .nav-mobile .mobile-logo {
     display: flex;
     align-items: center;
@@ -767,7 +779,6 @@
     color: var(--accent);
 }
 
-/* Links de navegação - com animação de entrada */
 .nav-mobile .mobile-nav-links {
     display: flex;
     flex-direction: column;
@@ -821,13 +832,11 @@
     background: rgba(243, 195, 22, 0.04);
 }
 
-/* Link ativo (opcional - se quiser adicionar) */
 .nav-mobile .mobile-nav-links li.active {
     color: var(--accent);
     background: rgba(243, 195, 22, 0.06);
 }
 
-/* Botão Contato no mobile - com brilho */
 .nav-mobile .mobile-nav-links .nav-btn {
     border: 1px solid var(--accent);
     text-align: center;
@@ -885,7 +894,6 @@
     left: 100%;
 }
 
-/* Controles mobile - idioma e tema */
 .nav-mobile .mobile-controls {
     display: flex;
     gap: 12px;
@@ -969,7 +977,6 @@
     background: rgba(243, 195, 22, 0.05);
 }
 
-/* Scrollbar customizada */
 .nav-mobile::-webkit-scrollbar {
     width: 3px;
 }
@@ -983,7 +990,9 @@
     border-radius: 10px;
 }
 
-/* Responsividade mobile */
+/* =========================================================
+   RESPONSIVIDADE MOBILE
+   ========================================================= */
 @media (max-width: 480px) {
     .nav-mobile {
         padding: 24px 20px;

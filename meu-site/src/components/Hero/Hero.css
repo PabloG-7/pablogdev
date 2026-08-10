@@ -7,7 +7,7 @@
     grid-template-columns: 280px 1fr 280px;
     gap: 40px;
     align-items: center;
-    margin-top: 60px !important;
+    margin-top: 140px !important;
 }
 .hero-left {
     display: flex;
@@ -385,7 +385,7 @@
 @media (max-width: 480px) {
     .hero {
         padding: 20px 12px 30px;
-         margin-top: 40px !important;
+         margin-top: 95px !important;
     }
     .hero-title {
         font-size: 32px;
@@ -427,7 +427,7 @@
 @media (max-width: 380px) {
     .hero {
         padding: 15px 10px 25px;
-        margin-top: 40px !important;
+        margin-top: 100px !important;
     }
     .hero-image-wrapper {
         max-width: 240px;
