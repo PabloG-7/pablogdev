@@ -25,18 +25,22 @@
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
+
 body {
     background-color: var(--bg-primary);
     color: var(--text-primary);
     overflow-x: hidden;
 }
+
 a {
     text-decoration: none;
     color: inherit;
 }
+
 ul {
     list-style: none;
 }
+
 .container {
     max-width: var(--container);
     margin: 0 auto;
