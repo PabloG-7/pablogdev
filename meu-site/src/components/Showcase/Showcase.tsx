@@ -20,7 +20,12 @@ function ShowcaseCard({ image, categoryKey, titleKey, descKey, link }: ShowcaseC
   return (
     <div className="showcase-card" onClick={handleClick}>
       <div className="card">
-        <img src={image} alt={t(titleKey)} loading="lazy" />
+        <img 
+          src={image} 
+          alt={t(titleKey)} 
+          loading="lazy" 
+          decoding="async"
+        />
         <div className="card-overlay">
           <div className="overlay-content">
             <div className="overlay-header">
