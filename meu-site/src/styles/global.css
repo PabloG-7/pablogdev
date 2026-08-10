@@ -76,24 +76,3 @@ ul {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
 }
-html {
-  overflow-x: hidden;
-}
-
-body {
-  width: 100%;
-  max-width: 100%;
-  overflow-x: hidden;
-}
-
-#root {
-  width: 100%;
-  max-width: 100%;
-  min-width: 0;
-  overflow-x: clip;
-}
-
-section {
-  max-width: 100%;
-  min-width: 0;
-}
