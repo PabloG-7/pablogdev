@@ -1,8 +1,17 @@
 /* =========================================================
-   SCROLLBAR PERSONALIZADA
+   SCROLLBAR GLOBAL - PABLOG.DEV
 ========================================================= */
+
+/* Firefox */
+html {
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent) var(--bg-primary);
+}
+
+/* Chrome, Edge, Opera e navegadores WebKit */
 ::-webkit-scrollbar {
     width: 8px;
+    height: 8px;
 }
 
 ::-webkit-scrollbar-track {
@@ -11,18 +20,24 @@
 
 ::-webkit-scrollbar-thumb {
     background: var(--accent);
-    border-radius: 10px;
     border: 2px solid var(--bg-primary);
+    border-radius: 999px;
+    min-height: 40px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
     background: var(--accent-hover);
 }
 
+::-webkit-scrollbar-corner {
+    background: var(--bg-primary);
+}
+
 
 /* =========================================================
    RESET & BASE STYLES
 ========================================================= */
+
 *,
 *::before,
 *::after {
@@ -34,8 +49,9 @@
 
 
 /* =========================================================
-   BLOQUEIO DE ROLAGEM HORIZONTAL
+   HTML / BODY / ROOT
 ========================================================= */
+
 html,
 body,
 #root {
@@ -47,19 +63,27 @@ body,
     overflow-x: hidden;
 }
 
+html {
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent) var(--bg-primary);
+}
 
-/* =========================================================
-   BODY
-========================================================= */
 body {
     background-color: var(--bg-primary);
     color: var(--text-primary);
+
+    /* Melhor comportamento em dispositivos touch */
+    -webkit-overflow-scrolling: touch;
+
+    /* Bloqueia overscroll horizontal */
+    overscroll-behavior-x: none;
 }
 
 
 /* =========================================================
    ROOT
 ========================================================= */
+
 #root {
     width: 100%;
     max-width: 100%;
@@ -70,6 +94,7 @@ body {
 /* =========================================================
    LINKS
 ========================================================= */
+
 a {
     text-decoration: none;
     color: inherit;
@@ -79,6 +104,7 @@ a {
 /* =========================================================
    LISTAS
 ========================================================= */
+
 ul {
     list-style: none;
 }
@@ -87,6 +113,7 @@ ul {
 /* =========================================================
    CONTAINER
 ========================================================= */
+
 .container {
     width: 100%;
     max-width: var(--container);
@@ -98,6 +125,7 @@ ul {
 /* =========================================================
    LETRA G EM AMARELO
 ========================================================= */
+
 .gold-g {
     color: var(--accent);
 }
@@ -106,6 +134,7 @@ ul {
 /* =========================================================
    KEYFRAMES
 ========================================================= */
+
 @keyframes fadeInUp {
     from {
         opacity: 0;
