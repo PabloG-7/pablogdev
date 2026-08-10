@@ -1,0 +1,16 @@
+.theme-toggle,
+.lang-switcher button {
+  border: none;
+  border-radius: 999px;
+  padding: 0.55rem 0.8rem;
+  margin: 1rem 0.3rem 0;
+  cursor: pointer;
+  background: #0f172a;
+  color: white;
+}
+
+.lang-switcher {
+  display: flex;
+  justify-content: center;
+  gap: 0.3rem;
+}

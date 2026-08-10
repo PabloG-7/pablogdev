@@ -1,0 +1,676 @@
+/* =========================================================
+   FOOTER - DESIGN PROFISSIONAL DO ZERO
+   ========================================================= */
+
+.footer {
+  background: var(--bg-primary);
+  position: relative;
+  overflow: hidden;
+  padding-top: 60px;
+  border-top: 1px solid var(--border);
+}
+
+/* =========================================================
+   BACKGROUND DECORATIVO
+   ========================================================= */
+
+.footer-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.footer-bg-circle {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(243, 195, 22, 0.03) 0%, transparent 70%);
+}
+
+.footer-bg-circle-1 {
+  top: -200px;
+  right: -100px;
+  width: 500px;
+  height: 500px;
+}
+
+.footer-bg-circle-2 {
+  bottom: -100px;
+  left: -150px;
+  width: 400px;
+  height: 400px;
+}
+
+/* =========================================================
+   CONTAINER
+   ========================================================= */
+
+.footer-container {
+  position: relative;
+  z-index: 1;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* =========================================================
+   TOPO - CTA / NEWSLETTER
+   ========================================================= */
+
+.footer-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  padding: 40px 50px;
+  margin-bottom: 50px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  position: relative;
+  overflow: hidden;
+  flex-wrap: wrap;
+}
+
+.footer-top::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(to bottom, var(--accent), var(--accent-hover));
+}
+
+.footer-top::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(243, 195, 22, 0.04) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.footer-cta {
+  position: relative;
+  z-index: 1;
+}
+
+.footer-cta-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+}
+
+.footer-cta-title .gold-g {
+  color: var(--accent);
+}
+
+.footer-cta-desc {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.footer-cta-btn {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 32px;
+  background: var(--accent);
+  color: var(--accent-text);
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  font-size: 14px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  box-shadow: 0 4px 20px rgba(243, 195, 22, 0.2);
+}
+
+.footer-cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 35px rgba(243, 195, 22, 0.35);
+  background: var(--accent-hover);
+}
+
+/* =========================================================
+   MEIO - GRID 4 COLUNAS
+   ========================================================= */
+
+.footer-middle {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1.5fr;
+  gap: 40px;
+  padding: 20px 0 50px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* ===== COLUNAS ===== */
+
+.footer-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-col-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.footer-col-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 30px;
+  height: 2px;
+  background: var(--accent);
+  opacity: 0.4;
+}
+
+/* ===== COLUNA BRAND ===== */
+
+.footer-col-brand {
+  gap: 12px;
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 4px;
+}
+
+.footer-logo-img {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+}
+
+.footer-logo-text {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.footer-logo-text .gold-g {
+  color: var(--accent);
+}
+
+.footer-brand-desc {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin: 0;
+  max-width: 320px;
+}
+
+/* ===== SOCIAL ===== */
+
+.footer-social {
+  display: flex;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.footer-social a {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  font-size: 16px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.footer-social a:hover {
+  background: var(--accent);
+  color: var(--accent-text);
+  border-color: var(--accent);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(243, 195, 22, 0.2);
+}
+
+/* ===== LINKS ===== */
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.footer-links li a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  display: inline-block;
+  position: relative;
+}
+
+.footer-links li a::before {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--accent);
+  transition: width 0.3s ease;
+}
+
+.footer-links li a:hover {
+  color: var(--text-primary);
+}
+
+.footer-links li a:hover::before {
+  width: 100%;
+}
+
+/* ===== CONTATO LISTA ===== */
+
+.footer-contact-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.footer-contact-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.footer-contact-icon {
+  color: var(--accent);
+  font-size: 18px;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.footer-contact-list li div {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-contact-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.footer-contact-value {
+  font-size: 14px;
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+  font-weight: 500;
+}
+
+.footer-contact-value:hover {
+  color: var(--accent);
+}
+
+/* ===== WHATSAPP OCULTO ===== */
+
+.footer-contact-wa {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.footer-wa-hidden {
+  display: inline;
+}
+
+.footer-wa-visible {
+  display: none;
+  font-size: 18px;
+}
+
+/* Em telas pequenas, mostra apenas o ícone */
+@media (max-width: 768px) {
+  .footer-wa-hidden {
+    display: none;
+  }
+  
+  .footer-wa-visible {
+    display: inline;
+  }
+  
+  .footer-contact-wa {
+    font-size: 0;
+  }
+  
+  .footer-contact-wa .footer-wa-visible {
+    font-size: 20px;
+  }
+}
+
+/* Em telas muito pequenas, esconde o texto do WhatsApp */
+@media (max-width: 480px) {
+  .footer-wa-hidden {
+    display: none !important;
+  }
+  
+  .footer-wa-visible {
+    display: inline !important;
+    font-size: 18px;
+  }
+  
+  .footer-contact-wa {
+    font-size: 0 !important;
+  }
+  
+  .footer-contact-wa .footer-wa-visible {
+    font-size: 18px;
+  }
+}
+
+/* =========================================================
+   BOTTOM - COPYRIGHT
+   ========================================================= */
+
+.footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 0;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.footer-bottom p {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.footer-bottom .gold-g {
+  color: var(--accent);
+}
+
+.footer-bottom-links {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+}
+
+.footer-bottom-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-bottom-links a:hover {
+  color: var(--accent);
+}
+
+.footer-bottom-divider {
+  color: var(--border);
+}
+
+/* =========================================================
+   RESPONSIVIDADE
+   ========================================================= */
+
+@media (max-width: 1024px) {
+  .footer-middle {
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+  }
+  
+  .footer-col-brand {
+    grid-column: span 2;
+  }
+  
+  .footer-brand-desc {
+    max-width: 100%;
+  }
+  
+  .footer-top {
+    padding: 30px 35px;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer {
+    padding-top: 40px;
+  }
+  
+  .footer-top {
+    flex-direction: column;
+    text-align: center;
+    padding: 30px 25px;
+    gap: 20px;
+  }
+  
+  .footer-top::before {
+    width: 100%;
+    height: 3px;
+    top: 0;
+    left: 0;
+    bottom: auto;
+  }
+  
+  .footer-cta-title {
+    font-size: 20px;
+  }
+  
+  .footer-cta-btn {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .footer-middle {
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    padding: 10px 0 30px;
+  }
+  
+  .footer-col-brand {
+    grid-column: span 2;
+  }
+  
+  .footer-col-title::after {
+    left: 0;
+  }
+  
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 640px) {
+  .footer-top {
+    padding: 25px 20px;
+  }
+  
+  .footer-cta-title {
+    font-size: 18px;
+  }
+  
+  .footer-cta-desc {
+    font-size: 13px;
+  }
+  
+  .footer-cta-btn {
+    font-size: 13px;
+    padding: 12px 24px;
+  }
+  
+  .footer-middle {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  
+  .footer-col-brand {
+    grid-column: span 1;
+  }
+  
+  .footer-logo-text {
+    font-size: 18px;
+  }
+  
+  .footer-logo-img {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .footer-brand-desc {
+    font-size: 13px;
+  }
+  
+  .footer-bottom p {
+    font-size: 12px;
+  }
+  
+  .footer-bottom-links {
+    font-size: 12px;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer {
+    padding-top: 30px;
+  }
+  
+  .footer-top {
+    padding: 20px 16px;
+    border-radius: var(--radius-md);
+  }
+  
+  .footer-cta-title {
+    font-size: 16px;
+  }
+  
+  .footer-cta-btn {
+    font-size: 12px;
+    padding: 10px 20px;
+    gap: 8px;
+  }
+  
+  .footer-cta-btn svg {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .footer-middle {
+    gap: 25px;
+    padding: 0 0 20px;
+  }
+  
+  .footer-col-title {
+    font-size: 13px;
+  }
+  
+  .footer-links li a {
+    font-size: 13px;
+  }
+  
+  .footer-social a {
+    width: 34px;
+    height: 34px;
+    font-size: 14px;
+  }
+  
+  .footer-contact-value {
+    font-size: 13px;
+  }
+  
+  .footer-contact-icon {
+    font-size: 16px;
+  }
+  
+  .footer-bottom {
+    padding: 16px 0;
+  }
+  
+  .footer-bottom p {
+    font-size: 11px;
+  }
+  
+  .footer-bottom-links {
+    font-size: 11px;
+  }
+}
+
+/* =========================================================
+   ANIMAÇÕES
+   ========================================================= */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.footer-top {
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.footer-col {
+  animation: fadeInUp 0.6s ease forwards;
+  opacity: 0;
+}
+
+.footer-col:nth-child(1) { animation-delay: 0.05s; }
+.footer-col:nth-child(2) { animation-delay: 0.1s; }
+.footer-col:nth-child(3) { animation-delay: 0.15s; }
+.footer-col:nth-child(4) { animation-delay: 0.2s; }
+
+/* =========================================================
+   TOUCH DEVICES
+   ========================================================= */
+
+@media (hover: none) {
+  .footer-links li a::before {
+    display: none;
+  }
+  
+  .footer-social a:hover {
+    transform: none;
+  }
+  
+  .footer-cta-btn:hover {
+    transform: none;
+  }
+}

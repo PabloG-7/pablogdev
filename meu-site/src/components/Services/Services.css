@@ -1,0 +1,333 @@
+/* =========================================================
+   SERVICES SECTION - VISUAL ORIGINAL, SÓ AJUSTADO
+   ========================================================= */
+.services-section {
+    background-color: var(--bg-primary);
+    padding: 60px 20px 100px;
+    position: relative;
+    margin-top: 60px !important;
+}
+.services-container {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+}
+
+/* Container do título */
+.services-title-wrap {
+    position: relative;
+    display: inline-block;
+}
+
+/* Título principal - duas linhas */
+.services-title {
+    font-size: 0;
+    color: var(--text-primary);
+    position: relative;
+    z-index: 2;
+    text-align: center;
+}
+
+/* Linha 1 - "MEUS" pequeno */
+.services-title .linha1 {
+    display: block;
+    font-size: clamp(12px, 1.2vw, 16px);
+    font-weight: 300;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5em;
+    margin-bottom: 6px;
+}
+
+/* Linha 2 - "SERVIÇOS" grande */
+.services-title .linha2 {
+    display: block;
+    font-size: clamp(32px, 5vw, 52px);
+    font-weight: 700;
+    color: var(--text-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    line-height: 1;
+}
+
+/* Letra S em dourado */
+.services-title .linha2 .s {
+    color: var(--accent);
+    font-weight: 800;
+}
+
+/* Traço fino separador */
+.services-title .traco {
+    display: block;
+    width: 30px;
+    height: 1px;
+    background: var(--accent);
+    margin: 8px auto 0;
+    opacity: 0.2;
+}
+
+/* RESPONSIVO - TÍTULO */
+@media (max-width: 768px) {
+    .services-title .linha1 {
+        letter-spacing: 0.3em;
+        margin-bottom: 4px;
+    }
+    
+    .services-title .linha2 {
+        letter-spacing: 0.05em;
+    }
+}
+
+@media (max-width: 480px) {
+    .services-title .linha1 {
+        letter-spacing: 0.2em;
+        font-size: 10px;
+    }
+    
+    .services-title .traco {
+        width: 20px;
+    }
+}
+
+/* =========================================================
+   SERVICES GRID
+   ========================================================= */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.service-card {
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 0 10px;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+/* Delay pra cada card - ANIMAÇÃO LEVE */
+.service-card:nth-child(1) {
+    animation-delay: 0.1s;
+}
+.service-card:nth-child(2) {
+    animation-delay: 0.2s;
+}
+.service-card:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+/* HOVER - SÓ O MOVIMENTO, SEM BORDA */
+.service-card:hover {
+    transform: translateY(-6px);
+    transition: transform var(--transition);
+}
+
+/* Wrapper da imagem */
+.service-image-wrapper {
+    border-radius: 40px;
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+/* IMAGEM - COM BORDER-RADIUS EM TODOS OS TAMANHOS */
+.service-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    border-radius: var(--radius-md);
+    object-fit: contain;
+    display: block;
+    padding: 10px;
+}
+
+/* TÍTULO DO CARD - AMARELO */
+.service-card h4 {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 8px;
+}
+
+.service-card p {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    max-width: 90%;
+    margin: 0 auto;
+}
+
+/* =========================================================
+   SERVICES - RESPONSIVIDADE COMPLETA
+   ========================================================= */
+
+/* Desktop */
+@media (min-width: 1025px) {
+    .service-image-wrapper img {
+        border-radius: 40px;
+        padding: 12px;
+    }
+}
+
+/* Tablet médio */
+@media (max-width: 1024px) {
+    .services-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+    
+    .service-image-wrapper img {
+        padding: 8px;
+        border-radius: 20px;
+    }
+}
+
+/* Tablet menor - VIRA 2 COLUNAS */
+@media (max-width: 900px) {
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px 20px;
+        max-width: 700px;
+        margin: 0 auto;
+    }
+    
+    .service-image-wrapper {
+        aspect-ratio: 4 / 3;
+         border-radius: 40px;
+    }
+    
+    .service-image-wrapper img {
+        padding: 10px;
+       border-radius: 40px;
+    }
+    
+    /* Remove delay em tablets menores */
+    .service-card {
+        animation-delay: 0s !important;
+    }
+}
+
+/* Mobile grande - VIRA 1 COLUNA */
+@media (max-width: 768px) {
+    .services-section {
+        padding: 50px 16px 80px;
+    }
+    
+    .services-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        max-width: 450px;
+        margin: 0 auto;
+    }
+    
+    .service-image-wrapper {
+        aspect-ratio: 4 / 3;
+         border-radius: 40px;
+        max-width: 100%;
+    }
+    
+    .service-image-wrapper img {
+        padding: 8px;
+        border-radius: 40px;
+    }
+    
+    .service-card h4 {
+        font-size: 17px;
+    }
+    
+    .service-card p {
+        max-width: 100%;
+        font-size: 14px;
+    }
+    
+    .service-card {
+        animation-delay: 0s !important;
+    }
+}
+
+/* Mobile pequeno */
+@media (max-width: 480px) {
+    .services-section {
+        padding: 40px 12px 60px;
+        margin-top: 35px !important;
+    }
+    
+    .services-title .linha2 {
+        font-size: 28px;
+    }
+    
+    .services-grid {
+        gap: 35px;
+        max-width: 100%;
+    }
+    
+    .service-image-wrapper {
+        aspect-ratio: 3 / 2;
+        max-width: 100%;
+          border-radius: 40px;
+    }
+    
+    .service-image-wrapper img {
+        padding: 6px;
+        border-radius: calc(var(--radius-md) - 4px); /* 14px */
+    }
+    
+    .service-card {
+        padding: 0 5px;
+        animation-delay: 0s !important;
+    }
+    
+    .service-card h4 {
+        font-size: 16px;
+        margin-bottom: 6px;
+    }
+    
+    .service-card p {
+        font-size: 13px;
+        line-height: 1.5;
+        max-width: 100%;
+    }
+}
+
+/* Mobile muito pequeno */
+@media (max-width: 360px) {
+    .services-section {
+        padding: 30px 8px 50px;
+        margin-top: 30px !important;
+    }
+    
+    .services-title .linha2 {
+        font-size: 24px;
+    }
+    
+    .services-title .linha1 {
+        font-size: 9px;
+        letter-spacing: 0.15em;
+    }
+    
+    .service-image-wrapper {
+        aspect-ratio: 1 / 1;
+         border-radius: 40px;
+    }
+    
+    .service-image-wrapper img {
+        padding: 5px;
+        border-radius: calc(var(--radius-md) - 5px); /* 13px */
+    }
+    
+    .service-card h4 {
+        font-size: 15px;
+    }
+    
+    .service-card p {
+        font-size: 12px;
+    }
+}
