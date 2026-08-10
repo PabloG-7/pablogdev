@@ -71,7 +71,7 @@ export function Showcase() {
       categoryKey: 'cat_health',
       titleKey: 'project_4_name',
       descKey: 'project_4_desc',
-      link: 'https://pablog-7.github.io/projeto-drbruno/'
+      link: 'https://pablog-7.github.io/fisio-site-exemplo/'
     },
     {
       image: '/images/exemplo5.webp',
