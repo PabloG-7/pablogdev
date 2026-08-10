@@ -1,6 +1,6 @@
 /* =========================================================
    SCROLLBAR PERSONALIZADA
-   ========================================================= */
+========================================================= */
 ::-webkit-scrollbar {
     width: 8px;
 }
@@ -18,8 +18,10 @@
 
 /* =========================================================
    RESET & BASE STYLES
-   ========================================================= */
-* {
+========================================================= */
+*,
+*::before,
+*::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -29,6 +31,7 @@
 html,
 body {
     width: 100%;
+    max-width: 100%;
     min-width: 0;
     margin: 0;
     padding: 0;
@@ -38,6 +41,12 @@ body {
     background-color: var(--bg-primary);
     color: var(--text-primary);
     overflow-x: hidden;
+}
+
+#root {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
 }
 
 a {
@@ -73,6 +82,10 @@ ul {
 }
 
 @keyframes rotateBorder {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
