@@ -53,186 +53,159 @@ export function Navbar({ onContactClick }: NavbarProps) {
   const handleContactClick = () => {
     play('confirm')
     closeMenu()
-    onContactClick() // Isso chama a função scrollToFooter do App.tsx
+    onContactClick()
   }
 
   return (
     <>
       <nav className="navbar">
-        <div className="logo-group">
-          <div className="logo-wrapper">
-            <img src="images/logo.png" alt="PabloG.Dev Logo" className="logo-icon" />
+        <div className="brand">
+          <div className="logo-container">
+            <img src="images/logo.png" alt="PabloG.Dev" className="logo" />
+            <div className="logo-glow"></div>
           </div>
-          <div className="logo-text">Pablo<span className="gold-g">G</span>.Dev</div>
+          <span className="brand-name">
+            Pablo<span className="accent">G</span>.Dev
+          </span>
         </div>
 
-        <ul className="nav-links">
-          <li 
-            className="nav-item" 
-            onClick={() => handleNavClick('home')}
-          >
-            {t('nav_home')}
+        <ul className="nav-list">
+          <li onClick={() => handleNavClick('home')}>
+            <span className="nav-label">{t('nav_home')}</span>
+            <span className="nav-indicator"></span>
           </li>
-          <li 
-            className="nav-item" 
-            onClick={() => handleNavClick('services')}
-          >
-            {t('nav_services')}
+          <li onClick={() => handleNavClick('services')}>
+            <span className="nav-label">{t('nav_services')}</span>
+            <span className="nav-indicator"></span>
           </li>
-          <li 
-            className="nav-item" 
-            onClick={() => handleNavClick('showcase')}
-          >
-            {t('nav_showcase') || 'Exemplos'}
+          <li onClick={() => handleNavClick('showcase')}>
+            <span className="nav-label">{t('nav_showcase') || 'Exemplos'}</span>
+            <span className="nav-indicator"></span>
           </li>
-          <li 
-            className="nav-item" 
-            onClick={() => handleNavClick('about')}
-          >
-            {t('nav_about')}
+          <li onClick={() => handleNavClick('about')}>
+            <span className="nav-label">{t('nav_about')}</span>
+            <span className="nav-indicator"></span>
           </li>
-          <li 
-            className="nav-item" 
-            onClick={() => handleNavClick('process')}
-          >
-            {t('nav_process')}
+          <li onClick={() => handleNavClick('process')}>
+            <span className="nav-label">{t('nav_process')}</span>
+            <span className="nav-indicator"></span>
           </li>
-          <li 
-            className="nav-item nav-btn" 
-            onClick={handleContactClick}
-          >
-            {t('nav_contact')}
-          </li>
-          <li>
-            <div className="control-group">
-              <div className="lang-selector">
-                <button 
-                  className={`lang-btn ${lang === 'pt' ? 'active' : ''}`}
-                  onClick={() => handleLangChange('pt')}
-                  aria-label="Português"
-                >
-                  <img src="/images/bandeiras/bandeira-brasil.webp" alt="Português" width="24" height="16" />
-                </button>
-                <button 
-                  className={`lang-btn ${lang === 'es' ? 'active' : ''}`}
-                  onClick={() => handleLangChange('es')}
-                  aria-label="Español"
-                >
-                  <img src="/images/bandeiras/bandeira-espanha.webp" alt="Español" width="24" height="16" />
-                </button>
-                <button 
-                  className={`lang-btn ${lang === 'en' ? 'active' : ''}`}
-                  onClick={() => handleLangChange('en')}
-                  aria-label="English"
-                >
-                  <img src="/images/bandeiras/bandeira-eua.webp" alt="English" width="24" height="16" />
-                </button>
-              </div>
-              <button 
-                className="theme-toggle" 
-                onClick={handleThemeToggle}
-                aria-label="Alternar tema"
-              >
-                {theme === 'dark' ? '🌙' : '☀️'}
-              </button>
-            </div>
+          <li className="contact-btn-wrapper">
+            <button className="contact-btn" onClick={handleContactClick}>
+              {t('nav_contact')}
+              <span className="btn-arrow">→</span>
+            </button>
           </li>
         </ul>
 
-        <button 
-          className={`menu-toggle ${isMenuOpen ? 'active' : ''}`}
-          onClick={toggleMenu}
-          aria-label="Abrir menu"
-        >
-          <div className="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
+        <div className="controls">
+          <div className="language-selector">
+            <button
+              className={`lang-option ${lang === 'pt' ? 'active' : ''}`}
+              onClick={() => handleLangChange('pt')}
+              aria-label="Português"
+            >
+              <img src="/images/bandeiras/bandeira-brasil.webp" alt="PT" />
+            </button>
+            <button
+              className={`lang-option ${lang === 'es' ? 'active' : ''}`}
+              onClick={() => handleLangChange('es')}
+              aria-label="Español"
+            >
+              <img src="/images/bandeiras/bandeira-espanha.webp" alt="ES" />
+            </button>
+            <button
+              className={`lang-option ${lang === 'en' ? 'active' : ''}`}
+              onClick={() => handleLangChange('en')}
+              aria-label="English"
+            >
+              <img src="/images/bandeiras/bandeira-eua.webp" alt="EN" />
+            </button>
           </div>
+          <button className="theme-btn" onClick={handleThemeToggle}>
+            {theme === 'dark' ? '☀️' : '🌙'}
+          </button>
+        </div>
+
+        <button 
+          className={`menu-btn ${isMenuOpen ? 'active' : ''}`}
+          onClick={toggleMenu}
+          aria-label="Menu"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
         </button>
       </nav>
 
       <div 
-        className={`nav-overlay ${isMenuOpen ? 'active' : ''}`}
+        className={`mobile-overlay ${isMenuOpen ? 'active' : ''}`}
         onClick={closeMenu}
       />
 
-      <div className={`nav-mobile ${isMenuOpen ? 'active' : ''}`}>
-        <button className="close-menu" onClick={closeMenu}>✕</button>
-        <div className="mobile-logo">
-          <div className="logo-wrapper">
-            <img src="images/logo.png" alt="PabloG.Dev Logo" className="logo-icon" />
+      <div className={`mobile-menu ${isMenuOpen ? 'active' : ''}`}>
+        <div className="mobile-header">
+          <div className="mobile-brand">
+            <img src="images/logo.png" alt="PabloG.Dev" className="mobile-logo" />
+            <span className="mobile-brand-name">
+              Pablo<span className="accent">G</span>.Dev
+            </span>
           </div>
-          <div className="logo-text">Pablo<span className="gold-g">G</span>.Dev</div>
+          <button className="close-btn" onClick={closeMenu}>✕</button>
         </div>
-        <ul className="mobile-nav-links">
-          <li 
-            className="nav-item" 
-            onClick={() => handleNavClick('home')}
-          >
+
+        <ul className="mobile-nav">
+          <li onClick={() => handleNavClick('home')}>
+            <span className="nav-icon">⌂</span>
             {t('nav_home')}
           </li>
-          <li 
-            className="nav-item" 
-            onClick={() => handleNavClick('services')}
-          >
+          <li onClick={() => handleNavClick('services')}>
+            <span className="nav-icon">✦</span>
             {t('nav_services')}
           </li>
-          <li 
-            className="nav-item" 
-            onClick={() => handleNavClick('showcase')}
-          >
+          <li onClick={() => handleNavClick('showcase')}>
+            <span className="nav-icon">◈</span>
             {t('nav_showcase') || 'Exemplos'}
           </li>
-          <li 
-            className="nav-item" 
-            onClick={() => handleNavClick('about')}
-          >
+          <li onClick={() => handleNavClick('about')}>
+            <span className="nav-icon">◉</span>
             {t('nav_about')}
           </li>
-          <li 
-            className="nav-item" 
-            onClick={() => handleNavClick('process')}
-          >
+          <li onClick={() => handleNavClick('process')}>
+            <span className="nav-icon">◊</span>
             {t('nav_process')}
           </li>
-          <li 
-            className="nav-item nav-btn" 
-            onClick={handleContactClick}
-          >
-            {t('nav_contact')}
+          <li className="mobile-contact">
+            <button className="contact-btn-full" onClick={handleContactClick}>
+              {t('nav_contact')}
+              <span className="btn-arrow">→</span>
+            </button>
           </li>
         </ul>
-        <div className="mobile-controls">
-          <div className="lang-selector">
-            <button 
-              className={`lang-btn ${lang === 'pt' ? 'active' : ''}`}
+
+        <div className="mobile-footer">
+          <div className="mobile-langs">
+            <button
+              className={`lang-option ${lang === 'pt' ? 'active' : ''}`}
               onClick={() => handleLangChange('pt')}
-              aria-label="Português"
             >
-              <img src="/images/bandeiras/bandeira-brasil.webp" alt="Português" width="24" height="16" />
+              <img src="/images/bandeiras/bandeira-brasil.webp" alt="PT" />
             </button>
-            <button 
-              className={`lang-btn ${lang === 'es' ? 'active' : ''}`}
+            <button
+              className={`lang-option ${lang === 'es' ? 'active' : ''}`}
               onClick={() => handleLangChange('es')}
-              aria-label="Español"
             >
-              <img src="/images/bandeiras/bandeira-espanha.webp" alt="Español" width="24" height="16" />
+              <img src="/images/bandeiras/bandeira-espanha.webp" alt="ES" />
             </button>
-            <button 
-              className={`lang-btn ${lang === 'en' ? 'active' : ''}`}
+            <button
+              className={`lang-option ${lang === 'en' ? 'active' : ''}`}
               onClick={() => handleLangChange('en')}
-              aria-label="English"
             >
-              <img src="/images/bandeiras/bandeira-eua.webp" alt="English" width="24" height="16" />
+              <img src="/images/bandeiras/bandeira-eua.webp" alt="EN" />
             </button>
           </div>
-          <button 
-            className="theme-toggle" 
-            onClick={handleThemeToggle}
-            aria-label="Alternar tema"
-          >
-            {theme === 'dark' ? '🌙' : '☀️'}
+          <button className="theme-btn-mobile" onClick={handleThemeToggle}>
+            {theme === 'dark' ? '☀️ Tema Claro' : '🌙 Tema Escuro'}
           </button>
         </div>
       </div>
