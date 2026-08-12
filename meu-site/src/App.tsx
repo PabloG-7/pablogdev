@@ -6,6 +6,7 @@ import { About } from './components/About/About'
 import { Process } from './components/Process/Process'
 import { FAQ } from './components/FAQ/FAQ'
 import { Footer } from './components/Footer/Footer'
+import { VirtualAssistant } from './components/VirtualAssistant/VirtualAssistant'
 import { useAudio } from './hooks/useAudio'
 
 import './styles/global.css'
@@ -53,6 +54,8 @@ function App() {
       </section>
 
       <Footer />
+
+      <VirtualAssistant />
     </>
   )
 }

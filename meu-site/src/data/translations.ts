@@ -128,6 +128,33 @@ export type TranslationKey =
   | 'contact_email'
   | 'contact_social_label'
   | 'contact_social'
+  // ============================================================
+  // 🆕 CHAVES DO ASSISTENTE VIRTUAL
+  // ============================================================
+  | 'assistant_greeting'
+  | 'assistant_option_site'
+  | 'assistant_option_system'
+  | 'assistant_option_idea'
+  | 'assistant_option_improve'
+  | 'assistant_request_site'
+  | 'assistant_request_system'
+  | 'assistant_request_idea'
+  | 'assistant_request_improve'
+  | 'assistant_request_placeholder'
+  | 'assistant_name_question'
+  | 'assistant_name_placeholder'
+  | 'assistant_name_required'
+  | 'assistant_final_message'
+  | 'assistant_send_whatsapp'
+  | 'assistant_later'
+  | 'assistant_opening_whatsapp'
+  | 'assistant_later_response'
+  | 'assistant_invalid_option'
+  | 'assistant_restart_aria'
+  | 'assistant_close_aria'
+  | 'assistant_dialog_aria'
+  | 'assistant_open_aria'
+  | 'assistant_typing_indicator'
 
 type Translations = Record<Language, Record<TranslationKey, string>>
 
@@ -259,7 +286,32 @@ export const translations: Translations = {
     contact_email_label: "E-mail",
     contact_email: "pgdevsoftware@gmail.com",
     contact_social_label: "Redes Sociais",
-    contact_social: "Siga nas redes →"
+    contact_social: "Siga nas redes →",
+    // Assistente Virtual - PT
+    assistant_greeting: "Olá! Sou a assistente da PabloG.Dev.\nComo posso te ajudar?",
+    assistant_option_site: "Quero um site",
+    assistant_option_system: "Preciso de um sistema",
+    assistant_option_idea: "Tenho uma ideia",
+    assistant_option_improve: "Quero melhorar algo",
+    assistant_request_site: "Perfeito! Me conta que tipo de site você precisa.",
+    assistant_request_system: "Perfeito! Me conta que tipo de sistema você precisa.",
+    assistant_request_idea: "Legal! Me conta um pouco sobre sua ideia.",
+    assistant_request_improve: "Beleza! Me conta o que você gostaria de melhorar.",
+    assistant_request_placeholder: "Conte sua necessidade...",
+    assistant_name_question: "Ótimo! Qual é o seu nome?",
+    assistant_name_placeholder: "Digite seu nome...",
+    assistant_name_required: "Por favor, me diga seu nome.",
+    assistant_final_message: "Perfeito! Já tenho todas as informações necessárias.\n\nQuer enviar seu pedido para o Pablo pelo WhatsApp?",
+    assistant_send_whatsapp: "Enviar pelo WhatsApp",
+    assistant_later: "Agora não",
+    assistant_opening_whatsapp: "Abrindo WhatsApp...",
+    assistant_later_response: "Tudo certo! Quando quiser entrar em contato, estarei por aqui.",
+    assistant_invalid_option: "Desculpe, não entendi. Escolha uma das opções abaixo:",
+    assistant_restart_aria: "Reiniciar conversa",
+    assistant_close_aria: "Fechar assistente",
+    assistant_dialog_aria: "Assistente virtual",
+    assistant_open_aria: "Abrir assistente virtual",
+    assistant_typing_indicator: "Digitando..."
   },
   es: {
     nav_home: "Inicio",
@@ -388,7 +440,32 @@ export const translations: Translations = {
     contact_email_label: "E-mail",
     contact_email: "pgdevsoftware@gmail.com",
     contact_social_label: "Redes Sociales",
-    contact_social: "Sígueme en las redes →"
+    contact_social: "Sígueme en las redes →",
+    // Asistente Virtual - ES
+    assistant_greeting: "¡Hola! Soy la asistente de PabloG.Dev.\n¿Cómo puedo ayudarte?",
+    assistant_option_site: "Quiero un sitio web",
+    assistant_option_system: "Necesito un sistema",
+    assistant_option_idea: "Tengo una idea",
+    assistant_option_improve: "Quiero mejorar algo",
+    assistant_request_site: "¡Perfecto! Cuéntame qué tipo de sitio web necesitas.",
+    assistant_request_system: "¡Perfecto! Cuéntame qué tipo de sistema necesitas.",
+    assistant_request_idea: "¡Genial! Cuéntame un poco sobre tu idea.",
+    assistant_request_improve: "¡Bien! Cuéntame qué te gustaría mejorar.",
+    assistant_request_placeholder: "Cuéntame tu necesidad...",
+    assistant_name_question: "¡Excelente! ¿Cuál es tu nombre?",
+    assistant_name_placeholder: "Escribe tu nombre...",
+    assistant_name_required: "Por favor, dime tu nombre.",
+    assistant_final_message: "¡Perfecto! Ya tengo toda la información necesaria.\n\n¿Quieres enviar tu solicitud a Pablo por WhatsApp?",
+    assistant_send_whatsapp: "Enviar por WhatsApp",
+    assistant_later: "Ahora no",
+    assistant_opening_whatsapp: "Abriendo WhatsApp...",
+    assistant_later_response: "¡De acuerdo! Cuando quieras contactarme, estaré aquí.",
+    assistant_invalid_option: "Lo siento, no entendí. Elige una de las siguientes opciones:",
+    assistant_restart_aria: "Reiniciar conversación",
+    assistant_close_aria: "Cerrar asistente",
+    assistant_dialog_aria: "Asistente virtual",
+    assistant_open_aria: "Abrir asistente virtual",
+    assistant_typing_indicator: "Escribiendo..."
   },
   en: {
     nav_home: "Home",
@@ -517,6 +594,31 @@ export const translations: Translations = {
     contact_email_label: "E-mail",
     contact_email: "pgdevsoftware@gmail.com",
     contact_social_label: "Social Media",
-    contact_social: "Follow on socials →"
+    contact_social: "Follow on socials →",
+    // Virtual Assistant - EN
+    assistant_greeting: "Hi! I'm the assistant at PabloG.Dev.\nHow can I help you?",
+    assistant_option_site: "I want a website",
+    assistant_option_system: "I need a system",
+    assistant_option_idea: "I have an idea",
+    assistant_option_improve: "I want to improve something",
+    assistant_request_site: "Perfect! Tell me what kind of website you need.",
+    assistant_request_system: "Perfect! Tell me what kind of system you need.",
+    assistant_request_idea: "Cool! Tell me a bit about your idea.",
+    assistant_request_improve: "Great! Tell me what you'd like to improve.",
+    assistant_request_placeholder: "Tell me your need...",
+    assistant_name_question: "Great! What's your name?",
+    assistant_name_placeholder: "Type your name...",
+    assistant_name_required: "Please tell me your name.",
+    assistant_final_message: "Perfect! I have all the necessary information.\n\nDo you want to send your request to Pablo via WhatsApp?",
+    assistant_send_whatsapp: "Send via WhatsApp",
+    assistant_later: "Not now",
+    assistant_opening_whatsapp: "Opening WhatsApp...",
+    assistant_later_response: "All good! Whenever you want to get in touch, I'll be here.",
+    assistant_invalid_option: "Sorry, I didn't understand. Choose one of the options below:",
+    assistant_restart_aria: "Restart conversation",
+    assistant_close_aria: "Close assistant",
+    assistant_dialog_aria: "Virtual assistant",
+    assistant_open_aria: "Open virtual assistant",
+    assistant_typing_indicator: "Typing..."
   }
 }
