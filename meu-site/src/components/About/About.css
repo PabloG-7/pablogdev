@@ -378,8 +378,8 @@
     }
 
     .about-3d-bg-logo {
-        width: 580px;
-        height: 580px;
+        width: 360px;
+        height: 360px;
     }
 
     [data-theme="light"] .about-3d-bg-logo {
@@ -421,8 +421,8 @@
     }
 
     .about-3d-bg-logo {
-        width: 560px;
-        height: 560px;
+        width: 320px;
+        height: 320px;
     }
 
     [data-theme="light"] .about-3d-bg-logo {
@@ -449,5 +449,17 @@
 
     .about-cta {
         font-size: 12px;
+    }
+}
+
+/* =========================================================
+   ANIMAÇÕES
+   ========================================================= */
+@keyframes rotateBorder {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
     }
 }
