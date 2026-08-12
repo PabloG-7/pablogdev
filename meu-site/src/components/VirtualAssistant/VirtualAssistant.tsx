@@ -92,69 +92,75 @@ export function VirtualAssistant() {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [messages])
 
-  useEffect(() => {
-    if (isOpen && inputMode !== 'none') {
-      setTimeout(() => inputRef.current?.focus(), 300)
-    }
-  }, [isOpen, inputMode])
-
   // ============================================================
-  // 📱 CONTROLE DO VIEWPORT NO MOBILE / iOS
+  // 📱 BLOQUEIO TOTAL DA PÁGINA ENQUANTO O CHAT ESTÁ ABERTO
   // ============================================================
 
   useEffect(() => {
-    if (!isOpen) {
-      document.body.style.overflow = ''
-      document.documentElement.style.overflow = ''
-      document.documentElement.style.setProperty('--assistant-vh', '100dvh')
-      return
-    }
+    if (!isOpen) return
 
-    const updateViewport = () => {
-      const viewport = window.visualViewport
+    const scrollY = window.scrollY
 
-      if (viewport) {
-        document.documentElement.style.setProperty(
-          '--assistant-vh',
-          `${viewport.height}px`
-        )
+    const body = document.body
+    const html = document.documentElement
 
-        document.documentElement.style.setProperty(
-          '--assistant-vw',
-          `${viewport.width}px`
-        )
-      } else {
-        document.documentElement.style.setProperty(
-          '--assistant-vh',
-          `${window.innerHeight}px`
-        )
-      }
-    }
+    // Guarda a posição atual da página
+    body.dataset.assistantScrollY = String(scrollY)
 
-    // Bloqueia o site atrás
-    document.body.style.overflow = 'hidden'
-    document.documentElement.style.overflow = 'hidden'
+    // Trava fisicamente o body
+    body.style.position = 'fixed'
+    body.style.top = `-${scrollY}px`
+    body.style.left = '0'
+    body.style.right = '0'
+    body.style.width = '100%'
+    body.style.overflow = 'hidden'
 
-    updateViewport()
-
-    const viewport = window.visualViewport
-
-    viewport?.addEventListener('resize', updateViewport)
-    viewport?.addEventListener('scroll', updateViewport)
-    window.addEventListener('resize', updateViewport)
+    html.style.overflow = 'hidden'
+    html.style.height = '100%'
 
     return () => {
-      document.body.style.overflow = ''
-      document.documentElement.style.overflow = ''
+      const savedScrollY = Number(
+        body.dataset.assistantScrollY || scrollY
+      )
 
-      viewport?.removeEventListener('resize', updateViewport)
-      viewport?.removeEventListener('scroll', updateViewport)
-      window.removeEventListener('resize', updateViewport)
+      body.style.position = ''
+      body.style.top = ''
+      body.style.left = ''
+      body.style.right = ''
+      body.style.width = ''
+      body.style.overflow = ''
 
-      document.documentElement.style.removeProperty('--assistant-vh')
-      document.documentElement.style.removeProperty('--assistant-vw')
+      html.style.overflow = ''
+      html.style.height = ''
+
+      delete body.dataset.assistantScrollY
+
+      // Volta exatamente para onde estava
+      window.scrollTo(0, savedScrollY)
     }
   }, [isOpen])
+
+  // ============================================================
+  // ⌨️ CONTROLE DE FOCO DO INPUT (com preventScroll)
+  // ============================================================
+
+  useEffect(() => {
+    if (isOpen && inputMode !== 'none') {
+      const timer = setTimeout(() => {
+        const input = inputRef.current
+
+        if (!input) return
+
+        try {
+          input.focus({ preventScroll: true })
+        } catch {
+          input.focus()
+        }
+      }, 300)
+
+      return () => clearTimeout(timer)
+    }
+  }, [isOpen, inputMode])
 
   // ============================================================
   // 🗣️ ADICIONAR MENSAGEM
