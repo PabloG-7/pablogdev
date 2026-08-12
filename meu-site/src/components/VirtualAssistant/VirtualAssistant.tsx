@@ -411,7 +411,7 @@ ${data.request}`
             {/* Perfil */}
             <div className="assistant-profile">
               <div className="avatar-wrapper">
-                <img src="/assistant2.png" alt={t('assistant_dialog_aria')} />
+                <img src="/assistant2.webp" alt={t('assistant_dialog_aria')} />
                 <span className="status-badge" />
               </div>
               <div className="profile-info">
@@ -532,7 +532,7 @@ ${data.request}`
           aria-expanded={isOpen}
           aria-controls="assistant-chat"
         >
-          <img src="/assistant.png" alt={t('assistant_dialog_aria')} />
+          <img src="/assistant.webp" alt={t('assistant_dialog_aria')} />
           <span className="assistant-notification">
             <FaCommentDots color="#000C24" />
           </span>
