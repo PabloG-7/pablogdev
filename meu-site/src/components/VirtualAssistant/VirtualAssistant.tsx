@@ -99,18 +99,60 @@ export function VirtualAssistant() {
   }, [isOpen, inputMode])
 
   // ============================================================
-  // 🚫 BLOQUEIA A ROLAGEM DA PÁGINA ENQUANTO O CHAT ESTIVER ABERTO
+  // 📱 CONTROLE DO VIEWPORT NO MOBILE / iOS
   // ============================================================
 
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden'
-    } else {
+    if (!isOpen) {
       document.body.style.overflow = ''
+      document.documentElement.style.overflow = ''
+      document.documentElement.style.setProperty('--assistant-vh', '100dvh')
+      return
     }
+
+    const updateViewport = () => {
+      const viewport = window.visualViewport
+
+      if (viewport) {
+        document.documentElement.style.setProperty(
+          '--assistant-vh',
+          `${viewport.height}px`
+        )
+
+        document.documentElement.style.setProperty(
+          '--assistant-vw',
+          `${viewport.width}px`
+        )
+      } else {
+        document.documentElement.style.setProperty(
+          '--assistant-vh',
+          `${window.innerHeight}px`
+        )
+      }
+    }
+
+    // Bloqueia o site atrás
+    document.body.style.overflow = 'hidden'
+    document.documentElement.style.overflow = 'hidden'
+
+    updateViewport()
+
+    const viewport = window.visualViewport
+
+    viewport?.addEventListener('resize', updateViewport)
+    viewport?.addEventListener('scroll', updateViewport)
+    window.addEventListener('resize', updateViewport)
 
     return () => {
       document.body.style.overflow = ''
+      document.documentElement.style.overflow = ''
+
+      viewport?.removeEventListener('resize', updateViewport)
+      viewport?.removeEventListener('scroll', updateViewport)
+      window.removeEventListener('resize', updateViewport)
+
+      document.documentElement.style.removeProperty('--assistant-vh')
+      document.documentElement.style.removeProperty('--assistant-vw')
     }
   }, [isOpen])
 

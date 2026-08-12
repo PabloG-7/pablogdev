@@ -813,16 +813,41 @@
 
   .assistant-chat {
     position: fixed;
-    inset: 0;
 
-    width: 100%;
-    height: 100dvh;
+    top: 0;
+    left: 0;
+
+    width: 100vw;
+    height: var(--assistant-vh, 100dvh);
+
+    max-width: none;
     max-height: none;
+
+    margin: 0;
 
     border: none;
     border-radius: 0;
 
-    background: rgba(0, 12, 36, 0.96);
+    background: #000c24;
+
+    overflow: hidden;
+
+    z-index: 999999;
+
+    /* Evita o Safari tentar deslocar o chat */
+    transform: none;
+
+    animation: assistantMobileOpen 0.2s ease;
+  }
+
+  @keyframes assistantMobileOpen {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
   }
 
   .assistant-header {
@@ -861,6 +886,8 @@
 
   .assistant-messages-area {
     background: #000c24;
+    min-height: 0;
+    overflow: hidden;
   }
 
   .assistant-messages-bg {
@@ -872,6 +899,10 @@
     gap: 10px;
 
     background: transparent;
+    min-height: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
   }
 
   .assistant-message {
@@ -897,7 +928,7 @@
 
   .assistant-input input {
     height: 40px;
-    font-size: 13px;
+    font-size: 16px; /* ⚠️ CRUCIAL: evita zoom automático no iOS */
   }
 
   .assistant-input button {
@@ -912,6 +943,36 @@
   .assistant-option.secondary {
     font-size: 12px;
     padding: 6px 14px;
+  }
+
+  .assistant-chat {
+    overscroll-behavior: none;
+    -webkit-overflow-scrolling: auto;
+  }
+}
+
+/* ============================================================
+   🚫 BLOQUEIA ROLAGEM E "PUXAR" DO SITE ATRÁS
+   ============================================================ */
+
+html,
+body {
+  overscroll-behavior-x: none;
+}
+
+html:has(.assistant-chat),
+body:has(.assistant-chat) {
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+@media (max-width: 768px) {
+  html:has(.assistant-chat),
+  body:has(.assistant-chat) {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    overscroll-behavior: none;
   }
 }
 
@@ -1050,13 +1111,4 @@
 
 .assistant-input button:active:not(:disabled) {
   transform: scale(0.95);
-}
-
-/* ============================================================
-   🚫 BLOQUEIA ROLAGEM DA PÁGINA QUANDO CHAT ESTÁ ABERTO
-   ============================================================ */
-
-html:has(.assistant-chat),
-body:has(.assistant-chat) {
-  overflow: hidden;
 }
