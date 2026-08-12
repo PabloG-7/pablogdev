@@ -99,6 +99,22 @@ export function VirtualAssistant() {
   }, [isOpen, inputMode])
 
   // ============================================================
+  // 🚫 BLOQUEIA A ROLAGEM DA PÁGINA ENQUANTO O CHAT ESTIVER ABERTO
+  // ============================================================
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [isOpen])
+
+  // ============================================================
   // 🗣️ ADICIONAR MENSAGEM
   // ============================================================
 

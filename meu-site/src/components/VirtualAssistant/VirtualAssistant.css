@@ -1051,3 +1051,12 @@
 .assistant-input button:active:not(:disabled) {
   transform: scale(0.95);
 }
+
+/* ============================================================
+   🚫 BLOQUEIA ROLAGEM DA PÁGINA QUANDO CHAT ESTÁ ABERTO
+   ============================================================ */
+
+html:has(.assistant-chat),
+body:has(.assistant-chat) {
+  overflow: hidden;
+}
