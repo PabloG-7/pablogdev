@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react'
 import { useLanguage } from '../../hooks/useLanguage'
 import * as THREE from 'three'
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js'
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
 import './About.css'
 
 export function About() {
@@ -12,6 +13,7 @@ export function About() {
   const cameraRef = useRef<THREE.PerspectiveCamera | null>(null)
   const sceneRef = useRef<THREE.Scene | null>(null)
   const animationRef = useRef<number | null>(null)
+  const controlsRef = useRef<OrbitControls | null>(null)
 
   const getWhatsAppMessage = () => {
     const messages = {
@@ -96,6 +98,38 @@ export function About() {
     container.appendChild(renderer.domElement)
 
     // ==============================
+    // CONTROLES 3D
+    // ==============================
+
+    const controls = new OrbitControls(
+      camera,
+      renderer.domElement
+    )
+
+    controls.enableDamping = true
+    controls.dampingFactor = 0.08
+
+    // Permite girar horizontalmente
+    controls.enableRotate = true
+
+    // Zoom
+    controls.enableZoom = true
+    controls.zoomSpeed = 0.7
+
+    // Não permite atravessar o boneco
+    controls.minDistance = 2.5
+    controls.maxDistance = 5
+
+    // Limita a rotação vertical
+    controls.minPolarAngle = Math.PI * 0.30
+    controls.maxPolarAngle = Math.PI * 0.68
+
+    // Evita o usuário sair olhando para baixo/cima demais
+    controls.target.set(0, 0.5, 0)
+
+    controlsRef.current = controls
+
+    // ==============================
     // LUZES
     // ==============================
 
@@ -125,8 +159,16 @@ export function About() {
 
         model = gltf.scene
 
+        // Escala o modelo
         model.scale.set(5, 5, 5)
-        model.position.set(0, -4, 0)
+
+        // Centraliza automaticamente o modelo
+        const box = new THREE.Box3().setFromObject(model)
+        const center = box.getCenter(new THREE.Vector3())
+
+        model.position.x -= center.x
+        model.position.y -= center.y
+        model.position.z -= center.z
 
         scene.add(model)
 
@@ -199,6 +241,8 @@ export function About() {
         mixer.update(delta)
       }
 
+      controls.update()
+
       renderer.render(scene, camera)
     }
 
@@ -261,6 +305,9 @@ export function About() {
         scene.remove(model)
         disposeObject(model)
       }
+
+      controls.dispose()
+      controlsRef.current = null
 
       renderer.dispose()
 
