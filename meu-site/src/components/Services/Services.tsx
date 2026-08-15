@@ -18,7 +18,7 @@ export function Services() {
         <div className="services-grid">
           <div className="service-card">
             <div className="service-image-wrapper">
-              <img src="/images/serv1.png" alt="Websites" loading="lazy" />
+              <img src="/images/serv1.webp" alt="Websites" loading="lazy" />
             </div>
             <h4>{t('service_1_title')}</h4>
             <p>{t('service_1_desc')}</p>
@@ -26,7 +26,7 @@ export function Services() {
 
           <div className="service-card">
             <div className="service-image-wrapper">
-              <img src="/images/serv2.png" alt="Systems" loading="lazy" />
+              <img src="/images/serv2.webp" alt="Systems" loading="lazy" />
             </div>
             <h4>{t('service_2_title')}</h4>
             <p>{t('service_2_desc')}</p>
@@ -34,7 +34,7 @@ export function Services() {
 
           <div className="service-card">
             <div className="service-image-wrapper">
-              <img src="/images/serv3.png" alt="Scheduling" loading="lazy" />
+              <img src="/images/serv3.webp" alt="Scheduling" loading="lazy" />
             </div>
             <h4>{t('service_3_title')}</h4>
             <p>{t('service_3_desc')}</p>
