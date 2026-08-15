@@ -14,29 +14,43 @@
   padding: 0 24px;
 }
 
+/* ===== SHOWCASE HEADER - SEM BADGE ===== */
 .showcase-header {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 14px;
   margin-bottom: 50px;
 }
 
 .showcase-header h2 {
-  font-size: 34px;
-  font-weight: 600;
+  position: relative;
+  max-width: 650px;
   margin: 0;
+  color: var(--text-primary);
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -1.5px;
+  z-index: 1;
 }
 
-.showcase-header a {
-  color: var(--accent);
-  font-size: 14px;
-  font-weight: 500;
-  transition: opacity 0.3s ease;
-  text-decoration: none;
-}
-
-.showcase-header a:hover {
-  opacity: 0.8;
+/* ===== TEXTO GIGANTE PREENCHIDO - ELEMENTO GRÁFICO ===== */
+.showcase-header h2::before {
+  content: "EXEMPLOS";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: clamp(6rem, 14vw, 12rem);
+  font-weight: 800;
+  letter-spacing: -6px;
+  color: var(--text-primary);
+  opacity: 0.035;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: -1;
 }
 
 /* ===== GRID 2 COLUNAS ===== */
@@ -239,6 +253,15 @@
     padding: 0 20px;
   }
 
+  .showcase-header {
+    gap: 12px;
+    margin-bottom: 30px;
+  }
+
+  .showcase-header h2 {
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+  }
+
   .showcase-grid {
     gap: 18px;
   }
@@ -271,6 +294,15 @@
     padding: 0 16px;
   }
 
+  .showcase-header {
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+
+  .showcase-header h2 {
+    font-size: clamp(1.5rem, 4.5vw, 2rem);
+  }
+
   .showcase-grid {
     grid-template-columns: 1fr;
     gap: 20px;
@@ -295,6 +327,12 @@
   .card-overlay {
     padding: 24px;
   }
+
+  /* Ajuste do texto gigante no celular */
+  .showcase-header h2::before {
+    font-size: 5rem;
+    letter-spacing: -3px;
+  }
 }
 
 /* Mobile Pequeno - 1 COLUNA */
@@ -305,6 +343,11 @@
 
   .showcase-section .container {
     padding: 0 12px;
+  }
+
+  .showcase-header h2 {
+    font-size: clamp(1.3rem, 4vw, 1.6rem);
+    letter-spacing: -1px;
   }
 
   .showcase-grid {
@@ -337,6 +380,12 @@
   .card-overlay {
     padding: 16px;
   }
+
+  /* Ajuste do texto gigante no celular pequeno */
+  .showcase-header h2::before {
+    font-size: 4rem;
+    letter-spacing: -2px;
+  }
 }
 
 /* Muito Pequeno - 1 COLUNA */
@@ -347,6 +396,10 @@
 
   .showcase-section .container {
     padding: 0 8px;
+  }
+
+  .showcase-header h2 {
+    font-size: clamp(1.1rem, 3.5vw, 1.3rem);
   }
 
   .showcase-grid {
@@ -382,6 +435,12 @@
 
   .overlay-category {
     font-size: 0.6rem;
+  }
+
+  /* Ajuste do texto gigante no celular muito pequeno */
+  .showcase-header h2::before {
+    font-size: 3.5rem;
+    letter-spacing: -1.5px;
   }
 }
 

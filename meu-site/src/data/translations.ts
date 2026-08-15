@@ -23,8 +23,9 @@ export type TranslationKey =
   | 'service_2_desc'
   | 'service_3_title'
   | 'service_3_desc'
-  | 'showcase_title'
-  | 'showcase_explore'
+  // CHAVES DO SHOWCASE
+  | 'showcase_title_part1'
+  | 'showcase_title_part2'
   | 'cat_events'
   | 'cat_ecommerce'
   | 'cat_food'
@@ -128,9 +129,6 @@ export type TranslationKey =
   | 'contact_email'
   | 'contact_social_label'
   | 'contact_social'
-  // ============================================================
-  // 🆕 CHAVES DO ASSISTENTE VIRTUAL
-  // ============================================================
   | 'assistant_greeting'
   | 'assistant_option_site'
   | 'assistant_option_system'
@@ -182,8 +180,9 @@ export const translations: Translations = {
     service_2_desc: "Painéis sob medida para controlar clientes, pedidos, reservas, serviços e informações importantes. Mais produtividade e dados organizados.",
     service_3_title: "Agendamentos Online",
     service_3_desc: "Uma experiência simples para o cliente escolher horário e enviar os dados. Integração automática com WhatsApp. Ideal para serviços.",
-    showcase_title: "Exemplos",
-    showcase_explore: "Ver Todos →",
+    // SHOWCASE - PT (sem badge)
+    showcase_title_part1: "Exemplos que você",
+    showcase_title_part2: "pode explorar",
     cat_events: "Eventos",
     cat_ecommerce: "E-commerce",
     cat_food: "Alimentação",
@@ -287,7 +286,6 @@ export const translations: Translations = {
     contact_email: "pgdevsoftware@gmail.com",
     contact_social_label: "Redes Sociais",
     contact_social: "Siga nas redes →",
-    // Assistente Virtual - PT
     assistant_greeting: "Olá! Sou a assistente da PabloG.Dev.\nComo posso te ajudar?",
     assistant_option_site: "Quero um site",
     assistant_option_system: "Preciso de um sistema",
@@ -336,8 +334,9 @@ export const translations: Translations = {
     service_2_desc: "Paneles a medida para controlar clientes, pedidos, reservas, servicios e información importante. Más productividad y datos organizados.",
     service_3_title: "Agendamientos Online",
     service_3_desc: "Una experiencia simple para que el cliente elija horario y envíe los datos. Integración automática con WhatsApp. Ideal para servicios.",
-    showcase_title: "Ejemplos",
-    showcase_explore: "Ver Todos →",
+    // SHOWCASE - ES (sem badge)
+    showcase_title_part1: "Ejemplos que",
+    showcase_title_part2: "puedes explorar",
     cat_events: "Eventos",
     cat_ecommerce: "E-commerce",
     cat_food: "Alimentación",
@@ -441,7 +440,6 @@ export const translations: Translations = {
     contact_email: "pgdevsoftware@gmail.com",
     contact_social_label: "Redes Sociales",
     contact_social: "Sígueme en las redes →",
-    // Asistente Virtual - ES
     assistant_greeting: "¡Hola! Soy la asistente de PabloG.Dev.\n¿Cómo puedo ayudarte?",
     assistant_option_site: "Quiero un sitio web",
     assistant_option_system: "Necesito un sistema",
@@ -490,8 +488,9 @@ export const translations: Translations = {
     service_2_desc: "Tailor-made dashboards to control clients, orders, bookings, services, and important info. More productivity and organized data.",
     service_3_title: "Online Scheduling",
     service_3_desc: "A simple experience for the client to choose a time and send their info. Auto-integration with WhatsApp. Ideal for services.",
-    showcase_title: "Examples",
-    showcase_explore: "See All →",
+    // SHOWCASE - EN (sem badge)
+    showcase_title_part1: "Examples you",
+    showcase_title_part2: "can explore",
     cat_events: "Events",
     cat_ecommerce: "E-commerce",
     cat_food: "Food",
@@ -595,7 +594,6 @@ export const translations: Translations = {
     contact_email: "pgdevsoftware@gmail.com",
     contact_social_label: "Social Media",
     contact_social: "Follow on socials →",
-    // Virtual Assistant - EN
     assistant_greeting: "Hi! I'm the assistant at PabloG.Dev.\nHow can I help you?",
     assistant_option_site: "I want a website",
     assistant_option_system: "I need a system",

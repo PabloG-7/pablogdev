@@ -135,10 +135,11 @@ export function Showcase() {
     <section className="showcase-section" id="showcase">
       <div className="container">
         <div className="showcase-header">
-          <div>
-            <h2>{t('showcase_title')}</h2>
-          </div>
-          <a href="#">{t('showcase_explore')}</a>
+          <h2>
+            {t('showcase_title_part1')}
+            <br />
+            {t('showcase_title_part2')}
+          </h2>
         </div>
 
         <div className="showcase-grid">
