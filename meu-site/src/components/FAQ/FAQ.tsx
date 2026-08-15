@@ -81,16 +81,12 @@ export function FAQ() {
 
   return (
     <section className="faq-section" id="faq">
-      <div className="faq-container container">
+      <div className="container">
         <div className="faq-header">
           <div className="faq-header-left">
-            <div className="faq-badge">{t('faq_subtitle')}</div>
-            <h2 className="faq-title">
-              {t('faq_title')}
-            </h2>
-            <p className="faq-desc">
-              {t('faq_desc')}
-            </p>
+            <span className="faq-tag">{t('faq_subtitle')}</span>
+            <h2 className="faq-title">{t('faq_title')}</h2>
+            <p className="faq-desc">{t('faq_desc')}</p>
           </div>
         </div>
 
