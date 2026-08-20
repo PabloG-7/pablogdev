@@ -96,10 +96,10 @@ export function Showcase() {
     },
     {
       image: '/images/exemplo8.webp',
-      categoryKey: 'cat_wellness',
+      categoryKey: 'cat_food',
       titleKey: 'project_8_name',
       descKey: 'project_8_desc',
-      link: 'https://pablog-7.github.io/yoga-site-exemplo/'
+      link: 'https://pablog-7.github.io/orderuk-site-exemplo/'
     },
     {
       image: '/images/exemplo9.webp',

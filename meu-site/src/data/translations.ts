@@ -180,7 +180,7 @@ export const translations: Translations = {
     service_2_desc: "Painéis sob medida para controlar clientes, pedidos, reservas, serviços e informações importantes. Mais produtividade e dados organizados.",
     service_3_title: "Agendamentos Online",
     service_3_desc: "Uma experiência simples para o cliente escolher horário e enviar os dados. Integração automática com WhatsApp. Ideal para serviços.",
-    // SHOWCASE - PT (sem badge)
+    // SHOWCASE - PT
     showcase_title_part1: "Exemplos que você",
     showcase_title_part2: "pode explorar",
     cat_events: "Eventos",
@@ -204,8 +204,8 @@ export const translations: Translations = {
     project_6_desc: "Portais imobiliários com busca avançada",
     project_7_name: "Chilliz - Sorvetes Artesanais",
     project_7_desc: "Página para marcas de sorveteria com design vibrante",
-    project_8_name: "Yoga e Qualidade de Vida",
-    project_8_desc: "Plataformas para práticas e bem-estar",
+    project_8_name: "Order.uk - Food Delivery",
+    project_8_desc: "Plataforma completa de delivery de comida com carrinho, filtros e múltiplos idiomas",
     project_9_name: "Virtz - Moda Streetwear",
     project_9_desc: "Loja virtual de roupas com design moderno e destacado",
     project_10_name: "Barbearias e Salões",
@@ -334,7 +334,7 @@ export const translations: Translations = {
     service_2_desc: "Paneles a medida para controlar clientes, pedidos, reservas, servicios e información importante. Más productividad y datos organizados.",
     service_3_title: "Agendamientos Online",
     service_3_desc: "Una experiencia simple para que el cliente elija horario y envíe los datos. Integración automática con WhatsApp. Ideal para servicios.",
-    // SHOWCASE - ES (sem badge)
+    // SHOWCASE - ES
     showcase_title_part1: "Ejemplos que",
     showcase_title_part2: "puedes explorar",
     cat_events: "Eventos",
@@ -358,8 +358,8 @@ export const translations: Translations = {
     project_6_desc: "Portales inmobiliarios con búsqueda avanzada",
     project_7_name: "Chilliz - Helados Artesanales",
     project_7_desc: "Página para marcas de heladería con diseño vibrante",
-    project_8_name: "Yoga y Calidad de Vida",
-    project_8_desc: "Plataformas para prácticas y bienestar",
+    project_8_name: "Order.uk - Food Delivery",
+    project_8_desc: "Plataforma completa de delivery de comida con carrito, filtros y múltiples idiomas",
     project_9_name: "Virtz - Moda Streetwear",
     project_9_desc: "Tienda virtual de ropa con diseño moderno y destacado",
     project_10_name: "Barberías y Salones",
@@ -488,7 +488,7 @@ export const translations: Translations = {
     service_2_desc: "Tailor-made dashboards to control clients, orders, bookings, services, and important info. More productivity and organized data.",
     service_3_title: "Online Scheduling",
     service_3_desc: "A simple experience for the client to choose a time and send their info. Auto-integration with WhatsApp. Ideal for services.",
-    // SHOWCASE - EN (sem badge)
+    // SHOWCASE - EN
     showcase_title_part1: "Examples you",
     showcase_title_part2: "can explore",
     cat_events: "Events",
@@ -512,8 +512,8 @@ export const translations: Translations = {
     project_6_desc: "Real estate portals with advanced search",
     project_7_name: "Chilliz - Artisan Ice Cream",
     project_7_desc: "Vibrant landing page for ice cream brands",
-    project_8_name: "Yoga & Quality of Life",
-    project_8_desc: "Platforms for practice and wellness",
+    project_8_name: "Order.uk - Food Delivery",
+    project_8_desc: "Complete food delivery platform with cart, filters and multiple languages",
     project_9_name: "Virtz - Streetwear Fashion",
     project_9_desc: "Clothing e-commerce with bold and modern design",
     project_10_name: "Barbershops & Salons",
