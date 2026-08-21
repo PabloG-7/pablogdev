@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, useCallback } from 'react'
 
 type SoundName = 'click' | 'switch' | 'confirm'
 
@@ -21,32 +21,53 @@ export function useAudio() {
     confirm: null
   })
 
+  const initialized = useRef(false)
+
   useEffect(() => {
-    // Inicializa todos os áudios
-    (Object.keys(soundPaths) as SoundName[]).forEach((key) => {
-      const audio = new Audio(soundPaths[key])
+    if (initialized.current) return
+
+    initialized.current = true
+
+    ;(Object.keys(soundPaths) as SoundName[]).forEach((key) => {
+      const audio = new Audio()
+
+      audio.src = soundPaths[key]
+      audio.preload = 'auto'
       audio.volume = soundVolumes[key]
+      audio.load()
+
       sounds.current[key] = audio
     })
 
-    // Cleanup
     return () => {
-      (Object.keys(sounds.current) as SoundName[]).forEach((key) => {
-        if (sounds.current[key]) {
-          sounds.current[key]!.pause()
+      ;(Object.keys(sounds.current) as SoundName[]).forEach((key) => {
+        const audio = sounds.current[key]
+
+        if (audio) {
+          audio.pause()
+          audio.removeAttribute('src')
+          audio.load()
           sounds.current[key] = null
         }
       })
+
+      initialized.current = false
     }
   }, [])
 
-  const play = (soundName: SoundName) => {
+  const play = useCallback((soundName: SoundName) => {
     const audio = sounds.current[soundName]
-    if (audio) {
-      audio.currentTime = 0
-      audio.play().catch(() => {})
+
+    if (!audio) return
+
+    audio.currentTime = 0
+
+    const promise = audio.play()
+
+    if (promise !== undefined) {
+      promise.catch(() => {})
     }
-  }
+  }, [])
 
   return { play }
 }
