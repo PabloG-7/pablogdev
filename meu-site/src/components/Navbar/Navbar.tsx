@@ -61,11 +61,32 @@ export function Navbar({ onContactClick }: NavbarProps) {
     }, 100)
   }
 
+  // CORREÇÃO APLICADA AQUI
   const handleNavClick = (sectionId: string) => {
-    closeMenu()
     const element = document.getElementById(sectionId)
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
+
+    if (!element) return
+
+    const wasMenuOpen = isMenuOpen
+
+    closeMenu()
+
+    // Se o menu mobile estava aberto, espera o body
+    // ser desbloqueado antes de fazer o scroll.
+    if (wasMenuOpen) {
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          element.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          })
+        })
+      })
+    } else {
+      element.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      })
     }
   }
 
