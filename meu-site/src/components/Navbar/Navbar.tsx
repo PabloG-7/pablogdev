@@ -14,7 +14,6 @@ export function Navbar({ onContactClick }: NavbarProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const { play } = useAudio()
 
-  // Controle do scroll com useEffect
   useEffect(() => {
     document.body.style.overflow = isMenuOpen ? 'hidden' : ''
     
@@ -39,11 +38,8 @@ export function Navbar({ onContactClick }: NavbarProps) {
 
   const handleLangChange = (newLang: 'pt' | 'es' | 'en') => {
     play('click')
-
     if (newLang === lang) return
-
     setLanguage(newLang)
-
     setTimeout(() => {
       window.location.reload()
     }, 100)
@@ -68,9 +64,9 @@ export function Navbar({ onContactClick }: NavbarProps) {
       <nav className="navbar">
         <div className="logo-group">
           <div className="logo-wrapper">
-            <img src="images/logo.png" alt="PabloG.Dev Logo" className="logo-icon" />
+            <img src="/images/logo.png" alt="PabloG.Dev Logo" className="logo-icon" />
           </div>
-          <div className="logo-text">Pablo<span className="gold-g">G</span>.Dev</div>
+          <div className="logo-text">Pablo<span className="highlight">G</span>.Dev</div>
         </div>
 
         <ul className="nav-links">
@@ -164,83 +160,168 @@ export function Navbar({ onContactClick }: NavbarProps) {
         onClick={closeMenu}
       />
 
+      {/* ===== MENU MOBILE COMERCIAL E PREMIUM ===== */}
       <div className={`nav-mobile ${isMenuOpen ? 'active' : ''}`}>
-        <button className="close-menu" onClick={closeMenu}>✕</button>
-        <div className="mobile-logo">
-          <div className="logo-wrapper">
-            <img src="images/logo.png" alt="PabloG.Dev Logo" className="logo-icon" />
+        <div className="mobile-menu-glow"></div>
+
+        {/* HEADER */}
+        <div className="mobile-menu-header">
+          <div className="mobile-menu-brand">
+            <div className="mobile-menu-logo">
+              <img
+                src="/images/logo.png"
+                alt="PabloG.Dev Logo"
+              />
+            </div>
+
+            <div>
+              <div className="mobile-menu-brand-name">
+                Pablo<span>G</span>.Dev
+              </div>
+            </div>
           </div>
-          <div className="logo-text">Pablo<span className="gold-g">G</span>.Dev</div>
+
+          <button
+            className="close-menu"
+            onClick={closeMenu}
+            aria-label="Fechar menu"
+          >
+            <span></span>
+            <span></span>
+          </button>
         </div>
-        <ul className="mobile-nav-links">
-          <li 
-            className="nav-item" 
+
+        {/* PROPOSTA DE VALOR */}
+        <div className="mobile-menu-proposta">
+          <span className="mobile-menu-tagline">
+            {lang === 'pt' ? 'Sites e sistemas pensados' : 
+             lang === 'es' ? 'Sitios y sistemas pensados' : 
+             'Websites and systems designed'}
+          </span>
+          <span className="mobile-menu-tagline-destaque">
+            {lang === 'pt' ? 'para o seu negócio.' : 
+             lang === 'es' ? 'para su negocio.' : 
+             'for your business.'}
+          </span>
+        </div>
+
+        {/* NAVEGAÇÃO */}
+        <nav className="mobile-menu-navigation">
+          <button
+            className="mobile-menu-item"
             onClick={() => handleNavClick('home')}
           >
-            {t('nav_home')}
-          </li>
-          <li 
-            className="nav-item" 
+            <span className="mobile-menu-number">01</span>
+            <span className="mobile-menu-label">
+              {t('nav_home')}
+            </span>
+            <span className="mobile-menu-arrow">↗</span>
+          </button>
+
+          <button
+            className="mobile-menu-item"
             onClick={() => handleNavClick('services')}
           >
-            {t('nav_services')}
-          </li>
-          <li 
-            className="nav-item" 
+            <span className="mobile-menu-number">02</span>
+            <span className="mobile-menu-label">
+              {t('nav_services')}
+            </span>
+            <span className="mobile-menu-arrow">↗</span>
+          </button>
+
+          <button
+            className="mobile-menu-item"
             onClick={() => handleNavClick('showcase')}
           >
-            {t('nav_showcase') || 'Exemplos'}
-          </li>
-          <li 
-            className="nav-item" 
+            <span className="mobile-menu-number">03</span>
+            <span className="mobile-menu-label">
+              {t('nav_showcase') || 'Exemplos'}
+            </span>
+            <span className="mobile-menu-arrow">↗</span>
+          </button>
+
+          <button
+            className="mobile-menu-item"
             onClick={() => handleNavClick('about')}
           >
-            {t('nav_about')}
-          </li>
-          <li 
-            className="nav-item" 
+            <span className="mobile-menu-number">04</span>
+            <span className="mobile-menu-label">
+              {t('nav_about')}
+            </span>
+            <span className="mobile-menu-arrow">↗</span>
+          </button>
+
+          <button
+            className="mobile-menu-item"
             onClick={() => handleNavClick('process')}
           >
-            {t('nav_process')}
-          </li>
-          <li 
-            className="nav-item nav-btn" 
-            onClick={handleContactClick}
-          >
-            {t('nav_contact')}
-          </li>
-        </ul>
-        <div className="mobile-controls">
-          <div className="lang-selector">
-            <button 
-              className={`lang-btn ${lang === 'pt' ? 'active' : ''}`}
-              onClick={() => handleLangChange('pt')}
-              aria-label="Português"
+            <span className="mobile-menu-number">05</span>
+            <span className="mobile-menu-label">
+              {t('nav_process')}
+            </span>
+            <span className="mobile-menu-arrow">↗</span>
+          </button>
+        </nav>
+
+        {/* CTA - QUERO UM SITE */}
+        <button
+          className="mobile-menu-cta"
+          onClick={handleContactClick}
+        >
+          <span>
+            {lang === 'pt' ? 'QUERO UM SITE' : 
+             lang === 'es' ? 'QUIERO UN SITIO' : 
+             'I WANT A WEBSITE'}
+          </span>
+          <span className="mobile-menu-cta-arrow">↗</span>
+        </button>
+
+        {/* FOOTER */}
+        <div className="mobile-menu-footer">
+          <div className="mobile-controls">
+            <div className="lang-selector">
+              <button
+                className={`lang-btn ${lang === 'pt' ? 'active' : ''}`}
+                onClick={() => handleLangChange('pt')}
+                aria-label="Português"
+              >
+                <img
+                  src="/images/bandeiras/bandeira-brasil.webp"
+                  alt="Português"
+                />
+              </button>
+
+              <button
+                className={`lang-btn ${lang === 'es' ? 'active' : ''}`}
+                onClick={() => handleLangChange('es')}
+                aria-label="Español"
+              >
+                <img
+                  src="/images/bandeiras/bandeira-espanha.webp"
+                  alt="Español"
+                />
+              </button>
+
+              <button
+                className={`lang-btn ${lang === 'en' ? 'active' : ''}`}
+                onClick={() => handleLangChange('en')}
+                aria-label="English"
+              >
+                <img
+                  src="/images/bandeiras/bandeira-eua.webp"
+                  alt="English"
+                />
+              </button>
+            </div>
+
+            <button
+              className="theme-toggle"
+              onClick={handleThemeToggle}
+              aria-label="Alternar tema"
             >
-              <img src="/images/bandeiras/bandeira-brasil.webp" alt="Português" width="24" height="16" />
-            </button>
-            <button 
-              className={`lang-btn ${lang === 'es' ? 'active' : ''}`}
-              onClick={() => handleLangChange('es')}
-              aria-label="Español"
-            >
-              <img src="/images/bandeiras/bandeira-espanha.webp" alt="Español" width="24" height="16" />
-            </button>
-            <button 
-              className={`lang-btn ${lang === 'en' ? 'active' : ''}`}
-              onClick={() => handleLangChange('en')}
-              aria-label="English"
-            >
-              <img src="/images/bandeiras/bandeira-eua.webp" alt="English" width="24" height="16" />
+              {theme === 'dark' ? '🌙' : '☀️'}
             </button>
           </div>
-          <button 
-            className="theme-toggle" 
-            onClick={handleThemeToggle}
-            aria-label="Alternar tema"
-          >
-            {theme === 'dark' ? '🌙' : '☀️'}
-          </button>
         </div>
       </div>
     </>
