@@ -8,17 +8,32 @@ interface NavbarProps {
   onContactClick: () => void
 }
 
+type TranslationKey = 'nav_home' | 'nav_services' | 'nav_showcase' | 'nav_about' | 'nav_process'
+
+const navItems: { id: string; label: TranslationKey }[] = [
+  { id: 'home', label: 'nav_home' },
+  { id: 'services', label: 'nav_services' },
+  { id: 'showcase', label: 'nav_showcase' },
+  { id: 'about', label: 'nav_about' },
+  { id: 'process', label: 'nav_process' },
+]
+
 export function Navbar({ onContactClick }: NavbarProps) {
   const { theme, toggleTheme } = useTheme()
   const { lang, t, setLanguage } = useLanguage()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const { play } = useAudio()
 
+  // Scroll lock melhorado - preserva overflow anterior
   useEffect(() => {
-    document.body.style.overflow = isMenuOpen ? 'hidden' : ''
-    
+    if (!isMenuOpen) return
+
+    const previousOverflow = document.body.style.overflow
+
+    document.body.style.overflow = 'hidden'
+
     return () => {
-      document.body.style.overflow = ''
+      document.body.style.overflow = previousOverflow
     }
   }, [isMenuOpen])
 
@@ -36,13 +51,12 @@ export function Navbar({ onContactClick }: NavbarProps) {
     toggleTheme()
   }
 
+  // Removido o reload - troca instantânea
   const handleLangChange = (newLang: 'pt' | 'es' | 'en') => {
-    play('click')
     if (newLang === lang) return
+
+    play('click')
     setLanguage(newLang)
-    setTimeout(() => {
-      window.location.reload()
-    }, 100)
   }
 
   const handleNavClick = (sectionId: string) => {
@@ -69,61 +83,49 @@ export function Navbar({ onContactClick }: NavbarProps) {
           <div className="logo-text">Pablo<span className="highlight">G</span>.Dev</div>
         </div>
 
+        {/* DESKTOP MENU - com buttons semanticamente corretos */}
         <ul className="nav-links">
-          <li 
-            className="nav-item" 
-            onClick={() => handleNavClick('home')}
-          >
-            {t('nav_home')}
-          </li>
-          <li 
-            className="nav-item" 
-            onClick={() => handleNavClick('services')}
-          >
-            {t('nav_services')}
-          </li>
-          <li 
-            className="nav-item" 
-            onClick={() => handleNavClick('showcase')}
-          >
-            {t('nav_showcase') || 'Exemplos'}
-          </li>
-          <li 
-            className="nav-item" 
-            onClick={() => handleNavClick('about')}
-          >
-            {t('nav_about')}
-          </li>
-          <li 
-            className="nav-item" 
-            onClick={() => handleNavClick('process')}
-          >
-            {t('nav_process')}
-          </li>
-          <li 
-            className="nav-item nav-btn" 
-            onClick={handleContactClick}
-          >
-            {t('nav_contact')}
+          {navItems.map((item) => (
+            <li key={item.id}>
+              <button
+                type="button"
+                className="nav-item"
+                onClick={() => handleNavClick(item.id)}
+              >
+                {t(item.label)}
+              </button>
+            </li>
+          ))}
+          <li>
+            <button
+              type="button"
+              className="nav-item nav-btn"
+              onClick={handleContactClick}
+            >
+              {t('nav_contact')}
+            </button>
           </li>
           <li>
             <div className="control-group">
               <div className="lang-selector">
-                <button 
+                <button
+                  type="button"
                   className={`lang-btn ${lang === 'pt' ? 'active' : ''}`}
                   onClick={() => handleLangChange('pt')}
                   aria-label="Português"
                 >
                   <img src="/images/bandeiras/bandeira-brasil.webp" alt="Português" width="24" height="16" />
                 </button>
-                <button 
+                <button
+                  type="button"
                   className={`lang-btn ${lang === 'es' ? 'active' : ''}`}
                   onClick={() => handleLangChange('es')}
                   aria-label="Español"
                 >
                   <img src="/images/bandeiras/bandeira-espanha.webp" alt="Español" width="24" height="16" />
                 </button>
-                <button 
+                <button
+                  type="button"
                   className={`lang-btn ${lang === 'en' ? 'active' : ''}`}
                   onClick={() => handleLangChange('en')}
                   aria-label="English"
@@ -131,8 +133,9 @@ export function Navbar({ onContactClick }: NavbarProps) {
                   <img src="/images/bandeiras/bandeira-eua.webp" alt="English" width="24" height="16" />
                 </button>
               </div>
-              <button 
-                className="theme-toggle" 
+              <button
+                type="button"
+                className="theme-toggle"
                 onClick={handleThemeToggle}
                 aria-label="Alternar tema"
               >
@@ -142,10 +145,14 @@ export function Navbar({ onContactClick }: NavbarProps) {
           </li>
         </ul>
 
-        <button 
+        {/* HAMBURGER - com aria-expanded */}
+        <button
+          type="button"
           className={`menu-toggle ${isMenuOpen ? 'active' : ''}`}
           onClick={toggleMenu}
-          aria-label="Abrir menu"
+          aria-expanded={isMenuOpen}
+          aria-controls="mobile-navigation"
+          aria-label={isMenuOpen ? 'Fechar menu' : 'Abrir menu'}
         >
           <div className="hamburger">
             <span></span>
@@ -155,13 +162,17 @@ export function Navbar({ onContactClick }: NavbarProps) {
         </button>
       </nav>
 
-      <div 
+      <div
         className={`nav-overlay ${isMenuOpen ? 'active' : ''}`}
         onClick={closeMenu}
       />
 
-      {/* ===== MENU MOBILE COMERCIAL E PREMIUM ===== */}
-      <div className={`nav-mobile ${isMenuOpen ? 'active' : ''}`}>
+      {/* MOBILE MENU */}
+      <div
+        id="mobile-navigation"
+        className={`nav-mobile ${isMenuOpen ? 'active' : ''}`}
+        aria-hidden={!isMenuOpen}
+      >
         <div className="mobile-menu-glow"></div>
 
         {/* HEADER */}
@@ -182,6 +193,7 @@ export function Navbar({ onContactClick }: NavbarProps) {
           </div>
 
           <button
+            type="button"
             className="close-menu"
             onClick={closeMenu}
             aria-label="Fechar menu"
@@ -194,83 +206,46 @@ export function Navbar({ onContactClick }: NavbarProps) {
         {/* PROPOSTA DE VALOR */}
         <div className="mobile-menu-proposta">
           <span className="mobile-menu-tagline">
-            {lang === 'pt' ? 'Sites e sistemas pensados' : 
-             lang === 'es' ? 'Sitios y sistemas pensados' : 
+            {lang === 'pt' ? 'Sites e sistemas pensados' :
+             lang === 'es' ? 'Sitios y sistemas pensados' :
              'Websites and systems designed'}
           </span>
           <span className="mobile-menu-tagline-destaque">
-            {lang === 'pt' ? 'para o seu negócio.' : 
-             lang === 'es' ? 'para su negocio.' : 
+            {lang === 'pt' ? 'para o seu negócio.' :
+             lang === 'es' ? 'para su negocio.' :
              'for your business.'}
           </span>
         </div>
 
-        {/* NAVEGAÇÃO */}
+        {/* NAVEGAÇÃO MOBILE */}
         <nav className="mobile-menu-navigation">
-          <button
-            className="mobile-menu-item"
-            onClick={() => handleNavClick('home')}
-          >
-            <span className="mobile-menu-number">01</span>
-            <span className="mobile-menu-label">
-              {t('nav_home')}
-            </span>
-            <span className="mobile-menu-arrow">↗</span>
-          </button>
-
-          <button
-            className="mobile-menu-item"
-            onClick={() => handleNavClick('services')}
-          >
-            <span className="mobile-menu-number">02</span>
-            <span className="mobile-menu-label">
-              {t('nav_services')}
-            </span>
-            <span className="mobile-menu-arrow">↗</span>
-          </button>
-
-          <button
-            className="mobile-menu-item"
-            onClick={() => handleNavClick('showcase')}
-          >
-            <span className="mobile-menu-number">03</span>
-            <span className="mobile-menu-label">
-              {t('nav_showcase') || 'Exemplos'}
-            </span>
-            <span className="mobile-menu-arrow">↗</span>
-          </button>
-
-          <button
-            className="mobile-menu-item"
-            onClick={() => handleNavClick('about')}
-          >
-            <span className="mobile-menu-number">04</span>
-            <span className="mobile-menu-label">
-              {t('nav_about')}
-            </span>
-            <span className="mobile-menu-arrow">↗</span>
-          </button>
-
-          <button
-            className="mobile-menu-item"
-            onClick={() => handleNavClick('process')}
-          >
-            <span className="mobile-menu-number">05</span>
-            <span className="mobile-menu-label">
-              {t('nav_process')}
-            </span>
-            <span className="mobile-menu-arrow">↗</span>
-          </button>
+          {navItems.map((item, index) => (
+            <button
+              key={item.id}
+              type="button"
+              className="mobile-menu-item"
+              onClick={() => handleNavClick(item.id)}
+            >
+              <span className="mobile-menu-number">
+                {String(index + 1).padStart(2, '0')}
+              </span>
+              <span className="mobile-menu-label">
+                {t(item.label)}
+              </span>
+              <span className="mobile-menu-arrow">↗</span>
+            </button>
+          ))}
         </nav>
 
-        {/* CTA - QUERO UM SITE */}
+        {/* CTA */}
         <button
+          type="button"
           className="mobile-menu-cta"
           onClick={handleContactClick}
         >
           <span>
-            {lang === 'pt' ? 'QUERO UM SITE' : 
-             lang === 'es' ? 'QUIERO UN SITIO' : 
+            {lang === 'pt' ? 'QUERO UM SITE' :
+             lang === 'es' ? 'QUIERO UN SITIO' :
              'I WANT A WEBSITE'}
           </span>
           <span className="mobile-menu-cta-arrow">↗</span>
@@ -281,6 +256,7 @@ export function Navbar({ onContactClick }: NavbarProps) {
           <div className="mobile-controls">
             <div className="lang-selector">
               <button
+                type="button"
                 className={`lang-btn ${lang === 'pt' ? 'active' : ''}`}
                 onClick={() => handleLangChange('pt')}
                 aria-label="Português"
@@ -292,6 +268,7 @@ export function Navbar({ onContactClick }: NavbarProps) {
               </button>
 
               <button
+                type="button"
                 className={`lang-btn ${lang === 'es' ? 'active' : ''}`}
                 onClick={() => handleLangChange('es')}
                 aria-label="Español"
@@ -303,6 +280,7 @@ export function Navbar({ onContactClick }: NavbarProps) {
               </button>
 
               <button
+                type="button"
                 className={`lang-btn ${lang === 'en' ? 'active' : ''}`}
                 onClick={() => handleLangChange('en')}
                 aria-label="English"
@@ -315,6 +293,7 @@ export function Navbar({ onContactClick }: NavbarProps) {
             </div>
 
             <button
+              type="button"
               className="theme-toggle"
               onClick={handleThemeToggle}
               aria-label="Alternar tema"
