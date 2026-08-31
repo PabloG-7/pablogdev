@@ -62,6 +62,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 24px;
+  align-items: start; /* Corrige o problema de altura igual */
 }
 
 /* =========================================================
@@ -73,10 +74,13 @@
   border-radius: 0;
   border: none;
   border-bottom: 1px solid var(--border);
-  transition: all 0.4s ease;
+  transition: border-color 0.3s ease; /* transition específica */
   overflow: visible;
   position: relative;
   padding: 0;
+  align-self: start; /* Corrige o problema de altura igual */
+  animation: fadeInUp 0.5s ease forwards;
+  opacity: 0;
 }
 
 .faq-item:hover {
@@ -87,11 +91,24 @@
   border-bottom-color: var(--accent);
 }
 
+.faq-item:nth-child(1) { animation-delay: 0.05s; }
+.faq-item:nth-child(2) { animation-delay: 0.1s; }
+.faq-item:nth-child(3) { animation-delay: 0.15s; }
+.faq-item:nth-child(4) { animation-delay: 0.2s; }
+.faq-item:nth-child(5) { animation-delay: 0.25s; }
+.faq-item:nth-child(6) { animation-delay: 0.3s; }
+
 /* =========================================================
-   FAQ QUESTION - MINIMALISTA
+   FAQ QUESTION - MINIMALISTA (agora como button)
    ========================================================= */
 
 .faq-question {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
   padding: 20px 0;
   display: flex;
   align-items: center;
@@ -121,7 +138,7 @@
   min-width: 30px;
   opacity: 0.3;
   font-variant-numeric: tabular-nums;
-  transition: all 0.3s ease;
+  transition: opacity 0.3s ease; /* transition específica */
   font-family: 'Poppins', monospace;
 }
 
@@ -133,7 +150,6 @@
   font-weight: 500;
   font-size: 1.05rem;
   color: var(--text-primary);
-  transition: all 0.3s ease;
   margin: 0;
   letter-spacing: -0.3px;
 }
@@ -145,7 +161,10 @@
 .faq-question .faq-toggle {
   color: var(--text-muted);
   font-size: 20px;
-  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+              color 0.3s ease,
+              border-color 0.3s ease,
+              background-color 0.3s ease;
   flex-shrink: 0;
   display: flex;
   align-items: center;
@@ -206,6 +225,21 @@
   from {
     opacity: 0;
     transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================================================
+   ANIMAÇÕES DE ENTRADA
+   ========================================================= */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
@@ -397,33 +431,6 @@
 }
 
 /* =========================================================
-   ANIMAÇÕES DE ENTRADA
-   ========================================================= */
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.faq-item {
-  animation: fadeInUp 0.5s ease forwards;
-  opacity: 0;
-}
-
-.faq-item:nth-child(1) { animation-delay: 0.05s; }
-.faq-item:nth-child(2) { animation-delay: 0.1s; }
-.faq-item:nth-child(3) { animation-delay: 0.15s; }
-.faq-item:nth-child(4) { animation-delay: 0.2s; }
-.faq-item:nth-child(5) { animation-delay: 0.25s; }
-.faq-item:nth-child(6) { animation-delay: 0.3s; }
-
-/* =========================================================
    TOUCH DEVICES
    ========================================================= */
 
@@ -446,5 +453,20 @@
     color: var(--accent);
     border-color: var(--accent);
     background: var(--accent-soft);
+  }
+}
+
+/* =========================================================
+   PREFERS-REDUCED-MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .faq-item,
+  .faq-answer,
+  .faq-toggle,
+  .faq-num,
+  .faq-answer-inner p {
+    animation: none;
+    transition: none;
   }
 }

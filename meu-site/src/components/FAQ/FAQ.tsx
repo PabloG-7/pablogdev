@@ -20,7 +20,12 @@ function FAQItem({ num, questionKey, answerKey, isOpen, onToggle }: FAQItemProps
 
   return (
     <div className={`faq-item ${isOpen ? 'active' : ''}`}>
-      <div className="faq-question" onClick={onToggle}>
+      <button
+        type="button"
+        className="faq-question"
+        onClick={onToggle}
+        aria-expanded={isOpen}
+      >
         <div className="faq-left">
           <span className="faq-num">{num}</span>
           <h4>{t(questionKey)}</h4>
@@ -28,7 +33,7 @@ function FAQItem({ num, questionKey, answerKey, isOpen, onToggle }: FAQItemProps
         <span className={`faq-toggle ${isOpen ? 'open' : ''}`}>
           <FaChevronDown />
         </span>
-      </div>
+      </button>
       <div className="faq-answer">
         <div className="faq-answer-inner">
           <p>{t(answerKey)}</p>
@@ -76,7 +81,7 @@ export function FAQ() {
   ]
 
   const toggleFAQ = (index: number) => {
-    setOpenIndex(openIndex === index ? null : index)
+    setOpenIndex((current) => (current === index ? null : index))
   }
 
   return (
@@ -91,14 +96,14 @@ export function FAQ() {
         </div>
 
         <div className="faq-grid">
-          {faqs.map((faq, index) => (
+          {faqs.map((faq) => (
             <FAQItem
-              key={index}
+              key={faq.num}
               num={faq.num}
               questionKey={faq.questionKey}
               answerKey={faq.answerKey}
-              isOpen={openIndex === index}
-              onToggle={() => toggleFAQ(index)}
+              isOpen={openIndex === parseInt(faq.num) - 1}
+              onToggle={() => toggleFAQ(parseInt(faq.num) - 1)}
             />
           ))}
         </div>
