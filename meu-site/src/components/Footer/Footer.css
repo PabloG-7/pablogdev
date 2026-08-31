@@ -128,7 +128,9 @@
   font-weight: 600;
   font-size: 14px;
   text-decoration: none;
-  transition: all 0.3s ease;
+  transition: background-color 0.3s ease,
+              transform 0.3s ease,
+              box-shadow 0.3s ease;
   flex-shrink: 0;
   box-shadow: 0 4px 20px rgba(243, 195, 22, 0.2);
 }
@@ -238,7 +240,11 @@
   justify-content: center;
   color: var(--text-secondary);
   font-size: 16px;
-  transition: all 0.3s ease;
+  transition: background-color 0.3s ease,
+              color 0.3s ease,
+              border-color 0.3s ease,
+              transform 0.3s ease,
+              box-shadow 0.3s ease;
   text-decoration: none;
 }
 
@@ -265,7 +271,7 @@
   color: var(--text-secondary);
   text-decoration: none;
   font-size: 14px;
-  transition: all 0.3s ease;
+  transition: color 0.3s ease;
   display: inline-block;
   position: relative;
 }
@@ -338,64 +344,6 @@
   color: var(--accent);
 }
 
-/* ===== WHATSAPP OCULTO ===== */
-
-.footer-contact-wa {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  text-decoration: none;
-  transition: all 0.3s ease;
-}
-
-.footer-wa-hidden {
-  display: inline;
-}
-
-.footer-wa-visible {
-  display: none;
-  font-size: 18px;
-}
-
-/* Em telas pequenas, mostra apenas o ícone */
-@media (max-width: 768px) {
-  .footer-wa-hidden {
-    display: none;
-  }
-  
-  .footer-wa-visible {
-    display: inline;
-  }
-  
-  .footer-contact-wa {
-    font-size: 0;
-  }
-  
-  .footer-contact-wa .footer-wa-visible {
-    font-size: 20px;
-  }
-}
-
-/* Em telas muito pequenas, esconde o texto do WhatsApp */
-@media (max-width: 480px) {
-  .footer-wa-hidden {
-    display: none !important;
-  }
-  
-  .footer-wa-visible {
-    display: inline !important;
-    font-size: 18px;
-  }
-  
-  .footer-contact-wa {
-    font-size: 0 !important;
-  }
-  
-  .footer-contact-wa .footer-wa-visible {
-    font-size: 18px;
-  }
-}
-
 /* =========================================================
    BOTTOM - COPYRIGHT
    ========================================================= */
@@ -417,27 +365,6 @@
 
 .footer-bottom .gold-g {
   color: var(--accent);
-}
-
-.footer-bottom-links {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-size: 13px;
-}
-
-.footer-bottom-links a {
-  color: var(--text-muted);
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.footer-bottom-links a:hover {
-  color: var(--accent);
-}
-
-.footer-bottom-divider {
-  color: var(--border);
 }
 
 /* =========================================================
@@ -556,11 +483,6 @@
   .footer-bottom p {
     font-size: 12px;
   }
-  
-  .footer-bottom-links {
-    font-size: 12px;
-    gap: 8px;
-  }
 }
 
 @media (max-width: 480px) {
@@ -622,10 +544,6 @@
   .footer-bottom p {
     font-size: 11px;
   }
-  
-  .footer-bottom-links {
-    font-size: 11px;
-  }
 }
 
 /* =========================================================
@@ -672,5 +590,37 @@
   
   .footer-cta-btn:hover {
     transform: none;
+  }
+}
+
+/* =========================================================
+   PREFERS-REDUCED-MOTION - ACESSIBILIDADE
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .footer-top,
+  .footer-col {
+    animation: none !important;
+    opacity: 1;
+  }
+
+  .footer-cta-btn,
+  .footer-social a,
+  .footer-links li a,
+  .footer-links li a::before,
+  .footer-contact-value {
+    transition: none !important;
+  }
+
+  .footer-cta-btn:hover {
+    transform: none;
+  }
+
+  .footer-social a:hover {
+    transform: none;
+  }
+
+  .footer-links li a::before {
+    display: none;
   }
 }

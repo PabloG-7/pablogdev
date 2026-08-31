@@ -60,26 +60,30 @@
   gap: 32px;
 }
 
+/* ===== CARD - AGORA COMO LINK ===== */
 .showcase-card {
   width: 100%;
   background: transparent;
   border: none;
-  cursor: pointer;
   padding: 0;
   position: relative;
   display: block;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
 }
 
-/* ===== CARD ===== */
 .card {
   position: relative;
   overflow: hidden;
   aspect-ratio: 900 / 560;
   border-radius: 16px;
-  background: var(--surface);
+  background: var(--bg-tertiary);
   border: 1px solid var(--border);
-  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  background-color: var(--bg-tertiary);
+  transition:
+    transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    border-color 0.5s ease,
+    box-shadow 0.5s ease;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -91,15 +95,6 @@
   display: block;
   object-fit: cover;
   transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.card-placeholder {
-  color: var(--text-muted);
-  font-size: 14px;
-  text-align: center;
-  padding: 20px;
-  font-weight: 300;
-  letter-spacing: 1px;
 }
 
 /* ===== HOVER DO CARD ===== */
@@ -154,7 +149,9 @@
   gap: 12px;
   transform: translateY(20px);
   opacity: 0;
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition:
+    transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    opacity 0.4s ease;
   transition-delay: 0.05s;
 }
 
@@ -213,7 +210,10 @@
   font-size: 0.95rem;
   width: fit-content;
   margin-top: 4px;
-  transition: all 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
   letter-spacing: 0.5px;
   box-shadow: 0 4px 20px rgba(254, 201, 15, 0.2);
 }
@@ -475,24 +475,31 @@
 }
 
 /* =========================================================
-   IMPRESSÃO
+   PREFERS-REDUCED-MOTION - ACESSIBILIDADE
    ========================================================= */
-@media print {
-  .showcase-section {
-    padding: 20px 0;
-    background: #ffffff;
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .card img,
+  .card-overlay,
+  .overlay-content,
+  .card-link {
+    transition: none !important;
   }
 
-  .showcase-grid {
-    gap: 16px;
+  .showcase-card:hover .card {
+    transform: none !important;
   }
 
-  .card {
-    border: 1px solid #ddd;
-    border-radius: 8px;
+  .showcase-card:hover .card img {
+    transform: none !important;
   }
 
-  .card-overlay {
-    display: none;
+  .showcase-card:hover .card-overlay {
+    opacity: 0.9;
+  }
+
+  .showcase-card:hover .overlay-content {
+    transform: translateY(0);
+    opacity: 1;
   }
 }

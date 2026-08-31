@@ -21,7 +21,7 @@ export function Footer() {
   return (
     <footer className="footer">
       {/* Background Decorativo */}
-      <div className="footer-bg">
+      <div className="footer-bg" aria-hidden="true">
         <div className="footer-bg-circle footer-bg-circle-1"></div>
         <div className="footer-bg-circle footer-bg-circle-2"></div>
       </div>
@@ -54,19 +54,19 @@ export function Footer() {
           <div className="footer-col footer-col-brand">
             <div className="footer-logo">
               <img src="/images/logo.png" alt="PabloG.Dev" className="footer-logo-img" />
-              <span className="footer-logo-text">Pablo<span className="gold-g">G</span>.Dev</span>
+              <span className="footer-logo-text" aria-hidden="true">Pablo<span className="gold-g">G</span>.Dev</span>
             </div>
             <p className="footer-brand-desc">
               {t('footer_desc')}
             </p>
             <div className="footer-social">
-              <a href="https://www.instagram.com/pablog.dev/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <a href="https://www.instagram.com/pablog.dev/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram">
                 <FaInstagram />
               </a>
-              <a href="https://www.facebook.com/profile.php?id=61579501306846" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+              <a href="https://www.facebook.com/profile.php?id=61579501306846" target="_blank" rel="noopener noreferrer" aria-label="Facebook" title="Facebook">
                 <FaFacebook />
               </a>
-              <a href={whatsappLink} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+              <a href={whatsappLink} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" title="WhatsApp">
                 <FaWhatsapp />
               </a>
             </div>
@@ -107,10 +107,9 @@ export function Footer() {
                     href={whatsappLink} 
                     target="_blank" 
                     rel="noopener noreferrer" 
-                    className="footer-contact-value footer-contact-wa"
+                    className="footer-contact-value"
                   >
-                    <span className="footer-wa-hidden">{t('contact_wa')}</span>
-                    <span className="footer-wa-visible">📱</span>
+                    {t('contact_wa')}
                   </a>
                 </div>
               </li>
