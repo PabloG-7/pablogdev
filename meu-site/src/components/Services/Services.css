@@ -5,8 +5,9 @@
     background-color: var(--bg-primary);
     padding: 60px 20px 100px;
     position: relative;
-    margin-top: 60px !important;
+    margin-top: 60px;
 }
+
 .services-container {
     position: relative;
     z-index: 1;
@@ -94,7 +95,7 @@
    ========================================================= */
 .services-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 30px;
 }
 
@@ -106,8 +107,8 @@
     text-align: center;
     padding: 0 10px;
     opacity: 0;
-    transform: translateY(30px);
     animation: fadeInUp 0.6s ease forwards;
+    transition: transform var(--transition);
 }
 
 /* Delay pra cada card - ANIMAÇÃO LEVE */
@@ -124,12 +125,23 @@
 /* HOVER - SÓ O MOVIMENTO, SEM BORDA */
 .service-card:hover {
     transform: translateY(-6px);
-    transition: transform var(--transition);
 }
 
-/* Wrapper da imagem */
+/* KEYFRAMES - FADE IN UP */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Wrapper da imagem - BORDER-RADIUS SIMPLIFICADO */
 .service-image-wrapper {
-    border-radius: 40px;
+    border-radius: 32px;
     width: 100%;
     overflow: hidden;
     margin-bottom: 20px;
@@ -139,18 +151,18 @@
     position: relative;
 }
 
-/* IMAGEM - COM BORDER-RADIUS EM TODOS OS TAMANHOS */
+/* IMAGEM - HERDA O BORDER-RADIUS */
 .service-image-wrapper img {
     width: 100%;
     height: 100%;
-    border-radius: var(--radius-md);
+    border-radius: inherit;
     object-fit: contain;
     display: block;
     padding: 10px;
 }
 
-/* TÍTULO DO CARD - AMARELO */
-.service-card h4 {
+/* TÍTULO DO CARD - AMARELO - AGORA H3 */
+.service-card h3 {
     font-size: 18px;
     font-weight: 600;
     color: var(--accent);
@@ -172,7 +184,6 @@
 /* Desktop */
 @media (min-width: 1025px) {
     .service-image-wrapper img {
-        border-radius: 40px;
         padding: 12px;
     }
 }
@@ -180,20 +191,19 @@
 /* Tablet médio */
 @media (max-width: 1024px) {
     .services-grid {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 20px;
     }
     
     .service-image-wrapper img {
         padding: 8px;
-        border-radius: 20px;
     }
 }
 
 /* Tablet menor - VIRA 2 COLUNAS */
 @media (max-width: 900px) {
     .services-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 30px 20px;
         max-width: 700px;
         margin: 0 auto;
@@ -201,12 +211,10 @@
     
     .service-image-wrapper {
         aspect-ratio: 4 / 3;
-         border-radius: 40px;
     }
     
     .service-image-wrapper img {
         padding: 10px;
-       border-radius: 40px;
     }
     
     /* Remove delay em tablets menores */
@@ -230,16 +238,14 @@
     
     .service-image-wrapper {
         aspect-ratio: 4 / 3;
-         border-radius: 40px;
         max-width: 100%;
     }
     
     .service-image-wrapper img {
         padding: 8px;
-        border-radius: 40px;
     }
     
-    .service-card h4 {
+    .service-card h3 {
         font-size: 17px;
     }
     
@@ -257,7 +263,7 @@
 @media (max-width: 480px) {
     .services-section {
         padding: 40px 12px 60px;
-        margin-top: 35px !important;
+        margin-top: 35px;
     }
     
     .services-title .linha2 {
@@ -272,12 +278,10 @@
     .service-image-wrapper {
         aspect-ratio: 3 / 2;
         max-width: 100%;
-          border-radius: 40px;
     }
     
     .service-image-wrapper img {
         padding: 6px;
-        border-radius: calc(var(--radius-md) - 4px); /* 14px */
     }
     
     .service-card {
@@ -285,7 +289,7 @@
         animation-delay: 0s !important;
     }
     
-    .service-card h4 {
+    .service-card h3 {
         font-size: 16px;
         margin-bottom: 6px;
     }
@@ -301,7 +305,7 @@
 @media (max-width: 360px) {
     .services-section {
         padding: 30px 8px 50px;
-        margin-top: 30px !important;
+        margin-top: 30px;
     }
     
     .services-title .linha2 {
@@ -315,19 +319,33 @@
     
     .service-image-wrapper {
         aspect-ratio: 1 / 1;
-         border-radius: 40px;
     }
     
     .service-image-wrapper img {
         padding: 5px;
-        border-radius: calc(var(--radius-md) - 5px); /* 13px */
     }
     
-    .service-card h4 {
+    .service-card h3 {
         font-size: 15px;
     }
     
     .service-card p {
         font-size: 12px;
+    }
+}
+
+/* =========================================================
+   PREFERS-REDUCED-MOTION - ACESSIBILIDADE
+   ========================================================= */
+@media (prefers-reduced-motion: reduce) {
+    .service-card {
+        animation: none !important;
+        opacity: 1;
+        transform: none !important;
+        transition: none !important;
+    }
+
+    .service-card:hover {
+        transform: none !important;
     }
 }
