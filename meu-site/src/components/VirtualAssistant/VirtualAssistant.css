@@ -152,15 +152,6 @@
   pointer-events: none;
 }
 
-@keyframes headerPulse {
-  0%, 100% {
-    opacity: 0.6;
-  }
-  50% {
-    opacity: 1;
-  }
-}
-
 /* Linha de destaque superior dourada */
 .assistant-header .header-gold-line {
   position: absolute;
@@ -202,17 +193,7 @@
   background: #ffd700;
   border-radius: 50%;
   pointer-events: none;
-}
-
-@keyframes glowFloat {
-  0%, 100% {
-    transform: translate(0, 0) scale(1);
-    opacity: 0.5;
-  }
-  50% {
-    transform: translate(-20px, -10px) scale(1.2);
-    opacity: 0.8;
-  }
+  opacity: 0.05;
 }
 
 /* ============================================================
@@ -370,13 +351,18 @@
   border: none;
   border-radius: 12px;
 
-  background: #03153a;
+  background: rgba(3, 21, 58, 0.6);
 
-  color: rgba(255, 255, 255, 0.976);
+  color: rgba(255, 255, 255, 0.8);
 
   cursor: pointer;
 
-  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
 
   display: flex;
   align-items: center;
@@ -393,7 +379,7 @@
   position: absolute;
   inset: 0;
   border-radius: 12px;
-  background: #03153a4f;
+  background: rgba(3, 21, 58, 0.3);
   opacity: 0;
   transition: opacity 0.3s ease;
 }
@@ -427,14 +413,14 @@
 
 /* Botão fechar com cor especial - VERMELHO */
 .assistant-header-actions .action-btn.close-btn {
-  background: red;
-  color: white;
+  background: rgba(255, 0, 0, 0.15);
+  color: rgba(255, 255, 255, 0.8);
   border-color: rgba(255, 0, 0, 0.2);
 }
 
 .assistant-header-actions .action-btn.close-btn:hover {
-  background: rgba(255, 0, 0, 0.2);
-  color: white;
+  background: rgba(255, 0, 0, 0.25);
+  color: #ffffff;
   border-color: rgba(255, 0, 0, 0.4);
   box-shadow: 0 8px 25px rgba(255, 0, 0, 0.2);
   transform: translateY(-2px) scale(1.05);
@@ -600,7 +586,10 @@
 
   cursor: pointer;
 
-  transition: all 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
 
   user-select: none;
 
@@ -1087,4 +1076,46 @@
 
 .assistant-input button:active:not(:disabled) {
   transform: scale(0.95);
+}
+
+/* ============================================================
+   ♿ PREFERS-REDUCED-MOTION - ACESSIBILIDADE
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .assistant-chat,
+  .assistant-message,
+  .assistant-option,
+  .assistant-input,
+  .assistant-profile .avatar-wrapper::before,
+  .assistant-profile .status-badge::after,
+  .assistant-profile .profile-name .highlight,
+  .assistant-header .header-gold-line,
+  .assistant-typing span {
+    animation: none !important;
+  }
+
+  .assistant-button,
+  .assistant-option,
+  .assistant-header-actions .action-btn,
+  .assistant-input button,
+  .assistant-profile .avatar-wrapper img {
+    transition: none !important;
+  }
+
+  .assistant-messages {
+    scroll-behavior: auto;
+  }
+
+  .assistant-profile .avatar-wrapper::before {
+    display: none;
+  }
+
+  .assistant-profile .status-badge::after {
+    display: none;
+  }
+
+  .assistant-header .header-gold-line {
+    opacity: 0.3;
+  }
 }

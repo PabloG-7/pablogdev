@@ -93,21 +93,53 @@ export function VirtualAssistant() {
   }, [messages])
 
   // ============================================================
-  // 📱 BLOQUEIO TOTAL DA PÁGINA ENQUANTO O CHAT ESTÁ ABERTO
+  // ⌨️ FECHAR COM ESCAPE
+  // ============================================================
+
+  useEffect(() => {
+    if (!isOpen) return
+
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setIsOpen(false)
+      }
+    }
+
+    window.addEventListener('keydown', handleEscape)
+
+    return () => {
+      window.removeEventListener('keydown', handleEscape)
+    }
+  }, [isOpen])
+
+  // ============================================================
+  // 📱 BLOQUEIO TOTAL DA PÁGINA - PRESERVANDO ESTILOS ANTERIORES
   // ============================================================
 
   useEffect(() => {
     if (!isOpen) return
 
     const scrollY = window.scrollY
-
     const body = document.body
     const html = document.documentElement
 
-    // Guarda a posição atual da página
-    body.dataset.assistantScrollY = String(scrollY)
+    // Salva estilos anteriores do body
+    const previousBodyStyles = {
+      position: body.style.position,
+      top: body.style.top,
+      left: body.style.left,
+      right: body.style.right,
+      width: body.style.width,
+      overflow: body.style.overflow,
+    }
 
-    // Trava fisicamente o body
+    // Salva estilos anteriores do html
+    const previousHtmlStyles = {
+      overflow: html.style.overflow,
+      height: html.style.height,
+    }
+
+    // Aplica trava
     body.style.position = 'fixed'
     body.style.top = `-${scrollY}px`
     body.style.left = '0'
@@ -119,24 +151,20 @@ export function VirtualAssistant() {
     html.style.height = '100%'
 
     return () => {
-      const savedScrollY = Number(
-        body.dataset.assistantScrollY || scrollY
-      )
+      // Restaura estilos anteriores do body
+      body.style.position = previousBodyStyles.position
+      body.style.top = previousBodyStyles.top
+      body.style.left = previousBodyStyles.left
+      body.style.right = previousBodyStyles.right
+      body.style.width = previousBodyStyles.width
+      body.style.overflow = previousBodyStyles.overflow
 
-      body.style.position = ''
-      body.style.top = ''
-      body.style.left = ''
-      body.style.right = ''
-      body.style.width = ''
-      body.style.overflow = ''
+      // Restaura estilos anteriores do html
+      html.style.overflow = previousHtmlStyles.overflow
+      html.style.height = previousHtmlStyles.height
 
-      html.style.overflow = ''
-      html.style.height = ''
-
-      delete body.dataset.assistantScrollY
-
-      // Volta exatamente para onde estava
-      window.scrollTo(0, savedScrollY)
+      // Volta para posição salva
+      window.scrollTo(0, scrollY)
     }
   }, [isOpen])
 
@@ -365,8 +393,8 @@ export function VirtualAssistant() {
   // ============================================================
 
   const sendToWhatsApp = (data: ClientData) => {
-    // ⚠️ SUBSTITUA PELO SEU NÚMERO REAL ANTES DE PRODUÇÃO
-    const PHONE_NUMBER = '5511999999999'
+    // ✅ NÚMERO REAL CORRIGIDO
+    const PHONE_NUMBER = '5511961111894'
 
     // Mensagem no idioma selecionado
     const typeLabel = lang === 'pt' ? 'Interesse' : lang === 'es' ? 'Interés' : 'Interest'
@@ -385,7 +413,8 @@ ${data.request}`
     const encoded = encodeURIComponent(message)
     const whatsappLink = `https://api.whatsapp.com/send?phone=${PHONE_NUMBER}&text=${encoded}`
 
-    window.open(whatsappLink, '_blank')
+    // ✅ Com proteção noopener,noreferrer
+    window.open(whatsappLink, '_blank', 'noopener,noreferrer')
   }
 
   // ============================================================
@@ -399,6 +428,7 @@ ${data.request}`
           id="assistant-chat"
           className="assistant-chat"
           role="dialog"
+          aria-modal="true"
           aria-label={t('assistant_dialog_aria')}
         >
           {/* HEADER - NOVO DESIGN PREMIUM */}
@@ -424,6 +454,7 @@ ${data.request}`
             {/* Ações */}
             <div className="assistant-header-actions">
               <button
+                type="button"
                 className="action-btn"
                 onClick={handleRestart}
                 aria-label={t('assistant_restart_aria')}
@@ -433,6 +464,7 @@ ${data.request}`
                 <FaRedo />
               </button>
               <button
+                type="button"
                 className="action-btn close-btn"
                 onClick={() => setIsOpen(false)}
                 aria-label={t('assistant_close_aria')}
@@ -467,6 +499,7 @@ ${data.request}`
                       <div className="assistant-options">
                         {msg.options.map((option) => (
                           <button
+                            type="button"
                             key={option.id}
                             className={`assistant-option ${option.id === 'later' ? 'secondary' : ''}`}
                             onClick={() => handleOptionClick(option)}
@@ -502,6 +535,11 @@ ${data.request}`
               <input
                 ref={inputRef}
                 type="text"
+                aria-label={
+                  inputMode === 'name'
+                    ? t('assistant_name_placeholder')
+                    : t('assistant_request_placeholder')
+                }
                 placeholder={
                   inputMode === 'name'
                     ? t('assistant_name_placeholder')
@@ -513,6 +551,7 @@ ${data.request}`
                 disabled={isTyping || isSending}
               />
               <button 
+                type="button"
                 onClick={handleSend} 
                 disabled={isTyping || isSending || !inputValue.trim()}
               >
@@ -526,6 +565,7 @@ ${data.request}`
       {/* BOTÃO FLUTUANTE */}
       {!isOpen && (
         <button
+          type="button"
           className="assistant-button"
           onClick={() => setIsOpen(true)}
           aria-label={t('assistant_open_aria')}
