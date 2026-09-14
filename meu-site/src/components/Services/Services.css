@@ -178,6 +178,44 @@
 }
 
 /* =========================================================
+   BOTÃO TENHO INTERESSE - DENTRO DE CADA CARD
+   ========================================================= */
+.service-whatsapp-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 18px;
+    background: #25D366;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px 22px;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(37, 211, 102, 0.25);
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+}
+
+.service-whatsapp-btn:hover {
+    background: #1ebe5d;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(37, 211, 102, 0.4);
+}
+
+.service-whatsapp-btn:active {
+    transform: translateY(0);
+}
+
+.service-whatsapp-btn svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+}
+
+/* =========================================================
    SERVICES - RESPONSIVIDADE COMPLETA
    ========================================================= */
 
@@ -257,6 +295,18 @@
     .service-card {
         animation-delay: 0s !important;
     }
+
+    /* Botão WhatsApp - Mobile */
+    .service-whatsapp-btn {
+        font-size: 13px;
+        padding: 9px 20px;
+        margin-top: 16px;
+    }
+
+    .service-whatsapp-btn svg {
+        width: 16px;
+        height: 16px;
+    }
 }
 
 /* Mobile pequeno */
@@ -299,6 +349,19 @@
         line-height: 1.5;
         max-width: 100%;
     }
+
+    /* Botão WhatsApp - Mobile pequeno */
+    .service-whatsapp-btn {
+        font-size: 13px;
+        padding: 9px 18px;
+        gap: 7px;
+        margin-top: 14px;
+    }
+
+    .service-whatsapp-btn svg {
+        width: 16px;
+        height: 16px;
+    }
 }
 
 /* Mobile muito pequeno */
@@ -332,6 +395,19 @@
     .service-card p {
         font-size: 12px;
     }
+
+    /* Botão WhatsApp - Mobile muito pequeno */
+    .service-whatsapp-btn {
+        font-size: 12px;
+        padding: 8px 16px;
+        gap: 6px;
+        margin-top: 12px;
+    }
+
+    .service-whatsapp-btn svg {
+        width: 14px;
+        height: 14px;
+    }
 }
 
 /* =========================================================
@@ -346,6 +422,14 @@
     }
 
     .service-card:hover {
+        transform: none !important;
+    }
+
+    .service-whatsapp-btn {
+        transition: none !important;
+    }
+
+    .service-whatsapp-btn:hover {
         transform: none !important;
     }
 }

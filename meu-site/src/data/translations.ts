@@ -23,6 +23,7 @@ export type TranslationKey =
   | 'service_2_desc'
   | 'service_3_title'
   | 'service_3_desc'
+  | 'service_btn_interest'
   // CHAVES DO SHOWCASE
   | 'showcase_title_part1'
   | 'showcase_title_part2'
@@ -180,6 +181,7 @@ export const translations: Translations = {
     service_2_desc: "Painéis sob medida para controlar clientes, pedidos, reservas, serviços e informações importantes. Mais produtividade e dados organizados.",
     service_3_title: "Agendamentos Online",
     service_3_desc: "Uma experiência simples para o cliente escolher horário e enviar os dados. Integração automática com WhatsApp. Ideal para serviços.",
+    service_btn_interest: "Tenho Interesse",
     // SHOWCASE - PT
     showcase_title_part1: "Exemplos que você",
     showcase_title_part2: "pode explorar",
@@ -334,6 +336,7 @@ export const translations: Translations = {
     service_2_desc: "Paneles a medida para controlar clientes, pedidos, reservas, servicios e información importante. Más productividad y datos organizados.",
     service_3_title: "Agendamientos Online",
     service_3_desc: "Una experiencia simple para que el cliente elija horario y envíe los datos. Integración automática con WhatsApp. Ideal para servicios.",
+    service_btn_interest: "Tengo Interés",
     // SHOWCASE - ES
     showcase_title_part1: "Ejemplos que",
     showcase_title_part2: "puedes explorar",
@@ -488,6 +491,7 @@ export const translations: Translations = {
     service_2_desc: "Tailor-made dashboards to control clients, orders, bookings, services, and important info. More productivity and organized data.",
     service_3_title: "Online Scheduling",
     service_3_desc: "A simple experience for the client to choose a time and send their info. Auto-integration with WhatsApp. Ideal for services.",
+    service_btn_interest: "I'm Interested",
     // SHOWCASE - EN
     showcase_title_part1: "Examples you",
     showcase_title_part2: "can explore",
