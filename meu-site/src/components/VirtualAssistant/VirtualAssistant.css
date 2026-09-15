@@ -34,11 +34,6 @@
   -webkit-user-select: none;
 }
 
-.assistant-button:hover {
-  transform: scale(1.06);
-  filter: brightness(1.08);
-}
-
 .assistant-button.not-dragging {
   transition:
     left 0.32s cubic-bezier(0.22, 1, 0.36, 1),
@@ -65,6 +60,13 @@
 .assistant-button:focus-visible {
   outline: 2px solid #fec90f;
   outline-offset: 3px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .assistant-button:hover:not(.dragging) {
+    transform: scale(1.06);
+    filter: brightness(1.08);
+  }
 }
 
 .assistant-button img {

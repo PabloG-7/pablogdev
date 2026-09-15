@@ -126,53 +126,6 @@ export function VirtualAssistant() {
   }, [messages])
 
   // ============================================================
-  // 📐 RECALCULAR POSIÇÃO AO REDIMENSIONAR
-  // ============================================================
-
-  useEffect(() => {
-    const handleResize = () => {
-      const button = assistantButtonRef.current
-      if (!button) return
-
-      setButtonPosition((prev) => {
-        if (!prev) return prev
-
-        const rect = button.getBoundingClientRect()
-        const horizontalMargin = 12
-        const topMargin = 90
-        const bottomMargin = 18
-
-        const maxX = window.innerWidth - rect.width - horizontalMargin
-        const maxY = window.innerHeight - rect.height - bottomMargin
-
-        const x = Math.max(horizontalMargin, Math.min(prev.x, maxX))
-        const y = Math.max(topMargin, Math.min(prev.y, maxY))
-
-        if (x === prev.x && y === prev.y) return prev
-
-        const next = { x, y }
-
-        currentPositionRef.current = next
-
-        try {
-          localStorage.setItem(
-            'assistant-button-position',
-            JSON.stringify(next)
-          )
-        } catch {
-          /* noop */
-        }
-
-        return next
-      })
-    }
-
-    window.addEventListener('resize', handleResize)
-
-    return () => window.removeEventListener('resize', handleResize)
-  }, [])
-
-  // ============================================================
   // ⌨️ FECHAR COM ESCAPE
   // ============================================================
 
@@ -541,17 +494,18 @@ ${data.request}`
       setIsDragging(true)
     }
 
-    const rect = button.getBoundingClientRect()
+    const buttonWidth = button.offsetWidth
+    const buttonHeight = button.offsetHeight
 
     const horizontalMargin = 12
     const topMargin = 90
     const bottomMargin = 18
 
     const maxX =
-      window.innerWidth - rect.width - horizontalMargin
+      window.innerWidth - buttonWidth - horizontalMargin
 
     const maxY =
-      window.innerHeight - rect.height - bottomMargin
+      window.innerHeight - buttonHeight - bottomMargin
 
     const x = Math.max(
       horizontalMargin,
@@ -597,57 +551,66 @@ ${data.request}`
       return
     }
 
-    const rect = button.getBoundingClientRect()
+    const buttonWidth = button.offsetWidth
+    const buttonHeight = button.offsetHeight
 
-    const margin = 18
+    const horizontalMargin = 18
+    const topMargin = 90
+    const bottomMargin = 18
 
-    const leftPosition = margin
+    const leftPosition = horizontalMargin
+
     const rightPosition =
-      window.innerWidth - rect.width - margin
+      window.innerWidth -
+      buttonWidth -
+      horizontalMargin
 
     const buttonCenter =
-      position.x + rect.width / 2
+      position.x + buttonWidth / 2
 
     const screenCenter =
       window.innerWidth / 2
 
-    const snapX =
+    const newSide: 'left' | 'right' =
       buttonCenter < screenCenter
+        ? 'left'
+        : 'right'
+
+    const snapX =
+      newSide === 'left'
         ? leftPosition
         : rightPosition
 
-    const newSide: 'left' | 'right' =
-      buttonCenter < screenCenter ? 'left' : 'right'
-
-    setButtonSide(newSide)
-
-    try {
-      localStorage.setItem('assistant-button-side', newSide)
-    } catch {
-      /* noop */
-    }
-
     const maxY =
-      window.innerHeight - rect.height - margin
+      window.innerHeight -
+      buttonHeight -
+      bottomMargin
 
     const finalPosition = {
       x: snapX,
       y: Math.max(
-        margin,
+        topMargin,
         Math.min(position.y, maxY)
       ),
     }
 
     currentPositionRef.current = finalPosition
+
+    setButtonSide(newSide)
     setButtonPosition(finalPosition)
 
     try {
+      localStorage.setItem(
+        'assistant-button-side',
+        newSide
+      )
+
       localStorage.setItem(
         'assistant-button-position',
         JSON.stringify(finalPosition)
       )
     } catch {
-      /* noop */
+      /* Safari privado ou storage indisponível */
     }
 
     isDraggingRef.current = false
@@ -818,6 +781,7 @@ ${data.request}`
           onPointerDown={handleButtonPointerDown}
           onPointerMove={handleButtonPointerMove}
           onPointerUp={handleButtonPointerUp}
+          onPointerCancel={handleButtonPointerUp}
 
           onClick={() => {
             if (movedRef.current) {
