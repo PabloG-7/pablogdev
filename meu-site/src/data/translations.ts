@@ -58,6 +58,8 @@ export type TranslationKey =
   | 'project_11_desc'
   | 'project_12_name'
   | 'project_12_desc'
+  | 'project_13_name'
+  | 'project_13_desc'
   | 'card_link'
   | 'about_subtitle'
   | 'about_desc_1'
@@ -216,6 +218,8 @@ export const translations: Translations = {
     project_11_desc: "UI Concept de e-commerce moderno com design premium e responsivo",
     project_12_name: "MUSE Hair Atelier",
     project_12_desc: "Site institucional para salão de beleza com design clean, agendamento integrado e dashboard administrativo",
+    project_13_name: "Nike Store - Landing Premium",
+    project_13_desc: "Landing page conceito com transições cinematográficas, tema dinâmico e apresentação de produto de alto impacto",
     card_link: "👁 Visualizar Projeto",
     about_subtitle: "SOBRE",
     about_desc_1: "Desenvolvedor especializado em criar <strong>soluções digitais</strong> para empresas que desejam crescer na internet.",
@@ -371,6 +375,8 @@ export const translations: Translations = {
     project_11_desc: "UI Concept de e-commerce moderno con diseño premium y responsivo",
     project_12_name: "MUSE Hair Atelier",
     project_12_desc: "Sitio institucional para salón de belleza con diseño clean, agenda integrada y dashboard administrativo",
+    project_13_name: "Nike Store - Landing Premium",
+    project_13_desc: "Landing page concepto con transiciones cinematográficas, tema dinámico y presentación de producto de alto impacto",
     card_link: "👁 Visualizar Proyecto",
     about_subtitle: "SOBRE",
     about_desc_1: "Desarrollador especializado en crear <strong>soluciones digitales</strong> para empresas que desean crecer en internet.",
@@ -526,6 +532,8 @@ export const translations: Translations = {
     project_11_desc: "Modern e-commerce UI Concept with premium and responsive design",
     project_12_name: "MUSE Hair Atelier",
     project_12_desc: "Institutional website for a beauty salon with clean design, integrated scheduling and admin dashboard",
+    project_13_name: "Nike Store - Premium Landing",
+    project_13_desc: "Concept landing page with cinematic transitions, dynamic theme and high-impact product showcase",
     card_link: "👁 View Project",
     about_subtitle: "ABOUT",
     about_desc_1: "Developer specialized in creating <strong>digital solutions</strong> for businesses that want to grow on the internet.",
