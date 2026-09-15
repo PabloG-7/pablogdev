@@ -24,18 +24,40 @@
   border-radius: 50%;
 
   background: transparent;
-  cursor: pointer;
+
+  cursor: grab;
 
   z-index: 900;
 
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+
   transition:
     transform 0.25s ease,
-    filter 0.25s ease;
+    filter 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
 .assistant-button:hover {
-  transform: scale(1.08);
+  transform: scale(1.06);
   filter: brightness(1.08);
+}
+
+.assistant-button.dragging {
+  cursor: grabbing;
+
+  transform: scale(1.1);
+
+  filter: brightness(1.1);
+
+  box-shadow:
+    0 15px 35px rgba(0, 0, 0, 0.25);
+
+  transition:
+    transform 0.15s ease,
+    filter 0.15s ease,
+    box-shadow 0.15s ease;
 }
 
 .assistant-button:focus-visible {
@@ -46,10 +68,16 @@
 .assistant-button img {
   width: 100%;
   height: 100%;
+
   object-fit: cover;
   border-radius: 50%;
 
   display: block;
+
+  pointer-events: none;
+
+  -webkit-user-drag: none;
+  user-select: none;
 }
 
 .assistant-notification {
@@ -71,6 +99,8 @@
   color: #000c24;
 
   border: 3px solid #000c24;
+
+  pointer-events: none;
 }
 
 .assistant-notification svg {
@@ -144,7 +174,6 @@
   overflow: hidden;
 }
 
-/* Gradiente de fundo animado */
 .assistant-header .header-bg-glow {
   position: absolute;
   inset: 0;
@@ -152,7 +181,6 @@
   pointer-events: none;
 }
 
-/* Linha de destaque superior dourada */
 .assistant-header .header-gold-line {
   position: absolute;
   top: 0;
@@ -183,7 +211,6 @@
   }
 }
 
-/* Efeito de brilho sutil no header */
 .assistant-header .header-glow-sphere {
   position: absolute;
   top: -50%;
@@ -193,7 +220,6 @@
   background: #ffd700;
   border-radius: 50%;
   pointer-events: none;
-  opacity: 0.05;
 }
 
 /* ============================================================
@@ -209,7 +235,6 @@
   z-index: 1;
 }
 
-/* Container da imagem com anel dourado animado */
 .assistant-profile .avatar-wrapper {
   position: relative;
   width: 56px;
@@ -264,7 +289,6 @@
   transform: scale(1.08) rotate(-5deg);
 }
 
-/* Badge de status */
 .assistant-profile .status-badge {
   position: absolute;
   bottom: 0;
@@ -298,7 +322,6 @@
   }
 }
 
-/* Informações do perfil */
 .assistant-profile .profile-info {
   display: flex;
   flex-direction: column;
@@ -373,7 +396,6 @@
   overflow: hidden;
 }
 
-/* Efeito de hover com brilho - BRANCO */
 .assistant-header-actions .action-btn::before {
   content: '';
   position: absolute;
@@ -411,7 +433,6 @@
   transform: none !important;
 }
 
-/* Botão fechar com cor especial - VERMELHO */
 .assistant-header-actions .action-btn.close-btn {
   background: rgba(255, 0, 0, 0.15);
   color: rgba(255, 255, 255, 0.8);
@@ -469,7 +490,6 @@
   z-index: 0;
 }
 
-/* Camada escura sobre o fundo para melhor legibilidade */
 .assistant-messages-bg::after {
   content: '';
 
@@ -918,7 +938,7 @@
 
   .assistant-input input {
     height: 40px;
-    font-size: 16px; /* ⚠️ CRUCIAL: evita zoom automático no iOS */
+    font-size: 16px;
   }
 
   .assistant-input button {

@@ -66,6 +66,30 @@ export function VirtualAssistant() {
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
 
+  const assistantButtonRef = useRef<HTMLButtonElement>(null)
+
+  const isDraggingRef = useRef(false)
+  const movedRef = useRef(false)
+
+  const startPointerRef = useRef({ x: 0, y: 0 })
+  const startPositionRef = useRef({ x: 0, y: 0 })
+  const currentPositionRef = useRef<{ x: number; y: number } | null>(null)
+
+  const [isDragging, setIsDragging] = useState(false)
+
+  const [buttonPosition, setButtonPosition] = useState<{
+    x: number
+    y: number
+  } | null>(() => {
+    try {
+      const saved = localStorage.getItem('assistant-button-position')
+
+      return saved ? JSON.parse(saved) : null
+    } catch {
+      return null
+    }
+  })
+
   // ============================================================
   // 📜 INICIALIZAR
   // ============================================================
@@ -91,6 +115,51 @@ export function VirtualAssistant() {
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [messages])
+
+  // ============================================================
+  // 📐 RECALCULAR POSIÇÃO AO REDIMENSIONAR
+  // ============================================================
+
+  useEffect(() => {
+    const handleResize = () => {
+      const button = assistantButtonRef.current
+      if (!button) return
+
+      setButtonPosition((prev) => {
+        if (!prev) return prev
+
+        const rect = button.getBoundingClientRect()
+        const margin = 18
+
+        const maxX = window.innerWidth - rect.width - margin
+        const maxY = window.innerHeight - rect.height - margin
+
+        const x = Math.max(margin, Math.min(prev.x, maxX))
+        const y = Math.max(margin, Math.min(prev.y, maxY))
+
+        if (x === prev.x && y === prev.y) return prev
+
+        const next = { x, y }
+
+        currentPositionRef.current = next
+
+        try {
+          localStorage.setItem(
+            'assistant-button-position',
+            JSON.stringify(next)
+          )
+        } catch {
+          /* noop */
+        }
+
+        return next
+      })
+    }
+
+    window.addEventListener('resize', handleResize)
+
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
 
   // ============================================================
   // ⌨️ FECHAR COM ESCAPE
@@ -123,7 +192,6 @@ export function VirtualAssistant() {
     const body = document.body
     const html = document.documentElement
 
-    // Salva estilos anteriores do body
     const previousBodyStyles = {
       position: body.style.position,
       top: body.style.top,
@@ -133,13 +201,11 @@ export function VirtualAssistant() {
       overflow: body.style.overflow,
     }
 
-    // Salva estilos anteriores do html
     const previousHtmlStyles = {
       overflow: html.style.overflow,
       height: html.style.height,
     }
 
-    // Aplica trava
     body.style.position = 'fixed'
     body.style.top = `-${scrollY}px`
     body.style.left = '0'
@@ -151,7 +217,6 @@ export function VirtualAssistant() {
     html.style.height = '100%'
 
     return () => {
-      // Restaura estilos anteriores do body
       body.style.position = previousBodyStyles.position
       body.style.top = previousBodyStyles.top
       body.style.left = previousBodyStyles.left
@@ -159,11 +224,9 @@ export function VirtualAssistant() {
       body.style.width = previousBodyStyles.width
       body.style.overflow = previousBodyStyles.overflow
 
-      // Restaura estilos anteriores do html
       html.style.overflow = previousHtmlStyles.overflow
       html.style.height = previousHtmlStyles.height
 
-      // Volta para posição salva
       window.scrollTo(0, scrollY)
     }
   }, [isOpen])
@@ -280,7 +343,6 @@ export function VirtualAssistant() {
   // 🎯 HANDLERS
   // ============================================================
 
-  // ---------- GREETING ----------
   const handleGreeting = (id: string) => {
     const typeMap: Record<string, string> = {
       site: t('assistant_option_site'),
@@ -321,7 +383,6 @@ export function VirtualAssistant() {
     addMessage(questionMap[id], 'assistant')
   }
 
-  // ---------- REQUEST ----------
   const handleRequest = (text: string) => {
     if (!text.trim()) return
 
@@ -331,7 +392,6 @@ export function VirtualAssistant() {
     addMessage(t('assistant_name_question'), 'assistant')
   }
 
-  // ---------- NAME ----------
   const handleName = (text: string) => {
     if (!text.trim()) {
       addMessage(t('assistant_name_required'), 'assistant')
@@ -357,7 +417,6 @@ export function VirtualAssistant() {
     )
   }
 
-  // ---------- FINAL OPTIONS ----------
   const handleFinalOption = (id: string) => {
     setMessages((prev) =>
       prev.map((message, index) =>
@@ -393,10 +452,8 @@ export function VirtualAssistant() {
   // ============================================================
 
   const sendToWhatsApp = (data: ClientData) => {
-    // ✅ NÚMERO REAL CORRIGIDO
     const PHONE_NUMBER = '5511961111894'
 
-    // Mensagem no idioma selecionado
     const typeLabel = lang === 'pt' ? 'Interesse' : lang === 'es' ? 'Interés' : 'Interest'
     const needLabel = lang === 'pt' ? 'Necessidade' : lang === 'es' ? 'Necesidad' : 'Need'
     const nameLabel = lang === 'pt' ? 'Nome' : lang === 'es' ? 'Nombre' : 'Name'
@@ -413,8 +470,155 @@ ${data.request}`
     const encoded = encodeURIComponent(message)
     const whatsappLink = `https://api.whatsapp.com/send?phone=${PHONE_NUMBER}&text=${encoded}`
 
-    // ✅ Com proteção noopener,noreferrer
     window.open(whatsappLink, '_blank', 'noopener,noreferrer')
+  }
+
+  // ============================================================
+  // 🖱️ DRAG DO BOTÃO FLUTUANTE
+  // ============================================================
+
+  const handleButtonPointerDown = (
+    e: React.PointerEvent<HTMLButtonElement>
+  ) => {
+    const button = assistantButtonRef.current
+    if (!button) return
+
+    const rect = button.getBoundingClientRect()
+
+    startPointerRef.current = {
+      x: e.clientX,
+      y: e.clientY,
+    }
+
+    startPositionRef.current = {
+      x: rect.left,
+      y: rect.top,
+    }
+
+    currentPositionRef.current = {
+      x: rect.left,
+      y: rect.top,
+    }
+
+    isDraggingRef.current = false
+    movedRef.current = false
+
+    button.setPointerCapture(e.pointerId)
+  }
+
+  const handleButtonPointerMove = (
+    e: React.PointerEvent<HTMLButtonElement>
+  ) => {
+    const button = assistantButtonRef.current
+
+    if (!button || !button.hasPointerCapture(e.pointerId)) {
+      return
+    }
+
+    const dx = e.clientX - startPointerRef.current.x
+    const dy = e.clientY - startPointerRef.current.y
+
+    const distance = Math.sqrt(dx * dx + dy * dy)
+
+    if (distance < 6 && !isDraggingRef.current) {
+      return
+    }
+
+    if (!isDraggingRef.current) {
+      isDraggingRef.current = true
+      movedRef.current = true
+      setIsDragging(true)
+    }
+
+    const rect = button.getBoundingClientRect()
+
+    const margin = 12
+
+    const maxX = window.innerWidth - rect.width - margin
+    const maxY = window.innerHeight - rect.height - margin
+
+    const x = Math.max(
+      margin,
+      Math.min(startPositionRef.current.x + dx, maxX)
+    )
+
+    const y = Math.max(
+      margin,
+      Math.min(startPositionRef.current.y + dy, maxY)
+    )
+
+    const position = { x, y }
+
+    currentPositionRef.current = position
+    setButtonPosition(position)
+  }
+
+  const handleButtonPointerUp = (
+    e: React.PointerEvent<HTMLButtonElement>
+  ) => {
+    const button = assistantButtonRef.current
+    if (!button) return
+
+    if (button.hasPointerCapture(e.pointerId)) {
+      button.releasePointerCapture(e.pointerId)
+    }
+
+    if (!isDraggingRef.current) {
+      return
+    }
+
+    const position = currentPositionRef.current
+
+    if (!position) {
+      isDraggingRef.current = false
+      setIsDragging(false)
+      return
+    }
+
+    const rect = button.getBoundingClientRect()
+
+    const margin = 18
+
+    const leftPosition = margin
+    const rightPosition =
+      window.innerWidth - rect.width - margin
+
+    const buttonCenter =
+      position.x + rect.width / 2
+
+    const screenCenter =
+      window.innerWidth / 2
+
+    const snapX =
+      buttonCenter < screenCenter
+        ? leftPosition
+        : rightPosition
+
+    const maxY =
+      window.innerHeight - rect.height - margin
+
+    const finalPosition = {
+      x: snapX,
+      y: Math.max(
+        margin,
+        Math.min(position.y, maxY)
+      ),
+    }
+
+    currentPositionRef.current = finalPosition
+    setButtonPosition(finalPosition)
+
+    try {
+      localStorage.setItem(
+        'assistant-button-position',
+        JSON.stringify(finalPosition)
+      )
+    } catch {
+      /* noop */
+    }
+
+    isDraggingRef.current = false
+    setIsDragging(false)
   }
 
   // ============================================================
@@ -433,12 +637,10 @@ ${data.request}`
         >
           {/* HEADER - NOVO DESIGN PREMIUM */}
           <div className="assistant-header">
-            {/* Elementos decorativos do header */}
             <div className="header-bg-glow" />
             <div className="header-gold-line" />
             <div className="header-glow-sphere" />
 
-            {/* Perfil */}
             <div className="assistant-profile">
               <div className="avatar-wrapper">
                 <img src="/assistant2.webp" alt={t('assistant_dialog_aria')} />
@@ -451,7 +653,6 @@ ${data.request}`
               </div>
             </div>
 
-            {/* Ações */}
             <div className="assistant-header-actions">
               <button
                 type="button"
@@ -476,10 +677,8 @@ ${data.request}`
 
           {/* ÁREA DE MENSAGENS COM FUNDO FIXO */}
           <div className="assistant-messages-area">
-            {/* Fundo fixo */}
             <div className="assistant-messages-bg" aria-hidden="true" />
 
-            {/* Mensagens roláveis */}
             <div
               className="assistant-messages"
               aria-live="polite"
@@ -565,14 +764,47 @@ ${data.request}`
       {/* BOTÃO FLUTUANTE */}
       {!isOpen && (
         <button
+          ref={assistantButtonRef}
           type="button"
-          className="assistant-button"
-          onClick={() => setIsOpen(true)}
+
+          className={`assistant-button ${
+            isDragging ? 'dragging' : ''
+          }`}
+
+          style={
+            buttonPosition
+              ? {
+                  left: `${buttonPosition.x}px`,
+                  top: `${buttonPosition.y}px`,
+                  right: 'auto',
+                  bottom: 'auto',
+                }
+              : undefined
+          }
+
+          onPointerDown={handleButtonPointerDown}
+          onPointerMove={handleButtonPointerMove}
+          onPointerUp={handleButtonPointerUp}
+
+          onClick={() => {
+            if (movedRef.current) {
+              movedRef.current = false
+              return
+            }
+
+            setIsOpen(true)
+          }}
+
           aria-label={t('assistant_open_aria')}
           aria-expanded={isOpen}
           aria-controls="assistant-chat"
         >
-          <img src="/assistant.webp" alt={t('assistant_dialog_aria')} />
+          <img
+            src="/assistant.webp"
+            alt={t('assistant_dialog_aria')}
+            draggable={false}
+          />
+
           <span className="assistant-notification">
             <FaCommentDots color="#000C24" />
           </span>
