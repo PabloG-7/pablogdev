@@ -42,8 +42,8 @@ function App() {
       </section>
 
       <section id="about">
-        <About />
-      </section>
+  {/* <About /> */}
+</section>
 
       <section id="process">
         <Process />
