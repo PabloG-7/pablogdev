@@ -77,6 +77,15 @@ export function VirtualAssistant() {
 
   const [isDragging, setIsDragging] = useState(false)
 
+  const [buttonSide, setButtonSide] = useState<'left' | 'right'>(() => {
+    try {
+      const saved = localStorage.getItem('assistant-button-side')
+      return saved === 'left' ? 'left' : 'right'
+    } catch {
+      return 'right'
+    }
+  })
+
   const [buttonPosition, setButtonPosition] = useState<{
     x: number
     y: number
@@ -129,13 +138,15 @@ export function VirtualAssistant() {
         if (!prev) return prev
 
         const rect = button.getBoundingClientRect()
-        const margin = 18
+        const horizontalMargin = 12
+        const topMargin = 90
+        const bottomMargin = 18
 
-        const maxX = window.innerWidth - rect.width - margin
-        const maxY = window.innerHeight - rect.height - margin
+        const maxX = window.innerWidth - rect.width - horizontalMargin
+        const maxY = window.innerHeight - rect.height - bottomMargin
 
-        const x = Math.max(margin, Math.min(prev.x, maxX))
-        const y = Math.max(margin, Math.min(prev.y, maxY))
+        const x = Math.max(horizontalMargin, Math.min(prev.x, maxX))
+        const y = Math.max(topMargin, Math.min(prev.y, maxY))
 
         if (x === prev.x && y === prev.y) return prev
 
@@ -532,19 +543,30 @@ ${data.request}`
 
     const rect = button.getBoundingClientRect()
 
-    const margin = 12
+    const horizontalMargin = 12
+    const topMargin = 90
+    const bottomMargin = 18
 
-    const maxX = window.innerWidth - rect.width - margin
-    const maxY = window.innerHeight - rect.height - margin
+    const maxX =
+      window.innerWidth - rect.width - horizontalMargin
+
+    const maxY =
+      window.innerHeight - rect.height - bottomMargin
 
     const x = Math.max(
-      margin,
-      Math.min(startPositionRef.current.x + dx, maxX)
+      horizontalMargin,
+      Math.min(
+        startPositionRef.current.x + dx,
+        maxX
+      )
     )
 
     const y = Math.max(
-      margin,
-      Math.min(startPositionRef.current.y + dy, maxY)
+      topMargin,
+      Math.min(
+        startPositionRef.current.y + dy,
+        maxY
+      )
     )
 
     const position = { x, y }
@@ -594,6 +616,17 @@ ${data.request}`
         ? leftPosition
         : rightPosition
 
+    const newSide: 'left' | 'right' =
+      buttonCenter < screenCenter ? 'left' : 'right'
+
+    setButtonSide(newSide)
+
+    try {
+      localStorage.setItem('assistant-button-side', newSide)
+    } catch {
+      /* noop */
+    }
+
     const maxY =
       window.innerHeight - rect.height - margin
 
@@ -630,7 +663,7 @@ ${data.request}`
       {isOpen && (
         <div
           id="assistant-chat"
-          className="assistant-chat"
+          className={`assistant-chat assistant-chat-${buttonSide}`}
           role="dialog"
           aria-modal="true"
           aria-label={t('assistant_dialog_aria')}
@@ -768,7 +801,7 @@ ${data.request}`
           type="button"
 
           className={`assistant-button ${
-            isDragging ? 'dragging' : ''
+            isDragging ? 'dragging' : 'not-dragging'
           }`}
 
           style={

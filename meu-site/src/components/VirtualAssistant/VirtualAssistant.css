@@ -32,11 +32,6 @@
   touch-action: none;
   user-select: none;
   -webkit-user-select: none;
-
-  transition:
-    transform 0.25s ease,
-    filter 0.25s ease,
-    box-shadow 0.25s ease;
 }
 
 .assistant-button:hover {
@@ -44,20 +39,27 @@
   filter: brightness(1.08);
 }
 
+.assistant-button.not-dragging {
+  transition:
+    left 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+    top 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.25s ease,
+    filter 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
 .assistant-button.dragging {
-  cursor: grabbing;
-
-  transform: scale(1.1);
-
-  filter: brightness(1.1);
-
-  box-shadow:
-    0 15px 35px rgba(0, 0, 0, 0.25);
-
   transition:
     transform 0.15s ease,
     filter 0.15s ease,
     box-shadow 0.15s ease;
+
+  cursor: grabbing;
+  transform: scale(1.1);
+  filter: brightness(1.1);
+
+  box-shadow:
+    0 18px 40px rgba(0, 0, 0, 0.32);
 }
 
 .assistant-button:focus-visible {
@@ -114,7 +116,6 @@
 .assistant-chat {
   position: fixed;
 
-  right: 28px;
   bottom: 28px;
 
   width: min(420px, calc(100vw - 32px));
@@ -139,6 +140,16 @@
   z-index: 9999;
 
   animation: assistantOpen 0.25s ease;
+}
+
+.assistant-chat-right {
+  right: 28px;
+  left: auto;
+}
+
+.assistant-chat-left {
+  left: 28px;
+  right: auto;
 }
 
 @keyframes assistantOpen {
@@ -1137,5 +1148,9 @@
 
   .assistant-header .header-gold-line {
     opacity: 0.3;
+  }
+
+  .assistant-button.not-dragging {
+    transition: none !important;
   }
 }
