@@ -2,7 +2,7 @@ import { Navbar } from './components/Navbar/Navbar'
 import { Hero } from './components/Hero/Hero'
 import { Services } from './components/Services/Services'
 import { Showcase } from './components/Showcase/Showcase'
-import { About } from './components/About/About'
+
 import { Process } from './components/Process/Process'
 import { FAQ } from './components/FAQ/FAQ'
 import { Footer } from './components/Footer/Footer'
