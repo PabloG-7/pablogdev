@@ -135,6 +135,13 @@ const projects: ShowcaseCardProps[] = [
     titleKey: 'project_13_name',
     descKey: 'project_13_desc',
     link: 'https://pablog-7.github.io/nike-site-exemplo/'
+  },
+  {
+    image: '/images/exemplo14.webp',
+    categoryKey: 'cat_beauty',
+    titleKey: 'project_14_name',
+    descKey: 'project_14_desc',
+    link: 'https://pablog-7.github.io/skincare-site-exemplo/'
   }
 ]
 

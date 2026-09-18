@@ -60,6 +60,8 @@ export type TranslationKey =
   | 'project_12_desc'
   | 'project_13_name'
   | 'project_13_desc'
+  | 'project_14_name'
+  | 'project_14_desc'
   | 'card_link'
   | 'about_subtitle'
   | 'about_desc_1'
@@ -220,6 +222,8 @@ export const translations: Translations = {
     project_12_desc: "Site institucional para salão de beleza com design clean, agendamento integrado e dashboard administrativo",
     project_13_name: "Nike Store - Landing Premium",
     project_13_desc: "Landing page conceito com transições cinematográficas, tema dinâmico e apresentação de produto de alto impacto",
+    project_14_name: "Glass Skin Effect",
+    project_14_desc: "Site institucional para marca de skincare orgânico, com design editorial premium, catálogo de produtos e botão flutuante de WhatsApp",
     card_link: "👁 Visualizar Projeto",
     about_subtitle: "SOBRE",
     about_desc_1: "Desenvolvedor especializado em criar <strong>soluções digitais</strong> para empresas que desejam crescer na internet.",
@@ -377,6 +381,8 @@ export const translations: Translations = {
     project_12_desc: "Sitio institucional para salón de belleza con diseño clean, agenda integrada y dashboard administrativo",
     project_13_name: "Nike Store - Landing Premium",
     project_13_desc: "Landing page concepto con transiciones cinematográficas, tema dinámico y presentación de producto de alto impacto",
+    project_14_name: "Glass Skin Effect",
+    project_14_desc: "Sitio institucional para marca de cuidado de la piel orgánico, con diseño editorial premium, catálogo de productos y botón flotante de WhatsApp",
     card_link: "👁 Visualizar Proyecto",
     about_subtitle: "SOBRE",
     about_desc_1: "Desarrollador especializado en crear <strong>soluciones digitales</strong> para empresas que desean crecer en internet.",
@@ -534,6 +540,8 @@ export const translations: Translations = {
     project_12_desc: "Institutional website for a beauty salon with clean design, integrated scheduling and admin dashboard",
     project_13_name: "Nike Store - Premium Landing",
     project_13_desc: "Concept landing page with cinematic transitions, dynamic theme and high-impact product showcase",
+    project_14_name: "Glass Skin Effect",
+    project_14_desc: "Institutional website for an organic skincare brand, featuring a premium editorial design, product catalog, and floating WhatsApp button",
     card_link: "👁 View Project",
     about_subtitle: "ABOUT",
     about_desc_1: "Developer specialized in creating <strong>digital solutions</strong> for businesses that want to grow on the internet.",
