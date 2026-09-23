@@ -1,6 +1,6 @@
 export type Language = 'pt' | 'es' | 'en'
 
-export type TranslationKey = 
+export type TranslationKey =
   | 'nav_home'
   | 'nav_services'
   | 'nav_showcase'
@@ -88,6 +88,7 @@ export type TranslationKey =
   | 'step_3_desc'
   | 'step_4_title'
   | 'step_4_desc'
+  // FAQ (antigas — mantidas para compatibilidade)
   | 'faq_subtitle'
   | 'faq_title'
   | 'faq_desc'
@@ -106,6 +107,14 @@ export type TranslationKey =
   | 'faq_6_answer'
   | 'faq_cta_text'
   | 'faq_cta_btn'
+  // FAQ (novas — layout duas colunas)
+  | 'faq_eyebrow'
+  | 'faq_title_first'
+  | 'faq_title_highlight'
+  | 'faq_note'
+  | 'faq_contact_title'
+  | 'faq_contact_text'
+  | 'faq_whatsapp_number'
   | 'stat_1'
   | 'stat_2'
   | 'stat_3'
@@ -254,6 +263,7 @@ export const translations: Translations = {
     step_3_desc: "Desenvolvo um visual moderno, intuitivo e alinhado à sua marca.",
     step_4_title: "Desenvolvimento",
     step_4_desc: "Transformo o projeto em um site rápido e 100% responsivo.",
+    // FAQ — antigas
     faq_subtitle: "DÚVIDAS",
     faq_title: "Perguntas Frequentes",
     faq_desc: "Tire suas dúvidas sobre meus serviços e processos de trabalho",
@@ -272,6 +282,14 @@ export const translations: Translations = {
     faq_6_answer: "Sim! Os sites são desenvolvidos com boas práticas de SEO, estrutura adequada e carregamento rápido para melhorar sua presença nos mecanismos de busca.",
     faq_cta_text: "Ainda tem dúvidas? Fale comigo no WhatsApp",
     faq_cta_btn: "Falar agora →",
+    // FAQ — novas (layout duas colunas)
+    faq_eyebrow: "DÚVIDAS?",
+    faq_title_first: "PERGUNTAS",
+    faq_title_highlight: "FREQUENTES",
+    faq_note: "Qualquer dúvida é só perguntar!",
+    faq_contact_title: "Não encontrou sua dúvida?",
+    faq_contact_text: "Fala comigo no WhatsApp!",
+    faq_whatsapp_number: "https://wa.me/5500000000000",
     stat_1: "Clientes Satisfeitos",
     stat_2: "Projetos Entregues",
     stat_3: "Robôs WhatsApp",
@@ -417,6 +435,7 @@ export const translations: Translations = {
     step_3_desc: "Desarrollo un visual moderno, intuitivo y alineado a tu marca.",
     step_4_title: "Desarrollo",
     step_4_desc: "Transformo el proyecto en un sitio rápido y 100% responsivo.",
+    // FAQ — antigas
     faq_subtitle: "DUDAS",
     faq_title: "Preguntas Frecuentes",
     faq_desc: "Resuelve tus dudas sobre mis servicios y procesos de trabajo",
@@ -435,6 +454,14 @@ export const translations: Translations = {
     faq_6_answer: "¡Sí! Los sitios se desarrollan con buenas prácticas de SEO, estructura adecuada y carga rápida para mejorar tu presencia en los buscadores.",
     faq_cta_text: "¿Aún tienes dudas? Háblame por WhatsApp",
     faq_cta_btn: "Hablar ahora →",
+    // FAQ — novas (layout duas colunas)
+    faq_eyebrow: "¿DUDAS?",
+    faq_title_first: "PREGUNTAS",
+    faq_title_highlight: "FRECUENTES",
+    faq_note: "¡Cualquier duda, preguntame!",
+    faq_contact_title: "¿No encontraste tu duda?",
+    faq_contact_text: "¡Hablame por WhatsApp!",
+    faq_whatsapp_number: "https://wa.me/5500000000000",
     stat_1: "Clientes Satisfechos",
     stat_2: "Proyectos Entregados",
     stat_3: "Robots WhatsApp",
@@ -580,6 +607,7 @@ export const translations: Translations = {
     step_3_desc: "I develop a modern, intuitive look aligned with your brand.",
     step_4_title: "Development",
     step_4_desc: "I turn the project into a fast, responsive website.",
+    // FAQ — antigas
     faq_subtitle: "QUESTIONS",
     faq_title: "Frequently Asked Questions",
     faq_desc: "Get answers about my services and work processes",
@@ -598,6 +626,14 @@ export const translations: Translations = {
     faq_6_answer: "Yes! Websites are built with SEO best practices, proper structure, and fast loading to improve your presence in search engines.",
     faq_cta_text: "Still have doubts? Talk to me on WhatsApp",
     faq_cta_btn: "Talk now →",
+    // FAQ — novas (layout duas colunas)
+    faq_eyebrow: "QUESTIONS?",
+    faq_title_first: "FREQUENTLY",
+    faq_title_highlight: "ASKED",
+    faq_note: "Any question? Just ask!",
+    faq_contact_title: "Didn't find your answer?",
+    faq_contact_text: "Talk to me on WhatsApp!",
+    faq_whatsapp_number: "https://wa.me/5500000000000",
     stat_1: "Happy Clients",
     stat_2: "Delivered Projects",
     stat_3: "WhatsApp Bots",
