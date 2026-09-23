@@ -62,6 +62,10 @@ export type TranslationKey =
   | 'project_13_desc'
   | 'project_14_name'
   | 'project_14_desc'
+  | 'project_15_name'
+  | 'project_15_desc'
+  | 'project_16_name'
+  | 'project_16_desc'
   | 'card_link'
   | 'about_subtitle'
   | 'about_desc_1'
@@ -224,6 +228,10 @@ export const translations: Translations = {
     project_13_desc: "Landing page conceito com transições cinematográficas, tema dinâmico e apresentação de produto de alto impacto",
     project_14_name: "Glass Skin Effect",
     project_14_desc: "Site institucional para marca de skincare orgânico, com design editorial premium, catálogo de produtos e botão flutuante de WhatsApp",
+    project_15_name: "LuckPet - Banho e Tosa",
+    project_15_desc: "Site institucional para pet shop com design divertido e acolhedor, animações interativas e identidade visual vibrante",
+    project_16_name: "Barbani - Barbearia Premium",
+    project_16_desc: "Site institucional para barbearia com design sofisticado, transições cinematográficas e sistema de páginas integrado",
     card_link: "👁 Visualizar Projeto",
     about_subtitle: "SOBRE",
     about_desc_1: "Desenvolvedor especializado em criar <strong>soluções digitais</strong> para empresas que desejam crescer na internet.",
@@ -383,6 +391,10 @@ export const translations: Translations = {
     project_13_desc: "Landing page concepto con transiciones cinematográficas, tema dinámico y presentación de producto de alto impacto",
     project_14_name: "Glass Skin Effect",
     project_14_desc: "Sitio institucional para marca de cuidado de la piel orgánico, con diseño editorial premium, catálogo de productos y botón flotante de WhatsApp",
+    project_15_name: "LuckPet - Baño y Peluquería",
+    project_15_desc: "Sitio institucional para pet shop con diseño divertido y acogedor, animaciones interactivas e identidad visual vibrante",
+    project_16_name: "Barbani - Barbería Premium",
+    project_16_desc: "Sitio institucional para barbería con diseño sofisticado, transiciones cinematográficas y sistema de páginas integrado",
     card_link: "👁 Visualizar Proyecto",
     about_subtitle: "SOBRE",
     about_desc_1: "Desarrollador especializado en crear <strong>soluciones digitales</strong> para empresas que desean crecer en internet.",
@@ -542,6 +554,10 @@ export const translations: Translations = {
     project_13_desc: "Concept landing page with cinematic transitions, dynamic theme and high-impact product showcase",
     project_14_name: "Glass Skin Effect",
     project_14_desc: "Institutional website for an organic skincare brand, featuring a premium editorial design, product catalog, and floating WhatsApp button",
+    project_15_name: "LuckPet - Pet Grooming",
+    project_15_desc: "Institutional website for a pet shop with a fun and welcoming design, interactive animations and vibrant visual identity",
+    project_16_name: "Barbani - Premium Barbershop",
+    project_16_desc: "Institutional website for a barbershop with sophisticated design, cinematic transitions and integrated page system",
     card_link: "👁 View Project",
     about_subtitle: "ABOUT",
     about_desc_1: "Developer specialized in creating <strong>digital solutions</strong> for businesses that want to grow on the internet.",

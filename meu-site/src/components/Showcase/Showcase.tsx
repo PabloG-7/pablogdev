@@ -44,6 +44,7 @@ function ShowcaseCard({ image, categoryKey, titleKey, descKey, link }: ShowcaseC
 }
 
 // Projetos movidos para fora do componente para evitar recriação
+// Ordem customizada: Barbani (16) na 2ª posição, LuckPet (15) na 4ª posição
 const projects: ShowcaseCardProps[] = [
   {
     image: '/images/exemplo1.webp',
@@ -53,11 +54,25 @@ const projects: ShowcaseCardProps[] = [
     link: 'https://pablog-7.github.io/casamento-site-exemplo/'
   },
   {
+    image: '/images/exemplo16.webp',
+    categoryKey: 'cat_beauty',
+    titleKey: 'project_16_name',
+    descKey: 'project_16_desc',
+    link: 'https://pablog-7.github.io/barber-site-exemplo/'
+  },
+  {
     image: '/images/exemplo2.webp',
     categoryKey: 'cat_ecommerce',
     titleKey: 'project_2_name',
     descKey: 'project_2_desc',
     link: 'https://roupas-ateller.vercel.app/'
+  },
+  {
+    image: '/images/exemplo15.webp',
+    categoryKey: 'cat_beauty',
+    titleKey: 'project_15_name',
+    descKey: 'project_15_desc',
+    link: 'https://pablog-7.github.io/banhoetosa-site-exemplo/'
   },
   {
     image: '/images/exemplo3.webp',
