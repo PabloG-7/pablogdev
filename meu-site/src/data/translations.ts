@@ -143,6 +143,13 @@ export type TranslationKey =
   | 'footer_copyright'
   | 'footer_privacy'
   | 'footer_terms'
+  // FOOTER — novas (layout minimalista)
+  | 'footer_nav_aria'
+  | 'footer_nav_process'
+  | 'footer_signature_design'
+  | 'footer_signature_code'
+  | 'footer_signature_experience'
+  | 'footer_location_short'
   | 'contact_wa_label'
   | 'contact_wa'
   | 'contact_email_label'
@@ -298,7 +305,7 @@ export const translations: Translations = {
     stat_2: "Projetos Entregues",
     stat_3: "Robôs WhatsApp",
     stat_4: "Xícaras de Café",
-    footer_desc: "Transformo ideias em soluções digitais que realmente funcionam. Código limpo, 100% responsivo e suporte que não acaba na entrega.",
+    footer_desc: "Sites, sistemas e experiências digitais feitas para o seu negócio.",
     footer_cta_title_gold: "Transforme",
     footer_cta_title_rest: "sua ideia em realidade",
     footer_cta_desc: "Vamos criar juntos a solução digital que seu negócio precisa.",
@@ -320,6 +327,13 @@ export const translations: Translations = {
     footer_copyright: "Todos os direitos reservados.",
     footer_privacy: "Política de Privacidade",
     footer_terms: "Termos de Uso",
+    // FOOTER — novas (layout minimalista)
+    footer_nav_aria: "Navegação do rodapé",
+    footer_nav_process: "Processo",
+    footer_signature_design: "DESIGN",
+    footer_signature_code: "CÓDIGO",
+    footer_signature_experience: "EXPERIÊNCIA",
+    footer_location_short: "SP — BR",
     contact_wa_label: "WhatsApp",
     contact_wa: "Clique para conversar →",
     contact_email_label: "E-mail",
@@ -472,7 +486,7 @@ export const translations: Translations = {
     stat_2: "Proyectos Entregados",
     stat_3: "Robots WhatsApp",
     stat_4: "Tazas de Café",
-    footer_desc: "Transformo ideas en soluciones digitales que realmente funcionan. Código limpio, 100% responsivo y soporte que no termina en la entrega.",
+    footer_desc: "Sitios, sistemas y experiencias digitales hechas para tu negocio.",
     footer_cta_title_gold: "Transforma",
     footer_cta_title_rest: "tu idea en realidad",
     footer_cta_desc: "Vamos a crear juntos la solución digital que tu negocio necesita.",
@@ -494,6 +508,13 @@ export const translations: Translations = {
     footer_copyright: "Todos los derechos reservados.",
     footer_privacy: "Política de Privacidad",
     footer_terms: "Términos de Uso",
+    // FOOTER — novas (layout minimalista)
+    footer_nav_aria: "Navegación del pie de página",
+    footer_nav_process: "Proceso",
+    footer_signature_design: "DISEÑO",
+    footer_signature_code: "CÓDIGO",
+    footer_signature_experience: "EXPERIENCIA",
+    footer_location_short: "SP — BR",
     contact_wa_label: "WhatsApp",
     contact_wa: "Haz clic para conversar →",
     contact_email_label: "E-mail",
@@ -646,7 +667,7 @@ export const translations: Translations = {
     stat_2: "Delivered Projects",
     stat_3: "WhatsApp Bots",
     stat_4: "Cups of Coffee",
-    footer_desc: "I turn ideas into digital solutions that actually work. Clean code, 100% responsive, and support that doesn't end at delivery.",
+    footer_desc: "Websites, systems and digital experiences built for your business.",
     footer_cta_title_gold: "Transform",
     footer_cta_title_rest: "your idea into reality",
     footer_cta_desc: "Let's create together the digital solution your business needs.",
@@ -668,6 +689,13 @@ export const translations: Translations = {
     footer_copyright: "All rights reserved.",
     footer_privacy: "Privacy Policy",
     footer_terms: "Terms of Use",
+    // FOOTER — novas (layout minimalista)
+    footer_nav_aria: "Footer navigation",
+    footer_nav_process: "Process",
+    footer_signature_design: "DESIGN",
+    footer_signature_code: "CODE",
+    footer_signature_experience: "EXPERIENCE",
+    footer_location_short: "SP — BR",
     contact_wa_label: "WhatsApp",
     contact_wa: "Click to chat →",
     contact_email_label: "E-mail",
