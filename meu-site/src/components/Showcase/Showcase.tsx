@@ -58,7 +58,7 @@ const projects: ShowcaseCardProps[] = [
     categoryKey: 'cat_beauty',
     titleKey: 'project_16_name',
     descKey: 'project_16_desc',
-    link: 'https://pablog-7.github.io/barber-site-exemplo/'
+    link: 'https://barber-site-exemplo.vercel.app/'
   },
   {
     image: '/images/exemplo2.webp',
@@ -72,7 +72,7 @@ const projects: ShowcaseCardProps[] = [
     categoryKey: 'cat_beauty',
     titleKey: 'project_15_name',
     descKey: 'project_15_desc',
-    link: 'https://pablog-7.github.io/banhoetosa-site-exemplo/'
+    link: 'https://banhoetosa-site-exemplo.vercel.app/'
   },
   {
     image: '/images/exemplo3.webp',
